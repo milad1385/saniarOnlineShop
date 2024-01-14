@@ -1,0 +1,271 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  @font-face {
+    font-family: "Dana";
+    src: local("Dana"), url("../fonts/Dana/woff2/DanaFaNum-Regular.woff2");
+    font-display: swap;
+  }
+  @font-face {
+    font-family: "Dana Medium";
+    src: local("Dana Medium"), url("../fonts/Dana/woff2/DanaFaNum-Medium.woff2");
+    font-display: swap;
+  }
+  @font-face {
+    font-family: "Dana DemiBold";
+    src: local("Dana DemiBold"),
+      url("/fonts/Dana/woff2/DanaFaNum-DemiBold.woff2");
+    font-display: swap;
+  }
+  @font-face {
+    font-family: "Morabba Light";
+    src: local("Morabba Light"), url("/fonts/Morabba/woff2/Morabba-Light.woff2");
+    font-display: swap;
+  }
+  @font-face {
+    font-family: "Morabba Medium";
+    src: local("Morabba Medium"),
+      url("/fonts/Morabba/woff2/Morabba-Medium.woff2");
+    font-display: swap;
+  }
+  @font-face {
+    font-family: "Morabba Bold";
+    src: local("Dana DemiBold"), url("/fonts/Morabba/woff2/Morabba-Bold.woff2");
+    font-display: swap;
+  }
+}
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+}
+
+@layer components {
+  .parent::before {
+    content: "";
+    position: absolute;
+    content: "";
+    position: absolute;
+    top: 60px;
+    left: 0;
+    right: 0;
+    height: 410px;
+    background: #2563eb;
+    z-index: 0;
+  }
+
+  .parent-2::before {
+    content: "";
+    position: absolute;
+    content: "";
+    position: absolute;
+    top: 60px;
+    left: 0;
+    right: 0;
+    height: 410px;
+    background: #ffa41b;
+    z-index: 0;
+  }
+  .flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .blog::before {
+    content: "";
+    position: absolute;
+    content: "";
+    position: absolute;
+    top: 50px;
+    left: 0;
+    right: 0;
+    height: 340px;
+    background: #2563eb;
+    z-index: 0;
+  }
+
+  .active-menu {
+    @apply opacity-100 visible;
+  }
+
+  .hide-menu {
+    @apply opacity-0 invisible;
+  }
+
+  @media only screen and (max-width: 450px) {
+    .parent::before {
+      height: 410px;
+    }
+    .parent-2::before {
+      height: 400px;
+    }
+    .blog::before {
+      height: 380px;
+    }
+  }
+  .chev {
+    transform: rotate(-360deg);
+  }
+
+  .footer-menu {
+    box-shadow: 0 0 10px #e7e7e7;
+  }
+
+  .icon {
+    top: 35%;
+    right: 43%;
+    background-color: white;
+    border-radius: 6px;
+    padding: 2px;
+  }
+
+  .vedio-prev {
+    filter: grayscale(100%);
+  }
+
+  .pagination-active {
+    background-color: #2563eb !important;
+    color: white;
+    transition: 150ms all;
+  }
+
+  input::placeholder {
+    @apply text-gray-600;
+  }
+
+  body {
+    overflow-x: hidden;
+  }
+  .body::before {
+    content: "";
+    position: absolute;
+    top: 8rem;
+    width: 150%;
+    height: 380px;
+    background-color: #2563eb;
+    z-index: 30;
+    transform: rotate(-4deg);
+  }
+  .body::after {
+    content: "";
+    position: absolute;
+    top: 11rem;
+    width: 150%;
+    height: 380px;
+    background-color: #2563eb;
+    opacity: 0.5;
+    z-index: 20;
+    transform: rotate(-4deg);
+  }
+
+  @media (max-width: 768px) {
+    .body::after {
+      content: none;
+    }
+
+    .body::before {
+      content: none;
+    }
+  }
+
+  .login-des-list {
+    list-style-type: disc;
+    font-size: 12px;
+    margin-right: 20px;
+    @apply font-DanaDemiBold text-gray-500;
+  }
+
+  .sort-active {
+    @apply bg-gray-100 py-2 px-4;
+  }
+}
+
+.swiper-pagination-bullet-active {
+  width: 20px;
+  border-radius: 11px;
+  transition: all ease;
+}
+
+::-webkit-scrollbar {
+  width: 1vw;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #275fe0;
+  border: 0.3vw solid #ffffff;
+  border-radius: 5vw;
+}
+::-webkit-scrollbar-track {
+  background-color: #ffffff;
+}
+html {
+  scroll-behavior: smooth;
+}
+
+.image {
+  width: 100%;
+}
+
+.table-container {
+  overflow-x: auto;
+}
+table {
+  width: 100%;
+  white-space: nowrap;
+}
+
+.features {
+  font-size: 14px;
+}
+
+a.active {
+  background-color: #407bff31;
+}
+
+input[type="checkbox"] {
+  margin: 4px 0 0;
+  line-height: normal;
+  width: 20px;
+  height: 20px;
+}
+
+@media (max-width: 768px) {
+  input[type="checkbox"] {
+    margin: 4px 0 0;
+    line-height: normal;
+    width: 15px;
+    height: 15px;
+  }
+}
+
+.range-slider .range-slider__thumb {
+  width: 20px;
+  height: 20px;
+  background-color: white;
+  border: 1px solid #2563eb;
+}
+
+.range-slider .range-slider__range {
+  background-color: #2563eb;
+}
+
+.slide-image {
+  opacity: 0.5;
+}
+.swiper-slide-thumb-active img {
+  opacity: 1 !important;
+}
+
+.option-menu::before{
+  position: absolute;
+  background-color: #2563eb;
+  content: "";
+  width: 10px;
+  height: 10px;
+  transform: rotate(45deg);
+  left: 2.5px;
+  top: -6px;
+}
