@@ -8,7 +8,7 @@ function DiscountCode() {
       <div className="table-container mt-6">
         <table class="bg-white">
           <thead>
-            <tr className="child:border child:bg-blue-600 child:text-white child:border-slate-300 child:p-2 child:font-DanaDemiBold">
+            <tr className="child:border child:bg-gray-500 child:text-white child:border-slate-300 child:p-2 child:font-DanaDemiBold">
               <th className="">شناسه</th>
               <th className="">کد تخفیف</th>
               <th className=""> ساخت</th>
