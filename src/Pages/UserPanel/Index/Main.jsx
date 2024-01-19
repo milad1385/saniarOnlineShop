@@ -15,12 +15,12 @@ function Main() {
         <BreadCrumb
           links={[
             { id: 1, name: "خانه", to: "/" },
-            { id: 2, name: "فروشگاه", to: "/" },
-            { id: 3, name: "پنل کاربری", to: "/" },
+            { id: 2, name: "فروشگاه", to: "/products" },
+            { id: 3, name: "پنل کاربری", to: "/my-account" },
           ]}
         />
         <div className="flex  gap-x-5">
-          <div className="hidden lg:block w-[480px] h-[540px] bg-white shadow  rounded-md p-4 sticky top-0">
+          <div className="hidden lg:block w-[480px] h-[590px] bg-white shadow  rounded-md p-4 sticky top-0">
             <div className="flex items-center gap-x-4 border-b-2 border-b-gray-200 pb-2">
               <div className="bg-gray-100 w-[55px] h-[55px] flex-center rounded-full">
                 <img
@@ -37,11 +37,22 @@ function Main() {
             <ul className="space-y-2 py-3 border-b-2 border-b-gray-200">
               <li>
                 <NavLink
-                  to={"/my-account/profile"}
+                  to={"/my-account/main"}
                   className="flex  gap-x-2 font-DanaMedium p-2 rounded-md"
                 >
                   <svg className="w-5 h-5 text-blue-600">
                     <use href="#home"></use>
+                  </svg>
+                  صفحه اصلی
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to={"/my-account/profile"}
+                  className="flex  gap-x-2 font-DanaMedium p-2 rounded-md"
+                >
+                  <svg className="w-5 h-5 text-blue-600">
+                    <use href="#user"></use>
                   </svg>
                   پروفایل
                 </NavLink>

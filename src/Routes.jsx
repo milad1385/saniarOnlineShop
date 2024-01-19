@@ -37,6 +37,7 @@ const routes = [
     element: <Main />,
     children: [
       { path: "", element: <MainPage /> },
+      { path: "main", element: <MainPage /> },
       { path: "profile", element: <Profile /> },
       { path: "orders", element: <OrderPage /> },
       { path: "address", element: <Adress /> },
@@ -47,7 +48,6 @@ const routes = [
       { path: "tickets", element: <Tickets /> },
       { path: "tickets/answer-ticket/:ticketID", element: <AnswerTicket /> },
       { path: "tickets/send-ticket", element: <SendTicket /> },
-
     ],
   },
 ];

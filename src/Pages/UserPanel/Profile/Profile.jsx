@@ -8,14 +8,14 @@ function Profile() {
     <div>
       <PageTitle icon={"home"} title={"پروفایل من"} />
       <form id="edit-account-info" className="p-3.5 pt-8">
-        <div className="relative mb-11 flex-center">
+        <div className="relative mb-11 md:flex-center">
           <img
             src="/images/user.png"
             className="w-32 md:w-44 h-32 md:h-44 rounded-full"
           />
           <Link
             to={"/"}
-            className="absolute bottom-0 right-[425px] flex-center w-10 md:w-14 h-10 md:h-14 rounded-full bg-blue-600  border-2 md:border-4 border-white  cursor-pointer transition-colors"
+            className="absolute bottom-0 right-0 md:right-[428px] flex-center w-10 md:w-14 h-10 md:h-14 rounded-full bg-blue-600  border-2 md:border-4 border-white  cursor-pointer transition-colors"
           >
             <svg className="w-5 md:w-6 h-5 md:h-6 text-white">
               <use href="#arrow-path-rounded-square"></use>
@@ -113,7 +113,7 @@ function Profile() {
             />
           </div>
         </div>
-        <Button title={"ثبت اطلاعات"} className=" w-full md:w-auto mt-14" />
+        <Button title={"ثبت اطلاعات"} icon={'edit'} className=" w-full md:w-auto mt-14" />
       </form>
     </div>
   );
