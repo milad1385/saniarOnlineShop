@@ -15,6 +15,7 @@ import Comments from "../../Components/Comments/Comments";
 import FeatureList from "../../Components/FeatureList/FeatureList";
 import ProductBoxInfo from "../../Components/ProductBoxInfo/ProductBoxInfo";
 import ColorBox from "../../Components/ColorBox/ColorBox";
+import SliderIcon from "../../Components/SliderIcon/SliderIcon";
 
 function ProductPage() {
   const [optionShowModel, setOptionShowModel] = useState("توضیحات کالا");
@@ -40,26 +41,10 @@ function ProductPage() {
             <div className="">
               <div className="flex gap-x-3 border border-gray-200 px-3 py-4 rounded-md">
                 <div className="flex flex-col gap-y-2">
-                  <div className="bg-gray-100 text-zinc-500 w-[30px] h-[30px] flex-center rounded-full">
-                    <svg className="w-5 h-5">
-                      <use href="#share"></use>
-                    </svg>
-                  </div>
-                  <div className="bg-gray-100 text-zinc-500 w-[30px] h-[30px] flex-center rounded-full">
-                    <svg className="w-5 h-5">
-                      <use href="#heart"></use>
-                    </svg>
-                  </div>
-                  <div className="bg-gray-100 text-zinc-500 w-[30px] h-[30px] flex-center rounded-full">
-                    <svg className="w-5 h-5">
-                      <use href="#right-left-arrow"></use>
-                    </svg>
-                  </div>
-                  <div className="bg-gray-100 text-zinc-500 w-[30px] h-[30px] flex-center rounded-full">
-                    <svg className="w-5 h-5">
-                      <use href="#chart-bar"></use>
-                    </svg>
-                  </div>
+                  <SliderIcon icon={'share'}/>
+                  <SliderIcon icon={'heart'}/>
+                  <SliderIcon icon={'right-left-arrow'}/>
+                  <SliderIcon icon={'chart-bar'}/>
                 </div>
                 <Swiper
                   className="mySwiper"
