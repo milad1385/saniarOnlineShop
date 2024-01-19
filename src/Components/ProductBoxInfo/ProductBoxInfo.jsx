@@ -1,8 +1,14 @@
 import React from "react";
+import ColorBox from "../ColorBox/ColorBox";
 
-function ProductBoxInfo({productCount , setProductCount}) {
+function ProductBoxInfo({
+  productCount,
+  setProductCount,
+  setColorChoose,
+  colorChoose,
+}) {
   return (
-    <div className="bg-white rounded-md shadow h-[500px]  w-[450px] hidden lg:block sticky top-0 px-4 py-3">
+    <div className="bg-white rounded-md shadow h-[525px]  w-[450px] hidden lg:block sticky top-0 px-4 py-3">
       {/* start header of box */}
       <div className="flex items-center justify-between">
         <div>
@@ -16,23 +22,37 @@ function ProductBoxInfo({productCount , setProductCount}) {
           ساعت هوشمند سامسونگ مدل Galaxy Watch3 SM-R840 45mm بند چرمی
         </p>
       </div>
-      <div class="flex items-center flex-wrap gap-x-2 mt-4">
-        <div class="flex items-center gap-x-2 bg-gray-200 px-2 py-1 rounded-full cursor-default md:cursor-pointer">
-          <div class="w-5 h-5 rounded-full bg-black"></div>
-          <span>مشکی</span>
-        </div>
-        <div class="flex items-center gap-x-2 bg-gray-200 px-2 py-1 rounded-full cursor-default md:cursor-pointer">
-          <div class="w-5 h-5 rounded-full bg-blue-600"></div>
-          <span>آبی</span>
-        </div>
-        <div class="flex items-center gap-x-2 bg-gray-200 px-2 py-1 rounded-full cursor-default md:cursor-pointer">
-          <div class="w-5 h-5 rounded-full bg-red-500"></div>
-          <span>قرمز</span>
-        </div>
-        <div class="flex items-center gap-x-2 bg-gray-200 px-2 py-1 rounded-full cursor-default md:cursor-pointer">
-          <div class="w-5 h-5 rounded-full bg-yellow-400"></div>
-          <span>زرد</span>
-        </div>
+      <div class="flex items-center flex-wrap gap-3 mt-4">
+        <ColorBox
+          colorCode={"blue"}
+          colorName={"آبی"}
+          colorChoose={colorChoose}
+          setColorChoose={setColorChoose}
+        />
+        <ColorBox
+          colorCode={"red"}
+          colorName={"قرمز"}
+          colorChoose={colorChoose}
+          setColorChoose={setColorChoose}
+        />
+        <ColorBox
+          colorCode={"green"}
+          colorName={"سبز"}
+          colorChoose={colorChoose}
+          setColorChoose={setColorChoose}
+        />
+        <ColorBox
+          colorCode={"yellow"}
+          colorName={"زرد"}
+          colorChoose={colorChoose}
+          setColorChoose={setColorChoose}
+        />
+        <ColorBox
+          colorCode={"black"}
+          colorName={"مشکی"}
+          colorChoose={colorChoose}
+          setColorChoose={setColorChoose}
+        />
       </div>
       <div className="flex items-center gap-x-2 my-4">
         <img

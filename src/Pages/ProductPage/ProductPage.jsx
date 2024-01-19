@@ -14,6 +14,7 @@ import Rateing from "../../Components/Rateing/Rateing";
 import Comments from "../../Components/Comments/Comments";
 import FeatureList from "../../Components/FeatureList/FeatureList";
 import ProductBoxInfo from "../../Components/ProductBoxInfo/ProductBoxInfo";
+import ColorBox from "../../Components/ColorBox/ColorBox";
 
 function ProductPage() {
   const [optionShowModel, setOptionShowModel] = useState("توضیحات کالا");
@@ -246,66 +247,36 @@ function ProductPage() {
                   انتخاب رنگ : {colorChoose || "انتخاب کنید"}{" "}
                 </h3>
                 <div className="flex items-center flex-wrap gap-2 mt-2">
-                  <div
-                    className={`flex items-center gap-x-2 bg-gray-200 px-2 py-1 rounded-full cursor-default md:cursor-pointer ${
-                      colorChoose === "مشکی" ? "border-2 border-blue-600" : ""
-                    }`}
-                    onClick={(e) => setColorChoose("مشکی")}
-                  >
-                    <div className="w-5 h-5 rounded-full bg-black flex-center">
-                      {colorChoose === "مشکی" && (
-                        <svg className="w-4 h-4 text-white">
-                          <use href="#ok"></use>
-                        </svg>
-                      )}
-                    </div>
-                    <span>مشکی</span>
-                  </div>
-                  <div
-                    className={`flex items-center gap-x-2 bg-gray-200 px-2 py-1 rounded-full cursor-default md:cursor-pointer ${
-                      colorChoose === "آبی" ? "border-2 border-blue-600" : ""
-                    }`}
-                    onClick={(e) => setColorChoose("آبی")}
-                  >
-                    <div className="w-5 h-5 rounded-full bg-blue-600 flex-center">
-                      {colorChoose === "آبی" && (
-                        <svg className="w-4 h-4 text-white">
-                          <use href="#ok"></use>
-                        </svg>
-                      )}
-                    </div>
-                    <span>آبی</span>
-                  </div>
-                  <div
-                    className={`flex items-center gap-x-2 bg-gray-200 px-2 py-1 rounded-full cursor-default md:cursor-pointer ${
-                      colorChoose === "قرمز" ? "border-2 border-blue-600" : ""
-                    }`}
-                    onClick={(e) => setColorChoose("قرمز")}
-                  >
-                    <div className="w-5 h-5 rounded-full bg-red-500 flex-center">
-                      {colorChoose === "قرمز" && (
-                        <svg className="w-4 h-4 text-white">
-                          <use href="#ok"></use>
-                        </svg>
-                      )}
-                    </div>
-                    <span>قرمز</span>
-                  </div>
-                  <div
-                    className={`flex items-center gap-x-2 bg-gray-200 px-2 py-1 rounded-full cursor-default md:cursor-pointer ${
-                      colorChoose === "زرد" ? "border-2 border-blue-600" : ""
-                    }`}
-                    onClick={(e) => setColorChoose("زرد")}
-                  >
-                    <div className="w-5 h-5 rounded-full bg-yellow-400 flex-center">
-                      {colorChoose === "زرد" && (
-                        <svg className="w-4 h-4 text-white">
-                          <use href="#ok"></use>
-                        </svg>
-                      )}
-                    </div>
-                    <span>زرد</span>
-                  </div>
+                  <ColorBox
+                    colorCode={"blue"}
+                    colorName={"آبی"}
+                    colorChoose={colorChoose}
+                    setColorChoose={setColorChoose}
+                  />
+                  <ColorBox
+                    colorCode={"red"}
+                    colorName={"قرمز"}
+                    colorChoose={colorChoose}
+                    setColorChoose={setColorChoose}
+                  />
+                  <ColorBox
+                    colorCode={"green"}
+                    colorName={"سبز"}
+                    colorChoose={colorChoose}
+                    setColorChoose={setColorChoose}
+                  />
+                  <ColorBox
+                    colorCode={"yellow"}
+                    colorName={"زرد"}
+                    colorChoose={colorChoose}
+                    setColorChoose={setColorChoose}
+                  />
+                  <ColorBox
+                    colorCode={"black"}
+                    colorName={"مشکی"}
+                    colorChoose={colorChoose}
+                    setColorChoose={setColorChoose}
+                  />
                 </div>
               </div>
               <p className="my-3 text-sm font-DanaDemiBold text-blue-600">
@@ -501,6 +472,8 @@ function ProductPage() {
           <ProductBoxInfo
             productCount={productCount}
             setProductCount={setProductCount}
+            setColorChoose={setColorChoose}
+            colorChoose={colorChoose}
           />
         </div>
       </div>
