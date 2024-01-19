@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import PageTitle from "../../../Components/UserPanel/PageTitle/PageTitle";
 import Notification from "../../../Components/UserPanel/Notification/Notification";
 
 function Notifications() {
+  useEffect(() => {
+    window.scroll(0, 0);
+  }, []);
   return (
     <div>
       <PageTitle title="اعلان ها و اطلاعیه ها" icon="earth" />

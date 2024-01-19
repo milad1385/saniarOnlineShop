@@ -1,7 +1,10 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import PageTitle from '../../../Components/UserPanel/PageTitle/PageTitle'
 
 function SendTicket() {
+  useEffect(() => {
+    window.scroll(0, 0);
+  }, []);
   return (
     <>
       <PageTitle title={'ارسال تیکت'} icon={'plane'}/>

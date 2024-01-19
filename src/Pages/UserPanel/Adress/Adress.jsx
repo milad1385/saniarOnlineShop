@@ -4,7 +4,9 @@ import EmptyError from "../../../Components/UserPanel/EmptyError/EmptyError";
 
 function Adress() {
   const [isShowOption, setIsShowOption] = useState(false);
-
+  useEffect(() => {
+    window.scroll(0, 0);
+  }, []);
   return (
     <div>
       <PageTitle title={"آدرس های من"} icon={"map"} />

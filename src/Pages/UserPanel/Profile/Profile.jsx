@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import PageTitle from "../../../Components/UserPanel/PageTitle/PageTitle";
 import { Link } from "react-router-dom";
 import Button from "../../../Components/Button/Button";
 
 function Profile() {
+  useEffect(() => {
+    window.scroll(0, 0);
+  }, []);
   return (
     <div>
       <PageTitle icon={"home"} title={"پروفایل من"} />
@@ -113,7 +116,11 @@ function Profile() {
             />
           </div>
         </div>
-        <Button title={"ثبت اطلاعات"} icon={'edit'} className=" w-full md:w-auto mt-14" />
+        <Button
+          title={"ثبت اطلاعات"}
+          icon={"edit"}
+          className=" w-full md:w-auto mt-14"
+        />
       </form>
     </div>
   );

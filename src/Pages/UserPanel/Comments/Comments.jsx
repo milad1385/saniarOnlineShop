@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import PageTitle from "../../../Components/UserPanel/PageTitle/PageTitle";
 import CommentBox from "../../../Components/UserPanel/CommentBox/CommentBox";
 function Comments() {
+  useEffect(() => {
+    window.scroll(0, 0);
+  }, []);
   return (
     <div>
       <PageTitle title={"کامنت های من"} icon={"chat-bubble-left-right"} />

@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import PageTitle from "../../../Components/UserPanel/PageTitle/PageTitle";
 import EmptyError from "../../../Components/UserPanel/EmptyError/EmptyError";
 import { Link } from "react-router-dom";
 
 function Tickets() {
+  useEffect(() => {
+    window.scroll(0, 0);
+  }, []);
   return (
     <>
       <div>

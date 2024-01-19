@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import PageTitle from "../../../Components/UserPanel/PageTitle/PageTitle";
 import { Link } from "react-router-dom";
 import Pagination from "../../../Components/Pagination/Pagination";
 function DiscountCode() {
+  useEffect(() => {
+    window.scroll(0, 0);
+  }, []);
   return (
     <div>
       <PageTitle icon={"gift"} title={"کد های تخفیف من"} />

@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 function AnswerTicket() {
+  useEffect(() => {
+    window.scroll(0, 0);
+  }, []);
   return (
     <>
       <div className="bg-white rounded-md  p-[18px] shadow">

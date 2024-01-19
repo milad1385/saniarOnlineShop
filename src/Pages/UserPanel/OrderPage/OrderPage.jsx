@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import PageTitle from "../../../Components/UserPanel/PageTitle/PageTitle";
 import { Link } from "react-router-dom";
 import Pagination from "../../../Components/Pagination/Pagination";
 
 function OrderPage() {
+  useEffect(() => {
+    window.scroll(0, 0);
+  }, []);
   return (
     <div>
       <PageTitle icon={"shop-card"} title={"کد های تخفیف من"} />

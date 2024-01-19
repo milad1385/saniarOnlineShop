@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import StatBox from "../../../Components/UserPanel/StatBox/StatBox";
 
 function MainPage() {
+  useEffect(() => {
+    window.scroll(0, 0);
+  }, []);
   return (
     <div>
       <div className="bg-white shadow p-4 rounded-md flex flex-col md:flex-row">

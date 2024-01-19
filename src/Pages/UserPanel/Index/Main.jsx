@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { NavLink, Outlet } from "react-router-dom";
 import Topbar from "../../../Components/Topbar/Topbar";
 import Navbar from "../../../Components/Navbar/Navbar";
@@ -7,6 +7,9 @@ import FooterMenu from "../../../Components/FooterMenu/FooterMenu";
 import BreadCrumb from "../../../Components/BreadCrumb/BreadCrumb";
 
 function Main() {
+  useEffect(() => {
+    window.scroll(0, 0);
+  }, []);
   return (
     <div>
       <Topbar />
