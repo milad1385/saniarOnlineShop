@@ -12,6 +12,7 @@ import FooterMenu from "../../Components/FooterMenu/FooterMenu";
 import Shoper from "../../Components/Shoper/Shoper";
 import Rateing from "../../Components/Rateing/Rateing";
 import Comments from "../../Components/Comments/Comments";
+import FeatureList from "../../Components/FeatureList/FeatureList";
 
 function ProductPage() {
   const [optionShowModel, setOptionShowModel] = useState("توضیحات کالا");
@@ -486,92 +487,7 @@ function ProductPage() {
                   <h3 className="font-DanaDemiBold text-base md:text-2xl">
                     مشخصات فنی
                   </h3>
-                  <div className="mt-6 flex flex-col gap-y-12">
-                    <div>
-                      <h4 className="flex  gap-x-2 font-DanaDemiBold">
-                        <svg className="w-5 h-5">
-                          <use href="#page"></use>
-                        </svg>
-                        مشخصات کلی
-                      </h4>
-                      <ul className="features font-DanaMedium space-y-5 mt-5">
-                        <li className="flex items-center gap-x-2 pr-4 border-r-2 border-r-gray-200">
-                          <span className="py-2 text-gray-500 w-[180px]">
-                            قابلیت پخش موسیقی
-                          </span>
-                          <span className="block bg-gray-200 w-full py-[18px] px-[14px] rounded-lg text-gray-500">
-                            دارد
-                          </span>
-                        </li>
-                        <li className="flex items-center gap-x-2 pr-4 border-r-2 border-r-gray-200">
-                          <span className="py-2 text-gray-500 w-[180px]">
-                            قابلیت پخش موسیقی
-                          </span>
-                          <span className="block bg-gray-200 w-full py-[18px] px-[14px] rounded-lg text-gray-500">
-                            دارد
-                          </span>
-                        </li>
-                        <li className="flex items-center gap-x-2 pr-4 border-r-2 border-r-gray-200">
-                          <span className="py-2 text-gray-500 w-[180px]">
-                            قابلیت پخش موسیقی
-                          </span>
-                          <span className="block bg-gray-200 w-full py-[18px] px-[14px] rounded-lg text-gray-500">
-                            دارد
-                          </span>
-                        </li>
-                        <li className="flex items-center gap-x-2 pr-4 border-r-2 border-r-gray-200">
-                          <span className="py-2 text-gray-500 w-[180px]">
-                            قابلیت پخش موسیقی
-                          </span>
-                          <span className="block bg-gray-200 w-full py-[18px] px-[14px] rounded-lg text-gray-500">
-                            دارد
-                          </span>
-                        </li>
-                      </ul>
-                    </div>
-                    <div>
-                      <h4 className="flex  gap-x-2 font-DanaDemiBold">
-                        <svg className="w-5 h-5">
-                          <use href="#page"></use>
-                        </svg>
-                        مشخصات کلی
-                      </h4>
-                      <ul className="features font-DanaMedium space-y-5 mt-5">
-                        <li className="flex items-center gap-x-2 pr-4 border-r-2 border-r-gray-200">
-                          <span className="py-2 text-gray-500 w-[180px]">
-                            قابلیت پخش موسیقی
-                          </span>
-                          <span className="block bg-gray-200 w-full py-[18px] px-[14px] rounded-lg text-gray-500">
-                            دارد
-                          </span>
-                        </li>
-                        <li className="flex items-center gap-x-2 pr-4 border-r-2 border-r-gray-200">
-                          <span className="py-2 text-gray-500 w-[180px]">
-                            قابلیت پخش موسیقی
-                          </span>
-                          <span className="block bg-gray-200 w-full py-[18px] px-[14px] rounded-lg text-gray-500">
-                            دارد
-                          </span>
-                        </li>
-                        <li className="flex items-center gap-x-2 pr-4 border-r-2 border-r-gray-200">
-                          <span className="py-2 text-gray-500 w-[180px]">
-                            قابلیت پخش موسیقی
-                          </span>
-                          <span className="block bg-gray-200 w-full py-[18px] px-[14px] rounded-lg text-gray-500">
-                            دارد
-                          </span>
-                        </li>
-                        <li className="flex items-center gap-x-2 pr-4 border-r-2 border-r-gray-200">
-                          <span className="py-2 text-gray-500 w-[180px]">
-                            قابلیت پخش موسیقی
-                          </span>
-                          <span className="block bg-gray-200 w-full py-[18px] px-[14px] rounded-lg text-gray-500">
-                            دارد
-                          </span>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
+                  <FeatureList/>
                 </div>
               )}
               {optionShowModel === "نظرات" && (
