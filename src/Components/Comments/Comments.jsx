@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Rateing from "../Rateing/Rateing";
 import CommentBox from "../CommentBox/CommentBox";
+import Button from "../Button/Button";
 
 function Comments() {
   const [proves, setProves] = useState([]);
@@ -87,7 +88,7 @@ function Comments() {
           <label htmlFor="cons" className="text-red-500 font-DanaDemiBold ">
             نقاط ضعف
           </label>
-          <div className="bg-gray-100 transition-all flex-wrap  focus:border focus:border-green-500 rounded-md mt-1 flex items-center flex-wrap  px-2 py-0.5">
+          <div className="bg-gray-100 transition-all  focus:border focus:border-green-500 rounded-md mt-1 flex items-center flex-wrap  px-2 py-0.5">
             <div className="flex items-center flex-wrap gap-2">
               {cons.map((con) => (
                 <div className="flex items-center gap-x-1 bg-red-300 text-red-700 p-1 rounded-md">
@@ -110,9 +111,7 @@ function Comments() {
           </div>
         </div>
       </div>
-      <button className="bg-blue-600 text-white p-2 px-6 rounded-md shadow-blue mt-5">
-        ثبت کامنت
-      </button>
+      <Button />
       {/* show user comments */}
       <div>
         <CommentBox />
