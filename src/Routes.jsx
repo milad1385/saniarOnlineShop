@@ -19,6 +19,7 @@ import NotFound from "./Pages/NotFound/NotFound";
 import Tickets from "./Pages/UserPanel/Tickets/Tickets";
 import AnswerTicket from "./Pages/UserPanel/AnswerTicket/AnswerTicket";
 import SendTicket from "./Pages/UserPanel/SendTicket/SendTicket";
+import Profile from "./Pages/UserPanel/Profile/Profile";
 
 const routes = [
   { path: "/", element: <Index /> },
@@ -36,7 +37,7 @@ const routes = [
     element: <Main />,
     children: [
       { path: "", element: <MainPage /> },
-      { path: "profile", element: <MainPage /> },
+      { path: "profile", element: <Profile /> },
       { path: "orders", element: <OrderPage /> },
       { path: "address", element: <Adress /> },
       { path: "notifications", element: <Notifications /> },

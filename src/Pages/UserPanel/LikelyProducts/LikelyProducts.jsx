@@ -1,6 +1,7 @@
 import React from 'react'
 import PageTitle from '../../../Components/UserPanel/PageTitle/PageTitle'
 import LikelyProductCard from '../../../Components/UserPanel/LikelyProductCard/LikelyProductCard'
+import Pagination from '../../../Components/Pagination/Pagination'
 
 function LikelyProducts() {
   return (
@@ -16,6 +17,7 @@ function LikelyProducts() {
 
         </div>
       </div>
+      <Pagination/>
     </>
   )
 }

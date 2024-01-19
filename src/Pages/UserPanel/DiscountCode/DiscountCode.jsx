@@ -1,6 +1,7 @@
 import React from "react";
 import PageTitle from "../../../Components/UserPanel/PageTitle/PageTitle";
 import { Link } from "react-router-dom";
+import Pagination from "../../../Components/Pagination/Pagination";
 function DiscountCode() {
   return (
     <div>
@@ -28,7 +29,7 @@ function DiscountCode() {
                 <td className="flex-center">1402/12/08</td>
               </td>
               <td>
-                <Link to={'/'}>لپ تاپ گیمینگ Tuf</Link>
+                <Link to={"/"}>لپ تاپ گیمینگ Tuf</Link>
               </td>
               <td>
                 <span className="mr-2 bg-green-600 text-white py-1 px-2 text-sm">
@@ -46,7 +47,7 @@ function DiscountCode() {
                 <td className="flex-center">1402/12/08</td>
               </td>
               <td>
-                <Link to={'/'}>لپ تاپ گیمینگ Tuf</Link>
+                <Link to={"/"}>لپ تاپ گیمینگ Tuf</Link>
               </td>
               <td>
                 <span className="mr-2 bg-red-600 text-white py-1 px-2 text-sm">
@@ -54,10 +55,10 @@ function DiscountCode() {
                 </span>
               </td>
             </tr>
-
           </tbody>
         </table>
       </div>
+      <Pagination />
     </div>
   );
 }
