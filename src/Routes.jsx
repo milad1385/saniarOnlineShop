@@ -46,6 +46,7 @@ const routes = [
       { path: "tickets", element: <Tickets /> },
       { path: "tickets/answer-ticket/:ticketID", element: <AnswerTicket /> },
       { path: "tickets/send-ticket", element: <SendTicket /> },
+
     ],
   },
 ];

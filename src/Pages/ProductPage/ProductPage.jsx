@@ -10,7 +10,6 @@ import "swiper/css/thumbs";
 import SameProduct from "../../Components/SameProduct/SameProduct";
 import FooterMenu from "../../Components/FooterMenu/FooterMenu";
 import Shoper from "../../Components/Shoper/Shoper";
-import Rateing from "../../Components/Rateing/Rateing";
 import Comments from "../../Components/Comments/Comments";
 import FeatureList from "../../Components/FeatureList/FeatureList";
 import ProductBoxInfo from "../../Components/ProductBoxInfo/ProductBoxInfo";
