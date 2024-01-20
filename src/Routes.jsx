@@ -21,6 +21,7 @@ import AnswerTicket from "./Pages/UserPanel/AnswerTicket/AnswerTicket";
 import SendTicket from "./Pages/UserPanel/SendTicket/SendTicket";
 import Profile from "./Pages/UserPanel/Profile/Profile";
 import ArticlePage from "./Pages/ArticlePage/ArticlePage";
+import Card from "./Pages/Card/Card";
 
 const routes = [
   { path: "/", element: <Index /> },
@@ -33,6 +34,7 @@ const routes = [
   { path: "/contact-us", element: <ContactUs /> },
   { path: "/products", element: <ProductsPage /> },
   { path: "/category-products/:categoryName", element: <ProductsCategory /> },
+  { path: "/order/card", element: <Card /> },
   { path: "*", element: <NotFound /> },
   {
     path: "/my-account/*",

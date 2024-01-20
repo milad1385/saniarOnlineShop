@@ -193,6 +193,13 @@
   .article-content img{
     @apply w-[800px] mx-auto mt-7;
   }
+
+  .order-active{
+    @apply bg-blue-600 !important;
+  }
+  .order-active-circle{
+    @apply bg-amber-500 text-white !important;
+  }
 }
 
 .swiper-pagination-bullet-active {
