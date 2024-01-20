@@ -20,12 +20,14 @@ import Tickets from "./Pages/UserPanel/Tickets/Tickets";
 import AnswerTicket from "./Pages/UserPanel/AnswerTicket/AnswerTicket";
 import SendTicket from "./Pages/UserPanel/SendTicket/SendTicket";
 import Profile from "./Pages/UserPanel/Profile/Profile";
+import ArticlePage from "./Pages/ArticlePage/ArticlePage";
 
 const routes = [
   { path: "/", element: <Index /> },
   { path: "/blog", element: <Blog /> },
   { path: "/product/:productName", element: <ProductPage /> },
   { path: "/category-blog/:articleCategory", element: <ArticleCategory /> },
+  { path: "/article/:articleName", element: <ArticlePage /> },
   { path: "/login", element: <Login /> },
   { path: "/register", element: <Register /> },
   { path: "/contact-us", element: <ContactUs /> },

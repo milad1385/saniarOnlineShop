@@ -182,6 +182,17 @@
   .sort-active {
     @apply bg-gray-100 py-2 px-4;
   }
+
+  .article-content h3{
+    @apply font-DanaDemiBold text-2xl;
+  }
+  .article-content p{
+    @apply text-gray-500 text-sm/[28px] md:text-base/[32px] mt-4;
+  }
+
+  .article-content img{
+    @apply w-[800px] mx-auto mt-7;
+  }
 }
 
 .swiper-pagination-bullet-active {
