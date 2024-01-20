@@ -4,11 +4,10 @@ import Navbar from "../../Components/Navbar/Navbar";
 import Footer from "../../Components/Footer/Footer";
 import FooterMenu from "../../Components/FooterMenu/FooterMenu";
 import BreadCrumb from "../../Components/BreadCrumb/BreadCrumb";
-import LastBlog from "../../Components/LastBlog/LastBlog";
 import LastBlogBox from "../../Components/LastBlogBox/LastBlogBox";
 import PageTitle from "../../Components/UserPanel/PageTitle/PageTitle";
-import CommentBox from "../../Components/CommentBox/CommentBox";
 import ArticleCommentBox from "../../Components/ArticleCommentBox/ArticleCommentBox";
+import ArticleComment from "../../Components/ArticleComments/ArticleComment";
 
 function ArticlePage() {
   return (
@@ -90,8 +89,15 @@ function ArticlePage() {
               </section>
             </div>
             <div className="bg-white rounded-md shadow p-4">
-              <PageTitle title={'2 دیدگاه برای این محصول'} icon={'chat-bubble-left-right'}/>
-              <ArticleCommentBox/>
+              <PageTitle title={"ارسال کامنت به مقاله فلان"} icon={"plane"} />
+              <ArticleComment />
+            </div>
+            <div className="bg-white rounded-md shadow p-4">
+              <PageTitle
+                title={"2 دیدگاه برای این محصول"}
+                icon={"chat-bubble-left-right"}
+              />
+              <ArticleCommentBox />
             </div>
           </div>
           <div className="w-[450px] sticky top-0 bg-white h-[716.7px] rounded-md shadow space-y-7 p-3">

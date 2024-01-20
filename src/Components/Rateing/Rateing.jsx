@@ -7,6 +7,7 @@ function Rateing({
   size = 28,
   defaultValue = 0,
   message = [],
+  onUserRate = 0,
 }) {
   const [rateing, setRateing] = useState(defaultValue);
   const [temporary, setTemporary] = useState(0);
@@ -15,7 +16,10 @@ function Rateing({
       <div className="flex items-center mb-4 justify-end">
         {Array.from({ length: maxRating }, (_, i) => (
           <Star
-            onRate={() => setRateing(i + 1)}
+            onRate={() => {
+              setRateing(i + 1);
+              onUserRate(i + 1);
+            }}
             onHoverIn={() => setTemporary(i + 1)}
             onHoverOut={() => setTemporary(0)}
             full={temporary ? temporary >= i + 1 : rateing >= i + 1}
