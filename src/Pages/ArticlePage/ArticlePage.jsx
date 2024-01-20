@@ -8,6 +8,9 @@ import LastBlogBox from "../../Components/LastBlogBox/LastBlogBox";
 import PageTitle from "../../Components/UserPanel/PageTitle/PageTitle";
 import ArticleCommentBox from "../../Components/ArticleCommentBox/ArticleCommentBox";
 import ArticleComment from "../../Components/ArticleComments/ArticleComment";
+import ArticleBox from "../../Components/ArticleBox/ArticleBox";
+import TitleCat from "../../Components/TitleCat/TitleCat";
+import RelatedArticle from "../../Components/RelatedArticle/RelatedArticle";
 
 function ArticlePage() {
   return (
@@ -111,7 +114,11 @@ function ArticlePage() {
             <LastBlogBox />
           </div>
         </div>
+        <div className="py-5">
+          <TitleCat link={""} main={"مطالب مرتبط"} desc={" وبلاگ"} />
+        </div>
       </div>
+      <RelatedArticle />
       <Footer />
       <FooterMenu />
     </>

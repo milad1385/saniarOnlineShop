@@ -5,11 +5,11 @@ import "swiper/css/pagination";
 import { Pagination, Autoplay, Navigation } from "swiper/modules";
 import ArticleBox from "../ArticleBox/ArticleBox";
 
-function LastBlog({ isBlog }) {
+function RelatedArticle({ isBlog }) {
   const [swipe, setSwipe] = useState(null);
   return (
-    <div className={`${isBlog ? "py-2" : "py-10"}`}>
-      <div className="blog relative">
+    <div className="mb-12">
+      <div className={`blog relative ${isBlog ? "py-2" : "py-5"}`}>
         <div className="container">
           <Swiper
             onBeforeInit={(swipper) => setSwipe(swipper)}
@@ -87,4 +87,4 @@ function LastBlog({ isBlog }) {
     </div>
   );
 }
-export default LastBlog;
+export default RelatedArticle;

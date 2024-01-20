@@ -169,7 +169,9 @@ function Blog() {
         </div>
         <TitleCat link={""} main={"پربازدید ترین مطالب"} desc={" وبلاگ"} />
       </div>
-      <LastBlog isBlog={true} />
+      <div className="mt-5">
+        <LastBlog isBlog={true} />
+      </div>
       <div className="container py-5">
         <TitleCat link={""} main={"آخرین ویدیوهای"} desc={" وبلاگ"} />
       </div>
@@ -293,14 +295,14 @@ function Blog() {
       <div className="container py-5">
         <TitleCat link={""} main={"آخرین مطالب"} desc={" وبلاگ"} />
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mt-6">
-          <ArticleBox image={'blog-4.jpg'}/>
-          <ArticleBox image={'blog-5.jpg'}/>
-          <ArticleBox image={'blog-6.jpg'}/>
-          <ArticleBox image={'blog-7.jpg'}/>
-          <ArticleBox image={'blog-8.jpg'}/>
-          <ArticleBox image={'blog-4.jpg'}/>
-          <ArticleBox image={'blog-5.jpg'}/>
-          <ArticleBox image={'blog-6.jpg'}/>
+          <ArticleBox image={"blog-4.jpg"} />
+          <ArticleBox image={"blog-5.jpg"} />
+          <ArticleBox image={"blog-6.jpg"} />
+          <ArticleBox image={"blog-7.jpg"} />
+          <ArticleBox image={"blog-8.jpg"} />
+          <ArticleBox image={"blog-4.jpg"} />
+          <ArticleBox image={"blog-5.jpg"} />
+          <ArticleBox image={"blog-6.jpg"} />
         </div>
       </div>
       <Footer />
