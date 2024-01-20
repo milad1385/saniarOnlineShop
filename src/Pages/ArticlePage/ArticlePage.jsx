@@ -7,6 +7,8 @@ import BreadCrumb from "../../Components/BreadCrumb/BreadCrumb";
 import LastBlog from "../../Components/LastBlog/LastBlog";
 import LastBlogBox from "../../Components/LastBlogBox/LastBlogBox";
 import PageTitle from "../../Components/UserPanel/PageTitle/PageTitle";
+import CommentBox from "../../Components/CommentBox/CommentBox";
+import ArticleCommentBox from "../../Components/ArticleCommentBox/ArticleCommentBox";
 
 function ArticlePage() {
   return (
@@ -89,6 +91,7 @@ function ArticlePage() {
             </div>
             <div className="bg-white rounded-md shadow p-4">
               <PageTitle title={'2 دیدگاه برای این محصول'} icon={'chat-bubble-left-right'}/>
+              <ArticleCommentBox/>
             </div>
           </div>
           <div className="w-[450px] sticky top-0 bg-white h-[716.7px] rounded-md shadow space-y-7 p-3">
