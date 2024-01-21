@@ -200,6 +200,10 @@
   .order-active-circle{
     @apply bg-amber-500 text-white !important;
   }
+
+  .sepreator{
+    width: 1.5px;
+  }
 }
 
 .swiper-pagination-bullet-active {

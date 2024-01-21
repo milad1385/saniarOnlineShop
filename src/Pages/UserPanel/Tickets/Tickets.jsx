@@ -56,7 +56,7 @@ function Tickets() {
       <div className="table-container mt-6">
         <table class="bg-white">
           <thead>
-            <tr className="child:border child:border-slate-300 child:p-2 child:font-DanaDemiBold">
+            <tr className="child:border bg-gray-500 text-white child:border-slate-300 child:p-2 child:font-DanaDemiBold">
               <th className="">شناسه</th>
               <th className="">عنوان</th>
               <th className="">تاریخ بروزسانی</th>
