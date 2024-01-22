@@ -291,3 +291,13 @@ input[type="checkbox"] {
   left: 2.5px;
   top: -6px;
 }
+
+.rmdp-container {
+  width: 100%;
+}
+.rmdp-input{
+  text-align: center;
+  padding: 1rem !important;
+  width: 100%;
+
+}

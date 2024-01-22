@@ -22,6 +22,7 @@ import SendTicket from "./Pages/UserPanel/SendTicket/SendTicket";
 import Profile from "./Pages/UserPanel/Profile/Profile";
 import ArticlePage from "./Pages/ArticlePage/ArticlePage";
 import Card from "./Pages/Card/Card";
+import DetailPay from "./Pages/DetailPay/DetailPay";
 
 const routes = [
   { path: "/", element: <Index /> },
@@ -35,6 +36,7 @@ const routes = [
   { path: "/products", element: <ProductsPage /> },
   { path: "/category-products/:categoryName", element: <ProductsCategory /> },
   { path: "/order/card", element: <Card /> },
+  { path: "/order/detail", element: <DetailPay /> },
   { path: "*", element: <NotFound /> },
   {
     path: "/my-account/*",

@@ -1,6 +1,6 @@
 import React from "react";
 
-function OrderStatus({ isActive2, isActive3 }) {
+function OrderStatus({ isActive2, isActive3, isActive4 }) {
   return (
     <div className="flex items-center justify-between   font-DanaDemiBold">
       <div className="w-5 h-5 rounded-full bg-gray-500 shadow shrink-0"></div>
@@ -11,7 +11,11 @@ function OrderStatus({ isActive2, isActive3 }) {
         </div>
         <span className="absolute -top-8 -right-3 w-[70px]">سبد خرید</span>
       </div>
-      <span className="block w-full h-1.5 bg-gray-200"></span>
+      <span
+        className={`block w-full h-1.5 bg-gray-200 ${
+          isActive2 && "order-active"
+        }`}
+      ></span>
       <div className="relative">
         <div
           className={`w-10 h-10 rounded-full bg-white shadow flex-center relative shrink-0 ${
@@ -26,7 +30,7 @@ function OrderStatus({ isActive2, isActive3 }) {
       </div>
       <span
         className={`block w-full h-1.5 bg-gray-200 ${
-          isActive2 && "order-active"
+          isActive3 && "order-active"
         }`}
       ></span>
       <div className="relative">
@@ -41,7 +45,7 @@ function OrderStatus({ isActive2, isActive3 }) {
       </div>
       <span
         className={`block w-full h-1.5 bg-gray-200 ${
-          isActive3 && "order-active"
+          isActive4 && "order-active"
         }`}
       ></span>
       <div className="w-5 h-5 rounded-full bg-gray-400 shadow shrink-0"></div>

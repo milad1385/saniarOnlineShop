@@ -7,6 +7,7 @@ import FooterMenu from "../../Components/FooterMenu/FooterMenu";
 import BreadCrumb from "../../Components/BreadCrumb/BreadCrumb";
 import OrderCard from "../../Components/OrderCard/OrderCard";
 import PageTitle from "../../Components/UserPanel/PageTitle/PageTitle";
+import { Link } from "react-router-dom";
 
 
 function Card() {
@@ -51,7 +52,7 @@ function Card() {
                 <p>1,750,000 <span>تومان</span></p>
               </div>
             </div>
-            <button className="bg-blue-600 text-white p-2 px-6 rounded-md shadow-blue w-full mt-5">تسویه حساب</button>
+            <Link to={'/order/detail'} className="bg-blue-600  flex items-center justify-center text-white p-2 px-6 rounded-md shadow-blue w-full mt-5">تسویه حساب</Link>
           </div>
         </div>
 
@@ -59,7 +60,7 @@ function Card() {
         <div className="flex items-center justify-center flex-col">
           <img src="/images/emptybag.png" className="w-[300px]"/>
           <p className="text-base md:text-lg lg:text-xl xl:text-2xl font-DanaDemiBold">کاربر گرامی سبد خرید شما خالی است 🤐 </p>
-          <button className="bg-blue-600 text-white p-2 px-4 font-DanaDemiBold rounded-md shadow-blue my-10">بازگشت به فروشگاه</button>
+          <Link to={'/products'} className="bg-blue-600 text-white p-2 px-4 font-DanaDemiBold rounded-md shadow-blue my-10">بازگشت به فروشگاه</Link>
         </div>
       </div>
 
