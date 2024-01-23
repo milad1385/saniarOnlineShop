@@ -6,6 +6,7 @@ import Footer from "../../Components/Footer/Footer";
 import OrderStatus from "../../Components/OrderStatus/OrderStatus";
 import { Link } from "react-router-dom";
 import DeleteModal from "../../Components/DeleteModal/DeleteModal";
+import EditModal from "../../Components/EditModal/EditModal";
 
 function SuccessFullPay() {
   return (
@@ -78,7 +79,6 @@ function SuccessFullPay() {
         </div>
       </div>
       <Footer />
-      <DeleteModal/>
       <FooterMenu />
     </>
   );
