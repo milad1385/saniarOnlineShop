@@ -23,6 +23,8 @@ import Profile from "./Pages/UserPanel/Profile/Profile";
 import ArticlePage from "./Pages/ArticlePage/ArticlePage";
 import Card from "./Pages/Card/Card";
 import DetailPay from "./Pages/DetailPay/DetailPay";
+import SuccessFullPay from "./Pages/SuccessFullPay/SuccessFullPay";
+import FaildPay from "./Pages/FaildPay/FaildPay";
 
 const routes = [
   { path: "/", element: <Index /> },
@@ -37,6 +39,8 @@ const routes = [
   { path: "/category-products/:categoryName", element: <ProductsCategory /> },
   { path: "/order/card", element: <Card /> },
   { path: "/order/detail", element: <DetailPay /> },
+  { path: "/order/successfull", element: <SuccessFullPay /> },
+  { path: "/order/fail", element: <FaildPay /> },
   { path: "*", element: <NotFound /> },
   {
     path: "/my-account/*",
