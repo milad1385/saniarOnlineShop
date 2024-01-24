@@ -111,7 +111,7 @@ function Comments() {
           </div>
         </div>
       </div>
-      <Button />
+      <Button title={'ارسال کامنت'} icon={'plane'} />
       {/* show user comments */}
       <div>
         <CommentBox />
