@@ -5,7 +5,7 @@ import BestSellsBox from "../BestSellBox/BestSellsBox";
 
 function BestSells() {
   return (
-    <div className="mt-2 container">
+    <div className="container">
       <TitleCat main={"محصولات"} desc={"پرفروش"} />
       <div className="grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-6 gap-5">
         <BestSellsBox image={'laptop-1.jpg'} number={1}/>

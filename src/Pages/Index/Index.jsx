@@ -21,7 +21,7 @@ function Index() {
       <Categories />
       <WonderFullSlides />
       <TopSaleProducts />
-      <div className="container grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 mt-[100px] md:mt-12 pb-10">
+      <div className="container grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 mt-[100px] md:mt-12 pb-2">
         <AdsBox image={"banner-1.webp"} href={"/"} />
         <AdsBox image={"banner-2.webp"} href={"/"} />
         <AdsBox image={"banner-3.webp"} href={"/"} />
