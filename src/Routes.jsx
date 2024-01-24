@@ -26,6 +26,7 @@ import DetailPay from "./Pages/DetailPay/DetailPay";
 import SuccessFullPay from "./Pages/SuccessFullPay/SuccessFullPay";
 import FaildPay from "./Pages/FaildPay/FaildPay";
 import SearchPage from "./Pages/SearchPage/SearchPage";
+import Compare from "./Pages/Compare/Compare";
 
 const routes = [
   { path: "/", element: <Index /> },
@@ -43,6 +44,7 @@ const routes = [
   { path: "/order/successfull", element: <SuccessFullPay /> },
   { path: "/order/fail", element: <FaildPay /> },
   { path: "/search/:value", element: <SearchPage /> },
+  { path: "/compare", element: <Compare /> },
   { path: "*", element: <NotFound /> },
   {
     path: "/my-account/*",
