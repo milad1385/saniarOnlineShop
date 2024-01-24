@@ -15,37 +15,37 @@ function WonderFullSlides() {
             />
           </div>
           <div className="">
-            <div class="flex items-center justify-center md:justify-start gap-x-2.5 mx-auto lg:mx-0">
-              <div class="flex items-center flex-col">
-                <div class="bg-red-500 text-white rounded-md w-10 h-10 flex items-center justify-center text-sm font-DanaDemiBold">
+            <div className="flex items-center justify-center md:justify-start gap-x-2.5 mx-auto lg:mx-0">
+              <div className="flex items-center flex-col">
+                <div className="bg-red-500 text-white rounded-md w-10 h-10 flex items-center justify-center text-sm font-DanaDemiBold">
                   53
                 </div>
-                <span class="text-sm font-DanaDemiBold mt-2">ثانیه</span>
+                <span className="text-sm font-DanaDemiBold mt-2">ثانیه</span>
               </div>
-              <div class="flex items-center flex-col">
-                <div class="bg-gray-200 text-black rounded-md w-10 h-10 flex items-center justify-center text-sm font-DanaDemiBold">
+              <div className="flex items-center flex-col">
+                <div className="bg-gray-200 text-black rounded-md w-10 h-10 flex items-center justify-center text-sm font-DanaDemiBold">
                   45
                 </div>
-                <span class="text-sm font-DanaDemiBold mt-2">دقیقه</span>
+                <span className="text-sm font-DanaDemiBold mt-2">دقیقه</span>
               </div>
-              <div class="flex items-center flex-col">
-                <div class="bg-gray-200 text-black rounded-md w-10 h-10 flex items-center justify-center text-sm font-DanaDemiBold">
+              <div className="flex items-center flex-col">
+                <div className="bg-gray-200 text-black rounded-md w-10 h-10 flex items-center justify-center text-sm font-DanaDemiBold">
                   12
                 </div>
-                <span class="text-sm font-DanaDemiBold mt-2">ساعت</span>
+                <span className="text-sm font-DanaDemiBold mt-2">ساعت</span>
               </div>
-              <div class="flex items-center flex-col">
-                <div class="bg-gray-200 text-black rounded-md w-10 h-10 flex items-center justify-center text-sm font-DanaDemiBold">
+              <div className="flex items-center flex-col">
+                <div className="bg-gray-200 text-black rounded-md w-10 h-10 flex items-center justify-center text-sm font-DanaDemiBold">
                   1
                 </div>
-                <span class="text-sm font-DanaDemiBold mt-2">روز</span>
+                <span className="text-sm font-DanaDemiBold mt-2">روز</span>
               </div>
             </div>
             <div className="flex items-start md:items-center flex-col xl:flex-row gap-x-5 my-5">
               <h3 className="font-DanaDemiBold text-lg line-clamp-1 lg:line-clamp-2">
                 لپ تاپ 14.2 اینچی اپل مدل 2021 MacBook MKGR3 M1 Pro
               </h3>
-              <div class="bg-red-200 text-red-600 text-sm p-2 rounded-lg mt-3 lg:mt-0">
+              <div className="bg-red-200 text-red-600 text-sm p-2 rounded-lg mt-3 lg:mt-0">
                 40 % تخفیف
               </div>
             </div>
@@ -77,8 +77,8 @@ function WonderFullSlides() {
                 </div>
               </div>
               <div>
-                <button class="bg-blue-600 font-DanaMedium flex items-center justify-center gap-x-1 text-white shadow-blue p-2 rounded-md my-3 md:mt-0">
-                  <svg class="w-6 h-6">
+                <button className="bg-blue-600 font-DanaMedium flex items-center justify-center gap-x-1 text-white shadow-blue p-2 rounded-md my-3 md:mt-0">
+                  <svg className="w-6 h-6">
                     <use href="#shop-bag"></use>
                   </svg>
                   خرید محصول

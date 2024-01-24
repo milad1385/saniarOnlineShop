@@ -39,14 +39,14 @@ function MainPage() {
         <StatBox title={"مورد علاقه من"} count={8} icon={"heart"} />
       </div>
       <div className="mt-5 bg-white p-4 rounded-md shadow">
-        <h3 class="font-DanaDemiBold text-base md:text-lg flex items-center gap-x-2">
+        <h3 className="font-DanaDemiBold text-base md:text-lg flex items-center gap-x-2">
           <svg className="w-5 md:w-7 h-5 md:h-7 text-blue-600">
             <use href="#shop-card"></use>
           </svg>
           سایر فروشندگان موجود
         </h3>
-        <div class="h-0.5 bg-gray-200 my-2 relative">
-          <div class="absolute inset-0 bg-blue-600 w-1/12"></div>
+        <div className="h-0.5 bg-gray-200 my-2 relative">
+          <div className="absolute inset-0 bg-blue-600 w-1/12"></div>
         </div>
         <div className="divide-y-2 divide-gray-200">
           <div className="flex items-center justify-between px-2 py-4">

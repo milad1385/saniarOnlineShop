@@ -11,9 +11,9 @@ function Banner() {
       >
         <div className="container flex items-center justify-between">
           <div className="flex items-center gap-x-2">
-            <div class="flex-center shrink-0 w-[30px] h-[30px] border border-zinc-300 rounded-full">
-              <div class="flex-center w-5 h-5 border border-zinc-300 rounded-full">
-                <div class="w-2.5 h-2.5 bg-white rounded-full"></div>
+            <div className="flex-center shrink-0 w-[30px] h-[30px] border border-zinc-300 rounded-full">
+              <div className="flex-center w-5 h-5 border border-zinc-300 rounded-full">
+                <div className="w-2.5 h-2.5 bg-white rounded-full"></div>
               </div>
             </div>
             <p className="text-sm md:text-lg font-DanaMedium">

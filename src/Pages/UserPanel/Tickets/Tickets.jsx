@@ -46,15 +46,15 @@ function Tickets() {
             <span className="font-DanaDemiBold text-sm md:text-lg">4 تیکت</span>
           </div>
         </div>
-        <Link to={'/my-account/tickets/send-ticket'} class="flex items-center gap-x-4.5 w-full xs:w-auto md:w-[240px] font-danaDemiBold text-xl text-white bg-blue-600  p-4 md:p-6 rounded-2xl">
-          <svg class="w-8 h-8">
+        <Link to={'/my-account/tickets/send-ticket'} className="flex items-center gap-x-4.5 w-full xs:w-auto md:w-[240px] font-danaDemiBold text-xl text-white bg-blue-600  p-4 md:p-6 rounded-2xl">
+          <svg className="w-8 h-8">
             <use href="#plus-circle"></use>
           </svg>
           <span className="mr-2 font-DanaDemiBold">تیکت جدید</span>
         </Link>
       </div>
       <div className="table-container mt-6">
-        <table class="bg-white">
+        <table className="bg-white">
           <thead>
             <tr className="child:border bg-gray-500 text-white child:border-slate-300 child:p-2 child:font-DanaDemiBold">
               <th className="">شناسه</th>

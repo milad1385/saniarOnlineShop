@@ -154,49 +154,49 @@ function ProductsPage() {
             { id: 3, name: "محصولات", to: "/" },
           ]}
         />
-        <div class="bg-blue-600 mt-5  py-[30px] px-4 rounded-md shadow">
-          <div class="container">
-            <div class="grid grid-cols-3 md:grid-cols-6 gap-4 mt-4 md:mt-0">
-              <div class="bg-white rounded-md flex-center">
+        <div className="bg-blue-600 mt-5  py-[30px] px-4 rounded-md shadow">
+          <div className="container">
+            <div className="grid grid-cols-3 md:grid-cols-6 gap-4 mt-4 md:mt-0">
+              <div className="bg-white rounded-md flex-center">
                 <img
                   src="/images/category/brand1-1.png"
                   alt="b1"
-                  class="w-[173px]"
+                  className="w-[173px]"
                 />
               </div>
-              <div class="bg-white rounded-md flex-center">
+              <div className="bg-white rounded-md flex-center">
                 <img
                   src="/images/category/brand1-2.png"
                   alt="b1"
-                  class="w-[173px]"
+                  className="w-[173px]"
                 />
               </div>
-              <div class="bg-white rounded-md flex-center">
+              <div className="bg-white rounded-md flex-center">
                 <img
                   src="/images/category/brand1-3.png"
                   alt="b1"
-                  class="w-[173px]"
+                  className="w-[173px]"
                 />
               </div>
-              <div class="bg-white rounded-md flex-center">
+              <div className="bg-white rounded-md flex-center">
                 <img
                   src="/images/category/brand1-4.png"
                   alt="b1"
-                  class="w-[173px]"
+                  className="w-[173px]"
                 />
               </div>
-              <div class="bg-white rounded-md flex-center">
+              <div className="bg-white rounded-md flex-center">
                 <img
                   src="/images/category/brand1-5.png"
                   alt="b1"
-                  class="w-[173px]"
+                  className="w-[173px]"
                 />
               </div>
-              <div class="bg-white rounded-md flex-center">
+              <div className="bg-white rounded-md flex-center">
                 <img
                   src="/images/category/brand1-6.png"
                   alt="b1"
-                  class="w-[173px]"
+                  className="w-[173px]"
                 />
               </div>
             </div>
@@ -210,14 +210,14 @@ function ProductsPage() {
             <h3 className="font-DanaDemiBold text-lg border-b-2 border-b-gray-200 pb-2">
               جستجو
             </h3>
-            <div class="flex items-center border border-gray-200  bg-gray-100 py-[5px] px-[5px] text-base rounded-full justify-between my-4">
+            <div className="flex items-center border border-gray-200  bg-gray-100 py-[5px] px-[5px] text-base rounded-full justify-between my-4">
               <input
                 type="text"
-                class="border-none outline-none w-full px-[px] bg-gray-100"
+                className="border-none outline-none w-full px-[px] bg-gray-100"
                 placeholder="جستجو محصولات"
               />
-              <button class="bg-blue-600 text-white p-2 flex items-center justify-center rounded-full shadow-blue">
-                <svg class="w-6 h-6">
+              <button className="bg-blue-600 text-white p-2 flex items-center justify-center rounded-full shadow-blue">
+                <svg className="w-6 h-6">
                   <use href="#magni-glass"></use>
                 </svg>
               </button>
@@ -273,7 +273,7 @@ function ProductsPage() {
             <h3 className="font-DanaDemiBold text-lg border-b-2 border-b-gray-200 pb-2 mt-6">
               رنگ محصول
             </h3>
-            <div class="flex items-center flex-wrap gap-4 mt-4">
+            <div className="flex items-center flex-wrap gap-4 mt-4">
               {colorBox.map((color) => (
                 <div
                   class={`flex items-center gap-x-2 ${

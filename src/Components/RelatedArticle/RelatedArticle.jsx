@@ -65,7 +65,7 @@ function RelatedArticle({ isBlog }) {
             </SwiperSlide>
           </Swiper>
         </div>
-        <div class="flex items-center justify-center relative mt-7 gap-x-2.5">
+        <div className="flex items-center justify-center relative mt-7 gap-x-2.5">
           <div
             className="bg-white prev flex items-center justify-center rounded-md w-10 h-11 shadow-sm md:cursor-pointer"
             onClick={() => swipe?.slidePrev()}

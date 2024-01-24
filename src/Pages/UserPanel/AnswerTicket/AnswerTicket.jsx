@@ -12,33 +12,33 @@ function AnswerTicket() {
         </h3>
         {/* start question box */}
         <div className="mt-7 space-y-5">
-          <div class="w-11/12 sm:w-2/3 bg-gray-100  text-zinc-700 dark:text-white p-4 rounded-2xl rounded-tr-sm">
-            <h4 class="font-DanaMedium text-xl mb-1 text-right">
+          <div className="w-11/12 sm:w-2/3 bg-gray-100  text-zinc-700 dark:text-white p-4 rounded-2xl rounded-tr-sm">
+            <h4 className="font-DanaMedium text-xl mb-1 text-right">
               میلاد سلامیان
             </h4>
             <span
-              class="block text-xs font-Dana text-slate-500 dark:text-slate-400 text-right"
+              className="block text-xs font-Dana text-slate-500 dark:text-slate-400 text-right"
               style={{ direction: "ltr" }}
             >
               1402/10/23 10:43
             </span>
-            <p class="font-Dana mt-4 text-gray-500">
+            <p className="font-Dana mt-4 text-gray-500">
               سلام وقت بخیر ،من از امروز صبح وقتی می‌خوام ویدیو ها رو نگاه کن
               خطا میده ، متن خطاش هم به این حالته : خطای ناشناخته در لینک امن
               ویدپروتکت ، ممنون میشم راهنمایی کنید
             </p>
           </div>
-          <div class="w-11/12 sm:w-2/3 bg-gray-100  text-zinc-700 dark:text-white p-4 rounded-2xl rounded-tr-sm">
-            <h4 class="font-DanaMedium text-xl mb-1 text-right">
+          <div className="w-11/12 sm:w-2/3 bg-gray-100  text-zinc-700 dark:text-white p-4 rounded-2xl rounded-tr-sm">
+            <h4 className="font-DanaMedium text-xl mb-1 text-right">
               میلاد سلامیان
             </h4>
             <span
-              class="block text-xs font-Dana text-slate-500 dark:text-slate-400 text-right"
+              className="block text-xs font-Dana text-slate-500 dark:text-slate-400 text-right"
               style={{ direction: "ltr" }}
             >
               1402/10/23 10:43
             </span>
-            <p class="font-Dana mt-4 text-gray-500">
+            <p className="font-Dana mt-4 text-gray-500">
               سلام وقت بخیر ،من از امروز صبح وقتی می‌خوام ویدیو ها رو نگاه کن
               خطا میده ، متن خطاش هم به این حالته : خطای ناشناخته در لینک امن
               ویدپروتکت ، ممنون میشم راهنمایی کنید

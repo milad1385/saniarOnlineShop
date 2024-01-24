@@ -22,7 +22,7 @@ function ProductBoxInfo({
           ساعت هوشمند سامسونگ مدل Galaxy Watch3 SM-R840 45mm بند چرمی
         </p>
       </div>
-      <div class="flex items-center flex-wrap gap-3 mt-4">
+      <div className="flex items-center flex-wrap gap-3 mt-4">
         <ColorBox
           colorCode={"blue"}
           colorName={"آبی"}
@@ -57,63 +57,63 @@ function ProductBoxInfo({
       <div className="flex items-center gap-x-2 my-4">
         <img
           src="/images/category/brand1-1.png"
-          class="w-[100px]"
+          className="w-[100px]"
           alt="category"
         />
         <p>شیائومی</p>
       </div>
-      <div class="flex items-center gap-x-2 text-sm my-4">
-        <span class="text-zinc-700 text-sm ">16 دیدگاه</span>
-        <span class="block w-[1.5px] h-5 bg-gray-200"></span>
-        <div class="flex gap-x-1">
-          <span class="text-sm  text-zinc-700">(17) 4.5</span>
-          <svg class="w-5 h-5 text-yellow-400">
+      <div className="flex items-center gap-x-2 text-sm my-4">
+        <span className="text-zinc-700 text-sm ">16 دیدگاه</span>
+        <span className="block w-[1.5px] h-5 bg-gray-200"></span>
+        <div className="flex gap-x-1">
+          <span className="text-sm  text-zinc-700">(17) 4.5</span>
+          <svg className="w-5 h-5 text-yellow-400">
             <use href="#star"></use>
           </svg>
         </div>
       </div>
-      <div class="flex  gap-x-2 my-6">
-        <svg class="w-5 h-5 text-green-500">
+      <div className="flex  gap-x-2 my-6">
+        <svg className="w-5 h-5 text-green-500">
           <use href="#check"></use>
         </svg>
-        <p class="font-DanaMedium text-zinc-600">
+        <p className="font-DanaMedium text-zinc-600">
           گارانتی اصالت و سلامت فیزیکی کالا
         </p>
       </div>
-      <div class="flex items-center justify-between my-4">
-        <span class="text-gray-400 font-DanaDemiBold text-lg line-through">
+      <div className="flex items-center justify-between my-4">
+        <span className="text-gray-400 font-DanaDemiBold text-lg line-through">
           1,500,000 تومان
         </span>
-        <span class="block w-[1.5px] h-6 bg-gray-400"></span>
-        <span class="text-blue-600 text-lg font-DanaDemiBold">
+        <span className="block w-[1.5px] h-6 bg-gray-400"></span>
+        <span className="text-blue-600 text-lg font-DanaDemiBold">
           1,200,000 تومان
         </span>
       </div>
       <div className="flex items-center justify-center my-6">
-        <div class="flex items-center gap-x-2">
+        <div className="flex items-center gap-x-2">
           <div
-            class="w-10 h-[30px] select-none bg-blue-600 text-white flex-center rounded-r-full font-DanaMedium shadow-blue cursor-default md:cursor-pointer"
+            className="w-10 h-[30px] select-none bg-blue-600 text-white flex-center rounded-r-full font-DanaMedium shadow-blue cursor-default md:cursor-pointer"
             onClick={() => setProductCount((prevCount) => prevCount + 1)}
           >
-            <span class="mt-1 select-none">+</span>
+            <span className="mt-1 select-none">+</span>
           </div>
-          <div class="bg-white w-[50px] h-[30px] flex-center font-DanaDemiBold rounded-md shadow">
+          <div className="bg-white w-[50px] h-[30px] flex-center font-DanaDemiBold rounded-md shadow">
             {productCount}
           </div>
           <div
-            class="w-10 h-[30px] select-none bg-blue-600 text-white flex-center rounded-l-full font-DanaMedium shadow-blue cursor-default md:cursor-pointer"
+            className="w-10 h-[30px] select-none bg-blue-600 text-white flex-center rounded-l-full font-DanaMedium shadow-blue cursor-default md:cursor-pointer"
             onClick={() => {
               if (productCount !== 1) {
                 setProductCount((prevCount) => prevCount - 1);
               }
             }}
           >
-            <span class="mt-1 select-none">-</span>
+            <span className="mt-1 select-none">-</span>
           </div>
         </div>
       </div>
-      <button class="flex items-center justify-center w-full gap-x-1 bg-blue-600 text-white px-6 py-2 rounded-md shadow-blue">
-        <svg class="w-6 h-6">
+      <button className="flex items-center justify-center w-full gap-x-1 bg-blue-600 text-white px-6 py-2 rounded-md shadow-blue">
+        <svg className="w-6 h-6">
           <use href="#shop-bag"></use>
         </svg>
         خرید کالا

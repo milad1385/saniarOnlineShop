@@ -43,8 +43,8 @@ function Shoper() {
         <span className="tracking-tighter">تومان</span>
       </td>
       <td>
-        <button class="bg-blue-600 flex items-center justify-center text-sm md:text-base gap-x-1 text-white shadow-blue p-2 rounded-md">
-          <svg class="w-6 h-6">
+        <button className="bg-blue-600 flex items-center justify-center text-sm md:text-base gap-x-1 text-white shadow-blue p-2 rounded-md">
+          <svg className="w-6 h-6">
             <use href="#shop-bag"></use>
           </svg>
           افزودن به سبد خرید

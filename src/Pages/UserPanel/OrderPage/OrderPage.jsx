@@ -11,7 +11,7 @@ function OrderPage() {
     <div>
       <PageTitle icon={"shop-card"} title={"کد های تخفیف من"} />
       <div className="table-container mt-6">
-        <table class="bg-white">
+        <table className="bg-white">
           <thead>
             <tr className="child:border child:bg-gray-500 child:text-white child:border-slate-300 child:p-2 child:font-DanaDemiBold">
               <th>شناسه</th>

@@ -59,24 +59,24 @@ function OrderCard() {
         </button>
         <div className="mt-12">
           <div className="flex items-center gap-x-5">
-            <div class="flex items-center gap-x-4">
-              <span class="text-gray-400 font-DanaDemiBold line-through">
+            <div className="flex items-center gap-x-4">
+              <span className="text-gray-400 font-DanaDemiBold line-through">
                 1,500,000 تومان
               </span>
-              <span class="block w-[1.5px] h-6 bg-gray-400"></span>
-              <span class="text-blue-600 font-DanaDemiBold">
+              <span className="block w-[1.5px] h-6 bg-gray-400"></span>
+              <span className="text-blue-600 font-DanaDemiBold">
                 1,200,000 تومان
               </span>
             </div>
-            <div class="flex items-center gap-x-2">
-              <div class="w-10 h-[30px] bg-blue-600 text-white flex-center rounded-r-full font-DanaMedium shadow-blue cursor-default md:cursor-pointer">
-                <span class="mt-1">+</span>
+            <div className="flex items-center gap-x-2">
+              <div className="w-10 h-[30px] bg-blue-600 text-white flex-center rounded-r-full font-DanaMedium shadow-blue cursor-default md:cursor-pointer">
+                <span className="mt-1">+</span>
               </div>
-              <div class="bg-white w-[50px] h-[30px] flex-center font-DanaDemiBold rounded-md shadow">
+              <div className="bg-white w-[50px] h-[30px] flex-center font-DanaDemiBold rounded-md shadow">
                 1
               </div>
-              <div class="w-10 h-[30px] bg-blue-600 text-white flex-center rounded-l-full font-DanaMedium shadow-blue cursor-default md:cursor-pointer">
-                <span class="mt-1">-</span>
+              <div className="w-10 h-[30px] bg-blue-600 text-white flex-center rounded-l-full font-DanaMedium shadow-blue cursor-default md:cursor-pointer">
+                <span className="mt-1">-</span>
               </div>
             </div>
           </div>

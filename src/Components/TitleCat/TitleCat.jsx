@@ -16,7 +16,7 @@ function TitleCat({ main, desc, link, isMain }) {
             className="flex md:gap-x-1 font-DanaDemiBold text-sm md:text-base"
           >
             مشاهده همه
-            <svg class="w-5 h-5 text-blue-600">
+            <svg className="w-5 h-5 text-blue-600">
               <use href="#arrow-d"></use>
             </svg>
           </Link>

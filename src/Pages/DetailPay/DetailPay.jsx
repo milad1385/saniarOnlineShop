@@ -40,13 +40,13 @@ function DetailPay() {
               <div>
                 <label
                   for="email"
-                  class="font-DanaDemiBold text-base text-zinc-700 dark:text-white"
+                  className="font-DanaDemiBold text-base text-zinc-700 dark:text-white"
                 >
                   نام
                 </label>
                 <input
                   type="text"
-                  class="mt-1 md:mt-2 py-3 px-3 rounded-md outline-none bg-gray-100"
+                  className="mt-1 md:mt-2 py-3 px-3 rounded-md outline-none bg-gray-100"
                   id="name"
                   placeholder="نام  خود را وارد کنید ..."
                   name="name"
@@ -55,13 +55,13 @@ function DetailPay() {
               <div>
                 <label
                   for="email"
-                  class="font-DanaDemiBold text-base text-zinc-700 dark:text-white"
+                  className="font-DanaDemiBold text-base text-zinc-700 dark:text-white"
                 >
                   نام خانوادگی
                 </label>
                 <input
                   type="text"
-                  class="mt-1 md:mt-2 py-3 px-3 rounded-md outline-none bg-gray-100"
+                  className="mt-1 md:mt-2 py-3 px-3 rounded-md outline-none bg-gray-100"
                   id="family"
                   placeholder="نام خانوادگی خود را وارد کنید ..."
                   name="family"
@@ -70,13 +70,13 @@ function DetailPay() {
               <div>
                 <label
                   for="email"
-                  class="font-DanaDemiBold text-base text-zinc-700 dark:text-white"
+                  className="font-DanaDemiBold text-base text-zinc-700 dark:text-white"
                 >
                   استان
                 </label>
                 <select
                   type="text"
-                  class="mt-1 md:mt-2 py-3 px-3 rounded-md outline-none bg-gray-100"
+                  className="mt-1 md:mt-2 py-3 px-3 rounded-md outline-none bg-gray-100"
                 >
                   <option value="-1">استان خود را انتخاب کنید ...</option>
                   <option value="karaj">کرج</option>
@@ -86,13 +86,13 @@ function DetailPay() {
               <div>
                 <label
                   for="email"
-                  class="font-DanaDemiBold text-base text-zinc-700 dark:text-white"
+                  className="font-DanaDemiBold text-base text-zinc-700 dark:text-white"
                 >
                   شهر
                 </label>
                 <select
                   type="text"
-                  class="mt-1 md:mt-2 py-3 px-3 rounded-md outline-none bg-gray-100"
+                  className="mt-1 md:mt-2 py-3 px-3 rounded-md outline-none bg-gray-100"
                 >
                   <option value="-1">شهر خود را انتخاب کنید ...</option>
                   <option value="fardis">فردیس</option>
@@ -102,13 +102,13 @@ function DetailPay() {
               <div>
                 <label
                   for="email"
-                  class="font-DanaDemiBold text-base text-zinc-700 dark:text-white"
+                  className="font-DanaDemiBold text-base text-zinc-700 dark:text-white"
                 >
                   تلفن
                 </label>
                 <input
                   type="text"
-                  class="mt-1 md:mt-2 py-3 px-3 rounded-md outline-none bg-gray-100"
+                  className="mt-1 md:mt-2 py-3 px-3 rounded-md outline-none bg-gray-100"
                   id="phone"
                   placeholder="تلفن خود را وارد کنید ..."
                   name="phone"
@@ -117,13 +117,13 @@ function DetailPay() {
               <div>
                 <label
                   for="email"
-                  class="font-DanaDemiBold text-base text-zinc-700 dark:text-white"
+                  className="font-DanaDemiBold text-base text-zinc-700 dark:text-white"
                 >
                   آدرس ایمیل
                 </label>
                 <input
                   type="text"
-                  class="mt-1 md:mt-2 py-3 px-3 rounded-md outline-none bg-gray-100"
+                  className="mt-1 md:mt-2 py-3 px-3 rounded-md outline-none bg-gray-100"
                   id="name"
                   placeholder="آدرس ایمیل خود را وارد کنید ..."
                   name="name"
@@ -132,13 +132,13 @@ function DetailPay() {
               <div>
                 <label
                   for="email"
-                  class="font-DanaDemiBold text-base text-zinc-700 dark:text-white"
+                  className="font-DanaDemiBold text-base text-zinc-700 dark:text-white"
                 >
                   کد پستی
                 </label>
                 <input
                   type="text"
-                  class="mt-1 md:mt-2 py-3 px-3 rounded-md outline-none bg-gray-100"
+                  className="mt-1 md:mt-2 py-3 px-3 rounded-md outline-none bg-gray-100"
                   id="name"
                   placeholder="کد پستی خود را وارد کنید ..."
                   name="name"
@@ -147,13 +147,13 @@ function DetailPay() {
               <div>
                 <label
                   for="email"
-                  class="font-DanaDemiBold text-base text-zinc-700 dark:text-white"
+                  className="font-DanaDemiBold text-base text-zinc-700 dark:text-white"
                 >
                   آدرس
                 </label>
                 <input
                   type="text"
-                  class="mt-1 md:mt-2 py-3 px-3 rounded-md outline-none bg-gray-100"
+                  className="mt-1 md:mt-2 py-3 px-3 rounded-md outline-none bg-gray-100"
                   id="name"
                   placeholder=" آدرس خود را وارد کنید ..."
                   name="name"
@@ -163,13 +163,13 @@ function DetailPay() {
             <div className="w-full flex flex-col mt-7">
               <label
                 for="email"
-                class="font-DanaDemiBold text-base text-zinc-700 dark:text-white"
+                className="font-DanaDemiBold text-base text-zinc-700 dark:text-white"
               >
                 یادداشت سفارش (اختیاری)
               </label>
               <textarea
                 type="text"
-                class="mt-1 md:mt-2 py-3 px-3 h-36 rounded-md outline-none bg-gray-100"
+                className="mt-1 md:mt-2 py-3 px-3 h-36 rounded-md outline-none bg-gray-100"
                 id="name"
                 placeholder=" یادداشت خود را وارد کنید ..."
                 name="name"
@@ -276,36 +276,36 @@ function DetailPay() {
                 </div>
               </div>
             </div>
-            <div class="bg-white rounded-md shadow p-3 sticky top-0 ">
+            <div className="bg-white rounded-md shadow p-3 sticky top-0 ">
               <div>
-                <h3 class="font-DanaDemiBold text-base md:text-lg flex items-center gap-x-2">
-                  <svg class="w-5 md:w-7 h-5 md:h-7 text-blue-600">
+                <h3 className="font-DanaDemiBold text-base md:text-lg flex items-center gap-x-2">
+                  <svg className="w-5 md:w-7 h-5 md:h-7 text-blue-600">
                     <use href="#shopping-cart"></use>
                   </svg>
                   سفارش شما
                 </h3>
-                <div class="h-[3px] bg-gray-200 my-2 relative">
-                  <div class="absolute inset-0 bg-blue-600 w-1/12"></div>
+                <div className="h-[3px] bg-gray-200 my-2 relative">
+                  <div className="absolute inset-0 bg-blue-600 w-1/12"></div>
                 </div>
               </div>
-              <div class="font-DanaDemiBold flex items-center justify-between mt-3 text-sm text-gray-500">
+              <div className="font-DanaDemiBold flex items-center justify-between mt-3 text-sm text-gray-500">
                 <p>محصول</p>
                 <p>قیمت کل</p>
               </div>
-              <div class="mt-5 text-sm font-DanaDemiBold space-y-4">
-                <div class="flex items-center justify-between bg-gray-100 py-3 px-2 rounded-md">
+              <div className="mt-5 text-sm font-DanaDemiBold space-y-4">
+                <div className="flex items-center justify-between bg-gray-100 py-3 px-2 rounded-md">
                   <span>جمع مبلغ: </span>
                   <p>
                     1,750,000 <span>تومان</span>
                   </p>
                 </div>
-                <div class="flex items-center justify-between bg-gray-100 py-3 px-2 rounded-md">
+                <div className="flex items-center justify-between bg-gray-100 py-3 px-2 rounded-md">
                   <span>تخفیف : </span>
                   <p>
                     1,750,000 <span>تومان</span>
                   </p>
                 </div>
-                <div class="flex items-center justify-between bg-gray-100 py-3 px-2 rounded-md">
+                <div className="flex items-center justify-between bg-gray-100 py-3 px-2 rounded-md">
                   <span>مبلغ کل : </span>
                   <p>
                     1,750,000 <span>تومان</span>
@@ -313,7 +313,7 @@ function DetailPay() {
                 </div>
               </div>
               <a
-                class="bg-amber-500 font-DanaDemiBold  flex items-center justify-center text-white p-2 px-6 rounded-md shadow-blue w-full mt-5"
+                className="bg-amber-500 font-DanaDemiBold  flex items-center justify-center text-white p-2 px-6 rounded-md shadow-blue w-full mt-5"
                 href="/order/detail"
               >
                 پرداخت 

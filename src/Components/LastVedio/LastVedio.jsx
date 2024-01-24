@@ -17,9 +17,9 @@ function LastVedio() {
         <h3 className="font-DanaDemiBold text-sm">
           آخرین پرچمداران گوشی شیائومی
         </h3>
-        <div class="flex items-center justify-between mt-2">
-          <span class="text-xs font-DanaDemiBold">9 مرداد 1402</span>
-          <svg class="w-6 h-6 text-blue-600">
+        <div className="flex items-center justify-between mt-2">
+          <span className="text-xs font-DanaDemiBold">9 مرداد 1402</span>
+          <svg className="w-6 h-6 text-blue-600">
             <use href="#left-arrow"></use>
           </svg>
         </div>

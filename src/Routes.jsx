@@ -25,6 +25,7 @@ import Card from "./Pages/Card/Card";
 import DetailPay from "./Pages/DetailPay/DetailPay";
 import SuccessFullPay from "./Pages/SuccessFullPay/SuccessFullPay";
 import FaildPay from "./Pages/FaildPay/FaildPay";
+import SearchPage from "./Pages/SearchPage/SearchPage";
 
 const routes = [
   { path: "/", element: <Index /> },
@@ -41,6 +42,7 @@ const routes = [
   { path: "/order/detail", element: <DetailPay /> },
   { path: "/order/successfull", element: <SuccessFullPay /> },
   { path: "/order/fail", element: <FaildPay /> },
+  { path: "/search/:value", element: <SearchPage /> },
   { path: "*", element: <NotFound /> },
   {
     path: "/my-account/*",
