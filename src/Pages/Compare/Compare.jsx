@@ -28,7 +28,7 @@ function Compare() {
           ]}
         />
         <TitleCat main={"مقایسه"} desc={"محصولات"} isMain={true} />
-        <div className="bg-slate-50 shadow rounded-md grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-5 py-4 px-3 mt-5">
+        <div className="bg-slate-50 shadow rounded-md grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 py-4 px-3 mt-5">
           <CompareBox
             onShowDetail={setIsShowDetailModal}
             onShowDelete={setIsShowDeleteModal}
