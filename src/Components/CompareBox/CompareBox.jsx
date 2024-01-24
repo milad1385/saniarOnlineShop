@@ -1,8 +1,8 @@
 import React from "react";
 
-function CompareBox() {
+function CompareBox({ onShowDetail, onShowDelete }) {
   return (
-    <div className="bg-white shadow-sm p-2.5 rounded-lg">
+    <div className="bg-white shadow p-2.5 rounded-lg">
       {/* start header */}
       <div className="flex items-center justify-between">
         <div className="bg-red-200 text-red-500 text-sm p-2 rounded-lg font-DanaDemiBold">
@@ -29,7 +29,7 @@ function CompareBox() {
       {/* start body */}
       <div className="mt-1.5">
         <img
-          src={`/images/product/${image}`}
+          src={`/images/product/product-image1.jpg`}
           alt="product-image6.jpg"
           className="w-[180px] mx-auto"
         />
@@ -52,6 +52,20 @@ function CompareBox() {
               4.8
             </span>
           </div>
+        </div>
+        <div className="flex items-center justify-center mt-5 gap-x-3">
+          <svg
+            className="w-8 h-8 text-red-600 bg-red-200 p-1 rounded-md cursor-pointer"
+            onClick={() => onShowDelete(true)}
+          >
+            <use href="#trash"></use>
+          </svg>
+          <svg
+            className="w-8 h-8 text-blue-600 bg-blue-200 p-1 rounded-md cursor-pointer"
+            onClick={() => onShowDetail(true)}
+          >
+            <use href="#eye"></use>
+          </svg>
         </div>
       </div>
     </div>
