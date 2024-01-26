@@ -15,7 +15,7 @@ function Login() {
             <h1 className="font-DanaDemiBold text-xl md:text-2xl">
               ورود به حساب کاربری
             </h1>
-            <h4 className="font-DanaDemiBold text-xs text-gray-600 mt-2 md:mt-1">
+            <h4 className="font-DanaDemiBold text-xs md:text-sm text-gray-600 mt-2 md:mt-1">
               خوشحالیم دوباره میبینیمت دوست عزیز :)
             </h4>
             <div className="bg-gray-300 w-full p-5 flex-center mt-2 rounded-[5px]">
