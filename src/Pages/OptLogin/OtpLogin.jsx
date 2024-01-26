@@ -5,7 +5,7 @@ import Footer from "../../Components/Footer/Footer";
 import FooterMenu from "../../Components/FooterMenu/FooterMenu";
 import DetailModal from "../../Components/DetailModal/DetailModal";
 function OtpLogin() {
-  const [isCodeSent, setCodeSent] = useState(false);
+  const [isCodeSent, setCodeSent] = useState(true);
   const [isShowSuccessModal, setIsShowSuccessModal] = useState(false);
   const [isShowErrorModal, setIsShowErrorModal] = useState(false);
   const [isShowExpireModal, setIsShowExpireModal] = useState(false);
@@ -40,21 +40,21 @@ function OtpLogin() {
                   یک کد برای شما پیامک شد لطفا آن را وارد کنید
                 </div>
                 <div className="grid grid-cols-5 gap-x-3.5 mt-6 px-4 md:px-8">
-                  <input type="text" className="otp-input" />
-                  <input type="text" className="otp-input" />
-                  <input type="text" className="otp-input" />
-                  <input type="text" className="otp-input" />
-                  <input type="text" className="otp-input" />
+                  <input type="text" className="otp-input" maxLength={1} />
+                  <input type="text" className="otp-input" maxLength={1} />
+                  <input type="text" className="otp-input" maxLength={1} />
+                  <input type="text" className="otp-input" maxLength={1} />
+                  <input type="text" className="otp-input" maxLength={1} />
                 </div>
 
                 <div className="flex-center mt-5 font-DanaDemiBold text-base md:text-lg">
                   <span className="select-none">00:59</span>
                 </div>
-                <div className="bg-green-600 select-none relative text-white font-DanaDemiBold p-3 mt-4 flex-center text-lg rounded-md shadow-blue cursor-pointer">
-                  <button className="form-fildes__btn " id="login">
+                <div className="bg-green-600 select-none relative text-white font-DanaDemiBold p-3 mt-4 flex-center text-base md:text-lg rounded-md shadow-blue cursor-pointer">
+                  <button className="outline-none">
                     ورود به سایت
                   </button>
-                  <svg className="w-7 h-7 absolute right-3.5">
+                  <svg className="w-6 md:w-7 h-6 md:h-7 absolute right-3.5">
                     <use href="#arrow-left-on-rectangle"></use>
                   </svg>
                 </div>
