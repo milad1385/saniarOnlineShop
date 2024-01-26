@@ -206,7 +206,7 @@
   }
 
   .otp-input{
-    @apply border border-gray-400 py-4 text-center outline-none rounded-md text-xs md:text-base lg:text-lg font-DanaDemiBold;
+    @apply border border-gray-400 py-4 text-center outline-none rounded-md text-sm md:text-base lg:text-lg font-DanaDemiBold;
   }
 }
 
