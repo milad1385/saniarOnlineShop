@@ -1,5 +1,6 @@
 import React from "react";
-
+import Chart from "../../../Components/AdminPanel/Chart/Chart";
+import Data from "../../../Components/AdminPanel/Chart/Data";
 function Main() {
   return (
     <>
@@ -24,7 +25,9 @@ function Main() {
             </div>
             <div class="flex flex-col gap-y-1.5 md:gap-y-2 text-white">
               <span class="text-sm font-DanaMedium">مقدار کل در آمد</span>
-              <span class="font-DanaDemiBold text-sm md:text-lg">25,402,000</span>
+              <span class="font-DanaDemiBold text-sm md:text-lg">
+                25,402,000
+              </span>
             </div>
           </div>
           <div class="flex items-center gap-x-2.5 md:gap-x-4 flex-grow md:flex-grow-0 md:w-60 bg-red-500  p-2 rounded-2xl">
@@ -49,9 +52,8 @@ function Main() {
               <span class="font-DanaDemiBold text-sm md:text-lg">4 تا</span>
             </div>
           </div>
-          
         </div>
-        <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+        <Chart title={"میزان فروش"} grid data={Data} dataKey={"فروش"} />
       </div>
     </>
   );

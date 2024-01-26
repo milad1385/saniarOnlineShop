@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 
-function DeleteModal({ onClose }) {
+function DeleteModal({ onClose, title , onClick }) {
   useEffect(() => {
     const hideModal = (event) => {
       if (event.target.id === "delete-modal") {
@@ -19,10 +19,10 @@ function DeleteModal({ onClose }) {
     >
       <div className="bg-white w-[400px] py-8 px-3">
         <h3 className="font-MorabbaBold text-2xl text-center">
-          آیا از حذف کردن اطمینان دارید ؟
+          {title ? title : "آیا از حذف کردن اطمینان دارید ؟"}
         </h3>
         <div className="flex items-center justify-center gap-x-5 mt-8">
-          <button className="bg-blue-600 text-white font-MorabbaBold px-16 py-4 text-xl">
+          <button className="bg-blue-600 text-white font-MorabbaBold px-16 py-4 text-xl" onClick={onClick}>
             بله
           </button>
           <button

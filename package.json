@@ -16,7 +16,7 @@
     "react-multi-date-picker": "^4.4.1",
     "react-range-slider-input": "^3.0.7",
     "react-router-dom": "^6.20.0",
-    "recharts": "^2.10.1",
+    "recharts": "^2.10.4",
     "sweetalert": "^2.1.2",
     "swiper": "^11.0.5",
     "typewriter-effect": "^2.21.0"
