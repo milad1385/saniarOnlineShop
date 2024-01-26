@@ -16,7 +16,7 @@ function OtpLogin() {
       <div className="body">
         <div className="flex-center p-2.5 md:p-0">
           {isCodeSent ? (
-            <div className="form-wrapper relative z-40 w-[450px]  shadow bg-white rounded-md  flex flex-col mt-10 p-4 pb-8">
+            <div className="form-wrapper md:relative md:z-40 w-[450px]  shadow bg-white rounded-md  flex flex-col mt-10 p-4 pb-8">
               <div className="select-none">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-x-3">
@@ -61,7 +61,7 @@ function OtpLogin() {
               </form>
             </div>
           ) : (
-            <div className="form-wrapper relative z-40 w-[450px]  shadow bg-white rounded-md  flex flex-col mt-10 p-4 pb-8">
+            <div className="form-wrapper md:relative md:z-40 w-[450px]  shadow bg-white rounded-md  flex flex-col mt-10 p-4 pb-8">
               <div>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-x-3">
@@ -84,24 +84,24 @@ function OtpLogin() {
                 <div className="flex items-center justify-between relative rounded-[5px] shadow border border-gray-300 p-2">
                   <label
                     htmlFor="username"
-                    className="absolute -top-3 bg-white right-3"
+                    className="absolute -top-3 bg-white right-3 text-sm md:text-base"
                   >
                     شماره تلفن را وارد کنید
                   </label>
                   <input
                     type="text"
-                    className="form-fileds__input w-full outline-none font-DanaMedium h-full pr-2 text-sm md:text-base"
+                    className="w-full outline-none font-DanaMedium h-full pr-2 text-sm md:text-base"
                     id="username"
                     autoComplete="false"
                   />
-                  <svg className="w-7 h-7">
+                  <svg className="w-6 md:w-7 h-6 md:h-7">
                     <use href="#phone"></use>
                   </svg>
                 </div>
                 <div className="flex items-center justify-between relative rounded-[5px] shadow border border-gray-300 p-2 mt-5">
                   <label
                     htmlFor="email"
-                    className="absolute -top-3 bg-white right-3"
+                    className="absolute -top-3 bg-white right-3 text-sm md:text-base"
                   >
                     ایمیل خود را وارد کنید
                   </label>
@@ -111,15 +111,15 @@ function OtpLogin() {
                     id="email"
                     autoComplete="false"
                   />
-                  <svg className="w-7 h-7">
+                  <svg className="w-6 md:w-7 h-6 md:h-7">
                     <use href="#envelope"></use>
                   </svg>
                 </div>
-                <div className="bg-blue-600 relative text-white font-DanaDemiBold p-3 mt-8 flex-center text-lg rounded-md shadow-blue cursor-pointer">
-                  <button className="form-fildes__btn " id="login">
+                <div className="bg-blue-600 relative text-white font-DanaDemiBold p-3 mt-8 flex-center text-base md:text-lg rounded-md shadow-blue cursor-pointer">
+                  <button id="login">
                     ارسال کد
                   </button>
-                  <svg className="w-7 h-7 absolute right-3.5">
+                  <svg className="w-6 md:w-7 h-6 md:h-7 absolute right-3.5">
                     <use href="#plane"></use>
                   </svg>
                 </div>
