@@ -15,9 +15,9 @@ function DetailModal({ children, onClose }) {
   return (
     <div
       id="detail-modal"
-      className="fixed inset-0 bg-black/50 z-50 transition-all flex items-center justify-center active"
+      className="fixed inset-0 bg-black/50 z-50 transition-all flex items-center justify-center"
     >
-      <div className="bg-white table-container ">{children}</div>
+      <div className=" table-container ">{children}</div>
     </div>
   );
 }

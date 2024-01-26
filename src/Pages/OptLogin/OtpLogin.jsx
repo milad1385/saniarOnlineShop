@@ -3,8 +3,12 @@ import Topbar from "../../Components/Topbar/Topbar";
 import Navbar from "../../Components/Navbar/Navbar";
 import Footer from "../../Components/Footer/Footer";
 import FooterMenu from "../../Components/FooterMenu/FooterMenu";
+import DetailModal from "../../Components/DetailModal/DetailModal";
 function OtpLogin() {
-  const [isCodeSent, setCodeSent] = useState(true);
+  const [isCodeSent, setCodeSent] = useState(false);
+  const [isShowSuccessModal, setIsShowSuccessModal] = useState(false);
+  const [isShowErrorModal, setIsShowErrorModal] = useState(false);
+  const [isShowExpireModal, setIsShowExpireModal] = useState(false);
   return (
     <>
       <Topbar />
@@ -126,6 +130,49 @@ function OtpLogin() {
       </div>
       <Footer />
       <FooterMenu />
+
+      {isShowSuccessModal && (
+        <DetailModal onClose={setIsShowSuccessModal}>
+          <div className="bg-white w-[325px] md:w-[400px] py-8 px-3">
+            <h3 className="font-MorabbaBold text-base md:text-2xl lg:text-3xl text-center">
+              با موفقیت وارد شدید
+            </h3>
+            <div className="flex items-center justify-center gap-x-5 mt-8">
+              <button className="bg-blue-600 text-white w-[90%] font-MorabbaBold px-16 py-4 text-xl">
+                ورود به پنل
+              </button>
+            </div>
+          </div>
+        </DetailModal>
+      )}
+      {isShowErrorModal && (
+        <DetailModal onClose={setIsShowErrorModal}>
+          <div className="bg-white w-[325px] md:w-[400px] py-8 px-3">
+            <h3 className="font-MorabbaBold text-base md:text-2xl lg:text-3xl text-center">
+              کد ورودی اشتباه است
+            </h3>
+            <div className="flex items-center justify-center gap-x-5 mt-8">
+              <button className="bg-red-600 text-white w-[90%] font-MorabbaBold px-16 py-4 text-xl">
+                تلاش مجدد
+              </button>
+            </div>
+          </div>
+        </DetailModal>
+      )}
+      {isShowExpireModal && (
+        <DetailModal onClose={setIsShowExpireModal}>
+          <div className="bg-white w-[325px] md:w-[400px] py-8 px-3">
+            <h3 className="font-MorabbaBold text-base md:text-2xl lg:text-3xl text-center">
+              کد ورودی منقضی شده است
+            </h3>
+            <div className="flex items-center justify-center gap-x-5 mt-8">
+              <button className="bg-gray-600 text-white w-[90%] font-MorabbaBold px-16 py-4 text-base md:text-xl">
+                ارسال مجدد
+              </button>
+            </div>
+          </div>
+        </DetailModal>
+      )}
     </>
   );
 }
