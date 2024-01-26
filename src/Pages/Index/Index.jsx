@@ -12,11 +12,11 @@ import MoreSell from "../../Components/MoreSell/MoreSell";
 import LastBlog from "../../Components/LastBlog/LastBlog";
 import Footer from "../../Components/Footer/Footer";
 import FooterMenu from "../../Components/FooterMenu/FooterMenu";
-
+import Banner from "../../Components/Banner/Banner";
 function Index() {
-  
   return (
     <>
+      <Banner />
       <Header />
       <Categories />
       <WonderFullSlides />

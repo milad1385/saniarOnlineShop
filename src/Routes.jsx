@@ -29,6 +29,8 @@ import SearchPage from "./Pages/SearchPage/SearchPage";
 import Compare from "./Pages/Compare/Compare";
 import AboutUs from "./Pages/AboutUs/AboutUs";
 import OtpLogin from "./Pages/OptLogin/OtpLogin";
+import MainAdminPage from "./Pages/AdminPanel/Index/Index";
+import MainAdmin from "./Pages/AdminPanel/Main/Main";
 
 const routes = [
   { path: "/", element: <Index /> },
@@ -66,6 +68,14 @@ const routes = [
       { path: "tickets", element: <Tickets /> },
       { path: "tickets/answer-ticket/:ticketID", element: <AnswerTicket /> },
       { path: "tickets/send-ticket", element: <SendTicket /> },
+    ],
+  },
+  {
+    path: "/admin-panel/*",
+    element: <MainAdminPage />,
+    children: [
+      { path: "", element: <MainAdmin /> },
+      { path: "main", element: <MainAdmin /> },
     ],
   },
 ];

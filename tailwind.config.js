@@ -31,6 +31,7 @@ export default {
       MorabbaLight: "Morabba Light",
       MorabbaMedium: "Morabba Medium",
       MorabbaBold: "Morabba Bold",
+      Lalezar : "Lalezar"
     },
   },
   plugins: [
