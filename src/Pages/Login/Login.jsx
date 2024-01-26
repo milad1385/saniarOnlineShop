@@ -19,13 +19,21 @@ function Login() {
               خوشحالیم دوباره میبینیمت دوست عزیز :)
             </h4>
             <div className="bg-gray-300 w-full p-5 flex-center mt-2 rounded-[5px]">
-              <span className="font-DanaDemiBold text-sm md:text-base">کاربر جدید هستید؟</span>
-              <span className="form-wrapper__user-link">
+              <span className="font-DanaDemiBold text-sm md:text-base">
+                کاربر جدید هستید؟
+              </span>
+              <span className="form-wrapper__user-link flex items-center justify-center">
                 <Link
                   to={"/register"}
-                  className="bg-gray-600 text-white font-DanaDemiBold p-1 rounded-md text-sm mr-2"
+                  className="bg-gray-600 text-white font-DanaDemiBold p-1 rounded-md text-sm mr-2 flex-center"
                 >
                   ثبت نام
+                </Link>
+                <Link
+                  to={"/otp-login"}
+                  className="bg-gray-600 text-white font-DanaDemiBold p-1 rounded-md text-sm block mr-2"
+                >
+                  ورود با کد
                 </Link>
               </span>
             </div>
@@ -72,9 +80,7 @@ function Login() {
                   </span>
                 </label>
                 <label className="font-DanaMedium text-sm md:text-base">
-                  <a href="#">
-                    رمز عبور را فراموش کرده اید؟
-                  </a>
+                  <a href="#">رمز عبور را فراموش کرده اید؟</a>
                 </label>
               </div>
               <div className="login-des text-sm">

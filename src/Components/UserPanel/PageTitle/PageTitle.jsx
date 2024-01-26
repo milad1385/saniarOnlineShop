@@ -1,9 +1,13 @@
 import React from "react";
 
-function PageTitle({ title, icon }) {
+function PageTitle({ title, icon, isBig }) {
   return (
     <div>
-      <h3 className="font-DanaDemiBold text-base md:text-lg flex items-center gap-x-2">
+      <h3
+        className={`font-DanaDemiBold text-base  ${
+          isBig ? "md:text-2xl" : "text-lg"
+        } flex items-center gap-x-2`}
+      >
         {icon && (
           <svg className="w-5 md:w-7 h-5 md:h-7 text-blue-600">
             <use href={`#${icon}`}></use>

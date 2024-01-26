@@ -28,6 +28,7 @@ import FaildPay from "./Pages/FaildPay/FaildPay";
 import SearchPage from "./Pages/SearchPage/SearchPage";
 import Compare from "./Pages/Compare/Compare";
 import AboutUs from "./Pages/AboutUs/AboutUs";
+import OtpLogin from "./Pages/OptLogin/OtpLogin";
 
 const routes = [
   { path: "/", element: <Index /> },
@@ -47,6 +48,7 @@ const routes = [
   { path: "/search/:value", element: <SearchPage /> },
   { path: "/compare", element: <Compare /> },
   { path: "/about-us", element: <AboutUs /> },
+  { path: "/otp-login", element: <OtpLogin /> },
   { path: "*", element: <NotFound /> },
   {
     path: "/my-account/*",
