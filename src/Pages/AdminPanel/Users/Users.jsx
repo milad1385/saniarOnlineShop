@@ -1,8 +1,13 @@
 import React from 'react'
+import Table from '../../../Components/AdminPanel/Table/Table'
 
 function users() {
   return (
-    <div>users</div>
+    <>
+    <Table title={'لیست'} main={'کاربران'}>
+
+    </Table>
+    </>
   )
 }
 
