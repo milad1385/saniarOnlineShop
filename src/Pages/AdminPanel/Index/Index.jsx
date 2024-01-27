@@ -10,7 +10,7 @@ function Index() {
         <div className="sticky top-1">
           <SideBar />
         </div>
-        <div className="w-full container pt-2">
+        <div className="w-full container pt-2 px-6">
           <TopBar />
           <Outlet />
         </div>
