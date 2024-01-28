@@ -102,7 +102,7 @@ const routes = [
       { path: "category", element: <Category /> },
       { path: "feature", element: <FeaturePage /> },
       { path: "advance", element: <AdvancePage /> },
-      { path: "colors", element: <Colors /> },
+      { path: "products/colors", element: <Colors /> },
     ],
   },
 ];

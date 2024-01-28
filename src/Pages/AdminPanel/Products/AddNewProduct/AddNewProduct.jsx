@@ -139,7 +139,7 @@ function AddNewProduct() {
             ایجاد ویژگی
           </Link>
           <Link
-            to={"/admin-panel/colors"}
+            to={"colors"}
             className="bg-gray-600  font-Lalezar p-2 rounded-md text-white text-sm md:text-xl shadow mt-6"
           >
             ایجاد رنگ

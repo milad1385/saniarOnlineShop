@@ -1,9 +1,14 @@
-import React from 'react'
+import React from "react";
+import AddNewColor from "./AddNewColor/AddNewColor";
+import ColorsList from "./ColorsList/ColorsList";
 
 function Colors() {
   return (
-    <div>Colors</div>
-  )
+    <div className="container">
+      <AddNewColor/>
+      <ColorsList/>
+    </div>
+  );
 }
 
-export default Colors
+export default Colors;
