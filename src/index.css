@@ -267,6 +267,9 @@ table {
 tr:nth-child(even){
   background-color: #e7e7e7;
 }
+tbody tr:nth-child(odd){
+  background-color: white;
+}
 
 .features {
   font-size: 14px;

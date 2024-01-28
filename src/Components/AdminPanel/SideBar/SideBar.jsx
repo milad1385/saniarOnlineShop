@@ -2,16 +2,20 @@ import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import DeleteModal from "../../DeleteModal/DeleteModal";
 
-function SideBar() {
+function SideBar({ isMenuShow, onShow }) {
   const [isShowExitModal, setIsShowExitModal] = useState(false);
   return (
     <>
-      <div className="w-[265px] bg-blue-700 sticky top-0 text-white min-h-screen  overflow-y-auto">
-        <h3 className="font-Lalezar text-[22px] text-center mt-2.5 border-b-2 pb-2 border-b-blue-500">
+      <div
+        className={`w-[235px] md:w-[265px] fixed ${
+          isMenuShow ? "-right-[6px]" : "-right-[265px]"
+        } bg-blue-700 z-50 transition-all lg:sticky top-0 text-white min-h-screen  overflow-y-auto`}
+      >
+        <h3 className="font-Lalezar text-lg md:text-[22px] text-center mt-2.5 border-b-2 pb-2 border-b-blue-500">
           به ادمین پنل خوش آمدید
         </h3>
         <div className="py-2 px-3">
-          <ul className="side-links text-xl font-Lalezar space-y-3">
+          <ul className="side-links text-base md:text-xl font-Lalezar space-y-3 overflow-auto">
             {" "}
             <li>
               <NavLink
@@ -179,8 +183,17 @@ function SideBar() {
         </div>
       </div>
       {isShowExitModal && (
-        <DeleteModal onClose={setIsShowExitModal} title="آیا از خروج اطمینان دارید ؟"/>
+        <DeleteModal
+          onClose={setIsShowExitModal}
+          title="آیا از خروج اطمینان دارید ؟"
+        />
       )}
+      <div
+        onClick={() => onShow(false)}
+        className={`bg-black/50 fixed inset-0 z-40 ${
+          isMenuShow ? "opacity-100 visible" : "opacity-0 invisible"
+        }`}
+      ></div>
     </>
   );
 }

@@ -2,12 +2,12 @@ import React from "react";
 
 function AddNewUser() {
   return (
-    <>
-      <h3 className="font-Lalezar text-lg md:text-3xl mt-10 mb-6">
+    <div className="">
+      <h3 className="font-Lalezar text-xl md:text-3xl mt-10 mb-6">
         اضافه کردن <span className="text-blue-600">کاربر جدید</span>
       </h3>
       <div className="bg-white py-6 px-6 rounded-md shadow font-Dana text-zinc-700">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-y-5 md:gap-6 text-sm md:text-base">
           <div className="flex items-center justify-between bg-gray-100 py-2 px-3 rounded-lg">
             <input
               type="text"
@@ -69,9 +69,9 @@ function AddNewUser() {
             </svg>
           </div>
         </div>
-        <button className="bg-blue-600 font-Lalezar p-2 rounded-md text-white text-base md:text-xl shadow-blue mt-6">ایجاد کاربر جدید</button>
+        <button className="bg-blue-600  font-Lalezar p-2 rounded-md text-white text-base md:text-xl shadow-blue mt-6">ایجاد کاربر جدید</button>
       </div>
-    </>
+    </div>
   );
 }
 

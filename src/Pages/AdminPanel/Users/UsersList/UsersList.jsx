@@ -7,7 +7,7 @@ function UsersList() {
       <Table title={"لیست"} main={"کاربران"}>
         <table className="user-table mt-7">
           <thead className="">
-            <tr className="child:font-Lalezar text-xl bg-blue-600  text-white child:p-3 text-center">
+            <tr className="child:font-Lalezar text-base md:text-xl bg-blue-600  text-white child:p-3 text-center">
               <td>شماره</td>
               <td>پروفایل</td>
               <td>نام</td>
@@ -22,7 +22,7 @@ function UsersList() {
               <td>ویرایش</td>
             </tr>
           </thead>
-          <tbody>
+          <tbody className="text-sm md:text-base">
             <tr className="child:p-3 text-center font-DanaMedium">
               <td>1</td>
               <td>
