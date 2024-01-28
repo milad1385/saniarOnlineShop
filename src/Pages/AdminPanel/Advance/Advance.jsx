@@ -1,9 +1,9 @@
-import React from 'react'
+import React from "react";
 
 function Advance() {
   return (
-    <div>Advance</div>
-  )
+    <>Advance</>
+  );
 }
 
-export default Advance
+export default Advance;

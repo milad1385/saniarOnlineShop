@@ -1,9 +1,14 @@
-import React from 'react'
+import React from "react";
+import AddNewFeatures from "./AddNewFeature/AddNewFeatures";
+import FeaturesList from "./FeaturesList/FeaturesList";
 
 function Features() {
   return (
-    <div>Features</div>
-  )
+    <>
+      <AddNewFeatures/>
+      <FeaturesList/>
+    </>
+  );
 }
 
-export default Features
+export default Features;

@@ -100,9 +100,10 @@ const routes = [
       { path: "capmaign", element: <Campaign /> },
       { path: "ads-banner", element: <BannerAdminPage /> },
       { path: "category", element: <Category /> },
-      { path: "feature", element: <FeaturePage /> },
-      { path: "advance", element: <AdvancePage /> },
+      ,
       { path: "products/colors", element: <Colors /> },
+      { path: "products/feature", element: <FeaturePage /> },
+      { path: "products/advance", element: <AdvancePage /> },
     ],
   },
 ];

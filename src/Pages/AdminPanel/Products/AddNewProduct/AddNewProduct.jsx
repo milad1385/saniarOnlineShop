@@ -122,18 +122,18 @@ function AddNewProduct() {
             />
           </div>
         </div>
-        <div className="flex items-center justify-center md:justify-start gap-x-5 ">
+        <div className="flex items-center justify-center md:justify-start flex-wrap gap-x-5 ">
           <button className="bg-blue-600  font-Lalezar p-2 rounded-md text-white text-sm md:text-xl shadow-blue mt-6">
             ایجاد محصول
           </button>
           <Link
-            to={"/admin-panel/advance"}
+            to={"advance"}
             className="bg-amber-500  font-Lalezar p-2 rounded-md text-white text-sm md:text-xl shadow mt-6"
           >
             ایجاد مشخصه
           </Link>
           <Link
-            to={"/admin-panel/feature"}
+            to={"feature"}
             className="bg-red-600  font-Lalezar p-2 rounded-md text-white text-sm md:text-xl shadow mt-6"
           >
             ایجاد ویژگی
