@@ -116,6 +116,10 @@
     transform: rotate(-360deg);
   }
 
+  select{
+    appearance: none;
+  }
+
   .footer-menu {
     box-shadow: 0 0 10px #e7e7e7;
   }

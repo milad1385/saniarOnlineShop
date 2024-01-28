@@ -2,7 +2,7 @@ import React from "react";
 
 function AddNewUser() {
   return (
-    <div className="">
+    <>
       <h3 className="font-Lalezar text-xl md:text-3xl mt-10 mb-6">
         اضافه کردن <span className="text-blue-600">کاربر جدید</span>
       </h3>
@@ -71,7 +71,7 @@ function AddNewUser() {
         </div>
         <button className="bg-blue-600  font-Lalezar p-2 rounded-md text-white text-base md:text-xl shadow-blue mt-6">ایجاد کاربر جدید</button>
       </div>
-    </div>
+    </>
   );
 }
 

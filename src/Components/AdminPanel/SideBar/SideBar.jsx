@@ -9,7 +9,7 @@ function SideBar({ isMenuShow, onShow }) {
       <div
         className={`w-[235px] md:w-[265px] fixed ${
           isMenuShow ? "-right-[6px]" : "-right-[265px]"
-        } bg-blue-700 z-50 transition-all lg:sticky top-0 text-white min-h-screen  overflow-y-auto`}
+        } bg-blue-700 z-50 overflow-auto transition-all lg:sticky top-0 text-white min-h-screen `}
       >
         <h3 className="font-Lalezar text-lg md:text-[22px] text-center mt-2.5 border-b-2 pb-2 border-b-blue-500">
           به ادمین پنل خوش آمدید

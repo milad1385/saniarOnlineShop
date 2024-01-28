@@ -31,7 +31,7 @@ import AboutUs from "./Pages/AboutUs/AboutUs";
 import OtpLogin from "./Pages/OptLogin/OtpLogin";
 import MainAdminPage from "./Pages/AdminPanel/Index/Index";
 import MainAdmin from "./Pages/AdminPanel/Main/Main";
-import Users from "./Pages/AdminPanel/Users/Users";
+import UsersPage from "./Pages/AdminPanel/Users/UsersPage";
 import Products from "./Pages/AdminPanel/Products/Products";
 import CommentsAdminPage from "./Pages/AdminPanel/Commnets/Comments";
 import Orders from "./Pages/AdminPanel/Orders/Orders";
@@ -42,7 +42,9 @@ import ArticlesAdminPage from "./Pages/AdminPanel/Articles/Articles";
 import Campaign from "./Pages/AdminPanel/Campaign/Campaign";
 import BannerAdminPage from "./Pages/AdminPanel/Banners/Banners";
 import Category from "./Pages/AdminPanel/Categoty/Category";
-
+import FeaturePage from "./Pages/AdminPanel/Features/Features";
+import AdvancePage from "./Pages/AdminPanel/Advance/Advance";
+import Colors from "./Pages/AdminPanel/Colors/Colors";
 const routes = [
   { path: "/", element: <Index /> },
   { path: "/blog", element: <Blog /> },
@@ -87,7 +89,7 @@ const routes = [
     children: [
       { path: "", element: <MainAdmin /> },
       { path: "main", element: <MainAdmin /> },
-      { path: "users", element: <Users /> },
+      { path: "users", element: <UsersPage /> },
       { path: "products", element: <Products /> },
       { path: "comments", element: <CommentsAdminPage /> },
       { path: "orders", element: <Orders /> },
@@ -98,6 +100,9 @@ const routes = [
       { path: "capmaign", element: <Campaign /> },
       { path: "ads-banner", element: <BannerAdminPage /> },
       { path: "category", element: <Category /> },
+      { path: "feature", element: <FeaturePage /> },
+      { path: "advance", element: <AdvancePage /> },
+      { path: "colors", element: <Colors /> },
     ],
   },
 ];
