@@ -45,6 +45,7 @@ import Category from "./Pages/AdminPanel/Categoty/Category";
 import FeaturePage from "./Pages/AdminPanel/Features/Features";
 import AdvancePage from "./Pages/AdminPanel/Advance/Advance";
 import Colors from "./Pages/AdminPanel/Colors/Colors";
+import Menus from "./Pages/AdminPanel/Menus/Menus";
 const routes = [
   { path: "/", element: <Index /> },
   { path: "/blog", element: <Blog /> },
@@ -104,6 +105,7 @@ const routes = [
       { path: "products/colors", element: <Colors /> },
       { path: "products/feature", element: <FeaturePage /> },
       { path: "products/advance", element: <AdvancePage /> },
+      { path: "menus", element: <Menus /> },
     ],
   },
 ];

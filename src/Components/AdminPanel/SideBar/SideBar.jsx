@@ -96,7 +96,7 @@ function SideBar({ isMenuShow, onShow }) {
             </li>
             <li>
               <NavLink
-                to={"/admin-panel/menu"}
+                to={"/admin-panel/menus"}
                 className="flex items-center gap-x-2 cursor-pointer"
               >
                 <svg className="w-6 h-6">
