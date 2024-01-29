@@ -8,16 +8,26 @@ function DetailModal({ children, onClose }) {
       }
     };
 
-    document.addEventListener("click", hideModal);
+    const hideModalByKeyBoard = (e) => {
+      if (e.code === "Escape") {
+        onClose(false);
+      }
+    };
 
-    return () => document.removeEventListener("click", hideModal);
+    document.addEventListener("click", hideModal);
+    document.addEventListener("keyup", hideModalByKeyBoard);
+
+    return () => {
+      document.removeEventListener("click", hideModal);
+      document.removeEventListener("keyup", hideModalByKeyBoard);
+    };
   }, []);
   return (
     <div
       id="detail-modal"
       className="fixed inset-0 bg-black/50 z-50 transition-all flex items-center justify-center"
     >
-      <div className=" table-container ">{children}</div>
+      <div className="table-container w-[94%] md:w-auto">{children}</div>
     </div>
   );
 }
