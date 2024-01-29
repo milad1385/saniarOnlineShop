@@ -96,13 +96,13 @@ function SideBar({ isMenuShow, onShow }) {
             </li>
             <li>
               <NavLink
-                to={"/admin-panel/slider"}
+                to={"/admin-panel/menu"}
                 className="flex items-center gap-x-2 cursor-pointer"
               >
                 <svg className="w-6 h-6">
-                  <use href="#image"></use>
+                  <use href="#compare"></use>
                 </svg>
-                <span className="">اسلایدر </span>
+                <span className="">منو ها </span>
               </NavLink>
             </li>
             <li>
