@@ -100,6 +100,9 @@
   .hide-menu {
     @apply opacity-0 invisible;
   }
+  textarea::placeholder{
+    @apply text-zinc-700;
+  }
 
   @media only screen and (max-width: 450px) {
     .parent::before {

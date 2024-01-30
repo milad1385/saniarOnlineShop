@@ -149,28 +149,18 @@ function SideBar({ isMenuShow, onShow }) {
                 <span className="">دسته بندی </span>
               </NavLink>
             </li>
-            {/* <li>
-            <NavLink
-              to={"/admin-panel/advance"}
-              className="flex items-center gap-x-2 cursor-pointer"
-            >
-              <svg className="w-6 h-6">
-                <use href="#life-style"></use>
-              </svg>
-              <span className="">مشخصه ها</span>
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to={"/admin-panel/feature"}
-              className="flex items-center gap-x-2 cursor-pointer"
-            >
-              <svg className="w-6 h-6">
-                <use href="#book"></use>
-              </svg>
-              <span className="">ویژگی</span>
-            </NavLink>
-          </li> */}
+            <li>
+              <NavLink
+                to={"/admin-panel/feature"}
+                className="flex items-center gap-x-2 cursor-pointer"
+              >
+                <svg className="w-6 h-6">
+                  <use href="#chat"></use>
+                </svg>
+                <span className="">پیغام ها</span>
+              </NavLink>
+            </li>{" "}
+            
             <li onClick={() => setIsShowExitModal(true)}>
               <a className="flex items-center gap-x-2 cursor-pointer">
                 <svg className="w-6 h-6">
