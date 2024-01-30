@@ -76,7 +76,6 @@ function CategoriesList() {
                   </button>
                 </td>
             </tr>
-            
           </tbody>
         </table>
       </Table>
