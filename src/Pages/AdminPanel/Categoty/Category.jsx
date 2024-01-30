@@ -1,9 +1,14 @@
-import React from 'react'
+import React from "react";
+import AddNewCategory from "./AddNewCategory/AddNewCategory";
+import CategoriesList from "./CategoriesList/CategoriesList";
 
 function Category() {
   return (
-    <div>Category</div>
-  )
+    <div className="container">
+      <AddNewCategory />
+      <CategoriesList />
+    </div>
+  );
 }
 
-export default Category
+export default Category;

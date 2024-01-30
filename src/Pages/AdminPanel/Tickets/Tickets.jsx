@@ -5,7 +5,7 @@ function Tickets() {
   return (
     <div className="container">
       <div className="pb-6">
-        <Table title={"لیست"} main={"کامنت ها"}>
+        <Table title={"لیست"} main={"تیکت ها"}>
           <table className="user-table mt-7">
             <thead className="">
               <tr className="child:font-Lalezar text-base md:text-xl bg-blue-600  text-white child:p-3 text-center">
