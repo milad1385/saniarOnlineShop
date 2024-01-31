@@ -1,9 +1,14 @@
-import React from 'react'
+import React from "react";
+import AddNewCampaignBanner from "./AddNewCampaignBanner/AddNewCampaignBanner";
+import CampaignBannersList from "./CampaignBannersList/CampaignBannersList";
 
 function CampaignBanner() {
   return (
-    <div>CampaignBanner</div>
-  )
+    <div className="container">
+        <AddNewCampaignBanner/>
+        <CampaignBannersList/>
+    </div>
+  );
 }
 
-export default CampaignBanner
+export default CampaignBanner;

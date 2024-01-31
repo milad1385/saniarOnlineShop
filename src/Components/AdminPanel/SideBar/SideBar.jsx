@@ -135,7 +135,7 @@ function SideBar({ isMenuShow, onShow }) {
                 <svg className="w-6 h-6">
                   <use href="#image"></use>
                 </svg>
-                <span className="">بنر تبلیغات</span>
+                <span className="">اسلایدر و بنر</span>
               </NavLink>
             </li>
             <li>
