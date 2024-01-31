@@ -241,7 +241,7 @@ function Navbar() {
       </div>
       {/* start mobile acoridion menu */}
       <div
-        className="w-[240px] bg-white fixed top-0 bottom-0 -right-[240px] z-50 p-3 transition-all"
+        className="w-[240px] bg-white overflow-y-auto fixed top-0 bottom-0 -right-[240px] z-50 p-3 transition-all"
         ref={menuRef}
       >
         <div className="border-b border-b-gray-300 pb-3">
