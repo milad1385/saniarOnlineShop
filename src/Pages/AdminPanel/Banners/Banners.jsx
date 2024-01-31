@@ -1,8 +1,13 @@
 import React from 'react'
+import AddNewBanner from './AddNewBanner/AddNewBanner'
+import BannersList from './BannersList/BannersList'
 
 function Banners() {
   return (
-    <div>Banners</div>
+    <div>
+      <AddNewBanner/>
+      <BannersList/>
+    </div>
   )
 }
 

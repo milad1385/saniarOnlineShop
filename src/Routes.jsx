@@ -48,6 +48,7 @@ import Colors from "./Pages/AdminPanel/Colors/Colors";
 import Menus from "./Pages/AdminPanel/Menus/Menus";
 import DraftArticle from "./Pages/AdminPanel/DraftArticle/DraftArticle";
 import ContactUsAdminPage from "./Pages/AdminPanel/ConatctUs/ContactUs";
+import CampaignBanner from "./Pages/AdminPanel/CampaignBanner/CampaignBanner";
 const routes = [
   { path: "/", element: <Index /> },
   { path: "/blog", element: <Blog /> },
@@ -102,6 +103,7 @@ const routes = [
       { path: "articles", element: <ArticlesAdminPage /> },
       { path: "capmaign", element: <Campaign /> },
       { path: "ads-banner", element: <BannerAdminPage /> },
+      { path: "ads-banner/campaign", element: <CampaignBanner /> },
       { path: "category", element: <Category /> },
       ,
       { path: "products/colors", element: <Colors /> },
