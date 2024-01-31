@@ -162,6 +162,17 @@ function SideBar({ isMenuShow, onShow }) {
                 <span className="">پیغام ها</span>
               </NavLink>
             </li>{" "}
+            <li>
+              <NavLink
+                to={"/admin-panel/newsletter"}
+                className="flex items-center gap-x-2 cursor-pointer"
+              >
+                <svg className="w-6 h-6">
+                  <use href="#envelope"></use>
+                </svg>
+                <span className="">خبرنامه</span>
+              </NavLink>
+            </li>
             <li onClick={() => setIsShowExitModal(true)}>
               <a className="flex items-center gap-x-2 cursor-pointer">
                 <svg className="w-6 h-6">
@@ -173,7 +184,7 @@ function SideBar({ isMenuShow, onShow }) {
           </ul>
         </div>
       </div>
-
+        {/* start desktop menu */}
       <div
         className={`w-[235px] hidden md:block md:w-[265px] overflow-y-auto bg-blue-700 z-50 transition-all lg:sticky top-0 text-white min-h-screen `}
       >
@@ -326,6 +337,17 @@ function SideBar({ isMenuShow, onShow }) {
                 <span className="">پیغام ها</span>
               </NavLink>
             </li>{" "}
+            <li>
+              <NavLink
+                to={"/admin-panel/newsletter"}
+                className="flex items-center gap-x-2 cursor-pointer"
+              >
+                <svg className="w-6 h-6">
+                  <use href="#envelope"></use>
+                </svg>
+                <span className="">خبرنامه</span>
+              </NavLink>
+            </li>
             <li onClick={() => setIsShowExitModal(true)}>
               <a className="flex items-center gap-x-2 cursor-pointer">
                 <svg className="w-6 h-6">
@@ -334,6 +356,7 @@ function SideBar({ isMenuShow, onShow }) {
                 <span className="">خروج</span>
               </a>
             </li>
+            
           </ul>
         </div>
       </div>

@@ -49,6 +49,7 @@ import Menus from "./Pages/AdminPanel/Menus/Menus";
 import DraftArticle from "./Pages/AdminPanel/DraftArticle/DraftArticle";
 import ContactUsAdminPage from "./Pages/AdminPanel/ConatctUs/ContactUs";
 import CampaignBanner from "./Pages/AdminPanel/CampaignBanner/CampaignBanner";
+import NewsLetter from "./Pages/AdminPanel/NewsLetter/NewsLetter";
 const routes = [
   { path: "/", element: <Index /> },
   { path: "/blog", element: <Blog /> },
@@ -112,6 +113,7 @@ const routes = [
       { path: "menus", element: <Menus /> },
       { path: "articles/draft", element: <DraftArticle /> },
       { path: "contact-us", element: <ContactUsAdminPage /> },
+      { path: "newsletter", element: <NewsLetter /> },
     ],
   },
 ];
