@@ -1,8 +1,13 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
+import { AppContext } from "../../../App";
 
 function Campaign() {
+  const {setIsShowAdminMenu } = useContext(AppContext);
+  useEffect(() => {
+    setIsShowAdminMenu(false);
+  }, []);
   return (
-    <>
+    <div className="container">
       <h3 className="font-Lalezar text-xl md:text-3xl mt-10 mb-6">
         اضافه کردن <span className="text-blue-600">کمپین</span>
       </h3>
@@ -23,7 +28,7 @@ function Campaign() {
           ایجاد  کمپین
         </button>
       </div>
-    </>
+    </div>
   );
 }
 

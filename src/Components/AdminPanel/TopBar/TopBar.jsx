@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { Link } from "react-router-dom";
+import { AppContext } from "../../../App";
 
 function TopBar({ onShow }) {
   const [isDark, setIsDark] = useState("light");
+  const {setIsShowAdminMenu } = useContext(AppContext);
   const addDarkModeClass = () => {
     if (isDark === "dark") {
       document.documentElement.classList.add("dark");
@@ -15,7 +17,7 @@ function TopBar({ onShow }) {
   return (
     <>
       <div className="bg-blue-600 px-4 sticky top-0 z-40 text-white h-14 mb-5 flex md:hidden items-center justify-between">
-        <div onClick={() => onShow(true)}>
+        <div onClick={() => setIsShowAdminMenu(true)}>
           <svg className="w-7 h-7">
             <use href="#bars-3"></use>
           </svg>

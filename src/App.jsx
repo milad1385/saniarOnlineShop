@@ -1,7 +1,9 @@
-import React, { useEffect } from "react";
+import React, { createContext, useEffect, useState } from "react";
 import { useRoutes } from "react-router-dom";
 import routes from "./Routes";
+export const AppContext = createContext(null);
 function App() {
+  const [isShowAdminMenu , setIsShowAdminMenu] = useState(false);
   useEffect(()=>{
     const theme = localStorage.getItem('theme');
     if (theme === "dark") {
@@ -322,7 +324,9 @@ function App() {
 
       </svg>
       <div className="">
-        {Routes}
+        <AppContext.Provider value={{isShowAdminMenu , setIsShowAdminMenu}}>
+          {Routes}
+        </AppContext.Provider>
       </div>
     </>
   );

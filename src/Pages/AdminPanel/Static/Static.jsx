@@ -1,8 +1,13 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import AdsList from "./AdsList/AdsList";
 import LogoAndIcon from "./LogoAndIcon/LogoAndIcon";
+import { AppContext } from "../../../App";
 
 function Static() {
+  const { setIsShowAdminMenu } = useContext(AppContext);
+  useEffect(() => {
+    setIsShowAdminMenu(false);
+  }, []);
   return (
     <div className="container">
       <h3 className="font-Lalezar text-xl md:text-3xl mt-10 mb-6">

@@ -1,8 +1,13 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Table from "../../../Components/AdminPanel/Table/Table";
 import DetailModal from "../../../Components/DetailModal/DetailModal";
+import { AppContext } from "../../../App";
 function Orders() {
   const [isShowDetailModal, setIsShowDetailModal] = useState(false);
+  const {setIsShowAdminMenu } = useContext(AppContext);
+  useEffect(() => {
+    setIsShowAdminMenu(false);
+  }, []);
   return (
     <>
       <div className="container">

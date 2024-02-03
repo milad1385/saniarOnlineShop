@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import Chart from "../../../Components/AdminPanel/Chart/Chart";
 import Data from "../../../Components/AdminPanel/Chart/Data";
 import Table from "../../../Components/AdminPanel/Table/Table";
+import { AppContext } from "../../../App";
 function Main() {
-
+  const {setIsShowAdminMenu } = useContext(AppContext);
+  useEffect(() => {
+    setIsShowAdminMenu(false);
+  }, []);
   return (
     <>
       <div className="container">
@@ -15,7 +19,9 @@ function Main() {
               </svg>
             </div>
             <div class="flex flex-col gap-y-1.5 md:gap-y-2 text-white">
-              <span class="text-xs md:text-sm font-DanaMedium">ثبت نام شده ها</span>
+              <span class="text-xs md:text-sm font-DanaMedium">
+                ثبت نام شده ها
+              </span>
               <span class="font-DanaDemiBold text-sm md:text-lg">5 نفر</span>
             </div>
           </div>
@@ -26,7 +32,9 @@ function Main() {
               </svg>
             </div>
             <div class="flex flex-col gap-y-1.5 md:gap-y-2 text-white">
-              <span class="text-xs md:text-sm font-DanaMedium">مقدار در آمد</span>
+              <span class="text-xs md:text-sm font-DanaMedium">
+                مقدار در آمد
+              </span>
               <span class="font-DanaDemiBold text-sm md:text-lg">
                 25,402,000
               </span>
@@ -39,7 +47,9 @@ function Main() {
               </svg>
             </div>
             <div class="flex flex-col gap-y-1.5 md:gap-y-2 text-white">
-              <span class="text-xs md:text-sm font-DanaMedium">تعداد کامنت ها</span>
+              <span class="text-xs md:text-sm font-DanaMedium">
+                تعداد کامنت ها
+              </span>
               <span class="font-DanaDemiBold text-sm md:text-lg">4 تا</span>
             </div>
           </div>
@@ -79,10 +89,7 @@ function Main() {
                   <td>1</td>
                   <td>
                     <div className="w-14 h-14  mx-auto bg-gray-200 rounded-full flex-center">
-                      <img
-                        src="/images/user.png"
-                        className="w-12 h-12"
-                      />
+                      <img src="/images/user.png" className="w-12 h-12" />
                     </div>
                   </td>
                   <td>میلاد سلامیان</td>
@@ -111,10 +118,7 @@ function Main() {
                   <td>2</td>
                   <td>
                     <div className="w-14 h-14  mx-auto bg-gray-200 rounded-full flex-center">
-                      <img
-                        src="/images/user.png"
-                        className="w-12 h-12"
-                      />
+                      <img src="/images/user.png" className="w-12 h-12" />
                     </div>
                   </td>
                   <td>میلاد سلامیان</td>
@@ -143,10 +147,7 @@ function Main() {
                   <td>3</td>
                   <td>
                     <div className="w-14 h-14  mx-auto bg-gray-200 rounded-full flex-center">
-                      <img
-                        src="/images/user.png"
-                        className="w-12 h-12"
-                      />
+                      <img src="/images/user.png" className="w-12 h-12" />
                     </div>
                   </td>
                   <td>میلاد سلامیان</td>
@@ -175,10 +176,7 @@ function Main() {
                   <td>4</td>
                   <td>
                     <div className="w-14 h-14  mx-auto bg-gray-200 rounded-full flex-center">
-                      <img
-                        src="/images/user.png"
-                        className="w-12 h-12"
-                      />
+                      <img src="/images/user.png" className="w-12 h-12" />
                     </div>
                   </td>
                   <td>میلاد سلامیان</td>

@@ -1,7 +1,12 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import Table from "../../../Components/AdminPanel/Table/Table";
+import { AppContext } from "../../../App";
 
 function NewsLetter() {
+  const { setIsShowAdminMenu } = useContext(AppContext);
+  useEffect(() => {
+    setIsShowAdminMenu(false);
+  }, []);
   return (
     <div className="container">
       <div className="pb-6">

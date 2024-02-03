@@ -233,7 +233,7 @@
     @apply w-[250px] visible transition-all;
   }
 
-  a.active{
+  .side-bar li a.active{
     @apply bg-white/20 !important;
   }
   .side-links li a{
@@ -288,6 +288,7 @@ tbody tr:nth-child(odd){
 
 a.active {
   background-color: #407bff31;
+  width: 100%;
 }
 
 input[type="checkbox"] {

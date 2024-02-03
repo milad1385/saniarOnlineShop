@@ -1,23 +1,25 @@
-import React, { useRef, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import DeleteModal from "../../DeleteModal/DeleteModal";
+import { AppContext } from "../../../App";
 
 function SideBar({ isMenuShow, onShow }) {
   const [isShowExitModal, setIsShowExitModal] = useState(false);
+  const { isShowAdminMenu, setIsShowAdminMenu } = useContext(AppContext);
 
   return (
     <>
       {/* start mobile menu */}
       <div
         className={`w-[220px] block md:hidden bg-blue-600 text-white overflow-y-auto fixed top-0 bottom-0 ${
-          isMenuShow ? "right-0" : "-right-[240px]"
+          isShowAdminMenu ? "right-0" : "-right-[240px]"
         } z-50  transition-all`}
       >
         <h3 className="font-Lalezar text-lg md:text-[22px] text-center mt-2.5 border-b-2 pb-2 border-b-blue-500">
           به ادمین پنل خوش آمدید
         </h3>
         <div className="py-2 px-3">
-          <ul className="side-links text-base md:text-xl font-Lalezar space-y-3">
+          <ul className="side-links side-bar text-base md:text-xl font-Lalezar space-y-3">
             {" "}
             <li>
               <NavLink
@@ -182,6 +184,17 @@ function SideBar({ isMenuShow, onShow }) {
                   <use href="#static"></use>
                 </svg>
                 <span className="">محتوای استاتیک</span>
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to={"/admin-panel/my-info"}
+                className="flex items-center gap-x-2 cursor-pointer"
+              >
+                <svg className="w-6 h-6">
+                  <use href="#edit"></use>
+                </svg>
+                <span className="">اطلاعات من</span>
               </NavLink>
             </li>
             <li onClick={() => setIsShowExitModal(true)}>
@@ -202,7 +215,7 @@ function SideBar({ isMenuShow, onShow }) {
         <h3 className="font-Lalezar text-lg md:text-[22px] text-center mt-2.5 border-b-2 pb-2 border-b-blue-500">
           به ادمین پنل خوش آمدید
         </h3>
-        <div className="py-2 px-3">
+        <div className="py-2 px-3 side-bar">
           <ul className="side-links text-base md:text-xl font-Lalezar space-y-3">
             {" "}
             <li>
@@ -370,6 +383,17 @@ function SideBar({ isMenuShow, onShow }) {
                 <span className="">محتوای استاتیک</span>
               </NavLink>
             </li>
+            <li>
+              <NavLink
+                to={"/admin-panel/my-info"}
+                className="flex items-center gap-x-2 cursor-pointer"
+              >
+                <svg className="w-6 h-6">
+                  <use href="#edit"></use>
+                </svg>
+                <span className="">اطلاعات من</span>
+              </NavLink>
+            </li>
             <li onClick={() => setIsShowExitModal(true)}>
               <a className="flex items-center gap-x-2 cursor-pointer">
                 <svg className="w-6 h-6">
@@ -388,9 +412,9 @@ function SideBar({ isMenuShow, onShow }) {
         />
       )}
       <div
-        onClick={() => onShow(false)}
+        onClick={() => setIsShowAdminMenu(false)}
         className={`bg-black/50 fixed inset-0 z-40 ${
-          isMenuShow ? "opacity-100 visible" : "opacity-0 invisible"
+          isShowAdminMenu ? "opacity-100 visible" : "opacity-0 invisible"
         }`}
       ></div>
     </>

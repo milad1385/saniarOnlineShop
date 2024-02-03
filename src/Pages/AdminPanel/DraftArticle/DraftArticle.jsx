@@ -1,8 +1,13 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import { AppContext } from "../../../App";
 
 function DraftArticle() {
+  const {setIsShowAdminMenu } = useContext(AppContext);
+  useEffect(() => {
+    setIsShowAdminMenu(false);
+  }, []);
     const [articleBody, setArticleBody] = useState("");
   return (
     <div className="container pb-10">

@@ -51,6 +51,7 @@ import ContactUsAdminPage from "./Pages/AdminPanel/ConatctUs/ContactUs";
 import CampaignBanner from "./Pages/AdminPanel/CampaignBanner/CampaignBanner";
 import NewsLetter from "./Pages/AdminPanel/NewsLetter/NewsLetter";
 import Static from "./Pages/AdminPanel/Static/Static";
+import MyInfo from "./Pages/AdminPanel/MyInfo/MyInfo";
 const routes = [
   { path: "/", element: <Index /> },
   { path: "/blog", element: <Blog /> },
@@ -116,6 +117,7 @@ const routes = [
       { path: "contact-us", element: <ContactUsAdminPage /> },
       { path: "newsletter", element: <NewsLetter /> },
       { path: "static", element: <Static /> },
+      { path: "my-info", element: <MyInfo /> },
     ],
   },
 ];
