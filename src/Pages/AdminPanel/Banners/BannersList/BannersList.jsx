@@ -25,11 +25,13 @@ function BannersList() {
               <tr className="child:p-4 text-center font-DanaMedium">
                 <td className="bg-green-600 text-white">1</td>
                 <td>
-                  <img
-                    src="/images/slide2-2.jpg"
-                    alt="slide2-2.jpg"
-                    className="w-[150px] rounded-md mx-auto"
-                  />
+                  <div className="w-[120px] md:w-[150px]">
+                    <img
+                      src="/images/slide2-2.jpg"
+                      alt="slide2-2.jpg"
+                      className="rounded-md mx-auto"
+                    />
+                  </div>
                 </td>
                 <td>جشنواره سامسونگ</td>
                 <td>samsung</td>

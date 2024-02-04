@@ -197,6 +197,17 @@ function SideBar({ isMenuShow, onShow }) {
                 <span className="">اطلاعات من</span>
               </NavLink>
             </li>
+            <li>
+              <NavLink
+                to={"/admin-panel/off"}
+                className="flex items-center gap-x-2 cursor-pointer"
+              >
+                <svg className="w-6 h-6">
+                  <use href="#power-off"></use>
+                </svg>
+                <span className="">غیر فعال کردن</span>
+              </NavLink>
+            </li>
             <li onClick={() => setIsShowExitModal(true)}>
               <a className="flex items-center gap-x-2 cursor-pointer">
                 <svg className="w-6 h-6">
@@ -392,6 +403,17 @@ function SideBar({ isMenuShow, onShow }) {
                   <use href="#edit"></use>
                 </svg>
                 <span className="">اطلاعات من</span>
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to={"/admin-panel/off"}
+                className="flex items-center gap-x-2 cursor-pointer"
+              >
+                <svg className="w-6 h-6">
+                  <use href="#power-off"></use>
+                </svg>
+                <span className="">غیر فعال کردن</span>
               </NavLink>
             </li>
             <li onClick={() => setIsShowExitModal(true)}>
