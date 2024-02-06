@@ -1,9 +1,11 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState  , useContext} from "react";
 import { Link } from "react-router-dom";
 import MegaMenuItem from "../MegaMenuItem/MegaMenuItem";
 import MegaMenuValue from "../MegaMenuValue/MegaMenuValue";
+import { AppContext } from "../../App";
 
 function Navbar() {
+  const {userInfo , isLogin} = useContext(AppContext);
   const overlayRef = useRef();
   const menuRef = useRef();
   const subMenuRef = useRef();
@@ -231,7 +233,7 @@ function Navbar() {
             </div>
             <div className="bg-gray-100 rounded-full p-0.5">
               <img
-                src="/images/user.png"
+                src={'/images/user.png'}
                 alt=""
                 className="w-[56px] h-[56px] rounded-full"
               />
