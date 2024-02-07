@@ -37,7 +37,6 @@ function Register() {
     formData.append("image", image);
 
     const result = await registerUser(formData);
-    console.log(result);
     if (result.status === 200) {
       clearInputs();
       setIsShowSuccessModal(true);

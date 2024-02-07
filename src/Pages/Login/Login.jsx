@@ -1,10 +1,49 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import Topbar from "../../Components/Topbar/Topbar";
 import Navbar from "../../Components/Navbar/Navbar";
 import Footer from "../../Components/Footer/Footer";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { loginSchema } from "./LoginSchema";
+import { yupResolver } from "@hookform/resolvers/yup";
+import useLogin from "../../Hooks/useLogin/useLogin";
+import StatusModal from "../../Components/SuccessModal/SuccessModal";
+import { AppContext } from "../../App";
+import Spinner from "../../Components/Sppiner/Spinner";
 
 function Login() {
+  const [isShowSuccessModal, setIsShowSuccessModal] = useState(false);
+  const [isShowFailedModal, setIsShowFailedModal] = useState(false);
+  const { setUserInfo, setIsLogin } = useContext(AppContext);
+  const navigate = useNavigate();
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    formState: { errors },
+  } = useForm({ resolver: yupResolver(loginSchema) });
+
+  const { mutateAsync: loginUser, isLoading, isError } = useLogin();
+
+  const loginUserHandler = async (data) => {
+    const { status, infos } = await loginUser(data);
+    if (status === 200) {
+      clearInputs();
+      setIsShowSuccessModal(true);
+      localStorage.setItem("token", JSON.stringify(infos.accessToken));
+      setIsLogin(true);
+      setUserInfo(infos.userInfo);
+    } else {
+      setIsShowFailedModal(true);
+    }
+  };
+
+  const navigateToShop = () => navigate("/");
+
+  const clearInputs = () => {
+    setValue("username", "");
+    setValue("password", "");
+  };
   return (
     <>
       <Topbar />
@@ -37,38 +76,65 @@ function Login() {
                 </Link>
               </span>
             </div>
-            <form className="mt-6 space-y-4">
-              <div className="flex items-center justify-between rounded-[5px] shadow border border-gray-300 p-2">
-                <input
-                  type="text"
-                  className=" w-full outline-none font-DanaMedium h-full pr-2 text-sm md:text-base"
-                  id="username"
-                  placeholder="نام کاربری یا آدرس ایمیل"
-                />
-                <svg className="w-7 h-7">
-                  <use href="#user"></use>
-                </svg>
+            <form
+              className="mt-6 space-y-6"
+              onSubmit={handleSubmit(loginUserHandler)}
+            >
+              <div className="relative">
+                <div
+                  className={`flex items-center justify-between rounded-[5px] shadow border border-gray-300 p-2 ${
+                    errors.username && "border-2 border-red-600"
+                  }`}
+                >
+                  <input
+                    type="text"
+                    {...register("username")}
+                    className="w-full outline-none font-DanaMedium h-full pr-2 text-sm md:text-base"
+                    id="username"
+                    placeholder="نام کاربری"
+                  />
+                  <svg className="w-6 md:w-7 h-6  md:h-7">
+                    <use href="#user-name"></use>
+                  </svg>
+                </div>
+                {errors.username && (
+                  <span className="absolute text-xs md:text-sm text-red-600 top-[48px] ">
+                    {errors.username.message}
+                  </span>
+                )}
               </div>
-              <div className="flex items-center justify-between rounded-[5px] shadow border border-gray-300 p-2">
-                <input
-                  type="text"
-                  className="w-full  outline-none font-DanaMedium h-full pr-2 text-sm md:text-base"
-                  id="password"
-                  placeholder="رمز عبور"
-                  autoComplete={false}
-                />
-                <svg className="w-7 h-7">
-                  <use href="#lock"></use>
-                </svg>
+              <div className="relative">
+                <div
+                  className={`flex items-center justify-between rounded-[5px] shadow border border-gray-300 p-2 ${
+                    errors.password && "border-2 border-red-600"
+                  }`}
+                >
+                  <input
+                    type="text"
+                    {...register("password")}
+                    className="w-full  outline-none font-DanaMedium h-full pr-2 text-sm md:text-base"
+                    id="email"
+                    placeholder="رمز عبور"
+                  />
+                  <svg className="w-6 md:w-7 h-6 md:h-7">
+                    <use href="#lock"></use>
+                  </svg>
+                </div>
+                {errors.password && (
+                  <span className="absolute text-xs md:text-sm text-red-600 top-[48px] ">
+                    {errors.password.message}
+                  </span>
+                )}
               </div>
-              <div className="bg-blue-600 relative text-white font-DanaDemiBold p-3 flex-center text-base md:text-lg rounded-md shadow-blue cursor-pointer">
-                <button id="login">
-                  ورود
-                </button>
+              <button
+                disabled={isLoading}
+                className="bg-blue-600 w-full relative text-white font-DanaDemiBold p-3 flex-center text-base md:text-lg rounded-md shadow-blue cursor-pointer"
+              >
+                <button id="login">{isLoading ? <Spinner /> : "ورود"}</button>
                 <svg className="w-7 h-7 absolute right-3.5">
                   <use href="#arrow-left-on-rectangle"></use>
                 </svg>
-              </div>
+              </button>
               <div className="flex items-center justify-between">
                 <label className="flex items-center gap-x-2">
                   <input
@@ -103,6 +169,28 @@ function Login() {
         </div>
       </div>
       <Footer />
+      {isShowSuccessModal && (
+        <StatusModal
+          onClose={setIsShowSuccessModal}
+          title={"کاربر با موفقیت لاگین شد"}
+          text={"ورود به فروشگاه"}
+          icon={"face-smile"}
+          color="text-blue-600"
+          bg="bg-blue-600"
+          onClick={navigateToShop}
+        />
+      )}
+      {isShowFailedModal && (
+        <StatusModal
+          onClose={setIsShowFailedModal}
+          title={"نام کاربری یا رمز عبور اشتباه است"}
+          text={"تلاش مجدد"}
+          icon={"face-frown"}
+          color="text-red-600"
+          bg="bg-red-600"
+          onClick={() => setIsShowFailedModal(false)}
+        />
+      )}
     </>
   );
 }

@@ -39,21 +39,31 @@ function OtpLogin() {
                 <div className="bg-green-200 text-green-700 select-none flex-center py-3.5 border border-green-600 text-sm md:text-base">
                   یک کد برای شما پیامک شد لطفا آن را وارد کنید
                 </div>
-                <div className="grid grid-cols-5 gap-x-3.5 mt-6 px-4 md:px-8">
-                  <input type="text" className="otp-input" maxLength={1} />
-                  <input type="text" className="otp-input" maxLength={1} />
-                  <input type="text" className="otp-input" maxLength={1} />
-                  <input type="text" className="otp-input" maxLength={1} />
-                  <input type="text" className="otp-input" maxLength={1} />
+                <div className="relative mt-5">
+                  <div
+                    className={`flex items-center justify-between rounded-[5px] shadow border border-gray-300 p-2 `}
+                  >
+                    <input
+                      type="text"
+                      className="w-full outline-none font-DanaMedium h-full pr-2 text-sm md:text-base"
+                      id="realname"
+                      placeholder="کد را وارد کنید ..."
+                    />
+                    <svg className="w-6 md:w-7 md:h-7 h-6">
+                      <use href="#msg"></use>
+                    </svg>
+                  </div>
+                  {/* {errors.name && (
+                    <span className="absolute text-sm text-red-600 top-[48px] ">
+                      {errors.name.message}
+                    </span>
+                  )} */}
                 </div>
-
                 <div className="flex-center mt-5 font-DanaDemiBold text-base md:text-lg">
                   <span className="select-none">00:59</span>
                 </div>
                 <div className="bg-green-600 select-none relative text-white font-DanaDemiBold p-3 mt-4 flex-center text-base md:text-lg rounded-md shadow-blue cursor-pointer">
-                  <button className="outline-none">
-                    ورود به سایت
-                  </button>
+                  <button className="outline-none">ورود به سایت</button>
                   <svg className="w-6 md:w-7 h-6 md:h-7 absolute right-3.5">
                     <use href="#arrow-left-on-rectangle"></use>
                   </svg>
@@ -116,9 +126,7 @@ function OtpLogin() {
                   </svg>
                 </div>
                 <div className="bg-blue-600 relative text-white font-DanaDemiBold p-3 mt-8 flex-center text-base md:text-lg rounded-md shadow-blue cursor-pointer">
-                  <button id="login">
-                    ارسال کد
-                  </button>
+                  <button id="login">ارسال کد</button>
                   <svg className="w-6 md:w-7 h-6 md:h-7 absolute right-3.5">
                     <use href="#plane"></use>
                   </svg>
