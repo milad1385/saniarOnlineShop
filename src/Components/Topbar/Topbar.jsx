@@ -4,7 +4,6 @@ import { AppContext } from "../../App";
 
 function Topbar() {
   const { isLogin, userInfo } = useContext(AppContext);
-  console.log(isLogin, userInfo);
   return (
     <div className="hidden md:block shadow-lg pb-1 bg-white relative z-40">
       <div className="py-[30px] flex items-center justify-between container ">

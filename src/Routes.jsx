@@ -53,14 +53,29 @@ import NewsLetter from "./Pages/AdminPanel/NewsLetter/NewsLetter";
 import Static from "./Pages/AdminPanel/Static/Static";
 import MyInfo from "./Pages/AdminPanel/MyInfo/MyInfo";
 import PowerOff from "./Pages/AdminPanel/PowerOff/PowerOff";
+import IsLogin from "./Pages/Private/IsLogin";
 const routes = [
   { path: "/", element: <Index /> },
   { path: "/blog", element: <Blog /> },
   { path: "/product/:productName", element: <ProductPage /> },
   { path: "/category-blog/:articleCategory", element: <ArticleCategory /> },
   { path: "/article/:articleName", element: <ArticlePage /> },
-  { path: "/login", element: <Login /> },
-  { path: "/register", element: <Register /> },
+  {
+    path: "/login",
+    element: (
+      <IsLogin>
+        <Login />
+      </IsLogin>
+    ),
+  },
+  {
+    path: "/register",
+    element: (
+      <IsLogin>
+        <Register />
+      </IsLogin>
+    ),
+  },
   { path: "/contact-us", element: <ContactUs /> },
   { path: "/products", element: <ProductsPage /> },
   { path: "/category-products/:categoryName", element: <ProductsCategory /> },

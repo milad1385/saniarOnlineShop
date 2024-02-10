@@ -44,18 +44,52 @@ const getUserInfo = async (token) => {
     },
   });
 
-
   return await res.json();
-
-  // console.log(res);
-  // const { userInfo } = await res.json();
-  // console.log(userInfo);
-
-  // if (res.status === 202) {
-  //   return { status: 202, info : userInfo };
-  // } else {
-  //   return { status: 404 };
-  // }
 };
 
-export { registerNewUser, handleLoginUser , getUserInfo };
+const sendPhoneOtpLogin = async (userInfo) => {
+  const res = await fetch(`http://localhost:3001/api/v1/user/send-code`, {
+    method: "POST",
+    headers: {
+      "Content-type": "application/json",
+    },
+    body: JSON.stringify(userInfo),
+  });
+
+  const { time } = await res.json();
+
+  if (res.status === 404) {
+    return { status: 404 };
+  } else if (res.status === 200) {
+    return { status: 200, time };
+  }
+};
+
+const verifyOtpCode = async (infos) => {
+  const res = await fetch(`http://localhost:3001/api/v1/user/verify`, {
+    method: "POST",
+    headers: {
+      "Content-type": "application/json",
+    },
+    body: JSON.stringify(infos),
+  });
+
+  const { accessToken } = await res.json();
+  if (res.status === 200) {
+    return { status: 200 , accessToken };
+  } else if (res.status === 409) {
+    return { status: 409 };
+  } else if (res.status === 410) {
+    return { status: 410 };
+  } else {
+    return { status: 404 };
+  }
+};
+
+export {
+  registerNewUser,
+  handleLoginUser,
+  getUserInfo,
+  sendPhoneOtpLogin,
+  verifyOtpCode,
+};

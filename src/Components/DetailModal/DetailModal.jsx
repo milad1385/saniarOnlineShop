@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 
-function DetailModal({ children, onClose }) {
+function DetailModal({ children, onClose , onClick }) {
   useEffect(() => {
     const hideModal = (event) => {
       if (event.target.id === "detail-modal") {
@@ -25,7 +25,7 @@ function DetailModal({ children, onClose }) {
   return (
     <div
       id="detail-modal"
-      className="fixed inset-0 bg-black/50 z-50 transition-all flex items-center justify-center"
+      className="fixed inset-0 bg-black/50 z-50 transition-all flex items-center justify-center" onClick={onClick}
     >
       <div className="table-container w-[94%] md:w-auto">{children}</div>
     </div>

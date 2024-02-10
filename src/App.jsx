@@ -35,6 +35,12 @@ function App() {
     }
   };
 
+  const logout = () => {
+    setIsLogin(false);
+    setUserInfo({});
+    localStorage.removeItem("token");
+  };
+
   const Routes = useRoutes(routes);
   return (
     <>
@@ -48,6 +54,7 @@ function App() {
             setUserInfo,
             setIsLogin,
             isLogin,
+            logout
           }}
         >
           {Routes}
