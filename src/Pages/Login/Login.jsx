@@ -14,6 +14,7 @@ import Spinner from "../../Components/Sppiner/Spinner";
 function Login() {
   const [isShowSuccessModal, setIsShowSuccessModal] = useState(false);
   const [isShowFailedModal, setIsShowFailedModal] = useState(false);
+  const [errMsg, setErrMsg] = useState(null);
   const { setUserInfo, setIsLogin } = useContext(AppContext);
   const navigate = useNavigate();
   const {
@@ -33,8 +34,12 @@ function Login() {
       localStorage.setItem("token", JSON.stringify(infos.accessToken));
       setIsLogin(true);
       setUserInfo(infos.userInfo);
+    } else if (status === 404) {
+      setIsShowFailedModal(true);
+      setErrMsg("نام کاربری یا رمز عبور اشتباه است");
     } else {
       setIsShowFailedModal(true);
+      setErrMsg("این کاربر بن شده است");
     }
   };
 
@@ -112,7 +117,6 @@ function Login() {
                     {...register("password")}
                     className="w-full  outline-none font-DanaMedium h-full pr-2 text-sm md:text-base"
                     id="email"
-                  
                     placeholder="رمز عبور"
                   />
                   <svg className="w-6 md:w-7 h-6 md:h-7">
@@ -182,7 +186,7 @@ function Login() {
       {isShowFailedModal && (
         <StatusModal
           onClose={setIsShowFailedModal}
-          title={"نام کاربری یا رمز عبور اشتباه است"}
+          title={errMsg}
           text={"تلاش مجدد"}
           icon={"face-frown"}
           color="text-red-600"

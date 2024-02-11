@@ -4,7 +4,7 @@ import { AppContext } from "../../../App";
 
 function TopBar({ onShow }) {
   const [isDark, setIsDark] = useState("light");
-  const {setIsShowAdminMenu } = useContext(AppContext);
+  const { setIsShowAdminMenu, userInfo } = useContext(AppContext);
   const addDarkModeClass = () => {
     if (isDark === "dark") {
       document.documentElement.classList.add("dark");
@@ -32,12 +32,20 @@ function TopBar({ onShow }) {
       <div className="flex items-center justify-between flex-col md:flex-row gap-y-6">
         <div className="flex items-center gap-x-3">
           <div className="w-16 h-16 flex-center bg-gray-300 shadow rounded-full">
-            <img src="/images/user.png" className="w-14 h-14" alt="" />
+            <img
+              src={
+                userInfo?.image
+                  ? `http://localhost:3001/uploads/covers/${userInfo?.image}`
+                  : "/images/user.png"
+              }
+              className="w-14 h-14 rounded-full"
+              alt=""
+            />
           </div>
           <div>
-            <h3 className="font-Lalezar text-lg">میلاد سلامیان</h3>
+            <h3 className="font-Lalezar text-lg">{userInfo?.name}</h3>
             <h6 className="font-Lalezar text-base text-gray-500">
-              مدیریت اصلی
+              {userInfo?.role === "ADMIN" ? "ادمین" : "مدیریت اصلی"}
             </h6>
           </div>
         </div>
