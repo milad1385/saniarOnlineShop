@@ -38,8 +38,6 @@ function Login() {
     }
   };
 
-  const navigateToShop = () => navigate("/");
-
   const clearInputs = () => {
     setValue("username", "");
     setValue("password", "");
@@ -110,10 +108,11 @@ function Login() {
                   }`}
                 >
                   <input
-                    type="text"
+                    type="password"
                     {...register("password")}
                     className="w-full  outline-none font-DanaMedium h-full pr-2 text-sm md:text-base"
                     id="email"
+                  
                     placeholder="رمز عبور"
                   />
                   <svg className="w-6 md:w-7 h-6 md:h-7">
@@ -177,7 +176,7 @@ function Login() {
           icon={"face-smile"}
           color="text-blue-600"
           bg="bg-blue-600"
-          onClick={navigateToShop}
+          onClick={() => navigate("/")}
         />
       )}
       {isShowFailedModal && (

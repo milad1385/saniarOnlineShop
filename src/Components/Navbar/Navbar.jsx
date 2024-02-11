@@ -1,9 +1,11 @@
-import React, {useRef } from "react";
+import React, { useContext, useRef } from "react";
 import { Link } from "react-router-dom";
 import MegaMenuItem from "../MegaMenuItem/MegaMenuItem";
 import MegaMenuValue from "../MegaMenuValue/MegaMenuValue";
+import { AppContext } from "../../App";
 
 function Navbar() {
+  const { userInfo, isLogin } = useContext(AppContext);
   const overlayRef = useRef();
   const menuRef = useRef();
   const subMenuRef = useRef();
@@ -178,14 +180,16 @@ function Navbar() {
                   سوالی دارید
                 </Link>
               </li>
-              <li className="border-b-[2.5px] border-b-blue-600 pb-2">
-                <Link
-                  to={""}
-                  className="hidden lg:flex items-center gap-x-1.5 text-sm lg:text-sm xl:text-lg"
-                >
-                  در سانیار بفروشید
-                </Link>
-              </li>
+              {userInfo?.role === "ADMIN" && (
+                <li className="pb-2">
+                  <Link
+                    to={"/admin-panel"}
+                    className="flex items-center gap-x-1.5 text-sm lg:text-sm xl:text-lg"
+                  >
+                    پنل مدیریت
+                  </Link>
+                </li>
+              )}
             </ul>
           </div>
           <div className="flex items-center gap-x-2 text-white">
@@ -231,7 +235,11 @@ function Navbar() {
             </div>
             <div className="bg-gray-100 rounded-full p-0.5">
               <img
-                src={"/images/user.png"}
+                src={
+                  isLogin
+                    ? `http://localhost:3001/uploads/covers/${userInfo?.image}`
+                    : "/images/user.png"
+                }
                 alt=""
                 className="w-[56px] h-[56px] rounded-full"
               />

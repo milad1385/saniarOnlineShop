@@ -36,7 +36,7 @@ function Topbar() {
                 to={"/my-account"}
                 className="hidden xl:block text-sm font-DanaMedium"
               >
-                {userInfo.name}
+                {userInfo?.name}
               </Link>
             ) : (
               <Link
@@ -47,11 +47,6 @@ function Topbar() {
               </Link>
             )}
           </div>
-          <div className="shadow-gray w-[50px] h-[50px] rounded-full flex items-center justify-center border border-gray-200">
-            <svg className="w-6 h-6">
-              <use href="#check"></use>
-            </svg>
-          </div>
           <div className="flex items-center gap-x-4 shadow-gray border border-gray-200 py-3 xl:py-2 px-3 rounded-full xl:rounded-3xl">
             <svg className="w-6 h-6">
               <use href="#shop"></use>
@@ -59,6 +54,17 @@ function Topbar() {
             <div className="hidden xl:flex bg-blue-600 shadow-blue text-white  items-center justify-center rounded-full xl:w-[30px] xl:h-[30px] text-sm">
               5
             </div>
+          </div>
+          <div className="bg-gray-100 rounded-full p-0.5">
+            <img
+              src={
+                isLogin
+                  ? `http://localhost:3001/uploads/covers/${userInfo?.image}`
+                  : "/images/user.png"
+              }
+              alt=""
+              className="w-[56px] h-[56px] rounded-full"
+            />
           </div>
         </div>
       </div>

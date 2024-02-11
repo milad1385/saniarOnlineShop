@@ -62,19 +62,11 @@ const routes = [
   { path: "/article/:articleName", element: <ArticlePage /> },
   {
     path: "/login",
-    element: (
-      <IsLogin>
-        <Login />
-      </IsLogin>
-    ),
+    element: <Login />,
   },
   {
     path: "/register",
-    element: (
-      <IsLogin>
-        <Register />
-      </IsLogin>
-    ),
+    element: <Register />,
   },
   { path: "/contact-us", element: <ContactUs /> },
   { path: "/products", element: <ProductsPage /> },

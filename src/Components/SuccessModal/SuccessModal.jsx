@@ -16,6 +16,7 @@ function StatusModal({ onClose, title, onClick, text , icon , color , bg }) {
     <div
       id="success-modal"
       className="bg-black/50 fixed inset-0 flex items-center justify-center z-50"
+      onClick={onClick}
     >
       <div className="bg-white w-[93%] md:w-[400px] pb-8 pt-4 px-3">
         <div>

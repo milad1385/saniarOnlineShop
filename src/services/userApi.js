@@ -76,7 +76,7 @@ const verifyOtpCode = async (infos) => {
 
   const { accessToken } = await res.json();
   if (res.status === 200) {
-    return { status: 200 , accessToken };
+    return { status: 200, accessToken };
   } else if (res.status === 409) {
     return { status: 409 };
   } else if (res.status === 410) {

@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import Topbar from "../../Components/Topbar/Topbar";
 import Navbar from "../../Components/Navbar/Navbar";
 import Footer from "../../Components/Footer/Footer";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { registerSchema } from "./RegisterSchema";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -16,6 +16,7 @@ function Register() {
   const [isShowFaildModal, setIsShowFaildModal] = useState(false);
   const [errMsg, setErrMsg] = useState("");
   const { setUserInfo, setIsLogin } = useContext(AppContext);
+  const navigate = useNavigate();
 
   const { mutateAsync: registerUser, isLoading } = useRegister();
   const {
@@ -219,7 +220,10 @@ function Register() {
                   </svg>
                 </div>
               </div>
-              <button type="submit" className="bg-blue-600 w-full relative text-base text-white font-DanaDemiBold p-3 flex-center md:text-lg rounded-md shadow-blue cursor-pointer">
+              <button
+                type="submit"
+                className="bg-blue-600 w-full relative text-base text-white font-DanaDemiBold p-3 flex-center md:text-lg rounded-md shadow-blue cursor-pointer"
+              >
                 <button
                   disabled={isLoading}
                   className="form-fildes__btn "
@@ -260,6 +264,7 @@ function Register() {
           icon={"face-smile"}
           color="text-blue-600"
           bg="bg-blue-600"
+          onClick={() => navigate("/")}
         />
       )}
       {isShowFaildModal && (
