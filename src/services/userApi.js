@@ -128,6 +128,22 @@ const deleteUser = async (info) => {
   return res.json();
 };
 
+const changeUserRole = async (info) => {
+  console.log(info);
+  const res = await fetch(`${baseURL}/change-role/${info.id}`, {
+    method: "PUT",
+    headers: {
+      authorization: `${info.token}`,
+      "Content-type": "application/json",
+    },
+    body: JSON.stringify({ role: info.role }),
+  });
+
+  console.log(res);
+
+  return res;
+};
+
 export {
   registerNewUser,
   handleLoginUser,
@@ -136,5 +152,6 @@ export {
   verifyOtpCode,
   getAllUsers,
   banUser,
-  deleteUser
+  deleteUser,
+  changeUserRole,
 };
