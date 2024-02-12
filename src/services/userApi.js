@@ -89,8 +89,8 @@ const verifyOtpCode = async (infos) => {
   }
 };
 
-const getAllUsers = async (token) => {
-  const res = await fetch(`${baseURL}/all`, {
+const getAllUsers = async (token, page) => {
+  const res = await fetch(`${baseURL}/all?page=${page}`, {
     headers: {
       authorization: `${token}`,
     },

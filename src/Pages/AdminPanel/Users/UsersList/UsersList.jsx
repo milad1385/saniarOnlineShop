@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Table from "../../../../Components/AdminPanel/Table/Table";
 import EmptyError from "../../../../Components/UserPanel/EmptyError/EmptyError";
 import DeleteModal from "../../../../Components/DeleteModal/DeleteModal";
@@ -10,6 +10,7 @@ import useDelete from "../../../../Hooks/AdminPanel/User/useDelete";
 import Loader from "../../../../Components/Loader/Loader";
 import DetailModal from "../../../../Components/DetailModal/DetailModal";
 import useRole from "../../../../Hooks/AdminPanel/User/useRole";
+import Pagination from "../../../../Components/Pagination/Pagination";
 
 function UsersList() {
   const [userId, setUserId] = useState(null);
@@ -19,9 +20,15 @@ function UsersList() {
   const [isSuccessModal, setIsSuccessModal] = useState(false);
   const [isShowDeleteModal, setIsShowDeleteModal] = useState(false);
   const [isShowRoleModal, setIsShowRoleModal] = useState(false);
+  const pageNum = new URLSearchParams(window.location.search).get("page");
+  const [page, setPage] = useState(pageNum);
   const [msg, setMsg] = useState(null);
 
-  const { data: users, isLoading } = useGetUsers();
+  useEffect(() => {
+    setPage(pageNum || 1);
+  }, [pageNum]);
+
+  const { data: users, isLoading } = useGetUsers(page);
   const { mutateAsync: banUser } = useBanUser();
   const { mutateAsync: deleteUser } = useDelete();
   const { mutateAsync: changeUserRole } = useRole();
@@ -77,7 +84,7 @@ function UsersList() {
           </div>
         ) : (
           <Table title={"لیست"} main={"کاربران"}>
-            {users?.length ? (
+            {users.users?.length ? (
               <table className="user-table mt-7">
                 <thead className="">
                   <tr className="child:font-Lalezar text-base md:text-xl bg-blue-600  text-white child:p-3 text-center">
@@ -97,7 +104,7 @@ function UsersList() {
                 </thead>
                 <tbody className="text-sm md:text-base">
                   <>
-                    {users?.map((user, index) => (
+                    {users.users?.map((user, index) => (
                       <tr
                         className="child:p-3 text-center font-DanaMedium"
                         key={user._id}
@@ -173,6 +180,11 @@ function UsersList() {
             )}
           </Table>
         )}
+        <Pagination
+          count={users?.paginatedNumber}
+          page={page}
+          setPage={setPage}
+        />
       </div>
       {isShowBanModal && (
         <DeleteModal

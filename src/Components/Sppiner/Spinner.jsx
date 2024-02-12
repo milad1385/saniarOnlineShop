@@ -1,8 +1,8 @@
 import React from "react";
 import "./spinner.css";
-function Spinner() {
+function Spinner({ isBtn }) {
   return (
-    <div class="lds-ellipsis">
+    <div class={`lds-ellipsis ${isBtn ? "-mr-[57px]" : "mr-[22px]"}`}>
       <div></div>
       <div></div>
       <div></div>
