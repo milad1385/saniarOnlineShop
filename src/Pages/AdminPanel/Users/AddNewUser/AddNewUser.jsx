@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { userSchema } from "./UserShema";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import Sppiner from "../../../../Components/Sppiner/Spinner";
 import useRegister from "../../../../Hooks/useRegister/useRegister";
 import StatusModal from "../../../../Components/SuccessModal/SuccessModal";
+import {registerSchema} from "../../../../Pages/Register/RegisterSchema";
 
 function AddNewUser() {
   const [image, setImage] = useState("");
@@ -16,7 +16,7 @@ function AddNewUser() {
     handleSubmit,
     setValue,
     formState: { errors },
-  } = useForm({ resolver: yupResolver(userSchema) });
+  } = useForm({ resolver: yupResolver(registerSchema) });
 
   const { mutateAsync: registerNewUser, isLoading } = useRegister();
 

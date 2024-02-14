@@ -11,15 +11,24 @@ import Loader from "../../../../Components/Loader/Loader";
 import DetailModal from "../../../../Components/DetailModal/DetailModal";
 import useRole from "../../../../Hooks/AdminPanel/User/useRole";
 import Pagination from "../../../../Components/Pagination/Pagination";
+import EditModal from "../../../../Components/EditModal/EditModal";
+import { useForm } from "react-hook-form";
+import { registerSchema } from "../../../../Pages/Register/RegisterSchema";
+import { yupResolver } from "@hookform/resolvers/yup";
+import useEdit from "../../../../Hooks/AdminPanel/User/useEdit";
 
 function UsersList() {
   const [userId, setUserId] = useState(null);
   const [phone, setPhone] = useState(null);
   const [role, setRole] = useState("");
+  const [image, setImage] = useState({});
+  const [lastImage, setLastImage] = useState("");
   const [isShowBanModal, setIsShowBanModal] = useState(false);
   const [isSuccessModal, setIsSuccessModal] = useState(false);
   const [isShowDeleteModal, setIsShowDeleteModal] = useState(false);
   const [isShowRoleModal, setIsShowRoleModal] = useState(false);
+  const [isShowEditModal, setIsShowEditModal] = useState(false);
+
   const pageNum = new URLSearchParams(window.location.search).get("page");
   const [page, setPage] = useState(pageNum);
   const [msg, setMsg] = useState(null);
@@ -32,6 +41,14 @@ function UsersList() {
   const { mutateAsync: banUser } = useBanUser();
   const { mutateAsync: deleteUser } = useDelete();
   const { mutateAsync: changeUserRole } = useRole();
+  const { mutateAsync: editUser, isLoading: editLoading } = useEdit();
+
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    formState: { errors },
+  } = useForm({ resolver: yupResolver(registerSchema) });
 
   const banUserHandler = async () => {
     const info = {
@@ -60,7 +77,6 @@ function UsersList() {
   };
 
   const changeUserRoleHandler = async () => {
-    console.log("hhhh");
     const info = {
       token: getUserToken(),
       id: userId,
@@ -73,6 +89,41 @@ function UsersList() {
       setIsSuccessModal(true);
       setMsg("نقش کاربر با موفقیت ویرایش شد");
       setRole("");
+    }
+  };
+
+  const editUserHandler = (user) => {
+    console.log(user);
+    setIsShowEditModal(true);
+    setUserId(user._id);
+    setValue("name", user.name);
+    setValue("username", user.username);
+    setValue("email", user.email);
+    setValue("password", user.password);
+    setValue("phone", user.phone);
+    setLastImage(user.image);
+  };
+
+  const submitEditUser = async (data) => {
+    const formData = new FormData();
+    formData.append("username", data.username);
+    formData.append("name", data.name);
+    formData.append("email", data.email);
+    formData.append("password", data.password);
+    formData.append("phone", data.phone);
+    formData.append("image", image);
+    formData.append("lastImage", lastImage);
+    const info = {
+      token: getUserToken(),
+      id: userId,
+      body: formData,
+    };
+    const result = await editUser(info);
+    if (result.status === 200) {
+      setIsShowEditModal(false);
+      setMsg("کاربر با موفقیت ویرایش شد");
+      setIsSuccessModal(true);
+      setImage({});
     }
   };
   return (
@@ -154,7 +205,10 @@ function UsersList() {
                           </button>
                         </td>
                         <td>
-                          <button className="bg-blue-600 text-white w-16 py-1 text-base md:text-lg rounded-md font-Lalezar">
+                          <button
+                            className="bg-blue-600 text-white w-16 py-1 text-base md:text-lg rounded-md font-Lalezar"
+                            onClick={() => editUserHandler(user)}
+                          >
                             ویرایش
                           </button>
                         </td>
@@ -211,7 +265,6 @@ function UsersList() {
           onClose={() => setIsShowDeleteModal(false)}
         />
       )}
-
       {isShowRoleModal && (
         <DetailModal onClose={setIsShowRoleModal}>
           <div className="bg-white w-[350px] px-5 pt-4 pb-6 space-y-5 font-MorabbaBold">
@@ -222,7 +275,7 @@ function UsersList() {
               <input
                 type="text"
                 placeholder="نقش کاربر را وارد کنید ..."
-                className="outline-none w-full bg-gray-100"
+                className="outline-none w-full bg-gray-100 font-DanaMedium"
                 value={role}
                 onChange={(e) => setRole(e.target.value)}
               />
@@ -238,6 +291,125 @@ function UsersList() {
             </button>
           </div>
         </DetailModal>
+      )}
+      {isShowEditModal && (
+        <EditModal onClose={setIsShowEditModal}>
+          <form
+            onSubmit={handleSubmit(submitEditUser)}
+            className="mt-10 flex items-center justify-center flex-col gap-6 child:rounded-sm"
+          >
+            <div className="w-full">
+              <div className="bg-gray-100 flex items-center gap-x-2 py-2 px-3 w-full">
+                <svg className="w-6 h-6">
+                  <use href="#user"></use>
+                </svg>
+                <input
+                  type="text"
+                  placeholder="نام جدید کاربر را وارد کنید..."
+                  {...register("name")}
+                  className="w-full text-sm md:text-base bg-transparent outline-none"
+                />
+              </div>
+              {errors.name && (
+                <span className="absolute  text-red-600 font-DanaMedium text-xs md:text-sm">
+                  {errors.name.message}
+                </span>
+              )}
+            </div>
+            <div className="w-full">
+              <div className="bg-gray-100 flex items-center gap-x-2 py-2 px-3 w-full">
+                <svg className="w-6 h-6">
+                  <use href="#life-style"></use>
+                </svg>
+                <input
+                  type="text"
+                  placeholder="نام کاربری کاربر جدید را وارد کنید..."
+                  {...register("username")}
+                  className="w-full text-sm md:text-base bg-transparent outline-none"
+                />
+              </div>
+              {errors.username && (
+                <span className="absolute  text-red-600 font-DanaMedium text-xs md:text-sm">
+                  {errors.username.message}
+                </span>
+              )}
+            </div>
+            <div className="w-full">
+              <div className="bg-gray-100 flex items-center gap-x-2 py-2 px-3 w-full">
+                <svg className="w-6 h-6">
+                  <use href="#phone"></use>
+                </svg>
+                <input
+                  type="text"
+                  {...register("phone")}
+                  placeholder="شماره تلفن جدید کاربر را وارد کنید..."
+                  className="w-full text-sm md:text-base bg-transparent outline-none"
+                />
+              </div>
+              {errors.phone && (
+                <span className="absolute  text-red-600 font-DanaMedium text-xs md:text-sm">
+                  {errors.phone.message}
+                </span>
+              )}
+            </div>
+            <div className="w-full">
+              <div className="bg-gray-100 flex items-center gap-x-2 py-2 px-3 w-full">
+                <svg className="w-6 h-6">
+                  <use href="#envelope"></use>
+                </svg>
+                <input
+                  type="text"
+                  {...register("email")}
+                  placeholder="ایمیل جدید کاربر را وارد کنید..."
+                  className="w-full text-sm md:text-base bg-transparent outline-none"
+                />
+              </div>
+              {errors.email && (
+                <span className="absolute  text-red-600 font-DanaMedium text-xs md:text-sm">
+                  {errors.email.message}
+                </span>
+              )}
+            </div>
+            <div className="w-full">
+              <div className="bg-gray-100 flex items-center gap-x-2 py-2 px-3 w-full">
+                <svg className="w-6 h-6">
+                  <use href="#lock"></use>
+                </svg>
+                <input
+                  type="text"
+                  {...register("password")}
+                  placeholder="رمز عبور جدید کاربر را وارد کنید..."
+                  className="w-full text-sm md:text-base bg-transparent outline-none"
+                />
+              </div>
+              {errors.password && (
+                <span className="absolute  text-red-600 font-DanaMedium text-xs md:text-sm">
+                  {errors.password.message}
+                </span>
+              )}
+            </div>
+            <div className="w-full">
+              <div className="bg-gray-100 flex items-center gap-x-2 py-2 px-3 w-full">
+                <svg className="w-6 h-6">
+                  <use href="#image"></use>
+                </svg>
+                <input
+                  type="file"
+                  accept="image/*"
+                  name="image"
+                  onChange={(e) => setImage(e.target.files[0])}
+                />
+              </div>
+            </div>
+
+            <button
+              type="submit"
+              className="w-full mt-2 bg-blue-600 text-white text-xl font-MorabbaBold py-3"
+            >
+              {editLoading ? "در حال ویرایش ..." : "ویرایش اطلاعات"}
+            </button>
+          </form>
+        </EditModal>
       )}
     </>
   );

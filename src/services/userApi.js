@@ -27,6 +27,8 @@ const handleLoginUser = async (userInfo) => {
       body: JSON.stringify(userInfo),
     });
 
+    console.log(res);
+
     const { info } = await res.json();
     if (res.status === 404) {
       return { status: 404 };
@@ -41,30 +43,38 @@ const handleLoginUser = async (userInfo) => {
 };
 
 const getUserInfo = async (token) => {
-  const res = await fetch(`${baseURL}/getMe`, {
-    headers: {
-      authorization: `${token}`,
-    },
-  });
+  try {
+    const res = await fetch(`${baseURL}/getMe`, {
+      headers: {
+        authorization: `${token}`,
+      },
+    });
 
-  return await res.json();
+    return await res.json();
+  } catch (err) {
+    return err;
+  }
 };
 
 const sendPhoneOtpLogin = async (userInfo) => {
-  const res = await fetch(`${baseURL}/send-code`, {
-    method: "POST",
-    headers: {
-      "Content-type": "application/json",
-    },
-    body: JSON.stringify(userInfo),
-  });
+  try {
+    const res = await fetch(`${baseURL}/send-code`, {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify(userInfo),
+    });
 
-  const { time } = await res.json();
+    const { time } = await res.json();
 
-  if (res.status === 404) {
-    return { status: 404 };
-  } else if (res.status === 200) {
-    return { status: 200, time };
+    if (res.status === 404) {
+      return { status: 404 };
+    } else if (res.status === 200) {
+      return { status: 200, time };
+    }
+  } catch (err) {
+    return err;
   }
 };
 
@@ -117,19 +127,20 @@ const banUser = async (info) => {
 };
 
 const deleteUser = async (info) => {
-  const res = await fetch(`${baseURL}/delete/${info.id}`, {
-    method: "DELETE",
-    headers: {
-      authorization: `${info.token}`,
-    },
-  });
-
-  console.log(res);
-  return res.json();
+  try {
+    const res = await fetch(`${baseURL}/delete/${info.id}`, {
+      method: "DELETE",
+      headers: {
+        authorization: `${info.token}`,
+      },
+    });
+    return res.json();
+  } catch (err) {
+    return err;
+  }
 };
 
 const changeUserRole = async (info) => {
-  console.log(info);
   const res = await fetch(`${baseURL}/change-role/${info.id}`, {
     method: "PUT",
     headers: {
@@ -144,6 +155,21 @@ const changeUserRole = async (info) => {
   return res;
 };
 
+const editUser = async (info) => {
+  try {
+    const res = await fetch(`${baseURL}/edit/${info.id}`, {
+      method: "PUT",
+      headers: {
+        authorization: `${info.token}`,
+      },
+      body: info.body,
+    });
+    return res;
+  } catch (err) {
+    return err;
+  }
+};
+
 export {
   registerNewUser,
   handleLoginUser,
@@ -154,4 +180,5 @@ export {
   banUser,
   deleteUser,
   changeUserRole,
+  editUser,
 };
