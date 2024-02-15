@@ -28,6 +28,10 @@ function UsersList() {
   const [isShowDeleteModal, setIsShowDeleteModal] = useState(false);
   const [isShowRoleModal, setIsShowRoleModal] = useState(false);
   const [isShowEditModal, setIsShowEditModal] = useState(false);
+  const [isShowErrModal, setIsShowErrModal] = useState(false);
+  const [isShowDetailModal, setIsShowDetailModal] = useState(false);
+  // detail modal state
+  const [detail, setDetail] = useState({});
 
   const pageNum = new URLSearchParams(window.location.search).get("page");
   const [page, setPage] = useState(pageNum);
@@ -93,7 +97,6 @@ function UsersList() {
   };
 
   const editUserHandler = (user) => {
-    console.log(user);
     setIsShowEditModal(true);
     setUserId(user._id);
     setValue("name", user.name);
@@ -124,7 +127,15 @@ function UsersList() {
       setMsg("کاربر با موفقیت ویرایش شد");
       setIsSuccessModal(true);
       setImage({});
+    } else {
+      setMsg("ویرایش با خطا مواجه شد");
+      setIsShowErrModal(true);
     }
+  };
+
+  const handleDetailModal = (user) => {
+    setIsShowDetailModal(true);
+    setDetail(user);
   };
   return (
     <>
@@ -157,7 +168,7 @@ function UsersList() {
                   <>
                     {users.users?.map((user, index) => (
                       <tr
-                        className="child:p-3 text-center font-DanaMedium"
+                        className="child:p-2 md:child:p-3 text-center font-DanaMedium"
                         key={user._id}
                       >
                         <td>{index + 1}</td>
@@ -175,7 +186,6 @@ function UsersList() {
                           {user.role === "ADMIN" ? "ادمین" : "کاربر عادی"}
                         </td>
                         <td>{user.phone}</td>
-                        {/* <td>{user.email}</td> */}
                         <td>{user.date}</td>
                         <td>
                           <button
@@ -200,7 +210,10 @@ function UsersList() {
                           </button>
                         </td>
                         <td>
-                          <button className="bg-gray-600 text-white w-16 py-1 text-base md:text-lg rounded-md font-Lalezar">
+                          <button
+                            className="bg-gray-600 text-white w-16 py-1 text-base md:text-lg rounded-md font-Lalezar"
+                            onClick={() => handleDetailModal(user)}
+                          >
                             جزییات
                           </button>
                         </td>
@@ -323,6 +336,7 @@ function UsersList() {
                 </svg>
                 <input
                   type="text"
+                  autoComplete="false"
                   placeholder="نام کاربری کاربر جدید را وارد کنید..."
                   {...register("username")}
                   className="w-full text-sm md:text-base bg-transparent outline-none"
@@ -410,6 +424,39 @@ function UsersList() {
             </button>
           </form>
         </EditModal>
+      )}
+      {isShowErrModal && (
+        <StatusModal
+          onClose={setIsShowErrModal}
+          title={msg}
+          text={"تلاش مجدد !"}
+          icon={"face-frown"}
+          color="text-red-600"
+          bg="bg-red-600"
+          onClick={() => setIsShowErrModal(false)}
+        />
+      )}
+      {isShowDetailModal && (
+        <DetailModal onClose={setIsShowDetailModal}>
+          <Table>
+            <table className="user-table mt-7">
+              <thead className="">
+                <tr className="child:font-Lalezar text-base md:text-xl bg-gray-200 child:p-3 text-center">
+                  <td>ایمیل</td>
+                  <td>رمز عبور</td>
+                  <td>شهر</td>
+                </tr>
+              </thead>
+              <tbody className="text-sm md:text-base">
+                <tr className="child:p-4 text-center font-DanaMedium">
+                  <td>{detail.email}</td>
+                  <td>{detail.password}</td>
+                  <td>کرج</td>
+                </tr>
+              </tbody>
+            </table>
+          </Table>
+        </DetailModal>
       )}
     </>
   );
