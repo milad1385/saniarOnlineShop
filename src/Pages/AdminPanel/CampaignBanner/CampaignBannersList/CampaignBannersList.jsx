@@ -6,15 +6,26 @@ import EmptyError from "../../../../Components/UserPanel/EmptyError/EmptyError";
 import Loader from "../../../../Components/Loader/Loader";
 import useDeleteBaner from "../../../../Hooks/AdminPanel/Baner/useDeleteBaner";
 import StatusModal from "../../../../Components/SuccessModal/SuccessModal";
+import DetailModal from "../../../../Components/DetailModal/DetailModal";
+import useEditBaner from "../../../../Hooks/AdminPanel/Baner/useEditBaner";
+import { getUserToken } from "../../../../Utils/Funcs/utils";
+import useAcceptOrDecline from "../../../../Hooks/AdminPanel/Baner/useAcceptOrDecline";
 
 function CampaignBannersList() {
   const [isShowDeleteModal, setIsShowDeleteModal] = useState(false);
   const [isShowSuccessModal, setIsShowSuccessModal] = useState(false);
   const [msg, setMsg] = useState("");
+  const [isShowEditModal, setIsShowEditModal] = useState(false);
+  const [isShowActiveModal, setIsShowActiveModal] = useState(false);
   const [banerId, setBanerId] = useState(null);
+  const [status, setStatus] = useState("");
+  const [title, setTitle] = useState("");
 
   const { data: baners, isLoading } = useGetAllBaner();
   const { mutateAsync: deleteBaner } = useDeleteBaner();
+  const { mutateAsync: editBaner, isLoading: editLoading } = useEditBaner();
+  const { mutateAsync: acceptOrDecline, isLoading: stateLoading } =
+    useAcceptOrDecline();
 
   const deleteBanerHandler = async () => {
     const result = await deleteBaner(banerId);
@@ -24,6 +35,38 @@ function CampaignBannersList() {
       setIsShowSuccessModal(true);
     }
   };
+
+  const editBanerHandler = async () => {
+    const info = {
+      id: banerId,
+      token: getUserToken(),
+      title,
+    };
+
+    const result = await editBaner(info);
+
+    if (result.status === 200) {
+      setIsShowEditModal(false);
+      setMsg("بنر با موفقیت ویرایش شد");
+      setIsShowSuccessModal(true);
+    }
+  };
+
+  const acceptOrDeclineHandler = async () => {
+    const info = {
+      id: banerId,
+      token: getUserToken(),
+      status,
+    };
+
+    const result = await acceptOrDecline(info);
+    if (result.status === 200) {
+      setIsShowActiveModal(false);
+      setMsg(`بنر ${status === "accept" ? "فعال" : "غیر فعال"}   شد`);
+      setIsShowSuccessModal(true);
+    }
+  };
+
   return (
     <>
       <div className="pb-6">
@@ -61,11 +104,25 @@ function CampaignBannersList() {
                     <td>{baner.creator.name}</td>
                     <td>
                       {baner.isActive ? (
-                        <button className="bg-amber-500 text-white w-16 py-1 text-base md:text-lg rounded-md font-Lalezar">
+                        <button
+                          className="bg-amber-500 text-white w-16 py-1 text-base md:text-lg rounded-md font-Lalezar"
+                          onClick={() => {
+                            setBanerId(baner._id);
+                            setIsShowActiveModal(true);
+                            setStatus("decline");
+                          }}
+                        >
                           رد
                         </button>
                       ) : (
-                        <button className="bg-amber-500 text-white w-16 py-1 text-base md:text-lg rounded-md font-Lalezar">
+                        <button
+                          className="bg-amber-500 text-white w-16 py-1 text-base md:text-lg rounded-md font-Lalezar"
+                          onClick={() => {
+                            setBanerId(baner._id);
+                            setIsShowActiveModal(true);
+                            setStatus("accept");
+                          }}
+                        >
                           تایید
                         </button>
                       )}
@@ -82,7 +139,14 @@ function CampaignBannersList() {
                       </button>
                     </td>
                     <td>
-                      <button className="bg-blue-600 text-white w-16 py-1 text-base md:text-lg rounded-md font-Lalezar">
+                      <button
+                        className="bg-blue-600 text-white w-16 py-1 text-base md:text-lg rounded-md font-Lalezar"
+                        onClick={() => {
+                          setIsShowEditModal(true);
+                          setBanerId(baner._id);
+                          setTitle(baner.title);
+                        }}
+                      >
                         ویرایش
                       </button>
                     </td>
@@ -110,6 +174,44 @@ function CampaignBannersList() {
           color="text-blue-600"
           bg="bg-blue-600"
           onClick={() => setIsShowSuccessModal(false)}
+        />
+      )}
+      {isShowEditModal && (
+        <DetailModal onClose={setIsShowEditModal}>
+          <div className="bg-white w-[350px] md:w-[450px] px-5 pt-4 pb-6 space-y-5 font-MorabbaBold">
+            <h3 className="text-center  text-lg md:text-2xl lg:text-3xl">
+              مقدار جدید بنر را بنویسید
+            </h3>
+            <div className="flex items-center justify-between bg-gray-100 py-2 px-3">
+              <input
+                type="text"
+                placeholder="عنوان بنر را وارد کنید ..."
+                className="outline-none w-full bg-gray-100 font-DanaMedium"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+              />
+              <svg className="w-6 h-6 md:w-9 md:h-9 text-zinc-600">
+                <use href="#life-style"></use>
+              </svg>
+            </div>
+            <button
+              className="bg-blue-600 text-white flex-center w-full py-3 text-base md:text-lg lg:text-xl"
+              onClick={() => editBanerHandler()}
+            >
+              {editLoading ? "در حال ویرایش" : "ویرایش بنر"}
+            </button>
+          </div>
+        </DetailModal>
+      )}
+      {isShowActiveModal && (
+        <DeleteModal
+          onClose={setIsShowActiveModal}
+          onClick={acceptOrDeclineHandler}
+          title={
+            status === "accept"
+              ? "آیا از فعال کردن اطمینان دارید ؟"
+              : "آیا از غیر فعال کردن اطمینان دارید ؟"
+          }
         />
       )}
     </>

@@ -38,4 +38,37 @@ const deleteBaner = async (id) => {
   }
 };
 
-export { createNewBaner, getBaners , deleteBaner};
+const editBaner = async (info) => {
+  console.log(info);
+  try {
+    const res = await fetch(`${baseURL}/edit/baner/${info.id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        authorization: `${info.token}`,
+      },
+      body: JSON.stringify({ title: info.title }),
+    });
+
+    return res;
+  } catch (err) {
+    return err;
+  }
+};
+
+const setAcceptOrDeclineBaner = async (info) => {
+  try {
+    const res = await fetch(`${baseURL}/accept-decline/${info.id}/${info.status}`, {
+      method: "PUT",
+      headers: {
+        authorization: `${info.token}`,
+      },
+    });
+
+    return res;
+  } catch (err) {
+    return err;
+  }
+};
+
+export { createNewBaner, getBaners, deleteBaner, editBaner  , setAcceptOrDeclineBaner };
