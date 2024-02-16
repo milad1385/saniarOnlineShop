@@ -156,7 +156,9 @@ function CampaignBannersList() {
             </table>
           </Table>
         ) : (
-          <EmptyError msg={"هیچ بنری تاکنون ساخته نشده است"} />
+          <div className="mt-8">
+            <EmptyError msg={"هیچ بنری تاکنون ساخته نشده است"} />
+          </div>
         )}
       </div>
       {isShowDeleteModal && (

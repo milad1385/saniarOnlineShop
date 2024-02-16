@@ -61,8 +61,8 @@ function AddNewCampaignBanner() {
           </div>
         </div>
         <div className="flex items-center gap-x-5">
-          <button className="bg-blue-600  font-Lalezar p-2 rounded-md text-white text-sm md:text-xl shadow-blue mt-6">
-            {isLoading ? <Sppiner /> : "ایجاد بنر"}
+          <button className="bg-blue-600 w-[125px]  font-Lalezar p-2 rounded-md text-white text-sm md:text-xl shadow-blue mt-6">
+            {isLoading ? <div className="ml-9"><Sppiner /></div> : "ایجاد بنر"}
           </button>
         </div>
       </form>

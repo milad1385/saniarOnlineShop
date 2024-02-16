@@ -58,12 +58,15 @@ const editBaner = async (info) => {
 
 const setAcceptOrDeclineBaner = async (info) => {
   try {
-    const res = await fetch(`${baseURL}/accept-decline/${info.id}/${info.status}`, {
-      method: "PUT",
-      headers: {
-        authorization: `${info.token}`,
-      },
-    });
+    const res = await fetch(
+      `${baseURL}/accept-decline/${info.id}/${info.status}`,
+      {
+        method: "PUT",
+        headers: {
+          authorization: `${info.token}`,
+        },
+      }
+    );
 
     return res;
   } catch (err) {
@@ -71,4 +74,21 @@ const setAcceptOrDeclineBaner = async (info) => {
   }
 };
 
-export { createNewBaner, getBaners, deleteBaner, editBaner  , setAcceptOrDeclineBaner };
+const getActiveBaner = async () => {
+  try {
+    const res = await fetch(`${baseURL}/active`);
+
+    return await res.json();
+  } catch (err) {
+    return err;
+  }
+};
+
+export {
+  createNewBaner,
+  getBaners,
+  deleteBaner,
+  editBaner,
+  setAcceptOrDeclineBaner,
+  getActiveBaner
+};
