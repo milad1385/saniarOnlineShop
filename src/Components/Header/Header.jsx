@@ -8,7 +8,9 @@ import { Pagination, Autoplay } from "swiper/modules";
 import Headerbox from "../HeaderBox/Headerbox";
 import Feature from "../Features/Feature";
 import Componies from "../Componies/Componies";
+import useGetActiveSlider from "../../Hooks/AdminPanel/sliders/useGetActiveSlider";
 function Header() {
+  const { data: sliders } = useGetActiveSlider();
   return (
     <>
       <Topbar />
@@ -46,15 +48,11 @@ function Header() {
             modules={[Pagination, Autoplay]}
             className="mySwiper"
           >
-            <SwiperSlide>
-              <img src="/images/slide2-2.jpg" className="shadow" />
-            </SwiperSlide>
-            <SwiperSlide>
-              <img src="/images/slide3-1.jpg" className="shadow" />
-            </SwiperSlide>
-            <SwiperSlide>
-              <img src="/images/slide4.jpg" className="shadow" />
-            </SwiperSlide>
+            {sliders?.map((slider) => (
+              <SwiperSlide>
+                <img src={`http://localhost:3001/uploads/covers/${slider.image}`} className="shadow" />
+              </SwiperSlide>
+            ))}
           </Swiper>
         </div>
       </div>

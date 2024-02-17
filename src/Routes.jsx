@@ -37,7 +37,6 @@ import CommentsAdminPage from "./Pages/AdminPanel/Commnets/Comments";
 import Orders from "./Pages/AdminPanel/Orders/Orders";
 import Discount from "./Pages/AdminPanel/DiscountCode/DiscountCode";
 import TicketsAdminPage from "./Pages/AdminPanel/Tickets/Tickets";
-import Slider from "./Pages/AdminPanel/Sliders/Sliders";
 import ArticlesAdminPage from "./Pages/AdminPanel/Articles/Articles";
 import Campaign from "./Pages/AdminPanel/Campaign/Campaign";
 import BannerAdminPage from "./Pages/AdminPanel/Banners/Banners";
@@ -110,7 +109,6 @@ const routes = [
       { path: "orders", element: <Orders /> },
       { path: "discount", element: <Discount /> },
       { path: "tickets", element: <TicketsAdminPage /> },
-      { path: "slider", element: <Slider /> },
       { path: "articles", element: <ArticlesAdminPage /> },
       { path: "capmaign", element: <Campaign /> },
       { path: "ads-banner", element: <BannerAdminPage /> },
