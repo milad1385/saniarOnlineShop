@@ -1,10 +1,13 @@
 import React, { useEffect, useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { AppContext } from "../../../App";
+import useGetMe from "../../../Hooks/useGetMe/useGetMe";
+import { getUserToken } from "../../../Utils/Funcs/utils";
 
 function TopBar({ onShow }) {
   const [isDark, setIsDark] = useState("light");
-  const { setIsShowAdminMenu, userInfo } = useContext(AppContext);
+  const { setIsShowAdminMenu } = useContext(AppContext);
+  const {data} = useGetMe(getUserToken());
   const addDarkModeClass = () => {
     if (isDark === "dark") {
       document.documentElement.classList.add("dark");
@@ -34,8 +37,8 @@ function TopBar({ onShow }) {
           <div className="w-16 h-16 flex-center bg-gray-300 shadow rounded-full">
             <img
               src={
-                userInfo?.image
-                  ? `http://localhost:3001/uploads/covers/${userInfo?.image}`
+                data?.userInfo.image
+                  ? `http://localhost:3001/uploads/covers/${data?.userInfo.image}`
                   : "/images/user.png"
               }
               className="w-14 h-14 rounded-full"
@@ -43,9 +46,9 @@ function TopBar({ onShow }) {
             />
           </div>
           <div>
-            <h3 className="font-Lalezar text-lg">{userInfo?.name}</h3>
+            <h3 className="font-Lalezar text-lg">{data?.userInfo.name}</h3>
             <h6 className="font-Lalezar text-base text-gray-500">
-              {userInfo?.role === "ADMIN" ? "ادمین" : "مدیریت اصلی"}
+              {data?.userInfo?.role === "ADMIN" ? "ادمین" : "مدیریت اصلی"}
             </h6>
           </div>
         </div>

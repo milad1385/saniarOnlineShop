@@ -8,6 +8,7 @@ function useEdit() {
     mutationFn: editUser,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["users"] });
+      queryClient.invalidateQueries({ queryKey: ["userInfo"] });
     },
   });
 }

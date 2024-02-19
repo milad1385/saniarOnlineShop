@@ -21,15 +21,12 @@ function AddNewUser() {
   const { mutateAsync: registerNewUser, isLoading } = useRegister();
 
   const createNewUserHandler = async (data) => {
-    console.log(data);
-    const { name, username, password, email, phone } = data;
-
     const formData = new FormData();
-    formData.append("name", name);
-    formData.append("username", username);
-    formData.append("password", password);
-    formData.append("email", email);
-    formData.append("phone", phone);
+    formData.append("name", data.name);
+    formData.append("username", data.username);
+    formData.append("password", data.password);
+    formData.append("email", data.email);
+    formData.append("phone", data.phone);
     formData.append("image", image);
 
     const result = await registerNewUser(formData);
