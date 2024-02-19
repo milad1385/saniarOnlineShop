@@ -141,18 +141,21 @@ const deleteUser = async (info) => {
 };
 
 const changeUserRole = async (info) => {
-  const res = await fetch(`${baseURL}/change-role/${info.id}`, {
-    method: "PUT",
-    headers: {
-      authorization: `${info.token}`,
-      "Content-type": "application/json",
-    },
-    body: JSON.stringify({ role: info.role }),
-  });
+  console.log(info);
+  try {
+    const res = await fetch(`${baseURL}/change-role/${info.id}`, {
+      method: "PUT",
+      headers: {
+        authorization: `${info.token}`,
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify({ role: info.role }),
+    });
 
-  console.log(res);
-
-  return res;
+    return res;
+  } catch (err) {
+    return err;
+  }
 };
 
 const editUser = async (info) => {
@@ -173,7 +176,7 @@ const editUser = async (info) => {
 const getLastUser = async () => {
   try {
     const res = await fetch(`${baseURL}/registerNow`);
-    
+
     return await res.json();
   } catch (err) {
     return err;
@@ -191,5 +194,5 @@ export {
   deleteUser,
   changeUserRole,
   editUser,
-  getLastUser
+  getLastUser,
 };

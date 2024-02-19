@@ -8,6 +8,7 @@ function useRole() {
     mutationFn: changeUserRole,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["users"] });
+      queryClient.invalidateQueries({ queryKey: ["lastestUser"] });
     },
   });
 }
