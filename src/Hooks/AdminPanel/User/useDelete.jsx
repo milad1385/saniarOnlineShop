@@ -8,6 +8,7 @@ function useDelete() {
     mutationFn: deleteUser,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["users"] });
+      queryClient.invalidateQueries({queryKey : ["lastestUser"]})
     },
   });
 }

@@ -134,7 +134,7 @@ const deleteUser = async (info) => {
         authorization: `${info.token}`,
       },
     });
-    return res.json();
+    return res;
   } catch (err) {
     return err;
   }
@@ -170,6 +170,16 @@ const editUser = async (info) => {
   }
 };
 
+const getLastUser = async () => {
+  try {
+    const res = await fetch(`${baseURL}/registerNow`);
+    
+    return await res.json();
+  } catch (err) {
+    return err;
+  }
+};
+
 export {
   registerNewUser,
   handleLoginUser,
@@ -181,4 +191,5 @@ export {
   deleteUser,
   changeUserRole,
   editUser,
+  getLastUser
 };

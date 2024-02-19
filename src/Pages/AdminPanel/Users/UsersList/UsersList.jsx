@@ -204,6 +204,7 @@ function UsersList() {
                             onClick={() => {
                               setIsShowRoleModal(true);
                               setUserId(user._id);
+                              setRole(user.role)
                             }}
                           >
                             نقش
