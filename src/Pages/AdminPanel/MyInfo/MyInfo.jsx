@@ -10,6 +10,7 @@ import StatusModal from "../../../Components/SuccessModal/SuccessModal";
 import useEdit from "../../../Hooks/AdminPanel/User/useEdit";
 import useGetMe from "../../../Hooks/useGetMe/useGetMe";
 import PageTitle from "../../../Components/AdminPanel/PageTitle/PageTitle";
+import Input from "../../../Components/AdminPanel/Input/Input";
 
 function MyInfo() {
   const { setIsShowAdminMenu } = useContext(AppContext);
@@ -17,9 +18,9 @@ function MyInfo() {
   const [isShowSuccessModal, setIsShowSuccessModal] = useState(false);
   const [msg, setMsg] = useState("");
   const [image, setImage] = useState({});
-  const [adminId , setAdminId] = useState("");
-  
-  const {data : userInfo} = useGetMe(getUserToken());
+  const [adminId, setAdminId] = useState("");
+
+  const { data: userInfo } = useGetMe(getUserToken());
 
   const {
     register,
@@ -30,7 +31,7 @@ function MyInfo() {
     resolver: yupResolver(registerSchema),
     defaultValues: async () => {
       const result = await getUserInfo(getUserToken());
-      setAdminId(result.userInfo._id)
+      setAdminId(result.userInfo._id);
       return {
         name: result.userInfo.name,
         username: result.userInfo.username,
@@ -74,7 +75,7 @@ function MyInfo() {
   return (
     <>
       <div className="container pb-5">
-      <PageTitle key={useId()} main={'اطلاعات من'} desc={'ویرایش'}/>
+        <PageTitle key={useId()} main={"اطلاعات من"} desc={"ویرایش"} />
         <div className="relative my-16 flex-center">
           <img
             src={
@@ -104,96 +105,46 @@ function MyInfo() {
           className="bg-white py-6 px-6 rounded-md shadow font-Dana text-zinc-700"
         >
           <div className="grid grid-cols-1 md:grid-cols-2 gap-y-5 md:gap-6 text-sm md:text-base">
-            <div className="relative">
-              <div className="flex items-center justify-between bg-gray-100 py-2 px-3 rounded-lg">
-                <input
-                  type="text"
-                  {...register("name")}
-                  placeholder="نام کاربر را وارد کنید ..."
-                  className="outline-none w-full bg-gray-100"
-                />
-                <svg className="w-6 h-6 md:w-9 md:h-9 text-zinc-600">
-                  <use href="#user"></use>
-                </svg>
-              </div>
-              {errors.name && (
-                <span className="absolute text-xs md:text-sm text-red-600 top-[42px] md:top-[54px] font-DanaDemiBold ">
-                  {errors.name.message}
-                </span>
-              )}
-            </div>
-            <div className="relative">
-              <div className="flex items-center justify-between bg-gray-100 py-2 px-3 rounded-lg">
-                <input
-                  type="text"
-                  placeholder="نام کاربری کاربر را وارد کنید ..."
-                  {...register("username")}
-                  className="outline-none w-full bg-gray-100"
-                />
-                <svg className="w-6 h-6 md:w-9 md:h-9 text-zinc-600">
-                  <use href="#telegram"></use>
-                </svg>
-              </div>
-              {errors.username && (
-                <span className="absolute text-xs md:text-sm text-red-600 top-[42px] md:top-[54px] font-DanaDemiBold ">
-                  {errors.username.message}
-                </span>
-              )}
-            </div>
-            <div className="relative">
-              <div className="flex items-center justify-between bg-gray-100 py-2 px-3 rounded-lg">
-                <input
-                  type="text"
-                  {...register("phone")}
-                  placeholder="شماره تلفن کاربر را وارد کنید ..."
-                  className="outline-none w-full bg-gray-100"
-                />
-                <svg className="w-6 h-6 md:w-9 md:h-9 text-zinc-600">
-                  <use href="#phone"></use>
-                </svg>
-              </div>
-              {errors.phone && (
-                <span className="absolute text-xs md:text-sm text-red-600 top-[42px] md:top-[54px] font-DanaDemiBold ">
-                  {errors.phone.message}
-                </span>
-              )}
-            </div>
-            <div className="relative">
-              <div className="flex items-center justify-between bg-gray-100 py-2 px-3 rounded-lg">
-                <input
-                  type="text"
-                  {...register("email")}
-                  placeholder="ایمیل کاربر را وارد کنید ..."
-                  className="outline-none w-full bg-gray-100"
-                />
-                <svg className="w-6 h-6 md:w-9 md:h-9 text-zinc-600">
-                  <use href="#envelope"></use>
-                </svg>
-              </div>
-              {errors.email && (
-                <span className="absolute text-xs md:text-sm text-red-600 top-[42px] md:top-[54px] font-DanaDemiBold ">
-                  {errors.email.message}
-                </span>
-              )}
-            </div>
-            <div className="relative">
-              <div className="flex items-center justify-between bg-gray-100 py-2 px-3 rounded-lg">
-                <input
-                  type="password"
-                  {...register("password")}
-                  placeholder="رمز عبور کاربر را وارد کنید ..."
-                  className="outline-none w-full bg-gray-100"
-                />
-                <svg className="w-6 h-6 md:w-9 md:h-9 text-zinc-600">
-                  <use href="#lock"></use>
-                </svg>
-              </div>
-              {errors.password && (
-                <span className="absolute text-xs md:text-sm text-red-600 top-[42px] md:top-[54px] font-DanaDemiBold ">
-                  {errors.password.message}
-                </span>
-              )}
-            </div>
+            <Input
+              register={register}
+              errors={errors}
+              icon={"user"}
+              placeholder={"نام خود را وارد کنید ..."}
+              type="text"
+              name="name"
+            />
+            <Input
+              register={register}
+              errors={errors}
+              placeholder={"نام کاربری خود را وارد کنید ..."}
+              icon={"telegram"}
+              type={"text"}
+              name={"username"}
+            />
+            <Input
+              register={register}
+              errors={errors}
+              placeholder={"شماره تلفن خود را وارد کنید ..."}
+              icon={"phone"}
+              type={"text"}
+              name={"phone"}
+            />
+            <Input
+              register={register}
+              errors={errors}
+              placeholder={"ایمیل خود را وارد کنید ..."}
+              icon={"envelope"}
+              type={"email"}
+              name={"email"}
+            />
+            <Input
+              register={register}
+              errors={errors}
+              placeholder={"رمز عبور خود را وارد کنید ..."}
+              icon={"lock"}
+              type={"password"}
+              name={"password"}
+            />
           </div>
           <button
             type="submit"
