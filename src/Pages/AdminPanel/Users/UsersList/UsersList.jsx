@@ -16,6 +16,7 @@ import { useForm } from "react-hook-form";
 import { registerSchema } from "../../../../Pages/Register/RegisterSchema";
 import { yupResolver } from "@hookform/resolvers/yup";
 import useEdit from "../../../../Hooks/AdminPanel/User/useEdit";
+import Input from "../../../../Components/AdminPanel/Input/Input";
 
 function UsersList() {
   const [userId, setUserId] = useState(null);
@@ -98,6 +99,7 @@ function UsersList() {
 
   const editUserHandler = (user) => {
     setIsShowEditModal(true);
+    console.log(user);
     setUserId(user._id);
     setValue("name", user.name);
     setValue("username", user.username);
@@ -204,7 +206,7 @@ function UsersList() {
                             onClick={() => {
                               setIsShowRoleModal(true);
                               setUserId(user._id);
-                              setRole(user.role)
+                              setRole(user.role);
                             }}
                           >
                             نقش
@@ -312,108 +314,55 @@ function UsersList() {
             onSubmit={handleSubmit(submitEditUser)}
             className="mt-10 flex items-center justify-center flex-col gap-6 child:rounded-sm"
           >
-            <div className="w-full">
-              <div className="bg-gray-100 flex items-center gap-x-2 py-2 px-3 w-full">
-                <svg className="w-6 h-6">
-                  <use href="#user"></use>
-                </svg>
-                <input
-                  type="text"
-                  placeholder="نام جدید کاربر را وارد کنید..."
-                  {...register("name")}
-                  className="w-full text-sm md:text-base bg-transparent outline-none"
-                />
-              </div>
-              {errors.name && (
-                <span className="absolute  text-red-600 font-DanaMedium text-xs md:text-sm">
-                  {errors.name.message}
-                </span>
-              )}
-            </div>
-            <div className="w-full">
-              <div className="bg-gray-100 flex items-center gap-x-2 py-2 px-3 w-full">
-                <svg className="w-6 h-6">
-                  <use href="#life-style"></use>
-                </svg>
-                <input
-                  type="text"
-                  autoComplete="false"
-                  placeholder="نام کاربری کاربر جدید را وارد کنید..."
-                  {...register("username")}
-                  className="w-full text-sm md:text-base bg-transparent outline-none"
-                />
-              </div>
-              {errors.username && (
-                <span className="absolute  text-red-600 font-DanaMedium text-xs md:text-sm">
-                  {errors.username.message}
-                </span>
-              )}
-            </div>
-            <div className="w-full">
-              <div className="bg-gray-100 flex items-center gap-x-2 py-2 px-3 w-full">
-                <svg className="w-6 h-6">
-                  <use href="#phone"></use>
-                </svg>
-                <input
-                  type="text"
-                  {...register("phone")}
-                  placeholder="شماره تلفن جدید کاربر را وارد کنید..."
-                  className="w-full text-sm md:text-base bg-transparent outline-none"
-                />
-              </div>
-              {errors.phone && (
-                <span className="absolute  text-red-600 font-DanaMedium text-xs md:text-sm">
-                  {errors.phone.message}
-                </span>
-              )}
-            </div>
-            <div className="w-full">
-              <div className="bg-gray-100 flex items-center gap-x-2 py-2 px-3 w-full">
-                <svg className="w-6 h-6">
-                  <use href="#envelope"></use>
-                </svg>
-                <input
-                  type="text"
-                  {...register("email")}
-                  placeholder="ایمیل جدید کاربر را وارد کنید..."
-                  className="w-full text-sm md:text-base bg-transparent outline-none"
-                />
-              </div>
-              {errors.email && (
-                <span className="absolute  text-red-600 font-DanaMedium text-xs md:text-sm">
-                  {errors.email.message}
-                </span>
-              )}
-            </div>
-            <div className="w-full">
-              <div className="bg-gray-100 flex items-center gap-x-2 py-2 px-3 w-full">
-                <svg className="w-6 h-6">
-                  <use href="#lock"></use>
-                </svg>
-                <input
-                  type="text"
-                  {...register("password")}
-                  placeholder="رمز عبور جدید کاربر را وارد کنید..."
-                  className="w-full text-sm md:text-base bg-transparent outline-none"
-                />
-              </div>
-              {errors.password && (
-                <span className="absolute  text-red-600 font-DanaMedium text-xs md:text-sm">
-                  {errors.password.message}
-                </span>
-              )}
-            </div>
-            <div className="w-full">
-              <div className="bg-gray-100 flex items-center gap-x-2 py-2 px-3 w-full">
-                <svg className="w-6 h-6">
-                  <use href="#image"></use>
-                </svg>
+            <Input
+              register={register}
+              errors={errors}
+              icon={"user"}
+              placeholder={"نام کاربر را وارد کنید ..."}
+              type="text"
+              name={"name"}
+            />
+            <Input
+              register={register}
+              errors={errors}
+              placeholder={"نام کاربری کاربر را وارد کنید ..."}
+              icon={"telegram"}
+              type={"text"}
+              name={"username"}
+            />
+            <Input
+              register={register}
+              errors={errors}
+              placeholder={"شماره تلفن کاربر را وارد کنید ..."}
+              icon={"phone"}
+              type={"text"}
+              name={"phone"}
+            />
+            <Input
+              register={register}
+              errors={errors}
+              placeholder={"ایمیل کاربر را وارد کنید ..."}
+              icon={"envelope"}
+              type={"email"}
+              name={"email"}
+            />
+            <Input
+              register={register}
+              errors={errors}
+              placeholder={"رمز عبور کاربر را وارد کنید ..."}
+              icon={"lock"}
+              type={"password"}
+              name={"password"}
+            />
+            <div className="relative w-full">
+              <div className="flex items-center justify-between bg-gray-100 py-2 px-3 rounded-lg">
                 <input
                   type="file"
-                  accept="image/*"
-                  name="image"
                   onChange={(e) => setImage(e.target.files[0])}
                 />
+                <svg className="w-6 h-6 md:w-9 md:h-9 text-zinc-600">
+                  <use href="#image"></use>
+                </svg>
               </div>
             </div>
 
