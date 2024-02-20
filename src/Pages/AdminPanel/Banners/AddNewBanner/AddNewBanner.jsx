@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useId, useState } from "react";
 import { Link } from "react-router-dom";
 import { sliderSchema } from "./sliderSchema";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import Sppiner from "../../../../Components/Sppiner/Spinner";
 import useCreateSlider from "../../../../Hooks/AdminPanel/sliders/useCreateSlider";
 import StatusModal from "../../../../Components/SuccessModal/SuccessModal";
+import PageTitle from "../../../../Components/AdminPanel/PageTitle/PageTitle";
 
 function AddNewBanner() {
   const [image, setImage] = useState("");
@@ -38,9 +39,7 @@ function AddNewBanner() {
   };
   return (
     <>
-      <h3 className="font-Lalezar text-xl md:text-3xl mt-10 mb-6">
-        اضافه کردن <span className="text-blue-600">اسلایدر</span>
-      </h3>
+      <PageTitle key={useId()} main={"اسلایدر"} desc={" اضافه کردن "} />
       <form
         onSubmit={handleSubmit(addNewSlider)}
         className="bg-white py-6 px-6 rounded-md shadow font-Dana text-zinc-700"

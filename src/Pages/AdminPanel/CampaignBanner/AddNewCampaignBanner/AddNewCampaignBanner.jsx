@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useId, useState } from "react";
 import { banerSchema } from "./banerSchema";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
@@ -6,6 +6,7 @@ import useCreate from "../../../../Hooks/AdminPanel/Baner/useCreate";
 import { getUserToken } from "../../../../Utils/Funcs/utils";
 import Sppiner from "../../../../Components/Sppiner/Spinner";
 import StatusModal from "../../../../Components/SuccessModal/SuccessModal";
+import PageTitle from "../../../../Components/AdminPanel/PageTitle/PageTitle";
 
 function AddNewCampaignBanner() {
   const [isShowSuccessModal, setIsShowSuccessModal] = useState(false);
@@ -33,9 +34,7 @@ function AddNewCampaignBanner() {
 
   return (
     <>
-      <h3 className="font-Lalezar text-xl md:text-3xl mt-10 mb-6">
-        اضافه کردن <span className="text-blue-600">بنر</span>
-      </h3>
+      <PageTitle key={useId()} main={"بنر"} desc={" اضافه کردن "} />
       <form
         onSubmit={handleSubmit(createBanerHandler)}
         className="bg-white py-6 px-6 rounded-md shadow font-Dana text-zinc-700"
@@ -62,7 +61,13 @@ function AddNewCampaignBanner() {
         </div>
         <div className="flex items-center gap-x-5">
           <button className="bg-blue-600 w-[125px]  font-Lalezar p-2 rounded-md text-white text-sm md:text-xl shadow-blue mt-6">
-            {isLoading ? <div className="ml-9"><Sppiner /></div> : "ایجاد بنر"}
+            {isLoading ? (
+              <div className="ml-9">
+                <Sppiner />
+              </div>
+            ) : (
+              "ایجاد بنر"
+            )}
           </button>
         </div>
       </form>

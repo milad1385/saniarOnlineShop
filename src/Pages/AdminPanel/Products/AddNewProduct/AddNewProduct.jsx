@@ -1,15 +1,14 @@
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
-import React, { useState } from "react";
+import React, { useId, useState } from "react";
 import { Link } from "react-router-dom";
+import PageTitle from "../../../../Components/AdminPanel/PageTitle/PageTitle";
 
 function AddNewProduct() {
   const [productBody, setProductBody] = useState("");
   return (
     <>
-      <h3 className="font-Lalezar text-xl md:text-3xl mt-10 mb-6">
-        اضافه کردن <span className="text-blue-600">محصول جدید</span>
-      </h3>
+      <PageTitle key={useId()} main={"محصول جدید"} desc={"اضافه کردن"} />
       <div className="bg-white py-6 px-6 rounded-md shadow font-Dana text-zinc-700">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-y-5 md:gap-6 text-sm md:text-base">
           <div className="flex items-center justify-between bg-gray-100 py-2 px-3 rounded-lg">

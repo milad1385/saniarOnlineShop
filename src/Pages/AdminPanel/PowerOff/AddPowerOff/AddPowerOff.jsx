@@ -1,11 +1,10 @@
-import React from "react";
+import React, { useId } from "react";
+import PageTitle from "../../../../Components/AdminPanel/PageTitle/PageTitle";
 
 function AddPowerOff() {
   return (
     <>
-      <h3 className="font-Lalezar text-xl md:text-3xl mt-10 mb-6">
-        خاموش <span className="text-blue-600">کردن سایت</span>
-      </h3>
+      <PageTitle key={useId()} main={"سایت"} desc={" خاموش کردن "} />
       <div className="bg-white py-6 px-6 rounded-md shadow font-Dana text-zinc-700">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-y-5 md:gap-6 text-sm md:text-base">
           <div className="flex items-center justify-between bg-gray-100 py-2 px-3 rounded-lg">
@@ -18,7 +17,6 @@ function AddPowerOff() {
               <use href="#square"></use>
             </svg>
           </div>
-          
         </div>
         <button className="bg-blue-600  font-Lalezar p-2 rounded-md text-white text-sm md:text-xl shadow-blue mt-6">
           ثبت خاموشی

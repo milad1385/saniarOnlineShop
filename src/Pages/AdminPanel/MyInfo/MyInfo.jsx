@@ -1,4 +1,4 @@
-import React, { useEffect, useContext, useState } from "react";
+import React, { useEffect, useContext, useState, useId } from "react";
 import { AppContext } from "../../../App";
 import { getUserToken } from "../../../Utils/Funcs/utils";
 import Sppiner from "./../../../Components/Sppiner/Spinner";
@@ -9,6 +9,7 @@ import { getUserInfo } from "../../../services/userApi";
 import StatusModal from "../../../Components/SuccessModal/SuccessModal";
 import useEdit from "../../../Hooks/AdminPanel/User/useEdit";
 import useGetMe from "../../../Hooks/useGetMe/useGetMe";
+import PageTitle from "../../../Components/AdminPanel/PageTitle/PageTitle";
 
 function MyInfo() {
   const { setIsShowAdminMenu } = useContext(AppContext);
@@ -73,9 +74,7 @@ function MyInfo() {
   return (
     <>
       <div className="container pb-5">
-        <h3 className="font-Lalezar text-xl md:text-3xl mt-10 mb-6">
-          ویرایش <span className="text-blue-600">اطلاعات من</span>
-        </h3>
+      <PageTitle key={useId()} main={'اطلاعات من'} desc={'ویرایش'}/>
         <div className="relative my-16 flex-center">
           <img
             src={

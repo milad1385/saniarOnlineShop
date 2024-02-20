@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useId, useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import Sppiner from "../../../../Components/Sppiner/Spinner";
 import useRegister from "../../../../Hooks/useRegister/useRegister";
 import StatusModal from "../../../../Components/SuccessModal/SuccessModal";
-import {registerSchema} from "../../../../Pages/Register/RegisterSchema";
+import { registerSchema } from "../../../../Pages/Register/RegisterSchema";
+import PageTitle from "../../../../Components/AdminPanel/PageTitle/PageTitle";
+
 
 function AddNewUser() {
   const [image, setImage] = useState("");
@@ -55,9 +57,7 @@ function AddNewUser() {
   };
   return (
     <>
-      <h3 className="font-Lalezar text-xl md:text-3xl mt-10 mb-6">
-        اضافه کردن <span className="text-blue-600">کاربر جدید</span>
-      </h3>
+      <PageTitle key={useId()} main={"کاربر جدید"} desc={"اضافه کردن"} />
       <form
         onSubmit={handleSubmit(createNewUserHandler)}
         className="bg-white py-6 px-6 rounded-md shadow font-Dana text-zinc-700"
@@ -172,7 +172,6 @@ function AddNewUser() {
           {isLoading ? <Sppiner isBtn={true} /> : "ایجاد کاربر جدید"}
         </button>
       </form>
-
       {isShowSuccessModal && (
         <StatusModal
           onClose={setIsShowSuccessModal}
