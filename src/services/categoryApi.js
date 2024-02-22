@@ -38,4 +38,20 @@ const deleteCategory = async (info) => {
   }
 };
 
-export { createNewCategory, getAllCategory , deleteCategory };
+const updateCategory = async (info) => {
+  try {
+    const res = await fetch(`${baseURL}/${info.id}`, {
+      method: "PUT",
+      headers: {
+        authorization: `${info.token}`,
+      },
+      body: info.data,
+    });
+
+    return res;
+  } catch (err) {
+    return err;
+  }
+};
+
+export { createNewCategory, getAllCategory, deleteCategory , updateCategory };
