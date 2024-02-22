@@ -2,7 +2,7 @@ import React from "react";
 
 function AddNewAds() {
   return (
-    <div className="bg-white pt-3 pb-6 px-6 rounded-md shadow font-Dana text-zinc-700">
+    <div className="bg-white mt-10 pt-3 pb-6 px-6 rounded-md shadow font-Dana text-zinc-700">
       <h3 className="font-Lalezar text-xl md:text-2xl mb-6">
         ایجاد <span className="text-blue-600">شعار ها</span>
       </h3>

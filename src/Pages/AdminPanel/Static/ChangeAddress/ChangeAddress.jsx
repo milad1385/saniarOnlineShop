@@ -2,7 +2,7 @@ import React from "react";
 
 function ChangeAddress() {
   return (
-    <div className="bg-white pt-3 pb-6 px-6 rounded-md shadow font-Dana text-zinc-700">
+    <div className="bg-white mt-10 pt-3 pb-6 px-6 rounded-md shadow font-Dana text-zinc-700">
       <h3 className="font-Lalezar text-xl md:text-2xl mb-6">
         تغییر <span className="text-blue-600">آدرس ها</span>
       </h3>

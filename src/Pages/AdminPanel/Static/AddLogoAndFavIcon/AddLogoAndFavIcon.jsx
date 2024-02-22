@@ -2,7 +2,7 @@ import React from "react";
 
 function AddLogoAndFavIcon() {
   return (
-    <div className="bg-white pt-3 pb-6 px-6 rounded-md shadow font-Dana text-zinc-700">
+    <div className="bg-white mt-10 pt-3 pb-6 px-6 rounded-md shadow font-Dana text-zinc-700">
       <h3 className="font-Lalezar text-xl md:text-2xl mb-6">
         ایجاد <span className="text-blue-600">لوگو و فاو آیکون</span>
       </h3>

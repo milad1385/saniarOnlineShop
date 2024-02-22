@@ -16,7 +16,7 @@ function Static() {
   return (
     <div className="container">
       <PageTitle key={useId()} main={'استاتیک'} desc={'تغییر محتوای'}/>
-      <div className="space-y-10 pb-8">
+      <div className="pb-8">
         <ChangeTextFooter/>
         <ChangeAddress/>
         <AddNewAds/>
