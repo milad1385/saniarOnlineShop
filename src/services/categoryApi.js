@@ -23,4 +23,19 @@ const getAllCategory = async (page) => {
   }
 };
 
-export { createNewCategory , getAllCategory };
+const deleteCategory = async (info) => {
+  try {
+    const res = await fetch(`${baseURL}/${info.id}`, {
+      method: "DELETE",
+      headers: {
+        authorization: `${info.token}`,
+      },
+    });
+
+    return res;
+  } catch (err) {
+    return err;
+  }
+};
+
+export { createNewCategory, getAllCategory , deleteCategory };

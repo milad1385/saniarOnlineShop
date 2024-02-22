@@ -3,17 +3,39 @@ import Table from "../../../../Components/AdminPanel/Table/Table";
 import Pagination from "../../../../Components/Pagination/Pagination";
 import useGetAll from "../../../../Hooks/AdminPanel/Category/useGetAll";
 import EmptyError from "../../../../Components/UserPanel/EmptyError/EmptyError";
+import DeleteModal from "../../../../Components/DeleteModal/DeleteModal";
+import useDelete from "../../../../Hooks/AdminPanel/Category/useDelete";
+import StatusModal from "../../../../Components/SuccessModal/SuccessModal";
+import { getUserToken } from "../../../../Utils/Funcs/utils";
 
 function CategoriesList() {
+  const [isShowDeleteModal, setIsShowDeleteModal] = useState(false);
+  const [isShowSuccessModal, setIsShowSuccessModal] = useState(false);
+  const [catId, setCatId] = useState(null);
   const pageNum = new URLSearchParams(window.location.search).get("page");
   const [page, setPage] = useState(pageNum);
   const [msg, setMsg] = useState(null);
 
   const { data: categories } = useGetAll(page);
+  const { mutateAsync: deleteCategory } = useDelete();
 
   useEffect(() => {
     setPage(pageNum || 1);
   }, [pageNum]);
+
+  const deleteCategoryHandler = async () => {
+    const info = {
+      id: catId,
+      token: getUserToken(),
+    };
+
+    const result = await deleteCategory(info);
+    if (result.status === 200) {
+      setIsShowDeleteModal(false);
+      setMsg("دسته بندی با موفقیت حذف شد");
+      setIsShowSuccessModal(true);
+    }
+  };
   return (
     <>
       <div className="pb-6">
@@ -32,9 +54,9 @@ function CategoriesList() {
             </thead>
             <tbody className="text-sm md:text-base">
               {categories?.categories.length ? (
-                categories?.categories.map((category , index) => (
+                categories?.categories.map((category, index) => (
                   <tr className="child:p-4 text-center font-DanaMedium">
-                    <td>{index +1}</td>
+                    <td>{index + 1}</td>
                     <td>
                       <img
                         src={`http://localhost:3001/uploads/covers/${category.image}`}
@@ -45,7 +67,13 @@ function CategoriesList() {
                     <td>{category.date}</td>
                     <td>{category.link}</td>
                     <td>
-                      <button className="bg-red-600 text-white w-16 py-1 text-base md:text-lg rounded-md font-Lalezar">
+                      <button
+                        className="bg-red-600 text-white w-16 py-1 text-base md:text-lg rounded-md font-Lalezar"
+                        onClick={() => {
+                          setIsShowDeleteModal(true);
+                          setCatId(category._id);
+                        }}
+                      >
                         حذف
                       </button>
                     </td>
@@ -70,6 +98,26 @@ function CategoriesList() {
           setPage={setPage}
         />
       </div>
+
+      {isShowDeleteModal && (
+        <DeleteModal
+          title={"آیا از حذف کردن اطمینان دارید ؟"}
+          onClick={() => deleteCategoryHandler()}
+          onClose={() => setIsShowDeleteModal(false)}
+        />
+      )}
+
+      {isShowSuccessModal && (
+        <StatusModal
+          onClose={setIsShowSuccessModal}
+          title={msg}
+          text={"خیلی هم عالی"}
+          icon={"face-smile"}
+          color="text-blue-600"
+          bg="bg-blue-600"
+          onClick={() => setIsShowSuccessModal(false)}
+        />
+      )}
     </>
   );
 }
