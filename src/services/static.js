@@ -23,4 +23,29 @@ const getFooterText = async () => {
   } catch (err) {}
 };
 
-export { createFooterText, getFooterText };
+const createSiteAdress = async (data) => {
+  try {
+    const res = await fetch(`${baseURL}/address`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+
+    return res;
+  } catch (err) {
+    return err;
+  }
+};
+
+const getAddresses = async () => {
+  try {
+    const res = await fetch(`${baseURL}/address`);
+    return await res.json();
+  } catch (err) {
+    return err;
+  }
+};
+
+export { createFooterText, getFooterText, createSiteAdress, getAddresses };

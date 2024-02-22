@@ -8,7 +8,7 @@ function Input({
   type,
   name,
   isTextArea,
-  value
+  value,
 }) {
   return isTextArea ? (
     <>
@@ -40,6 +40,8 @@ function Input({
           {...register(`${name}`)}
           placeholder={placeholder}
           className="outline-none w-full bg-gray-100"
+          autoComplete="false"
+          // defaultValue={value}
         />
         <svg className="w-6 h-6 md:w-9 md:h-9 text-zinc-600">
           <use href={`#${icon}`}></use>

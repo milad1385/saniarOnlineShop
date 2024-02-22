@@ -1,7 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import useGetText from "../../Hooks/AdminPanel/static/footer/useGetText";
 
 function Footer() {
+  const { data: footerText } = useGetText();
   return (
     <footer className="relative  bg-white text-zinc-700  py-10 md:py-8 md:pb-8 md:pt-[62px] shadow-xl mt-8 ">
       <svg className="absolute rotate-180 -top-[1px]  inline-block left-0 right-0 mx-auto w-[100px] h-[22px] text-gray-100 dark:text-zinc-800">
@@ -19,17 +21,16 @@ function Footer() {
         <div className="flex flex-wrap  justify-between border-b border-b-zinc-300 pb-4">
           <div>
             <div className="flex items-center gap-x-3.5 mb-3">
-              <img src="/images/logo.png" className="w-180px h-12 select-none" />
+              <img
+                src="/images/logo.png"
+                className="w-180px h-12 select-none"
+              />
               <svg className="w-[100px] md:w-[130px] h-10 md:h-14 text-gray-300">
                 <use href="#logo-type"></use>
               </svg>
             </div>
             <p className="md:text-lg/[48px] text-sm xl:max-w-[600px] select-none">
-              سلام ، میلاد سلامیان هستم ، ما الگویی متفاوت را در عرضه محصول به
-              مشتری را در پیش گرفته ایم و سعی میکنیم تمام تلاشمان را برای رضایت
-              مشتری انجام بدهیم ، زیرا ما میدانیم قلب هر کسب و کاری مشتری است ،
-              در میلاد شاپ با نهایت احترام را به مشتری خدمت میکنیم ، امیدوارم که
-              از خرید در میلاد شاپ لذت ببرید
+              {footerText?.length ? footerText[0]?.text : ""}
             </p>
           </div>
           <div className="mt-[26px] child:select-none">
@@ -38,37 +39,61 @@ function Footer() {
             </h3>
             <div className="grid grid-cols-2 mt-6 gap-x-3.5">
               <div className="flex flex-col gap-y-2.5 text-sm md:text-lg">
-                <a href="#" className="flex items-center gap-x-1.5 md:gap-x-2.5">
+                <a
+                  href="#"
+                  className="flex items-center gap-x-1.5 md:gap-x-2.5"
+                >
                   <span className="block w-2.5 h-1 bg-blue-600 rounded-full"></span>
                   حریم خصوصی
                 </a>
-                <a href="#" className="flex items-center gap-x-1.5 md:gap-x-2.5">
+                <a
+                  href="#"
+                  className="flex items-center gap-x-1.5 md:gap-x-2.5"
+                >
                   <span className="block w-2.5 h-1 bg-blue-600 rounded-full"></span>
                   شرایط استفاده
                 </a>
-                <a href="#" className="flex items-center gap-x-1.5 md:gap-x-2.5">
+                <a
+                  href="#"
+                  className="flex items-center gap-x-1.5 md:gap-x-2.5"
+                >
                   <span className="block w-2.5 h-1 bg-blue-600 rounded-full"></span>
                   پرسش های متدوال
                 </a>
-                <a href="#" className="flex items-center gap-x-1.5 md:gap-x-2.5">
+                <a
+                  href="#"
+                  className="flex items-center gap-x-1.5 md:gap-x-2.5"
+                >
                   <span className="block w-2.5 h-1 bg-blue-600 rounded-full"></span>
                   ضمانت نامه ها
                 </a>
               </div>
               <div className="flex flex-col gap-y-2.5 text-sm md:text-lg">
-                <a href="#" className="flex items-center gap-x-1.5 md:gap-x-2.5">
+                <a
+                  href="#"
+                  className="flex items-center gap-x-1.5 md:gap-x-2.5"
+                >
                   <span className="block w-2.5 h-1 bg-blue-600 rounded-full"></span>
                   عودت کالا
                 </a>
-                <a href="#" className="flex items-center gap-x-1.5 md:gap-x-2.5">
+                <a
+                  href="#"
+                  className="flex items-center gap-x-1.5 md:gap-x-2.5"
+                >
                   <span className="block w-2.5 h-1 bg-blue-600 rounded-full"></span>
                   ثبت سفارش
                 </a>
-                <a href="#" className="flex items-center gap-x-1.5 md:gap-x-2.5">
+                <a
+                  href="#"
+                  className="flex items-center gap-x-1.5 md:gap-x-2.5"
+                >
                   <span className="block w-2.5 h-1 bg-blue-600 rounded-full"></span>
                   فرصت های شغلی
                 </a>
-                <Link to="/contact-us" className="flex items-center gap-x-1.5 md:gap-x-2.5">
+                <Link
+                  to="/contact-us"
+                  className="flex items-center gap-x-1.5 md:gap-x-2.5"
+                >
                   <span className="block w-2.5 h-1 bg-blue-600 rounded-full"></span>
                   ارتباط با ما
                 </Link>
@@ -147,8 +172,8 @@ function Footer() {
             </div>
             <p className="text-zinc-600">
               تمام حقوق این سایت ، متعلق به میلاد شاپ میباشد (توسعه داده شده با{" "}
-              <span className="text-blue-600 text-lg md:text-2xl">❤</span> در میلاد
-              شاپ)
+              <span className="text-blue-600 text-lg md:text-2xl">❤</span> در
+              میلاد شاپ)
             </p>
           </div>
           <div className="ltr-text mr-auto mt-2 md:mt-0 text-zinc-500">
