@@ -11,6 +11,7 @@ function App() {
   const [isShowAdminMenu, setIsShowAdminMenu] = useState(false);
   const [userInfo, setUserInfo] = useState({});
   const [isLogin, setIsLogin] = useState(null);
+  const [adminSearch, setAdminSearch] = useState(null);
 
   useEffect(() => {
     const theme = localStorage.getItem("theme");
@@ -54,7 +55,9 @@ function App() {
             setUserInfo,
             setIsLogin,
             isLogin,
-            logout
+            logout,
+            adminSearch,
+            setAdminSearch,
           }}
         >
           {Routes}

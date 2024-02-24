@@ -6,8 +6,9 @@ import { getUserToken } from "../../../Utils/Funcs/utils";
 
 function TopBar({ onShow }) {
   const [isDark, setIsDark] = useState("light");
-  const { setIsShowAdminMenu } = useContext(AppContext);
-  const {data} = useGetMe(getUserToken());
+  const [search, setSearch] = useState("");
+  const { setIsShowAdminMenu, setAdminSearch } = useContext(AppContext);
+  const { data } = useGetMe(getUserToken());
   const addDarkModeClass = () => {
     if (isDark === "dark") {
       document.documentElement.classList.add("dark");
@@ -16,6 +17,10 @@ function TopBar({ onShow }) {
       document.documentElement.classList.remove("dark");
       localStorage.setItem("theme", "light");
     }
+  };
+
+  const setAdminSearchHandler = () => {
+    setAdminSearch(search);
   };
   return (
     <>
@@ -57,9 +62,14 @@ function TopBar({ onShow }) {
             <input
               type="text"
               placeholder="جستجو کنید..."
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
               className="outline-none border-none bg-transparent font-DanaDemiBold text-sm md:text-base"
             />
-            <button className="bg-blue-600 text-white rounded-md p-1">
+            <button
+              className="bg-blue-600 text-white rounded-md p-1"
+              onClick={setAdminSearchHandler}
+            >
               <svg className="w-6 h-6">
                 <use href="#magni-glass"></use>
               </svg>

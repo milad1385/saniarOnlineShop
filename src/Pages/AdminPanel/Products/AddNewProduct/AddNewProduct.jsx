@@ -121,6 +121,10 @@ function AddNewProduct() {
             />
           </div>
         </div>
+        <div className="flex items-center gap-x-2 mt-6">
+          <input type="checkbox" id="slider" />
+          <label htmlFor="slider" className="font-DanaDemiBold">نمایش در اسلایدر</label>
+        </div>
         <div className="flex items-center justify-center md:justify-start flex-wrap gap-x-5 ">
           <button className="bg-blue-600  font-Lalezar p-2 rounded-md text-white text-sm md:text-xl shadow-blue mt-6">
             ایجاد محصول

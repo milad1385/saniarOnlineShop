@@ -3,9 +3,12 @@ import { Link } from "react-router-dom";
 import MegaMenuItem from "../MegaMenuItem/MegaMenuItem";
 import MegaMenuValue from "../MegaMenuValue/MegaMenuValue";
 import { AppContext } from "../../App";
+import useGetAll from "../../Hooks/AdminPanel/static/address/useGetAll";
 
 function Navbar() {
   const { userInfo, isLogin } = useContext(AppContext);
+  const { data: info } = useGetAll();
+  console.log(info);
   const overlayRef = useRef();
   const menuRef = useRef();
   const subMenuRef = useRef();
@@ -197,13 +200,15 @@ function Navbar() {
               <svg className="w-7 h-7">
                 <use href="#telegram"></use>
               </svg>
-              <span className="hidden xl:block">09336084013</span>
+              <span className="hidden xl:block">
+                {info?.length ? info[0]?.phone : "09336084013"}
+              </span>
             </Link>
             <Link className="flex items-center gap-x-1.5 bg-gradient-to-l from-pink-500 to-pink-600 py-2 px-3 rounded-lg shadow-pink">
               <svg className="w-7 h-7">
                 <use href="#instagram"></use>
               </svg>
-              <span className="hidden xl:block">Milad_shop</span>
+              <span className="hidden xl:block">{info?.length ? info[0]?.instagram : ""}</span>
             </Link>
           </div>
         </div>
@@ -212,7 +217,7 @@ function Navbar() {
       <div className="block md:hidden shadow-lg p-5 bg-white sticky -top-1 z-30">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-x-1">
-            <svg className="w-6 h-6 sm:w-8 sm:h-8" onClick={showMenu}>
+            <svg className="w-7 h-7 sm:w-8 sm:h-8" onClick={showMenu}>
               <use href="#bars-3"></use>
             </svg>
             <img

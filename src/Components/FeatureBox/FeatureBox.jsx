@@ -1,16 +1,16 @@
 import React from "react";
 
-function FeatureBox({title , desc , image}) {
+function FeatureBox({ feature }) {
   return (
     <div className="flex gap-x-4 bg-white shadow p-[16px] rounded-lg">
       <img
-        src={`/images/category/${image}`}
-        alt="history"
+        src={`http://localhost:3001/uploads/covers/${feature.logo}`}
+        alt={feature.title}
         className="w-[50px]"
       />
       <div className="flex flex-col">
-        <span className="font-DanaDemiBold">{title}</span>
-        <span className="text-sm mt-2">{desc}</span>
+        <span className="font-DanaDemiBold text-sm md:text-base">{feature.title}</span>
+        <span className="text-xs md:text-sm mt-2">{feature.desc}</span>
       </div>
     </div>
   );

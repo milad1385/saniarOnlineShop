@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Table from "../../../../Components/AdminPanel/Table/Table";
 import EmptyError from "../../../../Components/UserPanel/EmptyError/EmptyError";
 import DeleteModal from "../../../../Components/DeleteModal/DeleteModal";
@@ -17,8 +17,10 @@ import { registerSchema } from "../../../../Pages/Register/RegisterSchema";
 import { yupResolver } from "@hookform/resolvers/yup";
 import useEdit from "../../../../Hooks/AdminPanel/User/useEdit";
 import Input from "../../../../Components/AdminPanel/Input/Input";
+import { AppContext } from "../../../../App";
 
 function UsersList() {
+  const { adminSearch, setAdminSearch } = useContext(AppContext);
   const [userId, setUserId] = useState(null);
   const [phone, setPhone] = useState(null);
   const [role, setRole] = useState("");
@@ -139,6 +141,10 @@ function UsersList() {
     setIsShowDetailModal(true);
     setDetail(user);
   };
+
+  const usersList = users?.users.filter((user) =>
+    user.name.includes(adminSearch)
+  );
   return (
     <>
       <div className="pb-6">
@@ -149,112 +155,128 @@ function UsersList() {
         ) : (
           <Table title={"لیست"} main={"کاربران"}>
             {users.users?.length ? (
-              <table className="user-table mt-7">
-                <thead className="">
-                  <tr className="child:font-Lalezar text-base md:text-xl bg-blue-600  text-white child:p-3 text-center">
-                    <td>شماره</td>
-                    <td>پروفایل</td>
-                    <td>نام</td>
-                    <td>نام کاربری</td>
-                    <td>نقش</td>
-                    <td>شماره</td>
-                    <td>تاریخ</td>
-                    <td>حذف</td>
-                    <td>نقش</td>
-                    <td>جزییات</td>
-                    <td>ویرایش</td>
-                    <td>بن</td>
-                  </tr>
-                </thead>
-                <tbody className="text-sm md:text-base">
-                  <>
-                    {users.users?.map((user, index) => (
-                      <tr
-                        className="child:p-2 md:child:p-3 text-center font-DanaMedium"
-                        key={user._id}
-                      >
-                        <td>{index + 1}</td>
-                        <td>
-                          <div className="w-14 h-14  mx-auto bg-gray-200 rounded-full flex-center">
-                            <img
-                              src={`http://localhost:3001/uploads/covers/${user.image}`}
-                              className="w-12 h-12 rounded-full"
-                            />
-                          </div>
-                        </td>
-                        <td>{user.name}</td>
-                        <td>{user.username}</td>
-                        <td>
-                          {user.role === "ADMIN" ? "ادمین" : "کاربر عادی"}
-                        </td>
-                        <td>{user.phone}</td>
-                        <td>{user.date}</td>
-                        <td>
-                          <button
-                            className="bg-red-600 text-white w-16 py-1 text-base md:text-lg rounded-md font-Lalezar"
-                            onClick={() => {
-                              setIsShowDeleteModal(true);
-                              setUserId(user._id);
-                            }}
-                          >
-                            حذف
-                          </button>
-                        </td>
-                        <td>
-                          <button
-                            className="bg-amber-500 text-white w-16 py-1 text-base md:text-lg rounded-md font-Lalezar"
-                            onClick={() => {
-                              setIsShowRoleModal(true);
-                              setUserId(user._id);
-                              setRole(user.role);
-                            }}
-                          >
-                            نقش
-                          </button>
-                        </td>
-                        <td>
-                          <button
-                            className="bg-gray-600 text-white w-16 py-1 text-base md:text-lg rounded-md font-Lalezar"
-                            onClick={() => handleDetailModal(user)}
-                          >
-                            جزییات
-                          </button>
-                        </td>
-                        <td>
-                          <button
-                            className="bg-blue-600 text-white w-16 py-1 text-base md:text-lg rounded-md font-Lalezar"
-                            onClick={() => editUserHandler(user)}
-                          >
-                            ویرایش
-                          </button>
-                        </td>
-                        <td>
-                          <button
-                            className="bg-pink-600 text-white w-16 py-1 text-base md:text-lg rounded-md font-Lalezar"
-                            onClick={() => {
-                              setIsShowBanModal(true);
-                              setUserId(user._id);
-                              setPhone(user.phone);
-                            }}
-                          >
-                            بن
-                          </button>
-                        </td>
-                      </tr>
-                    ))}
-                  </>
-                </tbody>
-              </table>
+              usersList?.length ? (
+                <table className="user-table mt-7">
+                  <thead className="">
+                    <tr className="child:font-Lalezar text-base md:text-xl bg-blue-600  text-white child:p-3 text-center">
+                      <td>شماره</td>
+                      <td>پروفایل</td>
+                      <td>نام</td>
+                      <td>نام کاربری</td>
+                      <td>نقش</td>
+                      <td>شماره</td>
+                      <td>تاریخ</td>
+                      <td>حذف</td>
+                      <td>نقش</td>
+                      <td>جزییات</td>
+                      <td>ویرایش</td>
+                      <td>بن</td>
+                    </tr>
+                  </thead>
+                  <tbody className="text-sm md:text-base">
+                    <>
+                      {usersList?.map((user, index) => (
+                        <tr
+                          className="child:p-2 md:child:p-3 text-center font-DanaMedium"
+                          key={user._id}
+                        >
+                          <td>{index + 1}</td>
+                          <td>
+                            <div className="w-14 h-14  mx-auto bg-gray-200 rounded-full flex-center">
+                              <img
+                                src={`http://localhost:3001/uploads/covers/${user.image}`}
+                                className="w-12 h-12 rounded-full"
+                              />
+                            </div>
+                          </td>
+                          <td>{user.name}</td>
+                          <td>{user.username}</td>
+                          <td>
+                            {user.role === "ADMIN" ? "ادمین" : "کاربر عادی"}
+                          </td>
+                          <td>{user.phone}</td>
+                          <td>{user.date}</td>
+                          <td>
+                            <button
+                              className="bg-red-600 text-white w-16 py-1 text-base md:text-lg rounded-md font-Lalezar"
+                              onClick={() => {
+                                setIsShowDeleteModal(true);
+                                setUserId(user._id);
+                              }}
+                            >
+                              حذف
+                            </button>
+                          </td>
+                          <td>
+                            <button
+                              className="bg-amber-500 text-white w-16 py-1 text-base md:text-lg rounded-md font-Lalezar"
+                              onClick={() => {
+                                setIsShowRoleModal(true);
+                                setUserId(user._id);
+                                setRole(user.role);
+                              }}
+                            >
+                              نقش
+                            </button>
+                          </td>
+                          <td>
+                            <button
+                              className="bg-gray-600 text-white w-16 py-1 text-base md:text-lg rounded-md font-Lalezar"
+                              onClick={() => handleDetailModal(user)}
+                            >
+                              جزییات
+                            </button>
+                          </td>
+                          <td>
+                            <button
+                              className="bg-blue-600 text-white w-16 py-1 text-base md:text-lg rounded-md font-Lalezar"
+                              onClick={() => editUserHandler(user)}
+                            >
+                              ویرایش
+                            </button>
+                          </td>
+                          <td>
+                            <button
+                              className="bg-pink-600 text-white w-16 py-1 text-base md:text-lg rounded-md font-Lalezar"
+                              onClick={() => {
+                                setIsShowBanModal(true);
+                                setUserId(user._id);
+                                setPhone(user.phone);
+                              }}
+                            >
+                              بن
+                            </button>
+                          </td>
+                        </tr>
+                      ))}
+                    </>
+                  </tbody>
+                </table>
+              ) : (
+                <div className="flex items-center justify-center flex-col w-full">
+                  <EmptyError
+                    msg={`هیچ کاربری با نام ${adminSearch} وجود ندارد 🤐`}
+                  />
+                  <button
+                    className="bg-blue-600 mx-auto  font-Lalezar p-2 w-[145px] rounded-md text-white text-base md:text-xl shadow-blue mt-6"
+                    onClick={() => setAdminSearch("")}
+                  >
+                    بروزرسانی
+                  </button>
+                </div>
+              )
             ) : (
               <EmptyError msg={"هیچ کاربری در سایت ثبت نام نکرده است"} />
             )}
           </Table>
         )}
-        <Pagination
-          count={users?.paginatedNumber}
-          page={page}
-          setPage={setPage}
-        />
+        {!adminSearch && (
+          <Pagination
+            count={users?.paginatedNumber}
+            page={page}
+            setPage={setPage}
+          />
+        )}
       </div>
       {isShowBanModal && (
         <DeleteModal

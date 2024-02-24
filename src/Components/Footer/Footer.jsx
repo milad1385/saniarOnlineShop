@@ -1,9 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import useGetText from "../../Hooks/AdminPanel/static/footer/useGetText";
+import useGetAll from "../../Hooks/AdminPanel/static/address/useGetAll";
 
 function Footer() {
   const { data: footerText } = useGetText();
+  const {data : info} = useGetAll();
   return (
     <footer className="relative  bg-white text-zinc-700  py-10 md:py-8 md:pb-8 md:pt-[62px] shadow-xl mt-8 ">
       <svg className="absolute rotate-180 -top-[1px]  inline-block left-0 right-0 mx-auto w-[100px] h-[22px] text-gray-100 dark:text-zinc-800">
@@ -109,38 +111,37 @@ function Footer() {
               <svg className="w-6 h-6">
                 <use href="#map"></use>
               </svg>
-              <p>کرج ، بلوار بهاران غربی ، شقایق شرقی ، پ 26</p>
+              <p>{info?.length ? info[0]?.address : ""}</p>
             </div>
-            <div className="mt-4 flex items-center flex-wrap gap-x-2.5">
+            <div className="mt-4 flex items-center justify-between flex-wrap gap-x-2.5">
               <div className="flex items-center gap-x-1.5 text-blue-600">
                 <svg className="w-6 h-6">
                   <use href="#envelop"></use>
                 </svg>
-                <a href="mailto:golden@gmail.com">milad@gmail.com</a>
+                <a href="mailto:golden@gmail.com">{info?.length ? info[0]?.email : ""}</a>
               </div>
               <div className="flex items-center gap-x-1.5">
                 <svg className="w-5 h-5">
                   <use href="#phone"></use>
                 </svg>
-                <p>09336084013</p>
+                <p>{info?.length ? info[0]?.phone : ""}</p>
               </div>
-              <p className="mt-2 md:mt-0">026-36512345</p>
             </div>
             <div className="flex items-center text-base md:text-lg gap-x-6 mt-3">
               <a
                 href="#"
-                className="ltr-text flex-grow gap-x-2 text-sm md:text-base text-blue-600 border border-blue-600 rounded-xl flex-center  h-12"
+                className="ltr-text flex-grow gap-x-2 text-sm md:text-base text-blue-600 border border-blue-600 rounded-xl flex-center  h-12 px-2"
               >
-                @Milad-mall-shop
+                @{info?.length ? info[0]?.instagram : ""}
                 <svg className="w-[26px] shrink-0 h-26px md:w-[36px] md:h-[36px]">
                   <use href="#instagram"></use>
                 </svg>
               </a>
               <a
                 href="#"
-                className="ltr-text flex-grow gap-x-2 text-sm md:text-base bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-xl flex-center  h-12"
+                className="ltr-text flex-grow gap-x-2 text-sm md:text-base bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-xl flex-center  h-12 px-2"
               >
-                @Milad-mall-shop
+                @{info?.length ? info[0]?.telegram : ""}
                 <svg className="w-[26px] shrink-0 h-26px md:w-[36px] md:h-[36px]">
                   <use href="#telegram"></use>
                 </svg>

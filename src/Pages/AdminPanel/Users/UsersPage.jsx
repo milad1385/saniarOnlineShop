@@ -4,9 +4,10 @@ import UsersList from './UsersList/UsersList'
 import { AppContext } from '../../../App';
 
 function users() {
-  const { setIsShowAdminMenu } = useContext(AppContext);
+  const { setIsShowAdminMenu , setAdminSearch } = useContext(AppContext);
   useEffect(() => {
     setIsShowAdminMenu(false);
+    setAdminSearch("");
   }, []);
   return (
     <div className='container'>

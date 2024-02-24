@@ -1,3 +1,5 @@
+import { getUserToken } from "../Utils/Funcs/utils";
+
 const baseURL = `http://localhost:3001/api/v1/static`;
 
 const createFooterText = async (text) => {
@@ -48,4 +50,50 @@ const getAddresses = async () => {
   }
 };
 
-export { createFooterText, getFooterText, createSiteAdress, getAddresses };
+const createNewAds = async (data) => {
+  try {
+    const res = await fetch(`${baseURL}/ads`, {
+      method: "POST",
+      body: data,
+    });
+
+    return res;
+  } catch (err) {
+    return err;
+  }
+};
+
+const getAllAds = async () => {
+  try {
+    const res = await fetch(`${baseURL}/ads`);
+
+    return await res.json();
+  } catch (err) {
+    return err;
+  }
+};
+
+const deleteAds = async (id) => {
+  try {
+    const res = await fetch(`${baseURL}/ads/${id}`, {
+      method: "DELETE",
+      headers: {
+        authorization: `${getUserToken()}`,
+      },
+    });
+
+    return res;
+  } catch (err) {
+    return err;
+  }
+};
+
+export {
+  createFooterText,
+  getFooterText,
+  createSiteAdress,
+  getAddresses,
+  createNewAds,
+  getAllAds,
+  deleteAds
+};
