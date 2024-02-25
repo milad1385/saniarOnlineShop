@@ -6,6 +6,7 @@ function ProductBoxInfo({
   setProductCount,
   setColorChoose,
   colorChoose,
+  product,
 }) {
   return (
     <div className="bg-white rounded-md shadow h-[525px]  w-[450px] hidden lg:block sticky top-0 px-4 py-3">
@@ -13,13 +14,13 @@ function ProductBoxInfo({
       <div className="flex items-center justify-between">
         <div>
           <img
-            src="/images/product/laptop-4.jpg"
-            alt="laptop 4"
+            src={`http://localhost:3001/uploads/covers/${product?.images[0]}`}
+            alt={product?.images[0]}
             className="w-[90px] shrink-0"
           />
         </div>
-        <p className="w-[204px] font-DanaDemiBold">
-          ساعت هوشمند سامسونگ مدل Galaxy Watch3 SM-R840 45mm بند چرمی
+        <p className="w-[204px] font-DanaDemiBold line-clamp-3">
+          {product?.longDesc}
         </p>
       </div>
       <div className="flex items-center flex-wrap gap-3 mt-4">
@@ -81,13 +82,27 @@ function ProductBoxInfo({
         </p>
       </div>
       <div className="flex items-center justify-between my-4">
-        <span className="text-gray-400 font-DanaDemiBold text-lg line-through">
-          1,500,000 تومان
-        </span>
-        <span className="block w-[1.5px] h-6 bg-gray-400"></span>
-        <span className="text-blue-600 text-lg font-DanaDemiBold">
-          1,200,000 تومان
-        </span>
+        {product?.off !== 0 && (
+          <>
+            <span className="text-gray-400 font-DanaDemiBold text-lg line-through">
+              {product?.price.toLocaleString("fa")} تومان
+            </span>
+            <span className="block w-[1.5px] h-6 bg-gray-400"></span>
+          </>
+        )}
+        {product?.off ? (
+          <span className="text-blue-600 text-lg font-DanaDemiBold">
+            {(
+              product?.price -
+              (product?.price * product?.off) / 100
+            ).toLocaleString("fa")}{" "}
+            تومان
+          </span>
+        ) : (
+          <span className="text-blue-600 text-lg font-DanaDemiBold">
+            {product?.price} تومان
+          </span>
+        )}
       </div>
       <div className="flex items-center justify-center my-6">
         <div className="flex items-center gap-x-2">

@@ -1,22 +1,24 @@
-import React, { useState } from "react";
+import React, { useState , memo } from "react";
 import TitleCat from "../TitleCat/TitleCat";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
-import { Pagination, Autoplay , Navigation } from "swiper/modules";
+import { Pagination, Autoplay, Navigation } from "swiper/modules";
 import ProductBox from "../ProductBox/ProductBox";
+import useGetBestSeller from "../../Hooks/AdminPanel/Product/useGetBestSeller";
 function MoreSell() {
   const [swipe, setSwipe] = useState(null);
+  const { data: bestSeller, isLoading } = useGetBestSeller();
   return (
     <div className="">
       <div className="container">
-        <TitleCat main={"محصولات"} desc={"پرفروش"} />
+        <TitleCat main={"محصولات"} desc={"بازدید"} />
       </div>
       <div className="parent-2 relative mt-5">
         <div className="container main relative">
           <Swiper
             onBeforeInit={(swipper) => setSwipe(swipper)}
-            modules={[Pagination, Autoplay , Navigation]}
+            modules={[Pagination, Autoplay, Navigation]}
             className="mySwiper"
             autoplay={{
               delay: 2500,
@@ -45,27 +47,13 @@ function MoreSell() {
               },
             }}
           >
-            <SwiperSlide>
-              <ProductBox image={"product-image3.jpg"} />
-            </SwiperSlide>
-            <SwiperSlide>
-              <ProductBox image={"product-image4.jpg"} />
-            </SwiperSlide>
-            <SwiperSlide>
-              <ProductBox image={"product-image6.jpg"} />
-            </SwiperSlide>
-            <SwiperSlide>
-              <ProductBox image={"television2.jpg"} />
-            </SwiperSlide>
-            <SwiperSlide>
-              <ProductBox image={"product-image1.jpg"} />
-            </SwiperSlide>
-            <SwiperSlide>
-              <ProductBox image={"wach3.jpg"} />
-            </SwiperSlide>
-            <SwiperSlide>
-              <ProductBox image={"wach1.jpg"} />
-            </SwiperSlide>
+            {bestSeller
+              ?.sort((a, b) => Math.random() - 0.5)
+              ?.map((product) => (
+                <SwiperSlide>
+                  <ProductBox product={product} />
+                </SwiperSlide>
+              ))}
           </Swiper>
         </div>
         <div className="flex items-center justify-center relative mt-7 gap-x-2.5">
@@ -91,4 +79,4 @@ function MoreSell() {
   );
 }
 
-export default MoreSell;
+export default memo(MoreSell);

@@ -8,7 +8,6 @@ import useGetAll from "../../Hooks/AdminPanel/static/address/useGetAll";
 function Navbar() {
   const { userInfo, isLogin } = useContext(AppContext);
   const { data: info } = useGetAll();
-  console.log(info);
   const overlayRef = useRef();
   const menuRef = useRef();
   const subMenuRef = useRef();

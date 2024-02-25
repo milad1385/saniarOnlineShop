@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Topbar from "../../Components/Topbar/Topbar";
 import Navbar from "../../Components/Navbar/Navbar";
 import BreadCrumb from "../../Components/BreadCrumb/BreadCrumb";
 import Footer from "../../Components/Footer/Footer";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Thumbs } from "swiper/modules";
+import { Thumbs, Zoom } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/thumbs";
 import SameProduct from "../../Components/SameProduct/SameProduct";
@@ -15,12 +15,22 @@ import FeatureList from "../../Components/FeatureList/FeatureList";
 import ProductBoxInfo from "../../Components/ProductBoxInfo/ProductBoxInfo";
 import ColorBox from "../../Components/ColorBox/ColorBox";
 import SliderIcon from "../../Components/SliderIcon/SliderIcon";
+import { useParams } from "react-router-dom";
+import useGetOne from "../../Hooks/AdminPanel/Product/useGetOne";
+import DOMPurify from "dompurify";
 
 function ProductPage() {
   const [optionShowModel, setOptionShowModel] = useState("توضیحات کالا");
   const [productCount, setProductCount] = useState(1);
   const [colorChoose, setColorChoose] = useState("");
   const [activeTumb, setActiveTumb] = useState(null);
+  const { productName } = useParams();
+  const { data: productInfo } = useGetOne(productName);
+  console.log(productInfo);
+
+  useEffect(() => {
+    window.scroll(0, 0);
+  }, [productName]);
 
   return (
     <div>
@@ -31,8 +41,8 @@ function ProductPage() {
           links={[
             { id: 1, name: "خانه", to: "/" },
             { id: 2, name: "فروشگاه", to: "/" },
-            { id: 3, name: "موبایل", to: "/" },
-            { id: 4, name: "شیایومی نوت 12", to: "/" },
+            { id: 3, name: `${productInfo?.category.title}`, to: "/" },
+            { id: 4, name: `${productInfo?.title}`, to: "/" },
           ]}
         />
         <div className="pb-5">
@@ -40,15 +50,16 @@ function ProductPage() {
             <div className="">
               <div className="flex gap-x-3 border border-gray-200 px-3 py-4 rounded-md">
                 <div className="flex flex-col gap-y-2">
-                  <SliderIcon icon={'share'}/>
-                  <SliderIcon icon={'heart'}/>
-                  <SliderIcon icon={'right-left-arrow'}/>
-                  <SliderIcon icon={'chart-bar'}/>
+                  <SliderIcon icon={"share"} />
+                  <SliderIcon icon={"heart"} />
+                  <SliderIcon icon={"right-left-arrow"} />
+                  <SliderIcon icon={"chart-bar"} />
                 </div>
                 <Swiper
                   className="mySwiper"
                   thumbs={{ swiper: activeTumb }}
-                  modules={[Thumbs]}
+                  zoom={true}
+                  modules={[Thumbs, Zoom]}
                   autoplay={{
                     delay: 2500,
                     disableOnInteraction: false,
@@ -61,44 +72,18 @@ function ProductPage() {
                     },
                   }}
                 >
-                  <SwiperSlide>
-                    <img
-                      src="/images/product/laptop-4.jpg"
-                      className="w-[230px] h-[230px] lg:w-[333px] lg:h-[333px] md:mx-auto"
-                      alt="laptop-4"
-                    />
-                  </SwiperSlide>
-                  <SwiperSlide>
-                    <img
-                      src="/images/product/laptop-2.jpg"
-                      className="w-[230px] h-[230px] lg:w-[333px] lg:h-[333px] md:mx-auto"
-                      alt="laptop-4"
-                    />
-                  </SwiperSlide>
-                  <SwiperSlide>
-                    <img
-                      src="/images/product/laptop-3.jpg"
-                      className="w-[230px] h-[230px] lg:w-[333px] lg:h-[333px] md:mx-auto"
-                      alt="laptop-4"
-                    />
-                  </SwiperSlide>
-                  <SwiperSlide>
-                    <img
-                      src="/images/product/laptop-5.jpg"
-                      className="w-[230px] h-[230px] lg:w-[333px] lg:h-[333px] md:mx-auto"
-                      alt="laptop-4"
-                    />
-                  </SwiperSlide>
-                  <SwiperSlide>
-                    <img
-                      src="/images/product/laptop-1.jpg"
-                      className="w-[230px] h-[230px] lg:w-[333px] lg:h-[333px] md:mx-auto"
-                      alt="laptop-4"
-                    />
-                  </SwiperSlide>
+                  {productInfo?.images.map((slider) => (
+                    <SwiperSlide>
+                      <img
+                        src={`http://localhost:3001/uploads/covers/${slider}`}
+                        className="w-[230px] h-[230px] lg:w-[333px] lg:h-[333px] md:mx-auto"
+                        alt={slider}
+                      />
+                    </SwiperSlide>
+                  ))}
                 </Swiper>
               </div>
-              <div className="flex items-center justify-between gap-x-2 mt-3 max-w-[474px]">
+              <div className="mt-4">
                 <Swiper
                   onSwiper={setActiveTumb}
                   className="mySwiper"
@@ -108,57 +93,31 @@ function ProductPage() {
                     disableOnInteraction: false,
                   }}
                   spaceBetween={12}
-                  slidesPerView={5}
+                  slidesPerView={2}
                   breakpoints={{
                     0: {
                       slidesPerView: 3,
                     },
-                    474: {
+                    640: {
+                      slidesPerView: 3,
+                    },
+                    991: {
                       slidesPerView: 4,
                     },
                   }}
                 >
-                  <SwiperSlide>
-                    <div className="border border-gray-200 w-[107px] rounded-md">
-                      <img
-                        src="/images/product/laptop-4.jpg"
-                        className="w-[68px] mx-auto slide-image transition-all"
-                      />
-                    </div>
-                  </SwiperSlide>
-                  <SwiperSlide>
-                    {" "}
-                    <div className="border border-gray-200 w-[107px] rounded-md">
-                      <img
-                        src="/images/product/laptop-2.jpg"
-                        className="w-[68px] mx-auto slide-image transition-all"
-                      />
-                    </div>
-                  </SwiperSlide>
-                  <SwiperSlide>
-                    <div className="border border-gray-200 w-[107px] rounded-md">
-                      <img
-                        src="/images/product/laptop-3.jpg"
-                        className="w-[68px] mx-auto slide-image transition-all"
-                      />
-                    </div>
-                  </SwiperSlide>
-                  <SwiperSlide>
-                    <div className="border border-gray-200 w-[107px] rounded-md">
-                      <img
-                        src="/images/product/laptop-5.jpg"
-                        className="w-[68px] mx-auto slide-image transition-all"
-                      />
-                    </div>
-                  </SwiperSlide>
-                  <SwiperSlide>
-                    <div className="border border-gray-200 w-[107px] rounded-md">
-                      <img
-                        src="/images/product/laptop-1.jpg"
-                        className="w-[68px] mx-auto slide-image transition-all"
-                      />
-                    </div>
-                  </SwiperSlide>
+                  {productInfo?.images.map((slider) => (
+                    <SwiperSlide>
+                      {" "}
+                      <div className="border border-gray-200 w-[105px] md:w-[107px] py-[6px] rounded-md">
+                        <img
+                          src={`http://localhost:3001/uploads/covers/${slider}`}
+                          className="w-[68px] mx-auto slide-image transition-all"
+                          alt={slider}
+                        />
+                      </div>
+                    </SwiperSlide>
+                  ))}
                 </Swiper>
               </div>
             </div>
@@ -166,11 +125,10 @@ function ProductPage() {
               <div className="flex items-center justify-between border-b-2 border-gray-200 pb-[10px] flex-wrap pt-5 md:pt-0">
                 <div className="flex flex-col gap-y-3">
                   <h3 className="font-DanaDemiBold text-base md:text-lg">
-                    ساعت هوشمند سامسونگ مدل Galaxy Watch3 SM-R840 45mm بند چرمی
+                    {productInfo?.longDesc}
                   </h3>
                   <span className="text-gray-500 text-sm font-DanaMedium">
-                    Samsung smart watch model Galaxy Watch3 SM-R840 45mm leather
-                    strap
+                    {productInfo?.shortDesc}
                   </span>
                 </div>
                 <img
@@ -209,7 +167,7 @@ function ProductPage() {
                     <span className="block w-[1.5px] h-5 bg-gray-200"></span>
                     <div className="flex gap-x-1">
                       <span className="text-sm md:text-base text-zinc-700">
-                        (17) 4.5
+                        (17) {productInfo?.score}
                       </span>
                       <svg className="w-5 h-5 text-yellow-400">
                         <use href="#star"></use>
@@ -264,18 +222,32 @@ function ProductPage() {
                 </div>
               </div>
               <p className="my-3 text-sm font-DanaDemiBold text-blue-600">
-                14 عدد در انبار
+                {productInfo?.count} عدد در انبار
               </p>
               <div className="px-2.5 py-4 bg-gray-100 rounded-md shadow flex flex-col md:flex-row items-center gap-y-5 justify-between">
                 <div>
                   <div className="flex items-center gap-x-4">
-                    <span className="text-gray-400 font-DanaDemiBold line-through">
-                      1,500,000 تومان
-                    </span>
-                    <span className="block w-[1.5px] h-6 bg-gray-400"></span>
-                    <span className="text-blue-600 font-DanaDemiBold">
-                      1,200,000 تومان
-                    </span>
+                    {productInfo?.off !== 0 && (
+                      <>
+                        <span className="text-gray-400 font-DanaDemiBold line-through">
+                          {productInfo?.price.toLocaleString("fa")} تومان
+                        </span>
+                        <span className="block w-[1.5px] h-6 bg-gray-400"></span>
+                      </>
+                    )}
+                    {productInfo?.off ? (
+                      <span className="text-blue-600 font-DanaDemiBold">
+                        {(
+                          productInfo?.price -
+                          (productInfo?.price * productInfo?.off) / 100
+                        ).toLocaleString("fa")}{" "}
+                        تومان
+                      </span>
+                    ) : (
+                      <span className="text-blue-600 font-DanaDemiBold">
+                        {productInfo?.price.toLocaleString("fa")} تومان
+                      </span>
+                    )}
                   </div>
                 </div>
                 <div className="flex items-center justify-between gap-x-5">
@@ -372,27 +344,12 @@ function ProductPage() {
                   </h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 mt-2">
                     <div>
-                      <p className="text-gray-500 text-sm/[28px] md:text-base/[32px]">
-                        اگر به دنبال تهیه یک هدفون بی‌سیم گیمینگ هستید، هدفون
-                        بلوتوثی مدل K55 به‌عنوان یکی از جدیدترین گزینه‌های موجود
-                        در بازار ارزش بررسی را دارد. این مدل با ابعادی کوچک
-                        تولید شده است. ابعاد و وزن کم آن، جابه‌جایی این وسیله و
-                        استفاده طولانی‌مدت از آن را آسان می‌کند و باعث خستگی
-                        گوش‌ها نخواهد شد. این مدل برای اتصال به دستگاه‌ به
-                        بلوتوث نسخه 5.0 مجهز شده است و در مدت زمان اندکی، اتصال
-                        با گوشی موبایل اندروید یا ios شما برقرار خواهد شد. هدفون
-                        بی سیم K55 دارای یک میکروفون با کیفیت است و ... اگر به
-                        دنبال تهیه یک هدفون بی‌سیم گیمینگ هستید، هدفون بلوتوثی
-                        مدل K55 به‌عنوان یکی از جدیدترین گزینه‌های موجود در
-                        بازار ارزش بررسی را دارد.اگر به دنبال تهیه یک هدفون
-                        بی‌سیم گیمینگ هستید، هدفون بلوتوثی مدل K55 به‌عنوان یکی
-                        از جدیدترین گزینه‌های موجود در بازار ارزش بررسی را دارد.
-                      </p>
+                      <p className="text-gray-500 text-sm/[28px] md:text-base/[32px]" dangerouslySetInnerHTML={{__html : DOMPurify.sanitize(productInfo?.moreDesc)}}></p>
                     </div>
                     <div>
                       <img
-                        src="/images/product/laptop-4.jpg"
-                        alt="laptop-4.jpg"
+                        src={`http://localhost:3001/uploads/covers/${productInfo?.images[0]}`}
+                        alt={productInfo?.images[0]}
                         className="w-[290px] mx-auto"
                       />
                     </div>
@@ -402,38 +359,14 @@ function ProductPage() {
               {optionShowModel === "مشخصات کالا" && (
                 <div>
                   <h3 className="font-DanaDemiBold text-base md:text-2xl">
-                    طراحی و کیفیت ساخت گوشی شیائومی ردمی 9A
+                    طراحی و کیفیت ساخت  {productInfo?.title}
                   </h3>
                   <div>
-                    <p className="text-gray-500 text-sm/[28px] md:text-base/[32px] mt-4">
-                      به عنوان گوشی‌ای که قیمت خیلی زیادی ندارد، باید به این
-                      موضوع اشاره کنیم که داخل بسته بندی Redmi 9A آیتم‌های خاصی
-                      دیده نمی شود. دفترچه راهنما، ابزار خارج کردن سیم کارت و
-                      شارژ ۱۰ واتی را به همراه کابل USB مشاهده می‌کنید. این گوشی
-                      شیائومی در ابعاد ۱۶۴.۹ در ۷۷.۱ در ۹ میلی متر ساخته شده و
-                      وزن آن هم ۱۹۶ گرم است. در حال کلی باید به این موضوع اشاره
-                      کنیم که این گوشی خیلی خوب در دست قرار میگیرد. قاب این گوشی
-                      بافت جالب توجهی دارد و به همین دلیل خیلی خوب داخل دست قرار
-                      میگیرد. البته باید به این موضوع اشاره کنیم که قاب پشتی
-                      گوشی خیلی زود اثر انگشت را به خود جلب می‌کند. قاب پشتی که
-                      به صورت مات طراحی شده میزبان دوربین‌های پشت است و به جز
-                      دوربین‌ها چیزی روی آن قرار نگرفته است. به همین دلیل گوشی
-                      بسیار ساده به نظر می‌رسد. زمانی که به گوشی نگاه می‌کنید،
-                      متوجه می‌شوید که صفحه نمایش آن حاشیه‌های بسبتا بزرگی دارد.
-                      البته که با توجه به قیمت ارزان این گوشی نیاید انتظار زیادی
-                      از این محصول داشته باشید. روی صفحه نمایش ناچ قطره‌ ای قرار
-                      گرفته که داخل آن دوربین سلفی دیده می‌شود. روی لبه بالای
-                      گوشی جک ۳.۵ میلی صدا قرار گرفته و روی لبه پایین هم پورت
-                      micro-USB و اسپیکر گوشی و میکروفن را مشاهده می‌کنید. خیلی
-                      دوست داشتیم که روی این گوشی پورت USB C مشاهده می کردیم.
-                      روی لبه سمت چپ گوشی محل قرار گرفتن سیم کارت و کارت حافظه
-                      را مشاهده می‌کنید. همچنین باید به این موضوع اشاره کنیم که
-                      این گوشی در سه رنگ آبی و سبز و مشکی راهی بازار شده است.
-                    </p>
+                    <p className="text-gray-500 text-sm/[28px] md:text-base/[32px] mt-4" dangerouslySetInnerHTML={{__html : DOMPurify.sanitize(productInfo?.moreDesc)}}></p>
                     <img
-                      src="/images/image.jpg"
-                      alt="image.jpg"
-                      className="mx-auto mt-8 rounded-md shadow overflow-hidden"
+                      src={`http://localhost:3001/uploads/covers/${productInfo?.images[1]}`}
+                      alt={productInfo?.images[1]}
+                      className="mx-auto mt-8 h-96 rounded-md  overflow-hidden"
                     />
                   </div>
                 </div>
@@ -458,11 +391,12 @@ function ProductPage() {
             setProductCount={setProductCount}
             setColorChoose={setColorChoose}
             colorChoose={colorChoose}
+            product={productInfo}
           />
         </div>
       </div>
       {/* same product releated to this product */}
-      <SameProduct />
+      <SameProduct category={productInfo?.category._id} />
       <Footer />
       <FooterMenu />
     </div>

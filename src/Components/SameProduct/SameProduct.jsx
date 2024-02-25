@@ -5,9 +5,11 @@ import "swiper/css";
 import "swiper/css/pagination";
 import { Pagination, Autoplay, Navigation } from "swiper/modules";
 import ProductBox from "../ProductBox/ProductBox";
-function SameProduct() {
+import useSame from "../../Hooks/AdminPanel/Product/useSame";
+function SameProduct({ category }) {
   const [swipe, setSwipe] = useState(null);
-  return (
+  const { data: sameProduct } = useSame(category);
+  return sameProduct?.length ? (
     <div className="pb-10">
       <div className="">
         <div className="container">
@@ -46,27 +48,13 @@ function SameProduct() {
                 },
               }}
             >
-              <SwiperSlide>
-                <ProductBox image={"product-image3.jpg"} />
-              </SwiperSlide>
-              <SwiperSlide>
-                <ProductBox image={"product-image4.jpg"} />
-              </SwiperSlide>
-              <SwiperSlide>
-                <ProductBox image={"product-image6.jpg"} />
-              </SwiperSlide>
-              <SwiperSlide>
-                <ProductBox image={"television2.jpg"} />
-              </SwiperSlide>
-              <SwiperSlide>
-                <ProductBox image={"product-image1.jpg"} />
-              </SwiperSlide>
-              <SwiperSlide>
-                <ProductBox image={"wach3.jpg"} />
-              </SwiperSlide>
-              <SwiperSlide>
-                <ProductBox image={"wach1.jpg"} />
-              </SwiperSlide>
+              {sameProduct?.length
+                ? sameProduct?.map((same) => (
+                    <SwiperSlide>
+                      <ProductBox product={same} key={same._id} />
+                    </SwiperSlide>
+                  ))
+                : ""}
             </Swiper>
           </div>
           <div className="flex items-center justify-center relative mt-7 gap-x-2.5">
@@ -90,6 +78,8 @@ function SameProduct() {
         </div>
       </div>
     </div>
+  ) : (
+    ""
   );
 }
 

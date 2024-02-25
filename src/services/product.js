@@ -33,6 +33,31 @@ const getBestSellerProduct = async () => {
   }
 };
 
+const getSameProducts = async (category) => {
+  try {
+    const res = await fetch(`${baseURL}/same-product/${category}`);
 
+    return await res.json();
+  } catch (err) {
+    return err;
+  }
+};
 
-export { createNewProduct, getAllProducts, getBestSellerProduct };
+const getProductInfo = async (title) => {
+  console.log(title);
+  try {
+    const res = await fetch(`${baseURL}/get/productInfo/${title}`);
+
+    return await res.json();
+  } catch (err) {
+    return err;
+  }
+};
+
+export {
+  createNewProduct,
+  getAllProducts,
+  getBestSellerProduct,
+  getSameProducts,
+  getProductInfo,
+};

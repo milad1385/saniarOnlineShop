@@ -259,9 +259,9 @@
 ::-webkit-scrollbar-track {
   background-color: #ffffff;
 }
-html {
+/* html {
   scroll-behavior: smooth;
-}
+} */
 
 .image {
   width: 100%;
