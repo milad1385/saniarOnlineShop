@@ -1,3 +1,5 @@
+import { getUserToken } from "../Utils/Funcs/utils";
+
 const baseURL = `http://localhost:3001/api/v1/products`;
 
 const createNewProduct = async (data) => {
@@ -61,11 +63,27 @@ const getAllProductsWithOutPagination = async () => {
     return err;
   }
 };
+
+const deleteProduct = async (id) => {
+  try {
+    const res = await fetch(`${baseURL}/${id}`, {
+      method: "DELETE",
+      headers: {
+        authorization: `${getUserToken()}`,
+      },
+    });
+
+    return res;
+  } catch (err) {
+    return err;
+  }
+};
 export {
   createNewProduct,
   getAllProducts,
   getBestSellerProduct,
   getSameProducts,
   getProductInfo,
-  getAllProductsWithOutPagination
+  getAllProductsWithOutPagination,
+  deleteProduct
 };

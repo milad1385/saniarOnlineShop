@@ -357,10 +357,10 @@ function ProductPage() {
                   </h3>
                   <div>
                     <p
-                      className="text-gray-500 text-sm/[28px] md:text-base/[32px] mt-4"
+                      className="text-gray-500 feature text-sm/[28px] md:text-base/[32px] space-y-8 mt-4"
                       dangerouslySetInnerHTML={{
                         __html: DOMPurify.sanitize(
-                          productInfo?.productInfo.moreDesc
+                          productInfo?.productInfo.productFeature
                         ),
                       }}
                     ></p>

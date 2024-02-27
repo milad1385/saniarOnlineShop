@@ -360,3 +360,15 @@ input[type="checkbox"] {
     transform: translate(-50%, -50%) scale(1);
   }
 } */
+
+.ck-widget_selected{
+  width: 250px;
+}
+
+.feature:first-child{
+  margin-top: 50px;
+}
+p figure img{
+  margin:  auto;
+  border-radius: 10px;
+}

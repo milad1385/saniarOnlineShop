@@ -2,7 +2,14 @@ import React, { useEffect, useState } from "react";
 import Table from "../../../../Components/AdminPanel/Table/Table";
 import Pagination from "../../../../Components/Pagination/Pagination";
 import useGetAll from "../../../../Hooks/AdminPanel/Product/useGetAll";
+import StatusModal from "../../../../Components/SuccessModal/SuccessModal";
+import DeleteModal from "../../../../Components/DeleteModal/DeleteModal";
+import useDelete from "../../../../Hooks/AdminPanel/Product/useDelete";
 function ProductList() {
+  const [isShowDeleteModal, setIsShowDeleteModal] = useState(false);
+  const [isShowSuccessModal, setIsShowSuccessModal] = useState(false);
+  const [msg, setMsg] = useState("");
+  const [productId, setProductId] = useState(null);
   const pageNum = new URLSearchParams(window.location.search).get("page");
   const [page, setPage] = useState(pageNum);
   useEffect(() => {
@@ -11,6 +18,16 @@ function ProductList() {
   }, [pageNum]);
 
   const { data: products, isLoading } = useGetAll(page);
+  const { mutateAsync: deleteProduct, isLoading: deleteLoading } = useDelete();
+
+  const deleteProductHandler = async () => {
+    const result = await deleteProduct(productId);
+    if (result.status === 200) {
+      setMsg("محصول با موفقیت حذف شد");
+      setIsShowDeleteModal(false);
+      setIsShowSuccessModal(true);
+    }
+  };
   return (
     <>
       <div className="pb-6">
@@ -50,7 +67,13 @@ function ProductList() {
                   <td>{product.link}</td>
                   <td>{product.category.title}</td>
                   <td>
-                    <button className="bg-red-600 text-white w-16 py-1 text-base md:text-lg rounded-md font-Lalezar">
+                    <button
+                      className="bg-red-600 text-white w-16 py-1 text-base md:text-lg rounded-md font-Lalezar"
+                      onClick={() => {
+                        setIsShowDeleteModal(true);
+                        setProductId(product._id);
+                      }}
+                    >
                       حذف
                     </button>
                   </td>
@@ -76,6 +99,26 @@ function ProductList() {
           setPage={setPage}
         />
       </div>
+
+      {isShowDeleteModal && (
+        <DeleteModal
+          onClose={setIsShowDeleteModal}
+          onClick={deleteProductHandler}
+          isLoading={deleteLoading}
+        />
+      )}
+
+      {isShowSuccessModal && (
+        <StatusModal
+          onClose={setIsShowSuccessModal}
+          title={msg}
+          text={"خیلی هم عالی"}
+          icon={"face-smile"}
+          color="text-blue-600"
+          bg="bg-blue-600"
+          onClick={() => setIsShowSuccessModal(false)}
+        />
+      )}
     </>
   );
 }

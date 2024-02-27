@@ -91,6 +91,38 @@ function AddNewProduct() {
     setProductFeature("");
     setAllImages([]);
   };
+  // const apiKey = "http://localhost:3001/upload";
+  // function uploadAdapter(loader) {
+  //   return {
+  //     upload: () => {
+  //       return new Promise((resolve, reject) => {
+  //         const body = new FormData();
+  //         loader.file.then((file) => {
+  //           console.log(file);
+  //           body.append("picture", file);
+  //           fetch(`${apiKey}`, {
+  //             method: "POST",
+  //             body: body,
+  //           })
+  //             .then((res) => res.json())
+  //             .then((res) => {
+  //               console.log(res);
+  //               resolve({ resdefault: `${res.url}` });
+  //             })
+  //             .catch((err) => {
+  //               reject(err);
+  //             });
+  //         });
+  //       });
+  //     },
+  //   };
+  // }
+
+  // function uploadPlugin(editor) {
+  //   editor.plugins.get("FileRepository").createUploadAdapter = (loader) => {
+  //     return uploadAdapter(loader);
+  //   };
+  // }
 
   return (
     <>
@@ -187,7 +219,9 @@ function AddNewProduct() {
           />
         </div>
         <div className="mt-6 space-y-4">
-          <label className="font-DanaMedium text-sm md:text-base">توضیحات بیشتر محصول</label>
+          <label className="font-DanaMedium text-sm md:text-base">
+            توضیحات بیشتر محصول
+          </label>
           <div>
             <CKEditor
               editor={ClassicEditor}
@@ -200,13 +234,27 @@ function AddNewProduct() {
           </div>
         </div>
         <div className="mt-6 space-y-4">
-          <label className="font-DanaMedium text-sm md:text-base">چکیده مشخصات محصول</label>
+          <label className="font-DanaMedium text-sm md:text-base">
+            چکیده مشخصات محصول
+          </label>
           <div>
             <CKEditor
+              config={{
+                // extraPlugins: [uploadPlugin],
+                ckfinder: {
+                  uploadUrl: "http://localhost:3001/upload",
+                  withCredentials: true,
+                  headers: {
+                    "X-CSRF-TOKEN": "CSFR-TOKEN",
+                    Authorization: `Bearer <JSON Web Token>`,
+                  },
+                },
+              }}
               editor={ClassicEditor}
               data={productFeature}
               onChange={(event, editor) => {
                 const data = editor.getData();
+                console.log(data);
                 setProductFeature(data);
               }}
             />
@@ -218,7 +266,10 @@ function AddNewProduct() {
             id="slider"
             onChange={(e) => setIsInSlider(e.target.checked)}
           />
-          <label htmlFor="slider" className="font-DanaDemiBold text-sm md:text-base">
+          <label
+            htmlFor="slider"
+            className="font-DanaDemiBold text-sm md:text-base"
+          >
             نمایش در اسلایدر
           </label>
         </div>
@@ -230,7 +281,9 @@ function AddNewProduct() {
             <svg className="w-7 md:w-8 h-7 md:h-8">
               <use href="#image"></use>
             </svg>
-            <span className="font-DanaDemiBold text-sm md:text-base">آپلود عکس ها</span>
+            <span className="font-DanaDemiBold text-sm md:text-base">
+              آپلود عکس ها
+            </span>
           </label>
           <input
             id="uploader-image"
