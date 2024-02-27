@@ -14,46 +14,24 @@ function ProductBoxInfo({
       <div className="flex items-center justify-between">
         <div>
           <img
-            src={`http://localhost:3001/uploads/covers/${product?.images[0]}`}
-            alt={product?.images[0]}
+            src={`http://localhost:3001/uploads/covers/${product?.productInfo.images[0]}`}
+            alt={product?.productInfo.images[0]}
             className="w-[90px] shrink-0"
           />
         </div>
         <p className="w-[204px] font-DanaDemiBold line-clamp-3">
-          {product?.longDesc}
+          {product?.productInfo.longDesc}
         </p>
       </div>
       <div className="flex items-center flex-wrap gap-3 mt-4">
-        <ColorBox
-          colorCode={"blue"}
-          colorName={"آبی"}
-          colorChoose={colorChoose}
-          setColorChoose={setColorChoose}
-        />
-        <ColorBox
-          colorCode={"red"}
-          colorName={"قرمز"}
-          colorChoose={colorChoose}
-          setColorChoose={setColorChoose}
-        />
-        <ColorBox
-          colorCode={"green"}
-          colorName={"سبز"}
-          colorChoose={colorChoose}
-          setColorChoose={setColorChoose}
-        />
-        <ColorBox
-          colorCode={"yellow"}
-          colorName={"زرد"}
-          colorChoose={colorChoose}
-          setColorChoose={setColorChoose}
-        />
-        <ColorBox
-          colorCode={"black"}
-          colorName={"مشکی"}
-          colorChoose={colorChoose}
-          setColorChoose={setColorChoose}
-        />
+        {product?.colors.map((color) => (
+          <ColorBox
+            colorCode={color.colorCode}
+            colorName={color.colorName}
+            colorChoose={colorChoose}
+            setColorChoose={setColorChoose}
+          />
+        ))}
       </div>
       <div className="flex items-center gap-x-2 my-4">
         <img
@@ -82,29 +60,29 @@ function ProductBoxInfo({
         </p>
       </div>
       <div className="flex items-center justify-between my-4">
-        {product?.off !== 0 && (
+        {product?.productInfo.off !== 0 && (
           <>
             <span className="text-gray-400 font-DanaDemiBold text-lg line-through">
-              {product?.price.toLocaleString("fa")} تومان
+              {product?.productInfo.price.toLocaleString("fa")} تومان
             </span>
             <span className="block w-[1.5px] h-6 bg-gray-400"></span>
           </>
         )}
-        {product?.off ? (
+        {product?.productInfo.off ? (
           <span className="text-blue-600 text-lg font-DanaDemiBold">
             {(
-              product?.price -
-              (product?.price * product?.off) / 100
+              product?.productInfo.price -
+              (product?.productInfo.price * product?.productInfo.off) / 100
             ).toLocaleString("fa")}{" "}
             تومان
           </span>
         ) : (
           <span className="text-blue-600 text-lg font-DanaDemiBold">
-            {product?.price} تومان
+            {product?.productInfo.price} تومان
           </span>
         )}
       </div>
-      <div className="flex items-center justify-center my-6">
+      <div className="flex items-center justify-center my-5">
         <div className="flex items-center gap-x-2">
           <div
             className="w-10 h-[30px] select-none bg-blue-600 text-white flex-center rounded-r-full font-DanaMedium shadow-blue cursor-default md:cursor-pointer"

@@ -18,6 +18,7 @@ function MyInfo() {
   const [isShowSuccessModal, setIsShowSuccessModal] = useState(false);
   const [msg, setMsg] = useState("");
   const [image, setImage] = useState({});
+  const [currImage, setCurrImage] = useState(null);
   const [adminId, setAdminId] = useState("");
 
   const { data: userInfo } = useGetMe(getUserToken());
@@ -47,6 +48,16 @@ function MyInfo() {
   useEffect(() => {
     setIsShowAdminMenu(false);
   }, []);
+
+  const handleUploadImage = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setImage(file);
+      setCurrImage(URL.createObjectURL(file));
+
+      console.log(URL.createObjectURL(file));
+    }
+  };
 
   const editMyInfoHandler = async (data) => {
     const formData = new FormData();
@@ -79,7 +90,9 @@ function MyInfo() {
         <div className="relative my-16 flex-center">
           <img
             src={
-              userInfo?.userInfo.image
+              currImage
+                ? currImage
+                : userInfo?.userInfo.image
                 ? `http://localhost:3001/uploads/covers/${userInfo?.userInfo.image}`
                 : "/images/user.png"
             }
@@ -89,7 +102,7 @@ function MyInfo() {
             type="file"
             id="uploader"
             className="hidden"
-            onChange={(e) => setImage(e.target.files[0])}
+            onChange={handleUploadImage}
           />
           <label
             htmlFor="uploader"

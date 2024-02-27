@@ -44,7 +44,6 @@ const getSameProducts = async (category) => {
 };
 
 const getProductInfo = async (title) => {
-  console.log(title);
   try {
     const res = await fetch(`${baseURL}/get/productInfo/${title}`);
 
@@ -54,10 +53,19 @@ const getProductInfo = async (title) => {
   }
 };
 
+const getAllProductsWithOutPagination = async () => {
+  try {
+    const res = await fetch(`${baseURL}/getAll`);
+    return await res.json();
+  } catch (err) {
+    return err;
+  }
+};
 export {
   createNewProduct,
   getAllProducts,
   getBestSellerProduct,
   getSameProducts,
   getProductInfo,
+  getAllProductsWithOutPagination
 };

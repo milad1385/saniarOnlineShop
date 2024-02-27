@@ -1,5 +1,3 @@
-import Index from "./Pages/Index/Index";
-import ProductPage from "./Pages/ProductPage/ProductPage";
 import Adress from "./Pages/UserPanel/Adress/Adress";
 import Comments from "./Pages/UserPanel/Comments/Comments";
 import Main from "./Pages/UserPanel/Index/Main";
@@ -53,10 +51,23 @@ import Static from "./Pages/AdminPanel/Static/Static";
 import MyInfo from "./Pages/AdminPanel/MyInfo/MyInfo";
 import PowerOff from "./Pages/AdminPanel/PowerOff/PowerOff";
 import IsLogin from "./Pages/Private/IsLogin";
+import { Suspense, lazy } from "react";
+import Loader from "./Components/Loader/Loader";
+
+const ProductPage = lazy(() => import("./Pages/ProductPage/ProductPage"));
+const Index = lazy(() => import("./Pages/Index/Index"));
+
 const routes = [
-  { path: "/", element: <Index /> },
+  { path: "/", element: <Suspense fallback={<Loader/>}><Index /></Suspense> },
   { path: "/blog", element: <Blog /> },
-  { path: "/product/:productName", element: <ProductPage /> },
+  {
+    path: "/product/:productName",
+    element: (
+      <Suspense fallback={<Loader />}>
+        <ProductPage />{" "}
+      </Suspense>
+    ),
+  },
   { path: "/category-blog/:articleCategory", element: <ArticleCategory /> },
   { path: "/article/:articleName", element: <ArticlePage /> },
   {

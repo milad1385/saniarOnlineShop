@@ -100,7 +100,7 @@
   .hide-menu {
     @apply opacity-0 invisible;
   }
-  textarea::placeholder{
+  textarea::placeholder {
     @apply text-zinc-700;
   }
 
@@ -119,11 +119,11 @@
     transform: rotate(-360deg);
   }
 
-  select{
+  select {
     appearance: none;
   }
 
-  button{
+  button {
     outline: none;
   }
 
@@ -233,12 +233,11 @@
     @apply w-[250px] visible transition-all;
   }
 
-  .side-bar li a.active{
+  .side-bar li a.active {
     @apply bg-white/20 !important;
   }
-  .side-links li a{
+  .side-links li a {
     @apply py-1.5 px-2 rounded-md w-full !important;
-
   }
 }
 
@@ -275,10 +274,10 @@ table {
   white-space: nowrap;
 }
 
-tr:nth-child(even){
+tr:nth-child(even) {
   background-color: #e7e7e7;
 }
-tbody tr:nth-child(odd){
+tbody tr:nth-child(odd) {
   background-color: white;
 }
 
@@ -348,3 +347,16 @@ input[type="checkbox"] {
 .login-form__password-checkbox {
   @apply w-[15px] h-[15px] md:w-[18px] md:h-[18px] m-0;
 }
+
+/* .delete-modal{
+  animation: fadeOut .5s forwards;
+}
+
+@keyframes fadeOut {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+} */

@@ -1,6 +1,6 @@
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
-import React, { useId, useState } from "react";
+import React, { useEffect, useId, useState } from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Link } from "react-router-dom";
 import PageTitle from "../../../../Components/AdminPanel/PageTitle/PageTitle";
@@ -29,11 +29,16 @@ function AddNewProduct() {
 
   const { mutateAsync: createNewProduct, isLoading } = useCreate();
   const { data: categories } = useGetAll();
-  console.log(categories);
+  const [allImages, setAllImages] = useState([]);
 
   const handleChange = (e) => {
     const files = Array.from(e.target.files);
-    setImages([...images, ...files]);
+    if (files) {
+      setImages([...images, ...files]);
+      files.forEach((file) => {
+        setAllImages((prevImage) => [...prevImage, URL.createObjectURL(file)]);
+      });
+    }
   };
 
   const addNewProductHandler = async (data) => {
@@ -84,6 +89,7 @@ function AddNewProduct() {
     setProductBody("");
     setIsInSlider(false);
     setProductFeature("");
+    setAllImages([]);
   };
 
   return (
@@ -138,10 +144,9 @@ function AddNewProduct() {
             <div className="flex items-center justify-between bg-gray-100 py-2 px-3 rounded-lg">
               <select
                 className="outline-none w-full bg-gray-100"
-                name="category"
-                {...register("category", { required: true })}
+                {...register("category")}
               >
-                <option value="-1">نام دسته بندی را انتخاب کنید</option>
+                <option value="">نام دسته بندی را انتخاب کنید</option>
                 {categories?.categories.map((category) => (
                   <option value={`${category._id}`}>{category.title}</option>
                 ))}
@@ -151,7 +156,7 @@ function AddNewProduct() {
               </svg>
             </div>
             {errors.category && (
-              <span className="absolute text-xs md:text-sm text-red-600 top-[42px] md:top-[170px] font-DanaDemiBold ">
+              <span className="absolute text-xs md:text-sm text-red-600  font-DanaDemiBold ">
                 {errors.category.message}
               </span>
             )}
@@ -164,17 +169,6 @@ function AddNewProduct() {
             name={"link"}
             type={"text"}
           />
-          <div className="flex items-center justify-between bg-gray-100 py-2 px-3 rounded-lg">
-            <input
-              type="file"
-              className="outline-none w-full bg-gray-100"
-              multiple
-              onChange={handleChange}
-            />
-            <svg className="w-6 h-6 md:w-9 md:h-9 text-zinc-600">
-              <use href="#image"></use>
-            </svg>
-          </div>
           <Input
             register={register}
             errors={errors}
@@ -193,7 +187,7 @@ function AddNewProduct() {
           />
         </div>
         <div className="mt-6 space-y-4">
-          <label className="font-DanaMedium">توضیحات بیشتر محصول</label>
+          <label className="font-DanaMedium text-sm md:text-base">توضیحات بیشتر محصول</label>
           <div>
             <CKEditor
               editor={ClassicEditor}
@@ -206,7 +200,7 @@ function AddNewProduct() {
           </div>
         </div>
         <div className="mt-6 space-y-4">
-          <label className="font-DanaMedium">چکیده مشخصات محصول</label>
+          <label className="font-DanaMedium text-sm md:text-base">چکیده مشخصات محصول</label>
           <div>
             <CKEditor
               editor={ClassicEditor}
@@ -224,10 +218,35 @@ function AddNewProduct() {
             id="slider"
             onChange={(e) => setIsInSlider(e.target.checked)}
           />
-          <label htmlFor="slider" className="font-DanaDemiBold">
+          <label htmlFor="slider" className="font-DanaDemiBold text-sm md:text-base">
             نمایش در اسلایدر
           </label>
         </div>
+        <div className="mt-6">
+          <label
+            htmlFor="uploader-image"
+            className="bg-blue-600 w-[150px] text-white flex items-center gap-x-2 p-2 rounded-md"
+          >
+            <svg className="w-7 md:w-8 h-7 md:h-8">
+              <use href="#image"></use>
+            </svg>
+            <span className="font-DanaDemiBold text-sm md:text-base">آپلود عکس ها</span>
+          </label>
+          <input
+            id="uploader-image"
+            type="file"
+            className="hidden w-full bg-gray-100"
+            multiple
+            onChange={handleChange}
+          />
+        </div>
+        {allImages.length !== 0 && (
+          <div className="grid place-items-center mt-12 gap-y-8 mb-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            {allImages.map((image) => (
+              <img className="w-[150px] rounded-md" src={image} />
+            ))}
+          </div>
+        )}
         <div className="flex items-center justify-center md:justify-start flex-wrap gap-x-5 ">
           <button className="bg-blue-600  font-Lalezar p-2 rounded-md text-white text-sm md:text-xl shadow-blue mt-6">
             ایجاد محصول

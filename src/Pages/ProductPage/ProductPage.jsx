@@ -26,11 +26,12 @@ function ProductPage() {
   const [activeTumb, setActiveTumb] = useState(null);
   const { productName } = useParams();
   const { data: productInfo } = useGetOne(productName);
-  console.log(productInfo);
 
   useEffect(() => {
     window.scroll(0, 0);
+    setActiveTumb(null);
   }, [productName]);
+
 
   return (
     <div>
@@ -41,8 +42,12 @@ function ProductPage() {
           links={[
             { id: 1, name: "خانه", to: "/" },
             { id: 2, name: "فروشگاه", to: "/" },
-            { id: 3, name: `${productInfo?.category.title}`, to: "/" },
-            { id: 4, name: `${productInfo?.title}`, to: "/" },
+            {
+              id: 3,
+              name: `${productInfo?.productInfo.category.title}`,
+              to: "/",
+            },
+            { id: 4, name: `${productInfo?.productInfo.title}`, to: "/" },
           ]}
         />
         <div className="pb-5">
@@ -72,7 +77,7 @@ function ProductPage() {
                     },
                   }}
                 >
-                  {productInfo?.images.map((slider) => (
+                  {productInfo?.productInfo.images.map((slider) => (
                     <SwiperSlide>
                       <img
                         src={`http://localhost:3001/uploads/covers/${slider}`}
@@ -106,7 +111,7 @@ function ProductPage() {
                     },
                   }}
                 >
-                  {productInfo?.images.map((slider) => (
+                  {productInfo?.productInfo.images.map((slider) => (
                     <SwiperSlide>
                       {" "}
                       <div className="border border-gray-200 w-[105px] md:w-[107px] py-[6px] rounded-md">
@@ -125,10 +130,10 @@ function ProductPage() {
               <div className="flex items-center justify-between border-b-2 border-gray-200 pb-[10px] flex-wrap pt-5 md:pt-0">
                 <div className="flex flex-col gap-y-3">
                   <h3 className="font-DanaDemiBold text-base md:text-lg">
-                    {productInfo?.longDesc}
+                    {productInfo?.productInfo.longDesc}
                   </h3>
                   <span className="text-gray-500 text-sm font-DanaMedium">
-                    {productInfo?.shortDesc}
+                    {productInfo?.productInfo.shortDesc}
                   </span>
                 </div>
                 <img
@@ -167,7 +172,7 @@ function ProductPage() {
                     <span className="block w-[1.5px] h-5 bg-gray-200"></span>
                     <div className="flex gap-x-1">
                       <span className="text-sm md:text-base text-zinc-700">
-                        (17) {productInfo?.score}
+                        (17) {productInfo?.productInfo.score}
                       </span>
                       <svg className="w-5 h-5 text-yellow-400">
                         <use href="#star"></use>
@@ -189,69 +194,51 @@ function ProductPage() {
                   انتخاب رنگ : {colorChoose || "انتخاب کنید"}{" "}
                 </h3>
                 <div className="flex items-center flex-wrap gap-2 mt-2">
-                  <ColorBox
-                    colorCode={"blue"}
-                    colorName={"آبی"}
-                    colorChoose={colorChoose}
-                    setColorChoose={setColorChoose}
-                  />
-                  <ColorBox
-                    colorCode={"red"}
-                    colorName={"قرمز"}
-                    colorChoose={colorChoose}
-                    setColorChoose={setColorChoose}
-                  />
-                  <ColorBox
-                    colorCode={"green"}
-                    colorName={"سبز"}
-                    colorChoose={colorChoose}
-                    setColorChoose={setColorChoose}
-                  />
-                  <ColorBox
-                    colorCode={"yellow"}
-                    colorName={"زرد"}
-                    colorChoose={colorChoose}
-                    setColorChoose={setColorChoose}
-                  />
-                  <ColorBox
-                    colorCode={"black"}
-                    colorName={"مشکی"}
-                    colorChoose={colorChoose}
-                    setColorChoose={setColorChoose}
-                  />
+                  {productInfo?.colors.map((color) => (
+                    <ColorBox
+                      colorCode={color.colorCode}
+                      colorName={color.colorName}
+                      colorChoose={colorChoose}
+                      setColorChoose={setColorChoose}
+                    />
+                  ))}
                 </div>
               </div>
               <p className="my-3 text-sm font-DanaDemiBold text-blue-600">
-                {productInfo?.count} عدد در انبار
+                {productInfo?.productInfo.count} عدد در انبار
               </p>
               <div className="px-2.5 py-4 bg-gray-100 rounded-md shadow flex flex-col md:flex-row items-center gap-y-5 justify-between">
                 <div>
                   <div className="flex items-center gap-x-4">
-                    {productInfo?.off !== 0 && (
+                    {productInfo?.productInfo.off !== 0 && (
                       <>
-                        <span className="text-gray-400 font-DanaDemiBold line-through">
-                          {productInfo?.price.toLocaleString("fa")} تومان
+                        <span className="text-gray-400 font-DanaDemiBold line-through text-sm md:text-base">
+                          {productInfo?.productInfo.price.toLocaleString("fa")}{" "}
+                          تومان
                         </span>
                         <span className="block w-[1.5px] h-6 bg-gray-400"></span>
                       </>
                     )}
-                    {productInfo?.off ? (
-                      <span className="text-blue-600 font-DanaDemiBold">
+                    {productInfo?.productInfo.off ? (
+                      <span className="text-blue-600 font-DanaDemiBold text-sm md:text-base">
                         {(
-                          productInfo?.price -
-                          (productInfo?.price * productInfo?.off) / 100
+                          productInfo?.productInfo.price -
+                          (productInfo?.productInfo.price *
+                            productInfo?.productInfo.off) /
+                            100
                         ).toLocaleString("fa")}{" "}
                         تومان
                       </span>
                     ) : (
-                      <span className="text-blue-600 font-DanaDemiBold">
-                        {productInfo?.price.toLocaleString("fa")} تومان
+                      <span className="text-blue-600 font-DanaDemiBold text-sm md:text-base">
+                        {productInfo?.productInfo.price.toLocaleString("fa")}{" "}
+                        تومان
                       </span>
                     )}
                   </div>
                 </div>
                 <div className="flex items-center justify-between gap-x-5">
-                  <button className="flex items-center gap-x-1 bg-blue-600 text-white px-6 py-2 rounded-md shadow-blue">
+                  <button className="flex items-center text-sm md:text-base gap-x-1 bg-blue-600 text-white px-6 py-2 rounded-md shadow-blue">
                     <svg className="w-6 h-6">
                       <use href="#shop-bag"></use>
                     </svg>
@@ -344,12 +331,19 @@ function ProductPage() {
                   </h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 mt-2">
                     <div>
-                      <p className="text-gray-500 text-sm/[28px] md:text-base/[32px]" dangerouslySetInnerHTML={{__html : DOMPurify.sanitize(productInfo?.moreDesc)}}></p>
+                      <p
+                        className="text-gray-500 text-sm/[28px] md:text-base/[32px]"
+                        dangerouslySetInnerHTML={{
+                          __html: DOMPurify.sanitize(
+                            productInfo?.productInfo.moreDesc
+                          ),
+                        }}
+                      ></p>
                     </div>
                     <div>
                       <img
-                        src={`http://localhost:3001/uploads/covers/${productInfo?.images[0]}`}
-                        alt={productInfo?.images[0]}
+                        src={`http://localhost:3001/uploads/covers/${productInfo?.productInfo.images[0]}`}
+                        alt={productInfo?.productInfo.images[0]}
                         className="w-[290px] mx-auto"
                       />
                     </div>
@@ -359,13 +353,20 @@ function ProductPage() {
               {optionShowModel === "مشخصات کالا" && (
                 <div>
                   <h3 className="font-DanaDemiBold text-base md:text-2xl">
-                    طراحی و کیفیت ساخت  {productInfo?.title}
+                    طراحی و کیفیت ساخت {productInfo?.productInfo.title}
                   </h3>
                   <div>
-                    <p className="text-gray-500 text-sm/[28px] md:text-base/[32px] mt-4" dangerouslySetInnerHTML={{__html : DOMPurify.sanitize(productInfo?.moreDesc)}}></p>
+                    <p
+                      className="text-gray-500 text-sm/[28px] md:text-base/[32px] mt-4"
+                      dangerouslySetInnerHTML={{
+                        __html: DOMPurify.sanitize(
+                          productInfo?.productInfo.moreDesc
+                        ),
+                      }}
+                    ></p>
                     <img
-                      src={`http://localhost:3001/uploads/covers/${productInfo?.images[1]}`}
-                      alt={productInfo?.images[1]}
+                      src={`http://localhost:3001/uploads/covers/${productInfo?.productInfo.images[1]}`}
+                      alt={productInfo?.productInfo.images[1]}
                       className="mx-auto mt-8 h-96 rounded-md  overflow-hidden"
                     />
                   </div>
@@ -396,7 +397,7 @@ function ProductPage() {
         </div>
       </div>
       {/* same product releated to this product */}
-      <SameProduct category={productInfo?.category._id} />
+      <SameProduct category={productInfo?.productInfo.category._id} />
       <Footer />
       <FooterMenu />
     </div>
