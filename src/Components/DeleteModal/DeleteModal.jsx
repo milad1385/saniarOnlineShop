@@ -23,13 +23,13 @@ function DeleteModal({ onClose, title, onClick, isLoading }) {
         </h3>
         <div className="flex items-center justify-center gap-x-5 mt-8">
           <button
-            className="bg-blue-600 text-white font-MorabbaBold px-16 py-4 text-xl"
+            className="bg-blue-600 text-white font-MorabbaBold px-16 py-4 text-xl h-[60px]"
             onClick={onClick}
           >
-            {isLoading ? <div className="mr-2 mb-1"><Sppiner /></div> : "بله"}
+            {isLoading ? <div className="mr-2.5 mb-4"><Sppiner /></div> : "بله"}
           </button>
           <button
-            className="bg-gray-600 text-white font-MorabbaBold px-16 py-4 text-xl"
+            className="bg-gray-600 text-white font-MorabbaBold px-16 py-4 text-xl h-[60px]"
             onClick={() => onClose(false)}
           >
             خیر

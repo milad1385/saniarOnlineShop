@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-function ProductBox({ product }) {
+function ProductBox({ product, isScore }) {
   return (
     <div className="bg-white shadow-sm p-2.5 rounded-lg select-none">
       {/* start header */}
@@ -46,14 +46,39 @@ function ProductBox({ product }) {
             </h5>
           </div>
           <div className="flex flex-row-reverse gap-x-2">
-            <div className="flex  gap-x-0.5">
-              <svg className="w-4 h-4 text-yellow-400">
-                <use href="#fill-star"></use>
-              </svg>
-            </div>
-            <span className="text-xs text-gray-500 font-DanaDemiBold mt-1">
-              {product.score}
-            </span>
+            {isScore ? (
+              <>
+              {Array(product.score)
+                  .fill(0)
+                  .map((score) => (
+                    <div className="flex">
+                      <svg className="w-4 md:w-6 h-4 md:h-6 text-yellow-400 -mr-1.5">
+                        <use href="#fill-star"></use>
+                      </svg>
+                    </div>
+                  ))}
+                {Array(5 - product.score)
+                  .fill(0)
+                  .map((score) => (
+                    <div className="flex">
+                      <svg className="w-4 md:w-6 h-4 md:h-6 text-gray-400 -mr-1.5">
+                        <use href="#fill-star"></use>
+                      </svg>
+                    </div>
+                  ))}
+              </>
+            ) : (
+              <>
+                <div className="flex  gap-x-0.5">
+                  <svg className="w-4 h-4 text-yellow-400">
+                    <use href="#fill-star"></use>
+                  </svg>
+                </div>
+                <span className="text-xs text-gray-500 font-DanaDemiBold mt-1">
+                  {product.score}
+                </span>
+              </>
+            )}
           </div>
         </div>
         <div className="mt-2 flex items-center justify-between bg-gray-100 p-2 rounded-lg">

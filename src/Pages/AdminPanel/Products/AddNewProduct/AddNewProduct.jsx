@@ -91,38 +91,8 @@ function AddNewProduct() {
     setProductFeature("");
     setAllImages([]);
   };
-  // const apiKey = "http://localhost:3001/upload";
-  // function uploadAdapter(loader) {
-  //   return {
-  //     upload: () => {
-  //       return new Promise((resolve, reject) => {
-  //         const body = new FormData();
-  //         loader.file.then((file) => {
-  //           console.log(file);
-  //           body.append("picture", file);
-  //           fetch(`${apiKey}`, {
-  //             method: "POST",
-  //             body: body,
-  //           })
-  //             .then((res) => res.json())
-  //             .then((res) => {
-  //               console.log(res);
-  //               resolve({ resdefault: `${res.url}` });
-  //             })
-  //             .catch((err) => {
-  //               reject(err);
-  //             });
-  //         });
-  //       });
-  //     },
-  //   };
-  // }
 
-  // function uploadPlugin(editor) {
-  //   editor.plugins.get("FileRepository").createUploadAdapter = (loader) => {
-  //     return uploadAdapter(loader);
-  //   };
-  // }
+  const deleteImage = (id) => {};
 
   return (
     <>
@@ -240,7 +210,6 @@ function AddNewProduct() {
           <div>
             <CKEditor
               config={{
-                // extraPlugins: [uploadPlugin],
                 ckfinder: {
                   uploadUrl: "http://localhost:3001/upload",
                   withCredentials: true,
@@ -254,7 +223,6 @@ function AddNewProduct() {
               data={productFeature}
               onChange={(event, editor) => {
                 const data = editor.getData();
-                console.log(data);
                 setProductFeature(data);
               }}
             />
@@ -295,8 +263,18 @@ function AddNewProduct() {
         </div>
         {allImages.length !== 0 && (
           <div className="grid place-items-center mt-12 gap-y-8 mb-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            {allImages.map((image) => (
-              <img className="w-[150px] rounded-md" src={image} />
+            {allImages.map((image, index) => (
+              <div className="flex items-center justify-center flex-col space-y-4">
+                <img className="w-[150px] rounded-md" src={image} />
+                <div
+                  className="bg-red-600 text-white inline-block p-1 rounded-md mx-auto md:cursor-pointer"
+                  onClick={() => deleteImage(index)}
+                >
+                  <svg className="h-6 md:w-7 w-6 md:h-7">
+                    <use href="#trash"></use>
+                  </svg>
+                </div>
+              </div>
             ))}
           </div>
         )}

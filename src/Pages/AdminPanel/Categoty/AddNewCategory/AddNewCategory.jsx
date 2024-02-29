@@ -21,7 +21,6 @@ function AddNewCategory() {
   const { mutateAsync: createNewCategory, isLoading } = useCreate();
 
   const createNewCategoryHandler = async (data) => {
-    console.log(data);
     const formData = new FormData();
     formData.append("title", data.title);
     formData.append("link", data.link);

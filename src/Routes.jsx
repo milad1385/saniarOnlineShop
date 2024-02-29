@@ -11,7 +11,7 @@ import ArticleCategory from "./Pages/ArticleCategory/ArticleCategory";
 import Login from "./Pages/Login/Login";
 import Register from "./Pages/Register/Register";
 import ContactUs from "./Pages/ContactUs/ContactUs";
-import ProductsPage from "./Pages/ProductsPage/ProductsPage";
+// import ProductsPage from "./Pages/ProductsPage/ProductsPage";
 import ProductsCategory from "./Pages/ProductsCategory/ProductsCategory";
 import NotFound from "./Pages/NotFound/NotFound";
 import Tickets from "./Pages/UserPanel/Tickets/Tickets";
@@ -56,9 +56,17 @@ import Loader from "./Components/Loader/Loader";
 
 const ProductPage = lazy(() => import("./Pages/ProductPage/ProductPage"));
 const Index = lazy(() => import("./Pages/Index/Index"));
+const ProductsPage = lazy(() => import("./Pages/ProductsPage/ProductsPage"));
 
 const routes = [
-  { path: "/", element: <Suspense fallback={<Loader/>}><Index /></Suspense> },
+  {
+    path: "/",
+    element: (
+      <Suspense fallback={<Loader />}>
+        <Index />
+      </Suspense>
+    ),
+  },
   { path: "/blog", element: <Blog /> },
   {
     path: "/product/:productName",
@@ -79,7 +87,14 @@ const routes = [
     element: <Register />,
   },
   { path: "/contact-us", element: <ContactUs /> },
-  { path: "/products", element: <ProductsPage /> },
+  {
+    path: "/products",
+    element: (
+      <Suspense fallback={<Loader/>}>
+        <ProductsPage />
+      </Suspense>
+    ),
+  },
   { path: "/category-products/:categoryName", element: <ProductsCategory /> },
   { path: "/order/card", element: <Card /> },
   { path: "/order/detail", element: <DetailPay /> },

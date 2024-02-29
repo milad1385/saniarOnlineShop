@@ -7,57 +7,16 @@ import RangeSlider from "react-range-slider-input";
 import "react-range-slider-input/dist/style.css";
 import ProductBox from "../../Components/ProductBox/ProductBox";
 import Pagination from "../../Components/Pagination/Pagination";
+import Loader from "../../Components/Loader/Loader";
+import useGetAll from "../../Hooks/AdminPanel/Product/useGetAll";
+import { useNavigate, useSearchParams } from "react-router-dom";
+import useGetAllPro from "../../Hooks/AdminPanel/Product/useGetAllPro";
 function ProductsPage() {
-  const [value, setValue] = useState([50000, 25000000]);
+  const orderType = new URLSearchParams(window.location.search).get("order");
+  const [status, setStatus] = useState(orderType || "default");
   const [filtredProduct, setFiltredProduct] = useState([]);
-  const [data, setData] = useState([
-    {
-      id: 1,
-      name: "victus 15",
-      cat: "laptop",
-      price: 20_000_000,
-      color: "زرد",
-    },
-    { id: 2, name: "air 15", cat: "music", price: 5_000_000, color: "آبی" },
-    { id: 3, name: "a 51", cat: "mobile", price: 8_000_000, color: "مشکی" },
-    {
-      id: 4,
-      name: "samsung",
-      cat: "tablet",
-      price: 25_000_000,
-      color: "صورتی",
-    },
-  ]);
-  const [checboxes, setCheckBoxes] = useState([
-    {
-      id: 1,
-      checked: false,
-      lable: "موبایل",
-      icon: "mobile",
-      count: 27,
-    },
-    {
-      id: 2,
-      checked: false,
-      lable: "ایرپاد",
-      icon: "music",
-      count: 27,
-    },
-    {
-      id: 3,
-      checked: false,
-      lable: "تبلت",
-      icon: "mobile",
-      count: 27,
-    },
-    {
-      id: 4,
-      checked: false,
-      lable: "لپ تاپ",
-      icon: "laptop",
-      count: 27,
-    },
-  ]);
+  const [allProducts, setAllProducts] = useState([]);
+  const [searchParam, setSearchParam] = useSearchParams();
   const [colorBox, setColorBox] = useState([
     {
       id: 1,
@@ -90,13 +49,106 @@ function ProductsPage() {
       checked: false,
     },
   ]);
+  const [isShowFilterButton, setIsShowFilterButton] = useState(false);
 
-  const changeHandler = (id) => {
-    const changeCheckBox = checboxes.map((item) =>
-      item.id === id ? { ...item, checked: !item.checked } : item
+  const pageNum = new URLSearchParams(window.location.search).get("page");
+  const [page, setPage] = useState(pageNum);
+  const queryStrings = new URLSearchParams(window.location.search).getAll(
+    "category"
+  );
+  const startPrice = new URLSearchParams(window.location.search).get(
+    "startPrice"
+  );
+  const endPrice = new URLSearchParams(window.location.search).get("endPrice");
+  const [value, setValue] = useState([
+    startPrice ? startPrice : 50000,
+    endPrice ? endPrice : 70000000,
+  ]);
+
+  const { data: products, isLoading } = useGetAll(+page);
+  const { data: productsWithOutPagination } = useGetAllPro();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    setPage(pageNum || 1);
+    window.scroll(0, 0);
+  }, [page]);
+
+  useEffect(() => {
+    setAllProducts(products?.products);
+  }, [products]);
+
+  useEffect(() => {
+    switch (status) {
+      case "default": {
+        const allPro = products?.products.slice();
+        setAllProducts(allPro);
+        return;
+      }
+      case "popular": {
+        const allPro = products?.products.slice();
+        const popularProduct = allPro?.sort((a, b) => b.score - a.score);
+        setAllProducts(popularProduct);
+        return;
+      }
+      case "chepeast": {
+        const allPro = products?.products.slice();
+        const chepeastProduct = allPro?.sort((a, b) => a.price - b.price);
+        setAllProducts(chepeastProduct);
+        return;
+      }
+      case "expensivest": {
+        const allPro = products?.products.slice();
+        const expensivestProduct = allPro?.sort((a, b) => b.price - a.price);
+        setAllProducts(expensivestProduct);
+        return;
+      }
+      case "newest": {
+        const allPro = products?.products.slice();
+        setAllProducts(allPro);
+        return;
+      }
+      case "latest": {
+        const allPro = products?.products.slice();
+        setAllProducts(allPro?.reverse());
+        return;
+      }
+      default: {
+        const allPro = products?.products.slice();
+        setAllProducts(allPro);
+        return;
+      }
+    }
+  }, [status, products]);
+
+  useEffect(() => {
+    const categories = new URLSearchParams(window.location.search).getAll(
+      "category"
     );
-    setCheckBoxes(changeCheckBox);
-  };
+    const startPrice = new URLSearchParams(window.location.search).get(
+      "startPrice"
+    );
+    const endPrice = new URLSearchParams(window.location.search).get(
+      "endPrice"
+    );
+
+    if (categories.length) {
+      getFiltredProduct(categories, startPrice, endPrice);
+    }
+  }, [productsWithOutPagination]);
+
+  useEffect(() => {
+    if (value[0] !== 50000 && value[1] !== 25000000) {
+      setSearchParam(
+        (prev) => {
+          prev.set("startPrice", value[0]);
+          prev.set("endPrice", value[1]);
+          return prev;
+        },
+        { replace: true }
+      );
+    }
+  }, [value]);
 
   const colorBoxChangeHandler = (id) => {
     const changeColorBox = colorBox.map((item) =>
@@ -106,42 +158,72 @@ function ProductsPage() {
     setColorBox(changeColorBox);
   };
 
-  const applyFilter = () => {
-    let updatedList = [...data];
-    const checkedBox = checboxes
-      .filter((item) => item.checked)
-      .map((item) => item.icon.toLocaleLowerCase());
-
-    if (checkedBox.length) {
-      updatedList = updatedList.filter((item) => checkedBox.includes(item.cat));
-    }
-
-
-
-    const checkedColor = colorBox
-      .filter((item) => item.checked)
-      .map((item) => item.name);
-    if (checkedColor.length) {
-      updatedList = updatedList.filter((item) =>
-        checkedColor.includes(item.color)
-      );
-    }
-
-
-    let minPrice = value[0];
-    let maxPrice = value[1];
-    updatedList = updatedList.filter(
-      (item) => item.price >= +minPrice && item.price <= +maxPrice
+  const handleFilterProducts = () => {
+    const startPrice = new URLSearchParams(window.location.search).get(
+      "startPrice"
     );
-    console.log(updatedList);
+    const endPrice = new URLSearchParams(window.location.search).get(
+      "endPrice"
+    );
+    const categories = new URLSearchParams(window.location.search).getAll(
+      "category"
+    );
 
-
-    setFiltredProduct(updatedList);
+    if (startPrice && endPrice && categories.length) {
+      getFiltredProduct(categories, startPrice, endPrice);
+    }
   };
 
-  useEffect(() => {
-    applyFilter();
-  }, [checboxes, value, colorBox]);
+  const handleChangeBox = async (category, e) => {
+    if (e.target.checked) {
+      searchParam.append("category", category);
+      setSearchParam(searchParam);
+    } else {
+      searchParam.delete("category", category);
+      setSearchParam(searchParam);
+    }
+  };
+
+  async function getFiltredProduct(categories, startPrice, endPrice) {
+    const filtredProducts = productsWithOutPagination?.filter((product) => {
+      return (
+        [...categories].includes(product.category.title) &&
+        product.price >= +startPrice &&
+        product.price <= +endPrice
+      );
+    });
+
+    setIsShowFilterButton(true);
+    setFiltredProduct(filtredProducts);
+    console.log(filtredProducts);
+    return filtredProducts;
+  }
+
+  const handlerSortFilter = (status) => {
+    setStatus(status);
+    setSearchParam(
+      (prev) => {
+        prev.set("order", status);
+        return prev;
+      },
+      { replace: true }
+    );
+  };
+
+  const searchHandler = (event) => {
+    if (event.target.value) {
+      setIsShowFilterButton(false);
+      setValue([50000, 70000000]);
+      navigate("/products");
+      const searchedProducts = productsWithOutPagination?.filter((product) =>
+        product.title.includes(event.target.value.trim())
+      );
+      setFiltredProduct(searchedProducts);
+    } else {
+      setFiltredProduct([]);
+    }
+  };
+
   return (
     <>
       <Topbar />
@@ -206,7 +288,13 @@ function ProductsPage() {
         {/* start main section */}
 
         <div className="flex gap-x-5 mt-8">
-          <div className="bg-white shadow rounded-md w-[450px] h-[716.7px] px-4 py-3 sticky top-0">
+          <div
+            className={`bg-white shadow rounded-md w-[450px] ${
+              filtredProduct?.length && isShowFilterButton
+                ? "h-[800.7px]"
+                : "h-[720.7px]"
+            } px-4 py-3 sticky top-0`}
+          >
             <h3 className="font-DanaDemiBold text-lg border-b-2 border-b-gray-200 pb-2">
               جستجو
             </h3>
@@ -215,6 +303,7 @@ function ProductsPage() {
                 type="text"
                 className="border-none outline-none w-full px-[px] bg-gray-100"
                 placeholder="جستجو محصولات"
+                onChange={(event) => searchHandler(event)}
               />
               <button className="bg-blue-600 text-white p-2 flex items-center justify-center rounded-full shadow-blue">
                 <svg className="w-6 h-6">
@@ -226,23 +315,72 @@ function ProductsPage() {
               دسته بندی
             </h3>
             <div className="mt-2.5 space-y-3">
-              {checboxes.map((box) => (
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-x-2">
+              <div class="mt-2.5 space-y-3">
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-x-2">
                     <input
                       type="checkbox"
-                      className="text-lg"
-                      value={box.lable}
-                      onChange={() => changeHandler(box.id)}
-                    />
-                    <span className="font-DanaMedium mt-1">{box.lable}</span>
-                    <svg className="w-5 h-5">
-                      <use href={`#${box.icon}`}></use>
+                      class="text-lg"
+                      value="موبایل"
+                      onChange={(e) => handleChangeBox("موبایل", e)}
+                      checked={queryStrings.includes("موبایل") ? true : false}
+                    />{" "}
+                    <span class="font-DanaMedium mt-1">موبایل</span>
+                    <svg class="w-5 h-5">
+                      <use href="#mobile"></use>
                     </svg>
                   </div>
-                  <div>({box.count})</div>
+                  <div>(27)</div>
                 </div>
-              ))}
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-x-2">
+                    <input
+                      type="checkbox"
+                      class="text-lg"
+                      value="ایرپاد"
+                      onChange={(e) => handleChangeBox("ایرپاد", e)}
+                      checked={queryStrings.includes("ایرپاد") ? true : false}
+                    />{" "}
+                    <span class="font-DanaMedium mt-1">ایرپاد</span>
+                    <svg class="w-5 h-5">
+                      <use href="#music"></use>
+                    </svg>
+                  </div>
+                  <div>(27)</div>
+                </div>
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-x-2">
+                    <input
+                      type="checkbox"
+                      class="text-lg"
+                      value="تبلت"
+                      onChange={(e) => handleChangeBox("تبلت", e)}
+                      checked={queryStrings.includes("تبلت") ? true : false}
+                    />{" "}
+                    <span class="font-DanaMedium mt-1">تبلت</span>
+                    <svg class="w-5 h-5">
+                      <use href="#mobile"></use>
+                    </svg>
+                  </div>
+                  <div>(27)</div>
+                </div>
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-x-2">
+                    <input
+                      type="checkbox"
+                      class="text-lg"
+                      value="لپ تاپ"
+                      onChange={(e) => handleChangeBox("لپ تاپ", e)}
+                      checked={queryStrings.includes("لپ تاپ") ? true : false}
+                    />{" "}
+                    <span class="font-DanaMedium mt-1">لپ تاپ</span>
+                    <svg class="w-5 h-5">
+                      <use href="#laptop"></use>
+                    </svg>
+                  </div>
+                  <div>(27)</div>
+                </div>
+              </div>
             </div>
             <h3 className="font-DanaDemiBold text-lg border-b-2 border-b-gray-200 pb-2 mt-6">
               قیمت
@@ -259,13 +397,13 @@ function ProductsPage() {
               <div className="border py-1.5 bg-gray-100 rounded-md border-gray-400 flex items-center justify-between gap-x-7 w-[140px]  p-3">
                 <span>از</span>
                 <div className=" outline-none w-full text-left bg-gray-100">
-                  {value[0].toLocaleString("fa")}
+                  {value[0].toLocaleString()}
                 </div>
               </div>
               <div className="border py-1.5 bg-gray-100 rounded-md border-gray-400 flex items-center justify-between gap-x-7 w-[140px] p-3">
                 <span>تا</span>
                 <div className=" outline-none w-full text-left bg-gray-100">
-                  {value[1].toLocaleString("fa")}
+                  {value[1].toLocaleString()}
                 </div>
               </div>
             </div>
@@ -294,13 +432,28 @@ function ProductsPage() {
                 </div>
               ))}
             </div>
-            <button className="text-black border-2  border-black w-full mt-5 rounded-sm py-4 font-DanaMedium hover:bg-black hover:text-white transition-all">
+            <button
+              className="text-black border-2  border-black w-full mt-5 rounded-sm py-4 font-DanaMedium hover:bg-black hover:text-white transition-all"
+              onClick={() => handleFilterProducts()}
+            >
               اعمال فیلتر
             </button>
+            {filtredProduct?.length !== 0 && isShowFilterButton && (
+              <button
+                className="text-red-600 border-2  border-red-600 w-full mt-5 rounded-sm py-4 font-DanaMedium hover:bg-red-600 hover:text-white transition-all"
+                onClick={() => {
+                  setFiltredProduct([]);
+                  setValue([50000, 70000000]);
+                  navigate("/products");
+                }}
+              >
+                حذف فیلتر
+              </button>
+            )}
           </div>
           <div className="w-full">
             {/* sort section */}
-            <div className="flex items-center gap-x-12 bg-white p-4 rounded-md shadow">
+            <div className="flex items-center gap-x-12 bg-white p-4 rounded-md shadow h-[72px]">
               <div className="flex items-center gap-x-2">
                 <svg className="w-6 h-6">
                   <use href="#sort"></use>
@@ -309,23 +462,72 @@ function ProductsPage() {
                   <h3 className="font-DanaDemiBold text-lg">مرتب سازی :</h3>
                 </div>
               </div>
-              <div className="flex items-center gap-x-7 child:cursor-pointer">
-                <div className="sort-active rounded-md">پیش فرض</div>
-                <div className="">محبوب ترین</div>
-                <div className="">پر فروش ترین</div>
-                <div className="">ارزان ترین</div>
-                <div className="">گران ترین</div>
+              <div className="flex items-center gap-x-4 child:cursor-pointer child:block child:py-2 child:px-4">
+                <div
+                  onClick={() => handlerSortFilter("default")}
+                  className={`${
+                    status === "default" ? "sort-active" : ""
+                  } rounded-md`}
+                >
+                  پیش فرض
+                </div>
+                <div
+                  onClick={() => handlerSortFilter("popular")}
+                  className={`${
+                    status === "popular" ? "sort-active" : ""
+                  } rounded-md`}
+                >
+                  محبوب ترین
+                </div>
+                <div
+                  onClick={() => handlerSortFilter("newest")}
+                  className={`${
+                    status === "newest" ? "sort-active" : ""
+                  } rounded-md`}
+                >
+                  جدید ترین
+                </div>
+                <div
+                  onClick={() => handlerSortFilter("latest")}
+                  className={`${
+                    status === "latest" ? "sort-active" : ""
+                  } rounded-md`}
+                >
+                  آخرین
+                </div>
+                <div
+                  onClick={() => handlerSortFilter("chepeast")}
+                  className={`${
+                    status === "chepeast" ? "sort-active" : ""
+                  } rounded-md`}
+                >
+                  ارزان ترین
+                </div>
+                <div
+                  onClick={() => handlerSortFilter("expensivest")}
+                  className={`${
+                    status === "expensivest" ? "sort-active" : ""
+                  } rounded-md`}
+                >
+                  گران ترین
+                </div>
               </div>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mt-5">
-              <ProductBox image={"laptop-1.jpg"} />
-              <ProductBox image={"product-image3.jpg"} />
-              <ProductBox image={"laptop-2.jpg"} />
-              <ProductBox image={"laptop-3.jpg"} />
-              <ProductBox image={"laptop-4.jpg"} />
-              <ProductBox image={"laptop-5.jpg"} />
+              {filtredProduct?.length
+                ? filtredProduct?.map((product) => (
+                    <ProductBox product={product} isScore={true} />
+                  ))
+                : allProducts?.map((product) => (
+                    <ProductBox product={product} isScore={true} />
+                  ))}
             </div>
-            <Pagination />
+            <Pagination
+              count={products?.paginatedNumber}
+              page={page}
+              setPage={setPage}
+              status={status}
+            />
           </div>
         </div>
       </div>

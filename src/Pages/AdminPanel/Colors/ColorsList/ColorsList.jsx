@@ -13,7 +13,6 @@ function ColorsList() {
   const [colorId, setColorId] = useState(null);
   const pageNum = new URLSearchParams(window.location.search).get("page");
   const [page, setPage] = useState(pageNum);
-  const [msg, setMsg] = useState(null);
 
   const { data: colors } = useGetAll(page);
   const { mutateAsync: deleteColor, isLoading } = useDelete();

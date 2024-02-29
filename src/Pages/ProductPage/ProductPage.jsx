@@ -32,7 +32,6 @@ function ProductPage() {
     setActiveTumb(null);
   }, [productName]);
 
-
   return (
     <div>
       <Topbar />
@@ -146,22 +145,14 @@ function ProductPage() {
                 <div>
                   <h3 className="font-DanaDemiBold text-lg">ویژگی های کالا</h3>
                   <ul className="space-y-3 text-sm mt-3 font-DanaMedium">
-                    <li className="flex items-center gap-x-1">
-                      <span className="text-gray-500">نوع اتصال : </span>
-                      <span>با سیم</span>
-                    </li>
-                    <li className="flex items-center gap-x-1">
-                      <span className="text-gray-500">رابط ها:</span>
-                      <span>3.5 میلیمتری</span>
-                    </li>
-                    <li className="flex items-center gap-x-1">
-                      <span className="text-gray-500">مقدار رم :</span>
-                      <span>8 گیگابایت</span>
-                    </li>
-                    <li className="flex items-center gap-x-1">
-                      <span className="text-gray-500">نوع گوشی : </span>
-                      <span>استریو 2 حالته</span>
-                    </li>
+                    {productInfo?.features.slice(0, 4).map((feature) => (
+                      <li className="flex items-center gap-x-1">
+                        <span className="text-gray-500">
+                          {feature.featureName} :{" "}
+                        </span>
+                        <span>{feature.featureValue}</span>
+                      </li>
+                    ))}
                   </ul>
                 </div>
                 <div className="flex flex-col gap-y-2 md:items-end">
@@ -377,7 +368,7 @@ function ProductPage() {
                   <h3 className="font-DanaDemiBold text-base md:text-2xl">
                     مشخصات فنی
                   </h3>
-                  <FeatureList />
+                  <FeatureList features={productInfo?.features} />
                 </div>
               )}
               {optionShowModel === "نظرات" && (
