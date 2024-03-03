@@ -15,7 +15,7 @@ export default {
       container: {
         center: true,
         padding: {
-          DEFAULT: "12px",
+          DEFAULT: "15px",
         },
       },
       boxShadow: {

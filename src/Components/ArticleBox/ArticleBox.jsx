@@ -1,13 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-function ArticleBox({ image }) {
+function ArticleBox({ article }) {
   return (
     <div className="bg-white rounded-2xl shadow-lg">
-      <Link to={''}>
+      <Link to={`/article/${article.link}`}>
         <img
-          src={`/images/blog/${image}`}
-          alt="blog-4.jpg"
+          src={`http://localhost:3001/uploads/covers/${article.image}`}
+          alt={article.image}
           className="w-full rounded-2xl"
         />
       </Link>
@@ -16,17 +16,20 @@ function ArticleBox({ image }) {
           <svg className="w-5 h-5">
             <use href="#tag"></use>
           </svg>
-          <span>آموزشی</span>
+          <span>{article.category.title}</span>
         </div>
         <span className="flex items-center gap-x-1.5">
           <svg className="w-5 h-5">
             <use href="#clock"></use>
           </svg>
-          <span className="font-DanaDemiBold text-xs mt-1">1 خرداد 1402</span>
+          <span className="font-DanaDemiBold text-xs mt-1">{article.date}</span>
         </span>
       </div>
-      <Link to={''} className="font-DanaDemiBold line-clamp-1 mt-1.5 p-2.5">
-        لپ تاپ مک بوک پرو چیست ؟ خوبه ؟
+      <Link
+        to={`/article/${article.link}`}
+        className="font-DanaDemiBold line-clamp-1 mt-1.5 p-2.5"
+      >
+        {article.title}
       </Link>
     </div>
   );

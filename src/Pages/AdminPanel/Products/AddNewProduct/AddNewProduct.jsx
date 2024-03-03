@@ -1,6 +1,6 @@
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
-import React, { useEffect, useId, useState } from "react";
+import React, { useId, useState } from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Link } from "react-router-dom";
 import PageTitle from "../../../../Components/AdminPanel/PageTitle/PageTitle";
@@ -11,6 +11,7 @@ import useCreate from "../../../../Hooks/AdminPanel/Product/useCreate";
 import useGetAll from "../../../../Hooks/AdminPanel/Category/useGetAll";
 import StatusModal from "../../../../Components/SuccessModal/SuccessModal";
 import ErrorModal from "../../../../Components/SuccessModal/SuccessModal";
+import Button from "../../../../Components/AdminPanel/Button/Button";
 
 function AddNewProduct() {
   const [productBody, setProductBody] = useState("");
@@ -42,6 +43,7 @@ function AddNewProduct() {
   };
 
   const addNewProductHandler = async (data) => {
+    console.log(data);
     if (
       images !== "" &&
       data.category !== "-1" &&
@@ -92,7 +94,18 @@ function AddNewProduct() {
     setAllImages([]);
   };
 
-  const deleteImage = (id) => {};
+  const uploadConfig = {
+    ckfinder: {
+      uploadUrl: "http://localhost:3001/upload",
+      withCredentials: true,
+      headers: {
+        "X-CSRF-TOKEN": "CSFR-TOKEN",
+        Authorization: `Bearer <JSON Web Token>`,
+      },
+    },
+    language: "fa",
+    direction: "rtl",
+  };
 
   return (
     <>
@@ -195,6 +208,7 @@ function AddNewProduct() {
           <div>
             <CKEditor
               editor={ClassicEditor}
+              config={uploadConfig}
               data={productBody}
               onChange={(event, editor) => {
                 const data = editor.getData();
@@ -209,16 +223,7 @@ function AddNewProduct() {
           </label>
           <div>
             <CKEditor
-              config={{
-                ckfinder: {
-                  uploadUrl: "http://localhost:3001/upload",
-                  withCredentials: true,
-                  headers: {
-                    "X-CSRF-TOKEN": "CSFR-TOKEN",
-                    Authorization: `Bearer <JSON Web Token>`,
-                  },
-                },
-              }}
+              config={uploadConfig}
               editor={ClassicEditor}
               data={productFeature}
               onChange={(event, editor) => {
@@ -279,9 +284,7 @@ function AddNewProduct() {
           </div>
         )}
         <div className="flex items-center justify-center md:justify-start flex-wrap gap-x-5 ">
-          <button className="bg-blue-600  font-Lalezar p-2 rounded-md text-white text-sm md:text-xl shadow-blue mt-6">
-            ایجاد محصول
-          </button>
+          <Button title={'ایجاد محصول'} isLoading={isLoading} />
           <Link
             to={"advance"}
             className="bg-amber-500  font-Lalezar p-2 rounded-md text-white text-sm md:text-xl shadow mt-6"

@@ -9,10 +9,11 @@ function Input({
   name,
   isTextArea,
   value,
+  className
 }) {
   return isTextArea ? (
     <>
-      <div className="relative w-full">
+      <div className={`relative w-full ${className && className}`}>
         <div className="flex items-center justify-between bg-gray-100 relative py-2 px-3 rounded-lg">
           <textarea
             type={type}

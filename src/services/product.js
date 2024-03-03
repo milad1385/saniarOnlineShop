@@ -78,6 +78,16 @@ const deleteProduct = async (id) => {
     return err;
   }
 };
+
+const getProductFromCategory = async (catName , page) => {
+  console.log(catName);
+  try {
+    const res = await fetch(`${baseURL}/category/${catName}?page=${page}`);
+    return await res.json();
+  } catch (err) {
+    return err;
+  }
+};
 export {
   createNewProduct,
   getAllProducts,
@@ -85,5 +95,6 @@ export {
   getSameProducts,
   getProductInfo,
   getAllProductsWithOutPagination,
-  deleteProduct
+  deleteProduct,
+  getProductFromCategory
 };

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Topbar from "../../Components/Topbar/Topbar";
 import Navbar from "../../Components/Navbar/Navbar";
 import Footer from "../../Components/Footer/Footer";
@@ -8,11 +8,19 @@ import LastBlogBox from "../../Components/LastBlogBox/LastBlogBox";
 import PageTitle from "../../Components/UserPanel/PageTitle/PageTitle";
 import ArticleCommentBox from "../../Components/ArticleCommentBox/ArticleCommentBox";
 import ArticleComment from "../../Components/ArticleComments/ArticleComment";
-import ArticleBox from "../../Components/ArticleBox/ArticleBox";
 import TitleCat from "../../Components/TitleCat/TitleCat";
 import RelatedArticle from "../../Components/RelatedArticle/RelatedArticle";
+import { useParams } from "react-router-dom";
+import useGetMain from "../../Hooks/AdminPanel/article/useGetMain";
+import DOMPurify from "dompurify";
 
 function ArticlePage() {
+  const { articleName } = useParams();
+  const { data: articleInfo, isLoading } = useGetMain(articleName);
+
+  useEffect(() => {
+    window.scroll(0, 0);
+  }, []);
   return (
     <>
       <Topbar />
@@ -22,28 +30,28 @@ function ArticlePage() {
           links={[
             { id: 1, name: "خانه", to: "/" },
             { id: 2, name: "بلاگ", to: "/blog" },
-            { id: 3, name: "مقاله فلان", to: "/" },
+            { id: 3, name: `${articleInfo?.title}`, to: "/" },
           ]}
         />
         <div className="flex gap-6 mt-8 flex-col md:flex-row">
           <div className="w-full space-y-5">
             <div className="bg-white rounded-md shadow p-4">
-              <PageTitle title={"عنوان مطلب وبلاگ"} />
+              <PageTitle title={articleInfo?.title} />
               <div className="text-zinc-700 mt-3 text-xs md:text-sm font-DanaMedium flex items-center gap-x-3">
                 <div className="flex items-center gap-x-2">
                   <div className="w-11 h-11 bg-gray-100 rounded-full shadow flex-center shrink-0">
                     <img
-                      src="/images/user.png"
+                      src={`http://localhost:3001/uploads/covers/${articleInfo?.creator.image}`}
                       className="w-10 h-10 rounded-full"
                     />
                   </div>
-                  <span>میلاد سلامیان</span>
+                  <span>{articleInfo?.creator.name}</span>
                 </div>
                 <div className="flex items-center gap-x-1">
                   <svg className="w-5 h-5 ">
                     <use href="#clock"></use>
                   </svg>
-                  <span>19 خرداد 1402</span>
+                  <span>{articleInfo?.date}</span>
                 </div>
                 <div className="flex items-center gap-x-1">
                   <svg className="w-5 h-5 ">
@@ -56,40 +64,18 @@ function ArticlePage() {
                     <use href="#eye"></use>
                   </svg>
                   <span className="flex gap-x-1">
-                    5 دقیقه{" "}
+                    {articleInfo?.readingTime}
                     <span className="hidden md:block"> زمان مطالعه</span>
                   </span>
                 </div>
               </div>
               {/* start main section */}
-              <section className="article-content mt-8">
-                <h3>کیفیت ساخت لپ تاپ ایسوس تاف</h3>
-                <p>
-                  به عنوان گوشی‌ای که قیمت خیلی زیادی ندارد، باید به این موضوع
-                  اشاره کنیم که داخل بسته بندی Redmi 9A آیتم‌های خاصی دیده نمی
-                  شود. دفترچه راهنما، ابزار خارج کردن سیم کارت و شارژ ۱۰ واتی را
-                  به همراه کابل USB مشاهده می‌کنید. این گوشی شیائومی در ابعاد
-                  ۱۶۴.۹ در ۷۷.۱ در ۹ میلی متر ساخته شده و وزن آن هم ۱۹۶ گرم است.
-                  در حال کلی باید به این موضوع اشاره کنیم که این گوشی خیلی خوب
-                  در دست قرار میگیرد. قاب این گوشی بافت جالب توجهی دارد و به
-                  همین دلیل خیلی خوب داخل دست قرار میگیرد. البته باید به این
-                  موضوع اشاره کنیم که قاب پشتی گوشی خیلی زود اثر انگشت را به خود
-                  جلب می‌کند. قاب پشتی که به صورت مات طراحی شده میزبان
-                  دوربین‌های پشت است و به جز دوربین‌ها چیزی روی آن قرار نگرفته
-                  است. به همین دلیل گوشی بسیار ساده به نظر می‌رسد. زمانی که به
-                  گوشی نگاه می‌کنید، متوجه می‌شوید که صفحه نمایش آن حاشیه‌های
-                  بسبتا بزرگی دارد. البته که با توجه به قیمت ارزان این گوشی
-                  نیاید انتظار زیادی از این محصول داشته باشید. روی صفحه نمایش
-                  ناچ قطره‌ ای قرار گرفته که داخل آن دوربین سلفی دیده می‌شود.
-                  روی لبه بالای گوشی جک ۳.۵ میلی صدا قرار گرفته و روی لبه پایین
-                  هم پورت micro-USB و اسپیکر گوشی و میکروفن را مشاهده می‌کنید.
-                  خیلی دوست داشتیم که روی این گوشی پورت USB C مشاهده می کردیم.
-                  روی لبه سمت چپ گوشی محل قرار گرفتن سیم کارت و کارت حافظه را
-                  مشاهده می‌کنید. همچنین باید به این موضوع اشاره کنیم که این
-                  گوشی در سه رنگ آبی و سبز و مشکی راهی بازار شده است.
-                </p>
-                <img src="/images/image.jpg" alt="" className="rounded-md" />
-              </section>
+              <section
+                className="article-content mt-8"
+                dangerouslySetInnerHTML={{
+                  __html: DOMPurify.sanitize(articleInfo?.desc),
+                }}
+              ></section>
             </div>
             <div className="bg-white rounded-md shadow p-4">
               <PageTitle title={"ارسال کامنت به مقاله فلان"} icon={"plane"} />
@@ -118,7 +104,7 @@ function ArticlePage() {
           <TitleCat link={""} main={"مطالب مرتبط"} desc={" وبلاگ"} />
         </div>
       </div>
-      <RelatedArticle />
+      {/* <RelatedArticle /> */}
       <Footer />
       <FooterMenu />
     </>

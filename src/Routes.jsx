@@ -11,8 +11,6 @@ import ArticleCategory from "./Pages/ArticleCategory/ArticleCategory";
 import Login from "./Pages/Login/Login";
 import Register from "./Pages/Register/Register";
 import ContactUs from "./Pages/ContactUs/ContactUs";
-// import ProductsPage from "./Pages/ProductsPage/ProductsPage";
-import ProductsCategory from "./Pages/ProductsCategory/ProductsCategory";
 import NotFound from "./Pages/NotFound/NotFound";
 import Tickets from "./Pages/UserPanel/Tickets/Tickets";
 import AnswerTicket from "./Pages/UserPanel/AnswerTicket/AnswerTicket";
@@ -57,6 +55,9 @@ import Loader from "./Components/Loader/Loader";
 const ProductPage = lazy(() => import("./Pages/ProductPage/ProductPage"));
 const Index = lazy(() => import("./Pages/Index/Index"));
 const ProductsPage = lazy(() => import("./Pages/ProductsPage/ProductsPage"));
+const ProductsCategory = lazy(() =>
+  import("./Pages/ProductsCategory/ProductsCategory")
+);
 
 const routes = [
   {
@@ -72,7 +73,7 @@ const routes = [
     path: "/product/:productName",
     element: (
       <Suspense fallback={<Loader />}>
-        <ProductPage />{" "}
+        <ProductPage />
       </Suspense>
     ),
   },
@@ -90,12 +91,19 @@ const routes = [
   {
     path: "/products",
     element: (
-      <Suspense fallback={<Loader/>}>
+      <Suspense fallback={<Loader />}>
         <ProductsPage />
       </Suspense>
     ),
   },
-  { path: "/category-products/:categoryName", element: <ProductsCategory /> },
+  {
+    path: "/category-products/:categoryName",
+    element: (
+      <Suspense fallback={<Loader />}>
+        <ProductsCategory />
+      </Suspense>
+    ),
+  },
   { path: "/order/card", element: <Card /> },
   { path: "/order/detail", element: <DetailPay /> },
   { path: "/order/successfull", element: <SuccessFullPay /> },

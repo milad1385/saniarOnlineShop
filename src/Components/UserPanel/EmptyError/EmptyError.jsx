@@ -1,11 +1,15 @@
-import React from 'react'
+import React from "react";
 
-function EmptyError({msg}) {
+function EmptyError({ msg, className }) {
   return (
-    <div className='bg-red-600 text-white flex-center py-7 w-full text-base md:text-2xl rounded-md shadow font-DanaDemiBold'>
-        {msg}
+    <div
+      className={`bg-red-600 text-white flex-center py-7 w-full text-base md:text-2xl rounded-md shadow font-DanaDemiBold ${
+        className && className
+      }`}
+    >
+      {msg}
     </div>
-  )
+  );
 }
 
-export default EmptyError
+export default EmptyError;

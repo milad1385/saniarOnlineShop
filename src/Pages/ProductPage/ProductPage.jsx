@@ -30,7 +30,7 @@ function ProductPage() {
   useEffect(() => {
     window.scroll(0, 0);
     setActiveTumb(null);
-  }, [productName]);
+  }, [productName ]);
 
   return (
     <div>
@@ -113,7 +113,7 @@ function ProductPage() {
                   {productInfo?.productInfo.images.map((slider) => (
                     <SwiperSlide>
                       {" "}
-                      <div className="border border-gray-200 w-[105px] md:w-[107px] py-[6px] rounded-md">
+                      <div className="border border-gray-200 w-[95px] mx-auto md:mx-0 md:w-[107px] py-[6px] rounded-md">
                         <img
                           src={`http://localhost:3001/uploads/covers/${slider}`}
                           className="w-[68px] mx-auto slide-image transition-all"
@@ -233,7 +233,7 @@ function ProductPage() {
                     <svg className="w-6 h-6">
                       <use href="#shop-bag"></use>
                     </svg>
-                    خرید کالا
+                    خرید <span className="hidden md:block">کالا</span>
                   </button>
                   <div className="flex items-center gap-x-2">
                     <div className="w-10 h-[30px] bg-blue-600 text-white flex-center rounded-r-full font-DanaMedium shadow-blue cursor-default md:cursor-pointer">
@@ -273,27 +273,27 @@ function ProductPage() {
           <div className="bg-white rounded-md shadow md:ml-5   w-full py-5 px-4">
             <div className="flex items-center gap-x-6 border-b-[1.5px] border-b-gray-200 child:pb-4 child:cursor-pointer font-DanaMedium">
               <div
-                className={`text-xs font-DanaDemiBold md:text-base${
+                className={`text-xs flex items-center gap-x-1 font-DanaDemiBold md:text-base${
                   optionShowModel === "توضیحات کالا"
                     ? "text-blue-600 border-b-2 border-b-blue-600 text-xs font-DanaDemiBold md:text-base"
                     : ""
                 }`}
-                onClick={(e) => setOptionShowModel(e.target.innerHTML)}
+                onClick={(e) => setOptionShowModel("توضیحات کالا")}
               >
-                توضیحات کالا
+                توضیحات <span className="hidden md:block">کالا</span>
               </div>
               <div
-                onClick={(e) => setOptionShowModel(e.target.innerHTML)}
-                className={`text-xs font-DanaDemiBold md:text-base${
+                onClick={(e) => setOptionShowModel("مشخصات کالا")}
+                className={`text-xs flex items-center gap-x-1 font-DanaDemiBold md:text-base${
                   optionShowModel === "مشخصات کالا"
                     ? "text-blue-600 border-b-2 border-b-blue-600 text-xs font-DanaDemiBold md:text-base"
                     : ""
                 }`}
               >
-                مشخصات کالا
+                مشخصات <span className="hidden md:block">کالا</span>
               </div>
               <div
-                onClick={(e) => setOptionShowModel(e.target.innerHTML)}
+                onClick={(e) => setOptionShowModel("توضیحات تکمیلی")}
                 className={`text-xs font-DanaDemiBold md:text-base${
                   optionShowModel === "توضیحات تکمیلی"
                     ? "text-blue-600 border-b-2 border-b-blue-600 text-xs font-DanaDemiBold md:text-base"

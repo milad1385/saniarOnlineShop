@@ -1,7 +1,18 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Table from "../../../../Components/AdminPanel/Table/Table";
 import { Link } from "react-router-dom";
+import useGetAll from "../../../../Hooks/AdminPanel/article/useGetAll";
+import { getSearchParam } from "../../../../Utils/Funcs/utils";
+import Pagination from "../../../../Components/Pagination/Pagination";
 function ArticlesList() {
+  const pageNum = getSearchParam("page");
+  const [page, setPage] = useState(pageNum);
+  const { data: articles, isLoading } = useGetAll(page);
+
+  useEffect(() => {
+    setPage(pageNum || 1);
+  }, []);
+
   return (
     <div className="pb-6">
       <Table title={"لیست"} main={"مقاله ها"}>
@@ -20,57 +31,54 @@ function ArticlesList() {
             </tr>
           </thead>
           <tbody className="text-sm md:text-base">
-            <tr className="child:p-4 text-center font-DanaMedium">
-              <td className="bg-red-600 text-white">1</td>
-              <td>ری اکت یا ویو جی اس ؟</td>
-              <td>react-vue</td>
-              <td>تکنولوژی</td>
-              <td>8 دقیقه</td>
-              <td>پیش نویس</td>
-              <td>
-                <Link to={'draft'}>
-                  <button className="bg-amber-500 text-white w-16 py-1 text-base md:text-lg rounded-md font-Lalezar">
-                    مشاهده
+            {articles?.articles.map((article, index) => (
+              <tr className="child:p-4 text-center font-DanaMedium">
+                <td
+                  className={` text-white ${
+                    article.isActive ? "bg-green-600" : "bg-red-600"
+                  }`}
+                >
+                  {index + 1}
+                </td>
+                <td>{article.title}</td>
+                <td>{article.link}</td>
+                <td>{article.category.title}</td>
+                <td>{article.readingTime}</td>
+                <td>{article.isActive === 1 ? "منتشر شده" : "منتشر نشده"}</td>
+                <td>
+                  {article.isActive ? (
+                    <svg className="w-6 h-6 mx-auto">
+                      <use href="#check-mark"></use>
+                    </svg>
+                  ) : (
+                    <Link
+                      to={"draft"}
+                      className="bg-yellow-500 text-white w-16 py-1 text-base md:text-lg rounded-md font-Lalezar"
+                    >
+                      مشاهده
+                    </Link>
+                  )}
+                </td>
+                <td>
+                  <button className="bg-red-600 text-white w-16 py-1 text-base md:text-lg rounded-md font-Lalezar">
+                    حذف
                   </button>
-                </Link>
-              </td>
-              <td>
-                <button className="bg-red-600 text-white w-16 py-1 text-base md:text-lg rounded-md font-Lalezar">
-                  حذف
-                </button>
-              </td>
-              <td>
-                <button className="bg-blue-600 text-white w-16 py-1 text-base md:text-lg rounded-md font-Lalezar">
-                  ویرایش
-                </button>
-              </td>
-            </tr>
-            <tr className="child:p-4 text-center font-DanaMedium">
-              <td className="bg-green-600 text-white">2</td>
-              <td>آیفون 15 خوبه یا نه ؟</td>
-              <td>iphone-15</td>
-              <td>موبایل</td>
-              <td>12 دقیقه</td>
-              <td>منتشر شده</td>
-              <td>
-                <svg className="w-6 h-6 mx-auto">
-                  <use href="#check-mark"></use>
-                </svg>
-              </td>
-              <td>
-                <button className="bg-red-600 text-white w-16 py-1 text-base md:text-lg rounded-md font-Lalezar">
-                  حذف
-                </button>
-              </td>
-              <td>
-                <button className="bg-blue-600 text-white w-16 py-1 text-base md:text-lg rounded-md font-Lalezar">
-                  ویرایش
-                </button>
-              </td>
-            </tr>
+                </td>
+                <td>
+                  <button className="bg-blue-600 text-white w-16 py-1 text-base md:text-lg rounded-md font-Lalezar">
+                    ویرایش
+                  </button>
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </Table>
+      <Pagination
+        count={articles?.paginatedNumber}
+        page={page}
+        setPage={setPage}
+      />
     </div>
   );
 }

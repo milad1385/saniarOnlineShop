@@ -95,7 +95,6 @@ function ProductBox({ product, isScore }) {
             {product.off !== 0 && (
               <span className="mt-2.5 line-through text-gray-400">
                 {product.price.toLocaleString("fa")}{" "}
-                <span className="tracking-tighter ml-1.5">تومان</span>
               </span>
             )}
           </div>

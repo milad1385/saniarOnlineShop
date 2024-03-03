@@ -11,8 +11,9 @@ import Loader from "../../Components/Loader/Loader";
 import useGetAll from "../../Hooks/AdminPanel/Product/useGetAll";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import useGetAllPro from "../../Hooks/AdminPanel/Product/useGetAllPro";
+import { getAllSearchParam, getSearchParam } from "../../Utils/Funcs/utils";
 function ProductsPage() {
-  const orderType = new URLSearchParams(window.location.search).get("order");
+  const orderType = getSearchParam("order");
   const [status, setStatus] = useState(orderType || "default");
   const [filtredProduct, setFiltredProduct] = useState([]);
   const [allProducts, setAllProducts] = useState([]);
@@ -51,15 +52,11 @@ function ProductsPage() {
   ]);
   const [isShowFilterButton, setIsShowFilterButton] = useState(false);
 
-  const pageNum = new URLSearchParams(window.location.search).get("page");
+  const pageNum = getSearchParam("page");
   const [page, setPage] = useState(pageNum);
-  const queryStrings = new URLSearchParams(window.location.search).getAll(
-    "category"
-  );
-  const startPrice = new URLSearchParams(window.location.search).get(
-    "startPrice"
-  );
-  const endPrice = new URLSearchParams(window.location.search).get("endPrice");
+  const queryStrings = getAllSearchParam("category");
+  const startPrice = getSearchParam("startPrice");
+  const endPrice = getSearchParam("endPrice");
   const [value, setValue] = useState([
     startPrice ? startPrice : 50000,
     endPrice ? endPrice : 70000000,
@@ -122,15 +119,9 @@ function ProductsPage() {
   }, [status, products]);
 
   useEffect(() => {
-    const categories = new URLSearchParams(window.location.search).getAll(
-      "category"
-    );
-    const startPrice = new URLSearchParams(window.location.search).get(
-      "startPrice"
-    );
-    const endPrice = new URLSearchParams(window.location.search).get(
-      "endPrice"
-    );
+    const categories = getAllSearchParam("category");
+    const startPrice = getSearchParam("startPrice");
+    const endPrice = getSearchParam("endPrice");
 
     if (categories.length) {
       getFiltredProduct(categories, startPrice, endPrice);
@@ -159,15 +150,9 @@ function ProductsPage() {
   };
 
   const handleFilterProducts = () => {
-    const startPrice = new URLSearchParams(window.location.search).get(
-      "startPrice"
-    );
-    const endPrice = new URLSearchParams(window.location.search).get(
-      "endPrice"
-    );
-    const categories = new URLSearchParams(window.location.search).getAll(
-      "category"
-    );
+    const categories = getAllSearchParam("category");
+    const startPrice = getSearchParam("startPrice");
+    const endPrice = getSearchParam("endPrice");
 
     if (startPrice && endPrice && categories.length) {
       getFiltredProduct(categories, startPrice, endPrice);

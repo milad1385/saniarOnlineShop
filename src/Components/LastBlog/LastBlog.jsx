@@ -4,9 +4,11 @@ import "swiper/css";
 import "swiper/css/pagination";
 import { Pagination, Autoplay, Navigation } from "swiper/modules";
 import ArticleBox from "../ArticleBox/ArticleBox";
+import useGetWithOutPagination from "../../Hooks/AdminPanel/article/useGetWithOutPagination";
 
 function LastBlog({ isBlog }) {
   const [swipe, setSwipe] = useState(null);
+  const { data: articles, isLoading } = useGetWithOutPagination();
   return (
     <div className={`${isBlog ? "py-2" : "py-10"}`}>
       <div className="blog relative">
@@ -42,27 +44,11 @@ function LastBlog({ isBlog }) {
               },
             }}
           >
-            <SwiperSlide>
-              <ArticleBox image={"blog-4.jpg"} />
-            </SwiperSlide>
-            <SwiperSlide>
-              <ArticleBox image={"blog-5.jpg"} />
-            </SwiperSlide>
-            <SwiperSlide>
-              <ArticleBox image={"blog-6.jpg"} />
-            </SwiperSlide>
-            <SwiperSlide>
-              <ArticleBox image={"blog-7.jpg"} />
-            </SwiperSlide>
-            <SwiperSlide>
-              <ArticleBox image={"blog-8.jpg"} />
-            </SwiperSlide>
-            <SwiperSlide>
-              <ArticleBox image={"blog-6.jpg"} />
-            </SwiperSlide>
-            <SwiperSlide>
-              <ArticleBox image={"blog-4.jpg"} />
-            </SwiperSlide>
+            {articles?.map((article) => (
+              <SwiperSlide>
+                <ArticleBox article={article} />
+              </SwiperSlide>
+            ))}
           </Swiper>
         </div>
         <div className="flex items-center justify-center relative mt-12 gap-x-2.5">

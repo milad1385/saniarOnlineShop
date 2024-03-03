@@ -1,7 +1,6 @@
 import React from "react";
 import Header from "../../Components/Header/Header";
 import Categories from "../../Components/Categories/Categories";
-import CategoryCard from "../../Components/CategoryCard/CategoryCard";
 import WonderFullSlides from "../../Components/WonderFullSlides/WonderFullSlides";
 import TopSaleProducts from "../../Components/TopSaleProducts/TopSaleProducts";
 import TitleCat from "../../Components/TitleCat/TitleCat";

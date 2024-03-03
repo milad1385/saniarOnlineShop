@@ -6,17 +6,17 @@ import StatusModal from "../../../../Components/SuccessModal/SuccessModal";
 import DeleteModal from "../../../../Components/DeleteModal/DeleteModal";
 import useDelete from "../../../../Hooks/AdminPanel/Product/useDelete";
 import Loader from "../../../../Components/Loader/Loader";
+import { getSearchParam } from "../../../../Utils/Funcs/utils";
 function ProductList() {
   const [isShowDeleteModal, setIsShowDeleteModal] = useState(false);
   const [isShowSuccessModal, setIsShowSuccessModal] = useState(false);
   const [isShowDetailModal, setIsShowDetailModal] = useState(false);
   const [msg, setMsg] = useState("");
   const [productId, setProductId] = useState(null);
-  const pageNum = new URLSearchParams(window.location.search).get("page");
+  const pageNum = getSearchParam("page");
   const [page, setPage] = useState(pageNum);
   useEffect(() => {
     setPage(pageNum || 1);
-    console.log(pageNum);
   }, []);
 
   const { data: products, isLoading } = useGetAll(page);
