@@ -6,8 +6,13 @@ import Footer from "../../Components/Footer/Footer";
 import BreadCrumb from "../../Components/BreadCrumb/BreadCrumb";
 import ProductBox from "../../Components/ProductBox/ProductBox";
 import Pagination from "../../Components/Pagination/Pagination";
+import { useParams } from "react-router-dom";
+import useSearch from "../../Hooks/AdminPanel/Product/useSearch";
 
 function SearchPage() {
+  const { value } = useParams();
+  const { data: seachedProduct, isLoading } = useSearch(value);
+  console.log(seachedProduct);
   return (
     <>
       <Topbar />
@@ -16,8 +21,8 @@ function SearchPage() {
         <BreadCrumb
           links={[
             { id: 1, name: "خانه", to: "/" },
-            { id: 2, name: "فروشگاه", to: "/" },
-            { id: 3, name: "لپ تاپ تاف", to: "/" },
+            { id: 2, name: "فروشگاه", to: "/products" },
+            { id: 3, name: `${value}`, to: `/search/${value}` },
           ]}
         />
         <div>
@@ -26,21 +31,14 @@ function SearchPage() {
               <use href="#magni-glass"></use>
             </svg>
             <p className="text-base md:text-xl lg:text-2xl font-MorabbaBold">
-              محصول مورد جستجو :{" "}
-              <span className="text-blue-600">لپ تاپ گیمینگ ایسوس</span>
+              محصول مورد جستجو : <span className="text-blue-600">{value}</span>
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 md:gap-x-7 mt-7">
-            <ProductBox image={"product-image3.jpg"} />
-            <ProductBox image={"product-image4.jpg"} />
-            <ProductBox image={"product-image6.jpg"} />
-            <ProductBox image={"television2.jpg"} />
-            <ProductBox image={"laptop-4.jpg"} />
-            <ProductBox image={"laptop-1.jpg"} />
-            <ProductBox image={"laptop-2.jpg"} />
-            <ProductBox image={"laptop-5.jpg"} />
+            {seachedProduct?.map((product) => (
+              <ProductBox product={product} />
+            ))}
           </div>
-          <Pagination/>
         </div>
       </div>
       <Footer />

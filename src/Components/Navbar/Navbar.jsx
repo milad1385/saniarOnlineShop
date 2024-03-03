@@ -51,7 +51,7 @@ function Navbar() {
   ];
   return (
     <>
-      <div className="hidden md:block shadow-lg p-5 bg-white sticky -top-1 z-50">
+      <div className="hidden md:block shadow-lg p-5 bg-white sticky -top-1 z-30">
         <div className={`flex items-center justify-between container`}>
           <div>
             <ul className="flex items-center gap-x-5 hover:child:text-blue-600">

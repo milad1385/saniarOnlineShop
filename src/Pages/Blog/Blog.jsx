@@ -9,8 +9,10 @@ import Footer from "../../Components/Footer/Footer";
 import FooterMenu from "../../Components/FooterMenu/FooterMenu";
 import LastVedio from "../../Components/LastVedio/LastVedio";
 import ArticleBox from "../../Components/ArticleBox/ArticleBox";
+import useGetWithOutPagination from "../../Hooks/AdminPanel/article/useGetWithOutPagination";
 
 function Blog() {
+  const { data: articles, isLoading } = useGetWithOutPagination();
   return (
     <div>
       <Topbar />
@@ -123,7 +125,9 @@ function Blog() {
                     انتخاب هارد اکسنترنال مناسب{" "}
                   </h3>
                   <div className="flex items-center justify-between mt-2">
-                    <span className="text-sm font-DanaDemiBold">9 مرداد 1402</span>
+                    <span className="text-sm font-DanaDemiBold">
+                      9 مرداد 1402
+                    </span>
                     <svg className="w-6 h-6 text-blue-600">
                       <use href="#left-arrow"></use>
                     </svg>
@@ -140,7 +144,9 @@ function Blog() {
                     بررسی سه پرچمدار شرکت شیائومی{" "}
                   </h3>
                   <div className="flex items-center justify-between mt-2">
-                    <span className="text-sm font-DanaDemiBold">9 مرداد 1402</span>
+                    <span className="text-sm font-DanaDemiBold">
+                      9 مرداد 1402
+                    </span>
                     <svg className="w-6 h-6 text-blue-600">
                       <use href="#left-arrow"></use>
                     </svg>
@@ -157,7 +163,9 @@ function Blog() {
                     انتخاب هارد اکسنترنال مناسب{" "}
                   </h3>
                   <div className="flex items-center justify-between mt-2">
-                    <span className="text-sm font-DanaDemiBold">9 مرداد 1402</span>
+                    <span className="text-sm font-DanaDemiBold">
+                      9 مرداد 1402
+                    </span>
                     <svg className="w-6 h-6 text-blue-600">
                       <use href="#left-arrow"></use>
                     </svg>
@@ -198,7 +206,9 @@ function Blog() {
                   انتخاب هارد اکسنترنال مناسب{" "}
                 </h3>
                 <div className="flex items-center justify-between mt-2">
-                  <span className="text-sm font-DanaDemiBold">9 مرداد 1402</span>
+                  <span className="text-sm font-DanaDemiBold">
+                    9 مرداد 1402
+                  </span>
                 </div>
               </a>
             </div>
@@ -215,7 +225,9 @@ function Blog() {
                   بررسی سه پرچمدار شرکت شیائومی{" "}
                 </h3>
                 <div className="flex items-center justify-between mt-2">
-                  <span className="text-sm font-DanaDemiBold">9 مرداد 1402</span>
+                  <span className="text-sm font-DanaDemiBold">
+                    9 مرداد 1402
+                  </span>
                 </div>
               </a>
             </div>
@@ -232,7 +244,9 @@ function Blog() {
                   انتخاب هارد اکسنترنال مناسب{" "}
                 </h3>
                 <div className="flex items-center justify-between mt-2">
-                  <span className="text-sm font-DanaDemiBold">9 مرداد 1402</span>
+                  <span className="text-sm font-DanaDemiBold">
+                    9 مرداد 1402
+                  </span>
                 </div>
               </a>
             </div>
@@ -251,7 +265,9 @@ function Blog() {
                   انتخاب هارد اکسنترنال مناسب{" "}
                 </h3>
                 <div className="flex items-center justify-between mt-2">
-                  <span className="text-sm font-DanaDemiBold">9 مرداد 1402</span>
+                  <span className="text-sm font-DanaDemiBold">
+                    9 مرداد 1402
+                  </span>
                 </div>
               </a>
             </div>
@@ -268,7 +284,9 @@ function Blog() {
                   انتخاب هارد اکسنترنال مناسب{" "}
                 </h3>
                 <div className="flex items-center justify-between mt-2">
-                  <span className="text-sm font-DanaDemiBold">9 مرداد 1402</span>
+                  <span className="text-sm font-DanaDemiBold">
+                    9 مرداد 1402
+                  </span>
                 </div>
               </a>
             </div>
@@ -285,7 +303,9 @@ function Blog() {
                   انتخاب هارد اکسنترنال مناسب{" "}
                 </h3>
                 <div className="flex items-center justify-between mt-2">
-                  <span className="text-sm font-DanaDemiBold">9 مرداد 1402</span>
+                  <span className="text-sm font-DanaDemiBold">
+                    9 مرداد 1402
+                  </span>
                 </div>
               </a>
             </div>
@@ -295,14 +315,9 @@ function Blog() {
       <div className="container py-5">
         <TitleCat link={""} main={"آخرین مطالب"} desc={" وبلاگ"} />
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mt-6">
-          <ArticleBox image={"blog-4.jpg"} />
-          <ArticleBox image={"blog-5.jpg"} />
-          <ArticleBox image={"blog-6.jpg"} />
-          <ArticleBox image={"blog-7.jpg"} />
-          <ArticleBox image={"blog-8.jpg"} />
-          <ArticleBox image={"blog-4.jpg"} />
-          <ArticleBox image={"blog-5.jpg"} />
-          <ArticleBox image={"blog-6.jpg"} />
+          {articles?.map((article) => (
+            <ArticleBox article={article} key={crypto.randomUUID()} />
+          ))}
         </div>
       </div>
       <Footer />

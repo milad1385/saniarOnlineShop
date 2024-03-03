@@ -79,10 +79,19 @@ const deleteProduct = async (id) => {
   }
 };
 
-const getProductFromCategory = async (catName , page) => {
+const getProductFromCategory = async (catName, page) => {
   console.log(catName);
   try {
     const res = await fetch(`${baseURL}/category/${catName}?page=${page}`);
+    return await res.json();
+  } catch (err) {
+    return err;
+  }
+};
+
+const searchProduct = async (searchValue) => {
+  try {
+    const res = await fetch(`${baseURL}/search/${searchValue}`);
     return await res.json();
   } catch (err) {
     return err;
@@ -96,5 +105,6 @@ export {
   getProductInfo,
   getAllProductsWithOutPagination,
   deleteProduct,
-  getProductFromCategory
+  getProductFromCategory,
+  searchProduct,
 };

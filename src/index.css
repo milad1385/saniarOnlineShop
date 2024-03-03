@@ -203,11 +203,11 @@
     @apply font-DanaDemiBold text-lg md:text-2xl;
   }
   .article-content p {
-    @apply text-gray-500 text-sm/[28px] md:text-base/[32px] mt-4;
+    @apply text-gray-500 text-sm/[28px] md:text-base/[32px];
   }
 
   .article-content img {
-    @apply w-[800px] mx-auto mt-7 rounded-md;
+    @apply w-[500px] mx-auto mt-7 rounded-md;
   }
 
   .article-content .table {

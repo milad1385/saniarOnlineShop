@@ -1,13 +1,51 @@
-import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import React, { useContext, useEffect, useRef, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { AppContext } from "../../App";
+import useGetAllPro from "../../Hooks/AdminPanel/Product/useGetAllPro";
 
 function Topbar() {
   const { isLogin, userInfo } = useContext(AppContext);
+  const [search, setSearch] = useState("");
+  const [allProducts, setAllProducts] = useState([]);
+  const [isShowSearch, setIsShowSearch] = useState(false);
+  const [searchedProduct, setSearchedProduct] = useState([]);
+  const navigate = useNavigate();
+  const overlayRef = useRef(null);
+
+  const { data: products } = useGetAllPro();
+
+  useEffect(() => {
+    setAllProducts(products);
+    const hideOverlayHandler = (e) => {
+      if (e.target.id === "overlay") {
+        overlayRef.current.classList.add("hide-menu");
+        setSearch("");
+        setIsShowSearch(false);
+      }
+    };
+
+    document.addEventListener("click", hideOverlayHandler);
+
+    return () => document.removeEventListener("click", hideOverlayHandler);
+  }, [products]);
+
+  const searchHandler = (e) => {
+    setSearch(e.target.value);
+    if (e.target.value) {
+      setIsShowSearch(true);
+      const allProductsCopy = allProducts.slice();
+      const searchedProducts = allProductsCopy.filter((product) =>
+        product.title.toLowerCase().includes(e.target.value.toLowerCase())
+      );
+      setSearchedProduct(searchedProducts);
+    } else {
+      setIsShowSearch(false);
+    }
+  };
   return (
-    <div className="hidden md:block shadow-lg pb-1 bg-white relative z-40">
+    <div className="hidden md:block  pb-1 bg-white relative z-40">
       <div className="py-[30px] flex items-center justify-between container ">
-        <div className="flex items-center justify-between gap-x-6">
+        <div className="flex relative items-center justify-between gap-x-6">
           <img
             src="/images/logo.png"
             className="w-[170px] xl:w-[220px] select-none"
@@ -18,12 +56,70 @@ function Topbar() {
               type="text"
               className="border-none outline-none w-full px-[px] bg-gray-100"
               placeholder="جستجو محصولات"
+              value={search}
+              onChange={(e) => searchHandler(e)}
+            />
+            <button
+              className="bg-blue-600 text-white p-2 flex items-center justify-center rounded-full shadow-blue"
+              onClick={() => {
+                navigate(`/search/${search}`);
+              }}
+            >
+              <svg className="w-6 h-6">
+                <use href="#magni-glass"></use>
+              </svg>
+            </button>
+          </div>
+          <div
+            className={`${
+              isShowSearch ? "opacity-100 visible" : "opacity-0 invisible"
+            } absolute z-50 left-0 flex items-center border border-gray-200  lg:w-[350px] xl:w-[500px] bg-white py-[5px] px-[5px] text-base rounded-t-2xl justify-between`}
+          >
+            <input
+              type="text"
+              className="border-none outline-none w-full px-[px] bg-white"
+              placeholder="جستجو محصولات"
+              value={search}
+              onChange={(e) => searchHandler(e)}
             />
             <button className="bg-blue-600 text-white p-2 flex items-center justify-center rounded-full shadow-blue">
               <svg className="w-6 h-6">
                 <use href="#magni-glass"></use>
               </svg>
             </button>
+            <div
+              className={`absolute z-50 left-0 bg-white w-full rounded-b-md top-[56px] py-2 px-2`}
+            >
+              <ul className="child:cursor-pointer">
+                {searchedProduct.length ? (
+                  searchedProduct.map((item) => (
+                    <li
+                      className="flex items-center justify-between hover:bg-blue-600 hover:text-white p-2 transition-all rounded-sm"
+                      onClick={() => {
+                        setSearch(item.title);
+                        setIsShowSearch(false);
+                      }}
+                    >
+                      <span>{item.title}</span>
+                      <svg className="w-5 h-5">
+                        <use href="#arrow-top"></use>
+                      </svg>
+                    </li>
+                  ))
+                ) : (
+                  <div class="notfound">
+                    <img
+                      src="./../images/download.svg"
+                      width="200px"
+                      className="mx-auto mb-10"
+                    />
+                    <p className="flex items-center justify-center mb-4">
+                      نتیجه‌ای برای جستجوی شما پیدا نشد.
+                    </p>
+                  </div>
+                )}
+              </ul>
+            </div>
           </div>
         </div>
         <div className="text-lg flex items-center gap-x-1.5">
@@ -47,7 +143,10 @@ function Topbar() {
               </Link>
             )}
           </div>
-          <Link to={'/order/card'} className="flex items-center gap-x-4 shadow-gray border border-gray-200 py-3 xl:py-2 px-3 rounded-full xl:rounded-3xl">
+          <Link
+            to={"/order/card"}
+            className="flex items-center gap-x-4 shadow-gray border border-gray-200 py-3 xl:py-2 px-3 rounded-full xl:rounded-3xl"
+          >
             <svg className="w-6 h-6">
               <use href="#shop"></use>
             </svg>
@@ -68,6 +167,14 @@ function Topbar() {
           </div>
         </div>
       </div>
+
+      <div
+        id="overlay"
+        className={`${
+          isShowSearch ? "active-menu" : "hide-menu"
+        } overlay fixed inset-0 bg-black/50 z-40 transition-all`}
+        ref={overlayRef}
+      ></div>
     </div>
   );
 }

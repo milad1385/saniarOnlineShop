@@ -44,7 +44,7 @@ function ProductPage() {
             {
               id: 3,
               name: `${productInfo?.productInfo.category.title}`,
-              to: "/",
+              to: `/category-products/${productInfo?.productInfo.category.title}`,
             },
             { id: 4, name: `${productInfo?.productInfo.title}`, to: "/" },
           ]}

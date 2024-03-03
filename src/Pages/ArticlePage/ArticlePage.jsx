@@ -30,30 +30,30 @@ function ArticlePage() {
           links={[
             { id: 1, name: "خانه", to: "/" },
             { id: 2, name: "بلاگ", to: "/blog" },
-            { id: 3, name: `${articleInfo?.title}`, to: "/" },
+            { id: 3, name: `${articleInfo?.articleInfo.title}`, to: "/" },
           ]}
         />
-        <div className="flex gap-6 mt-8 flex-col md:flex-row">
+        <div className="flex items-start gap-6 mt-8 flex-col md:flex-row">
           <div className="w-full space-y-5">
             <div className="bg-white rounded-md shadow p-4">
-              <PageTitle title={articleInfo?.title} />
-              <div className="text-zinc-700 mt-3 text-xs md:text-sm font-DanaMedium flex items-center gap-x-3">
+              <PageTitle title={articleInfo?.articleInfo.title} />
+              <div className="text-zinc-700 mt-3 text-xs md:text-sm font-DanaMedium flex items-center gap-x-2 md:gap-x-3">
                 <div className="flex items-center gap-x-2">
                   <div className="w-11 h-11 bg-gray-100 rounded-full shadow flex-center shrink-0">
                     <img
-                      src={`http://localhost:3001/uploads/covers/${articleInfo?.creator.image}`}
+                      src={`http://localhost:3001/uploads/covers/${articleInfo?.articleInfo.creator.image}`}
                       className="w-10 h-10 rounded-full"
                     />
                   </div>
-                  <span>{articleInfo?.creator.name}</span>
+                  <span>{articleInfo?.articleInfo.creator.name}</span>
                 </div>
                 <div className="flex items-center gap-x-1">
                   <svg className="w-5 h-5 ">
                     <use href="#clock"></use>
                   </svg>
-                  <span>{articleInfo?.date}</span>
+                  <span>{articleInfo?.articleInfo.date}</span>
                 </div>
-                <div className="flex items-center gap-x-1">
+                <div className="hidden md:flex items-center gap-x-1">
                   <svg className="w-5 h-5 ">
                     <use href="#chat-bubble-left-right"></use>
                   </svg>
@@ -64,7 +64,7 @@ function ArticlePage() {
                     <use href="#eye"></use>
                   </svg>
                   <span className="flex gap-x-1">
-                    {articleInfo?.readingTime}
+                    {articleInfo?.articleInfo.readingTime}
                     <span className="hidden md:block"> زمان مطالعه</span>
                   </span>
                 </div>
@@ -73,7 +73,7 @@ function ArticlePage() {
               <section
                 className="article-content mt-8"
                 dangerouslySetInnerHTML={{
-                  __html: DOMPurify.sanitize(articleInfo?.desc),
+                  __html: DOMPurify.sanitize(articleInfo?.articleInfo.desc),
                 }}
               ></section>
             </div>
@@ -89,15 +89,11 @@ function ArticlePage() {
               <ArticleCommentBox />
             </div>
           </div>
-          <div className="w-[450px] sticky top-0 bg-white h-[716.7px] rounded-md shadow space-y-7 p-3">
+          <div className="w-[450px] sticky top-0 bg-white pb-5 rounded-md shadow space-y-7 p-3">
             <PageTitle icon={"article"} title={"آخرین مطالب"} />
-            <LastBlogBox />
-            <LastBlogBox />
-            <LastBlogBox />
-            <LastBlogBox />
-            <LastBlogBox />
-            <LastBlogBox />
-            <LastBlogBox />
+            {articleInfo?.lastArticles.map((lastArticle) => (
+              <LastBlogBox lastArticle={lastArticle} />
+            ))}
           </div>
         </div>
         <div className="py-5">
