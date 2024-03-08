@@ -51,6 +51,7 @@ import PowerOff from "./Pages/AdminPanel/PowerOff/PowerOff";
 import IsLogin from "./Pages/Private/IsLogin";
 import { Suspense, lazy } from "react";
 import Loader from "./Components/Loader/Loader";
+import EditProduct from "./Pages/AdminPanel/EditProduct/EditProduct";
 
 const ProductPage = lazy(() => import("./Pages/ProductPage/ProductPage"));
 const Index = lazy(() => import("./Pages/Index/Index"));
@@ -152,6 +153,7 @@ const routes = [
       { path: "products/colors", element: <Colors /> },
       { path: "products/feature", element: <FeaturePage /> },
       { path: "products/advance", element: <AdvancePage /> },
+      { path: "products/edit/:productName", element: <EditProduct /> },
       { path: "menus", element: <Menus /> },
       { path: "articles/draft", element: <DraftArticle /> },
       { path: "contact-us", element: <ContactUsAdminPage /> },

@@ -7,6 +7,7 @@ import DeleteModal from "../../../../Components/DeleteModal/DeleteModal";
 import useDelete from "../../../../Hooks/AdminPanel/Product/useDelete";
 import Loader from "../../../../Components/Loader/Loader";
 import { getSearchParam } from "../../../../Utils/Funcs/utils";
+import { Link } from "react-router-dom";
 function ProductList() {
   const [isShowDeleteModal, setIsShowDeleteModal] = useState(false);
   const [isShowSuccessModal, setIsShowSuccessModal] = useState(false);
@@ -89,9 +90,9 @@ function ProductList() {
                       </button>
                     </td>
                     <td>
-                      <button className="bg-blue-600 text-white w-16 py-1 text-base md:text-lg rounded-md font-Lalezar">
+                      <Link to={`edit/${product.link}`} className="bg-blue-600 block  text-white w-16 py-1 text-base md:text-lg rounded-md font-Lalezar">
                         ویرایش
-                      </button>
+                      </Link>
                     </td>
                   </tr>
                 ))}

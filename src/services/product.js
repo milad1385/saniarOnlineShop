@@ -97,6 +97,19 @@ const searchProduct = async (searchValue) => {
     return err;
   }
 };
+
+const editProduct = async (info) => {
+  try {
+    const res = await fetch(`${baseURL}/${info.id}`, {
+      method: "PUT",
+      body: info.data,
+    });
+
+    return res;
+  } catch (err) {
+    return err;
+  }
+};
 export {
   createNewProduct,
   getAllProducts,
@@ -107,4 +120,5 @@ export {
   deleteProduct,
   getProductFromCategory,
   searchProduct,
+  editProduct
 };

@@ -101,45 +101,45 @@ function CategoriesList() {
               </tr>
             </thead>
             <tbody className="text-sm md:text-base">
-              {categories?.categories.length ? (
-                categories?.categories.map((category, index) => (
-                  <tr className="child:p-4 text-center font-DanaMedium">
-                    <td>{index + 1}</td>
-                    <td>
-                      <img
-                        src={`http://localhost:3001/uploads/covers/${category.image}`}
-                        className="w-[65px] md:w-[80px] mx-auto"
-                      />
-                    </td>
-                    <td>{category.title}</td>
-                    <td>{category.date}</td>
-                    <td>{category.link}</td>
-                    <td>
-                      <button
-                        className="bg-red-600 text-white w-16 py-1 text-base md:text-lg rounded-md font-Lalezar"
-                        onClick={() => {
-                          setIsShowDeleteModal(true);
-                          setCatId(category._id);
-                        }}
-                      >
-                        حذف
-                      </button>
-                    </td>
-                    <td>
-                      <button
-                        className="bg-blue-600 text-white w-16 py-1 text-base md:text-lg rounded-md font-Lalezar"
-                        onClick={() => showEditModalHandler(category)}
-                      >
-                        ویرایش
-                      </button>
-                    </td>
-                  </tr>
-                ))
-              ) : (
-                <div className="mt-8">
-                  <EmptyError msg={"هیج دسته بندی در سایت وجود ندارد"} />
-                </div>
-              )}
+              {categories?.categories.length
+                ? categories?.categories.map((category, index) => (
+                    <tr className="child:p-4 text-center font-DanaMedium">
+                      <td>{index + 1}</td>
+                      <td>
+                        <img
+                          src={`http://localhost:3001/uploads/covers/${category.image}`}
+                          className="w-[65px] md:w-[80px] mx-auto"
+                        />
+                      </td>
+                      <td>{category.title}</td>
+                      <td>{category.date}</td>
+                      <td>{category.link}</td>
+                      <td>
+                        <button
+                          className="bg-red-600 text-white w-16 py-1 text-base md:text-lg rounded-md font-Lalezar"
+                          onClick={() => {
+                            setIsShowDeleteModal(true);
+                            setCatId(category._id);
+                          }}
+                        >
+                          حذف
+                        </button>
+                      </td>
+                      <td>
+                        <button
+                          className="bg-blue-600 text-white w-16 py-1 text-base md:text-lg rounded-md font-Lalezar"
+                          onClick={() => showEditModalHandler(category)}
+                        >
+                          ویرایش
+                        </button>
+                      </td>
+                    </tr>
+                  ))
+                : isLoading === false && (
+                    <div className="mt-8">
+                      <EmptyError msg={"هیج دسته بندی در سایت وجود ندارد"} />
+                    </div>
+                  )}
             </tbody>
           </table>
         </Table>

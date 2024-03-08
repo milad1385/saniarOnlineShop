@@ -166,7 +166,7 @@ function AddNewArticle() {
           </div>
         )}
 
-        <div className="flex items-center justify-center md:justify-start flex-wrap gap-x-5 ">
+        <div className="flex  md:justify-start flex-wrap gap-x-5 ">
           <Button title={"ایجاد مقاله"} isLoading={isLoading} />
         </div>
       </form>
