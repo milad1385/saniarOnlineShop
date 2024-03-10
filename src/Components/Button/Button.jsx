@@ -3,7 +3,7 @@ import React from "react";
 function Button({ title, onClick, icon }) {
   return (
     <button
-      className="bg-blue-600 text-white p-2 px-6 rounded-md shadow-blue mt-5 flex-center gap-x-2"
+      className="bg-blue-600 font-DanaMedium text-white p-2 px-3 rounded-md shadow-blue flex-center gap-x-2"
       onClick={onClick}
     >
       {icon && (

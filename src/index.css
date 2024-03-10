@@ -163,7 +163,7 @@
     width: 150%;
     height: 380px;
     background-color: #2563eb;
-    z-index: 30;
+    z-index: 4;
     transform: rotate(-4deg);
   }
   .body::after {
@@ -174,7 +174,7 @@
     height: 380px;
     background-color: #2563eb;
     opacity: 0.5;
-    z-index: 20;
+    z-index: 4;
     transform: rotate(-4deg);
   }
 

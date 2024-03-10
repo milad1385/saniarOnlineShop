@@ -161,7 +161,7 @@ function ProductsPage() {
 
   const handleChangeBox = async (category, e) => {
     if (e.target.checked) {
-      searchParam.append("category", category);
+      searchParam.set("category", category);
       setSearchParam(searchParam);
     } else {
       searchParam.delete("category", category);

@@ -5,6 +5,7 @@ function DetailModal({ children, onClose , onClick }) {
     const hideModal = (event) => {
       if (event.target.id === "detail-modal") {
         onClose(false);
+        console.log('click');
       }
     };
 

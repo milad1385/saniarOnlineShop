@@ -2,9 +2,10 @@ import React, { useContext, useEffect, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AppContext } from "../../App";
 import useGetAllPro from "../../Hooks/AdminPanel/Product/useGetAllPro";
+import { isLogin } from "../../Utils/Funcs/utils";
 
 function Topbar() {
-  const { isLogin, userInfo } = useContext(AppContext);
+  const context = useContext(AppContext);
   const [search, setSearch] = useState("");
   const [allProducts, setAllProducts] = useState([]);
   const [isShowSearch, setIsShowSearch] = useState(false);
@@ -127,12 +128,12 @@ function Topbar() {
             <svg className="w-6 h-6">
               <use href="#user"></use>
             </svg>
-            {isLogin ? (
+            {isLogin() ? (
               <Link
                 to={"/my-account"}
                 className="hidden xl:block text-sm font-DanaMedium"
               >
-                {userInfo?.name}
+                {context?.userInfo?.name}
               </Link>
             ) : (
               <Link
@@ -157,8 +158,8 @@ function Topbar() {
           <div className="bg-gray-100 rounded-full p-0.5">
             <img
               src={
-                isLogin
-                  ? `http://localhost:3001/uploads/covers/${userInfo?.image}`
+                isLogin()
+                  ? `http://localhost:3001/uploads/covers/${context?.userInfo?.image}`
                   : "/images/user.png"
               }
               alt=""

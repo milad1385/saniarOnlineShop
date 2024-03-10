@@ -30,7 +30,7 @@ function ProductPage() {
   useEffect(() => {
     window.scroll(0, 0);
     setActiveTumb(null);
-  }, [productName ]);
+  }, [productName]);
 
   return (
     <div>
@@ -273,7 +273,7 @@ function ProductPage() {
           <div className="bg-white rounded-md shadow md:ml-5   w-full py-5 px-4">
             <div className="flex items-center gap-x-6 border-b-[1.5px] border-b-gray-200 child:pb-4 child:cursor-pointer font-DanaMedium">
               <div
-                className={`text-xs flex items-center gap-x-1 font-DanaDemiBold md:text-base${
+                className={`text-xs h-12 flex items-center gap-x-1 font-DanaDemiBold md:text-base${
                   optionShowModel === "توضیحات کالا"
                     ? "text-blue-600 border-b-2 border-b-blue-600 text-xs font-DanaDemiBold md:text-base"
                     : ""
@@ -284,7 +284,7 @@ function ProductPage() {
               </div>
               <div
                 onClick={(e) => setOptionShowModel("مشخصات کالا")}
-                className={`text-xs flex items-center gap-x-1 font-DanaDemiBold md:text-base${
+                className={`text-xs h-12 flex items-center gap-x-1 font-DanaDemiBold md:text-base${
                   optionShowModel === "مشخصات کالا"
                     ? "text-blue-600 border-b-2 border-b-blue-600 text-xs font-DanaDemiBold md:text-base"
                     : ""
@@ -294,7 +294,7 @@ function ProductPage() {
               </div>
               <div
                 onClick={(e) => setOptionShowModel("توضیحات تکمیلی")}
-                className={`text-xs font-DanaDemiBold md:text-base${
+                className={`text-xs h-12 font-DanaDemiBold md:text-base${
                   optionShowModel === "توضیحات تکمیلی"
                     ? "text-blue-600 border-b-2 border-b-blue-600 text-xs font-DanaDemiBold md:text-base"
                     : ""
@@ -304,7 +304,7 @@ function ProductPage() {
               </div>
               <div
                 onClick={(e) => setOptionShowModel(e.target.innerHTML)}
-                className={`text-xs font-DanaDemiBold md:text-base${
+                className={`text-xs h-12 font-DanaDemiBold md:text-base${
                   optionShowModel === "نظرات"
                     ? "text-blue-600 border-b-2 border-b-blue-600 text-xs font-DanaDemiBold md:text-base"
                     : ""
@@ -373,7 +373,10 @@ function ProductPage() {
               )}
               {optionShowModel === "نظرات" && (
                 <div>
-                  <Comments />
+                  <Comments
+                    productID={productInfo?.productInfo._id}
+                    comments={productInfo?.comments}
+                  />
                 </div>
               )}
             </div>

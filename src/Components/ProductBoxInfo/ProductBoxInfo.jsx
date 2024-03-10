@@ -78,7 +78,7 @@ function ProductBoxInfo({
           </span>
         ) : (
           <span className="text-blue-600 text-lg font-DanaDemiBold">
-            {product?.productInfo.price} تومان
+            {product?.productInfo.price.toLocaleString("fa")} تومان
           </span>
         )}
       </div>

@@ -1,0 +1,68 @@
+import { getUserToken } from "../Utils/Funcs/utils";
+
+const baseURL = `http://localhost:3001/api/v1/comments`;
+
+const createNewComment = async (data) => {
+  try {
+    const res = await fetch(`${baseURL}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        authorization: getUserToken(),
+      },
+      body: JSON.stringify(data),
+    });
+
+    console.log(res);
+    return res;
+  } catch (err) {
+    return err;
+  }
+};
+
+const getAllComments = async () => {
+  try {
+    const res = await fetch(`${baseURL}`);
+    return await res.json();
+  } catch (err) {
+    return err;
+  }
+};
+
+const setAcceptOrDeclineComment = async (id, status) => {
+  try {
+    const res = await fetch(`${baseURL}/setAcceptOrDecline/${id}/${status}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        authorization: `${getUserToken()}`,
+      },
+    });
+
+    return res;
+  } catch (err) {
+    return err;
+  }
+};
+
+const deleteComment = async (id) => {
+  try {
+    const res = await fetch(`${baseURL}/${id}`, {
+      method: "DELETE",
+      headers: {
+        authorization: `${getUserToken()}`,
+      },
+    });
+
+    return res;
+  } catch (err) {
+    return err;
+  }
+};
+
+export {
+  createNewComment,
+  getAllComments,
+  setAcceptOrDeclineComment,
+  deleteComment,
+};

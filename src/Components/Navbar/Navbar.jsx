@@ -207,7 +207,9 @@ function Navbar() {
               <svg className="w-7 h-7">
                 <use href="#instagram"></use>
               </svg>
-              <span className="hidden xl:block">{info?.length ? info[0]?.instagram : ""}</span>
+              <span className="hidden xl:block">
+                {info?.length ? info[0]?.instagram : ""}
+              </span>
             </Link>
           </div>
         </div>
@@ -240,7 +242,7 @@ function Navbar() {
             <div className="bg-gray-100 rounded-full p-0.5">
               <img
                 src={
-                  isLogin
+                  isLogin ?? isLogin
                     ? `http://localhost:3001/uploads/covers/${userInfo?.image}`
                     : "/images/user.png"
                 }
