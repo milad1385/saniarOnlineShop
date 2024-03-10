@@ -17,6 +17,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.49.3",
+    "react-hot-toast": "^2.4.1",
     "react-multi-date-picker": "^4.4.1",
     "react-query": "^3.39.3",
     "react-range-slider-input": "^3.0.7",

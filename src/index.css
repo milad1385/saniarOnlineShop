@@ -252,6 +252,11 @@
   .side-links li a {
     @apply py-1.5 px-2 rounded-md w-full !important;
   }
+
+  .comment-text {
+    text-wrap: pretty;
+    text-align: right;
+  }
 }
 
 .swiper-pagination-bullet-active {
