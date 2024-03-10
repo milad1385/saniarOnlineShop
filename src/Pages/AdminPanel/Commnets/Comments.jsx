@@ -13,6 +13,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { commentSchema } from "./commentSchema";
 import Input from "../../../Components/AdminPanel/Input/Input";
 import useCreate from "../../../Hooks/AdminPanel/Comment/useCreate";
+import useEdit from "../../../Hooks/AdminPanel/Comment/useEdit";
 
 function Comments() {
   // states
@@ -21,6 +22,8 @@ function Comments() {
   const [isShowSuccessModal, setIsShowSuccessModal] = useState(false);
   const [isShowDeleteModal, setIsShowDeleteModal] = useState(false);
   const [isShowAnswerModal, setIsShowAnswerModal] = useState(false);
+  const [isShowEditModal, setIsShowEditModal] = useState(false);
+  const [answerText, setAnswerText] = useState("");
   const [commentId, setCommentId] = useState(null);
   const [msg, setMsg] = useState("");
   const [statusMode, setStatus] = useState("");
@@ -32,6 +35,7 @@ function Comments() {
   const { mutateAsync: acceptOrDeclineComment, isLoading: isWorking } =
     useAcceptOrDecline();
   const { mutateAsync: sendComment, isLoading: isSending } = useCreate();
+  const { mutateAsync: updateComment, isLoading: isUpdating } = useEdit();
 
   // react hook form
   const {
@@ -76,6 +80,16 @@ function Comments() {
       setIsShowAnswerModal(false);
       setMsg("متن پاسخ با موفقیت ارسال شد");
       setIsShowSuccessModal(true);
+    }
+  };
+
+  const editCommentText = async (e) => {
+    e.preventDefault();
+    const result = await updateComment({ id: commentId, body: answerText });
+    if (result.status === 202) {
+      setIsShowEditModal(false);
+      setIsShowSuccessModal(true);
+      setMsg("کامنت با موفقیت ویرایش شد");
     }
   };
 
@@ -213,7 +227,14 @@ function Comments() {
                       </button>
                     </td>
                     <td>
-                      <button className="bg-blue-600 text-white w-16 py-1 text-base md:text-lg rounded-md font-Lalezar">
+                      <button
+                        className="bg-blue-600 text-white w-16 py-1 text-base md:text-lg rounded-md font-Lalezar"
+                        onClick={() => {
+                          setCommentId(comment._id);
+                          setIsShowEditModal(true);
+                          setAnswerText(comment.body);
+                        }}
+                      >
                         ویرایش
                       </button>
                     </td>
@@ -303,6 +324,31 @@ function Comments() {
             </div>
             <button className="bg-blue-600 text-white flex-center w-full py-3 text-base md:text-lg lg:text-xl">
               {isSending ? "در حال ارسال ..." : "ارسال پاسخ"}
+            </button>
+          </form>
+        </DetailModal>
+      )}
+
+      {isShowEditModal && (
+        <DetailModal onClose={setIsShowEditModal}>
+          <form className="bg-white w-[380px] px-5 pt-4 pb-6 space-y-5 font-MorabbaBold">
+            <h3 className="text-center  text-lg md:text-2xl lg:text-3xl">
+              متن ویرایش را بنویسید
+            </h3>
+            <div className="relative flex items-center justify-between bg-gray-100 py-2 px-3">
+              <textarea
+                type="text"
+                onChange={(e) => setAnswerText(e.target.value)}
+                value={answerText}
+                placeholder="متن پاسخ را وارد کنید ..."
+                className="outline-none w-full h-36 bg-gray-100 font-DanaMedium"
+              ></textarea>
+            </div>
+            <button
+              className="bg-blue-600 text-white flex-center w-full py-3 text-base md:text-lg lg:text-xl"
+              onClick={editCommentText}
+            >
+              {isUpdating ? "در حال ویرایش ..." : "ویرایش پاسخ"}
             </button>
           </form>
         </DetailModal>

@@ -60,9 +60,30 @@ const deleteComment = async (id) => {
   }
 };
 
+const editCommentBody = async (body, id) => {
+  try {
+    const res = await fetch(`${baseURL}/editText/${id}`, {
+      method: "PUT",
+      headers: {
+        authorization: `${getUserToken()}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ body: body }),
+    });
+
+    console.log(res);
+
+    return res;
+  } catch (err) {
+    console.log(err);
+    return err;
+  }
+};
+
 export {
   createNewComment,
   getAllComments,
   setAcceptOrDeclineComment,
   deleteComment,
+  editCommentBody,
 };
