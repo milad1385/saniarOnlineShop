@@ -15,8 +15,6 @@ import SendAnswer from "./sendAnswer";
 function Comments() {
   const { setIsShowAdminMenu } = useContext(AppContext);
   const [successInfo, setSuccessInfo] = useState({});
-  const [isShowAnswerModal, setIsShowAnswerModal] = useState(false);
-  const [commentId, setCommentId] = useState(null);
 
   const { data: comments, isLoading } = useGetAll();
   const { mutateAsync: deleteHandler, isLoading: isDeleting } =
