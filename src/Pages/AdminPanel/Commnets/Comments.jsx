@@ -11,6 +11,7 @@ import AnswerModal from "./AnswerModal";
 import ConfirmModal from "../../../Components/ConfirmModal/ConfirmModal";
 import CommentText from "./CommentText";
 import SendAnswer from "./sendAnswer";
+import TButton from "../../../Components/AdminPanel/TButton/TButton";
 
 function Comments() {
   const { setIsShowAdminMenu } = useContext(AppContext);
@@ -98,9 +99,10 @@ function Comments() {
                     <td>
                       <Modal>
                         <Modal.Open name={"commentBody"}>
-                          <button className="bg-amber-500 text-white w-16 py-1 text-base md:text-lg rounded-md font-Lalezar">
-                            مشاهده
-                          </button>
+                          <TButton
+                            title={"مشاهده"}
+                            className={"bg-amber-500"}
+                          />
                         </Modal.Open>
                         <Modal.Page name={"commentBody"}>
                           <CommentText text={comment.body} />
@@ -120,9 +122,10 @@ function Comments() {
                       ) : (
                         <Modal>
                           <Modal.Open name={"answer"}>
-                            <button className="bg-orange-800 text-white w-16 py-1 text-base md:text-lg rounded-md font-Lalezar">
-                              پاسخ
-                            </button>
+                            <TButton
+                              title={"پاسخ"}
+                              className={"bg-orange-800"}
+                            />
                           </Modal.Open>
                           <Modal.Page name={"answer"}>
                             <SendAnswer
@@ -138,9 +141,7 @@ function Comments() {
                         {comment.isAccept ? (
                           <>
                             <Modal.Open name={"accept"}>
-                              <button className="bg-gray-500 text-white w-16 py-1 text-base md:text-lg rounded-md font-Lalezar">
-                                رد
-                              </button>
+                              <TButton title={"رد"} className={"bg-gray-600"} />
                             </Modal.Open>
                             <Modal.Page name={"accept"}>
                               <ConfirmModal
@@ -160,9 +161,10 @@ function Comments() {
                         ) : (
                           <>
                             <Modal.Open name={"accept"}>
-                              <button className="bg-green-600 text-white w-16 py-1 text-base md:text-lg rounded-md font-Lalezar">
-                                تایید
-                              </button>
+                              <TButton
+                                title={"تایید"}
+                                className={"bg-green-600"}
+                              />
                             </Modal.Open>
                             <Modal.Page name={"accept"}>
                               <ConfirmModal
@@ -185,9 +187,7 @@ function Comments() {
                     <td>
                       <Modal>
                         <Modal.Open name={"delete"}>
-                          <button className="bg-red-600 text-white w-16 py-1 text-base md:text-lg rounded-md font-Lalezar">
-                            حذف
-                          </button>
+                          <TButton title={"حذف"} className={"bg-red-600"} />
                         </Modal.Open>
                         <Modal.Page name={"delete"}>
                           <ConfirmModal
@@ -202,9 +202,7 @@ function Comments() {
                     <td>
                       <Modal>
                         <Modal.Open name={"edit"}>
-                          <button className="bg-blue-600 text-white w-16 py-1 text-base md:text-lg rounded-md font-Lalezar">
-                            ویرایش
-                          </button>
+                          <TButton title={"ویرایش"} className={"bg-blue-600"} />
                         </Modal.Open>
                         <Modal.Page name={"edit"}>
                           <AnswerModal

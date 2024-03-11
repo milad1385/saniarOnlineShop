@@ -14,6 +14,7 @@ import ConfirmModal from "../../../../Components/ConfirmModal/ConfirmModal";
 import EditUserForm from "../EditUserForm";
 import ChangeUserRoleForm from "../ChangeUserRoleForm";
 import UserDetailForm from "../UserDetailForm";
+import TButton from "../../../../Components/AdminPanel/TButton/TButton";
 
 function UsersList() {
   const { adminSearch, setAdminSearch } = useContext(AppContext);
@@ -100,9 +101,7 @@ function UsersList() {
                         <td>
                           <Modal>
                             <Modal.Open name={"delete"}>
-                              <button className="bg-red-600 text-white w-16 py-1 text-base md:text-lg rounded-md font-Lalezar">
-                                حذف
-                              </button>
+                              <TButton title={"حذف"} className="bg-red-600" />
                             </Modal.Open>
                             <Modal.Page name={"delete"}>
                               <ConfirmModal
@@ -117,9 +116,7 @@ function UsersList() {
                         <td>
                           <Modal>
                             <Modal.Open name={"role"}>
-                              <button className="bg-amber-500 text-white w-16 py-1 text-base md:text-lg rounded-md font-Lalezar">
-                                نقش
-                              </button>
+                              <TButton title={"نقش"} className="bg-amber-500" />
                             </Modal.Open>
                             <Modal.Page name={"role"}>
                               <ChangeUserRoleForm
@@ -132,21 +129,23 @@ function UsersList() {
                         <td>
                           <Modal>
                             <Modal.Open name={"detail"}>
-                              <button className="bg-gray-600 text-white w-16 py-1 text-base md:text-lg rounded-md font-Lalezar">
-                                جزییات
-                              </button>
+                              <TButton
+                                title={"جزییات"}
+                                className="bg-gray-600"
+                              />
                             </Modal.Open>
                             <Modal.Page name={"detail"}>
-                              <UserDetailForm detail={user}/>
+                              <UserDetailForm detail={user} />
                             </Modal.Page>
                           </Modal>
                         </td>
                         <td>
                           <Modal>
                             <Modal.Open name={"edit"}>
-                              <button className="bg-blue-600 text-white w-16 py-1 text-base md:text-lg rounded-md font-Lalezar">
-                                ویرایش
-                              </button>
+                              <TButton
+                                title={"ویرایش"}
+                                className="bg-blue-600"
+                              />
                             </Modal.Open>
                             <Modal.Page name={"edit"}>
                               <EditUserForm
@@ -159,9 +158,10 @@ function UsersList() {
                         <td>
                           <Modal>
                             <Modal.Open name={"ban"}>
-                              <button className="bg-pink-600 text-white w-16 py-1 text-base md:text-lg rounded-md font-Lalezar">
-                                بن
-                              </button>
+                              <TButton
+                                title={"بن"}
+                                className="bg-pink-600"
+                              />
                             </Modal.Open>
                             <Modal.Page name={"ban"}>
                               <ConfirmModal
