@@ -9,10 +9,19 @@ function useOutSideClose(handler, isCapturing) {
       }
     };
 
-    document.addEventListener("click", hideHandler, isCapturing);
+    const hideHandlerByEsc = async (e) => {
+      if (e.keyCode === 27) {
+        handler();
+      }
+    };
 
-    return () =>
+    document.addEventListener("click", hideHandler, isCapturing);
+    document.addEventListener("keyup", hideHandlerByEsc);
+
+    return () => {
       document.removeEventListener("click", hideHandler, isCapturing);
+      document.removeEventListener("click", hideHandlerByEsc, isCapturing);
+    };
   }, []);
 
   return ref;

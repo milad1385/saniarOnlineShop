@@ -1,3 +1,5 @@
+import { getUserToken } from "../Utils/Funcs/utils";
+
 const baseURL = "http://localhost:3001/api/v1/user";
 const registerNewUser = async (formData) => {
   try {
@@ -112,10 +114,9 @@ const banUser = async (info) => {
   const res = await fetch(`${baseURL}/ban/${info.phone}`, {
     method: "POST",
     headers: {
-      authorization: `${info.token}`,
+      authorization: `${getUserToken()}`,
     },
   });
-  console.log(res);
 
   if (res.status === 404) {
     return { status: 404 };
@@ -126,12 +127,12 @@ const banUser = async (info) => {
   }
 };
 
-const deleteUser = async (info) => {
+const deleteUser = async (id) => {
   try {
-    const res = await fetch(`${baseURL}/delete/${info.id}`, {
+    const res = await fetch(`${baseURL}/delete/${id}`, {
       method: "DELETE",
       headers: {
-        authorization: `${info.token}`,
+        authorization: `${getUserToken()}`,
       },
     });
     return res;
@@ -141,12 +142,11 @@ const deleteUser = async (info) => {
 };
 
 const changeUserRole = async (info) => {
-  console.log(info);
   try {
     const res = await fetch(`${baseURL}/change-role/${info.id}`, {
       method: "PUT",
       headers: {
-        authorization: `${info.token}`,
+        authorization: `${getUserToken()}`,
         "Content-type": "application/json",
       },
       body: JSON.stringify({ role: info.role }),
@@ -163,7 +163,7 @@ const editUser = async (info) => {
     const res = await fetch(`${baseURL}/edit/${info.id}`, {
       method: "PUT",
       headers: {
-        authorization: `${info.token}`,
+        authorization: `${getUserToken()}`,
       },
       body: info.body,
     });
