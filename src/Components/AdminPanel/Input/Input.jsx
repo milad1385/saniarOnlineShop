@@ -9,22 +9,31 @@ function Input({
   name,
   isTextArea,
   value,
-  className
+  className,
+  InputStyle,
 }) {
   return isTextArea ? (
     <>
       <div className={`relative w-full ${className && className}`}>
-        <div className="flex items-center justify-between bg-gray-100 relative py-2 px-3 rounded-lg">
+        <div
+          className={`${
+            InputStyle
+              ? `${InputStyle}`
+              : "flex items-center justify-between bg-gray-100 relative py-2 px-3 rounded-lg"
+          }`}
+        >
           <textarea
             type={type}
             {...register(`${name}`)}
             placeholder={placeholder}
             defaultValue={value}
-            className="outline-none w-full bg-gray-100 h-36 text-sm md:text-base"
+            className={`outline-none w-full ${
+              InputStyle ? "bg-white" : "bg-gray-100"
+            }  h-36 text-sm md:text-base`}
           ></textarea>
         </div>
         {errors[name] && (
-          <span className="absolute text-xs md:text-sm text-red-600 top-[42px] md:top-[170px] font-DanaDemiBold ">
+          <span className="absolute text-xs md:text-sm text-red-600 top-[35px] md:top-[165px] font-DanaDemiBold ">
             {errors[name].message}
           </span>
         )}
@@ -35,12 +44,20 @@ function Input({
     </>
   ) : (
     <div className="relative w-full">
-      <div className="flex items-center justify-between bg-gray-100 py-2 px-3 rounded-lg">
+      <div
+        className={`${
+          InputStyle
+            ? `${InputStyle} h-[49px]`
+            : "flex items-center justify-between  bg-gray-100 relative py-2 px-3 rounded-lg"
+        }`}
+      >
         <input
           type={type}
           {...register(`${name}`)}
           placeholder={placeholder}
-          className="outline-none w-full bg-gray-100"
+          className={`outline-none w-full ${
+            InputStyle ? "bg-white" : "bg-gray-100"
+          }`}
           autoComplete="false"
           // defaultValue={value}
         />

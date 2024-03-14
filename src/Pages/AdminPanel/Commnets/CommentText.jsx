@@ -1,10 +1,10 @@
 import React from "react";
 
-function CommentText({ onClose , text }) {
+function CommentText({ onClose, text, title }) {
   return (
     <div className="bg-white pb-6 pt-4 px-5  w-[93%] md:w-[425px] mx-auto">
       <h3 className="font-MorabbaBold text-lg md:text-3xl text-center mt-3">
-        متن کامنت
+        {title ? title : " متن کامنت"}
       </h3>
       <div className="mt-4 bg-gray-100 px-2 py-1">
         <p className="font-DanaMedium leading-7 comment-text">{text}</p>
