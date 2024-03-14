@@ -1,3 +1,5 @@
+import { getUserToken } from "../Utils/Funcs/utils";
+
 const baseURL = `http://localhost:3001/api/v1/category`;
 
 const createNewCategory = async (data) => {
@@ -23,12 +25,12 @@ const getAllCategory = async (page) => {
   }
 };
 
-const deleteCategory = async (info) => {
+const deleteCategory = async (id) => {
   try {
-    const res = await fetch(`${baseURL}/${info.id}`, {
+    const res = await fetch(`${baseURL}/${id}`, {
       method: "DELETE",
       headers: {
-        authorization: `${info.token}`,
+        authorization: `${getUserToken()}`,
       },
     });
 
@@ -54,4 +56,4 @@ const updateCategory = async (info) => {
   }
 };
 
-export { createNewCategory, getAllCategory, deleteCategory , updateCategory };
+export { createNewCategory, getAllCategory, deleteCategory, updateCategory };
