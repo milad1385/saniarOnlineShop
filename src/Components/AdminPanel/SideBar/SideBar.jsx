@@ -110,7 +110,7 @@ function SideBar({ isMenuShow, onShow }) {
         </h3>
         <div className="py-2 px-3 side-bar">
           <div className="side-links flex justify-between flex-col text-base md:text-xl font-Lalezar h-[90vh]">
-            <div className="space-y-1.5 mt-2">
+            <div className="space-y-1.5 mt-2 pb-2">
               <li className="list-none">
                 <NavLink
                   to={"/admin-panel/main"}

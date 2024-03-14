@@ -1,19 +1,18 @@
 import React, { useEffect, useState } from "react";
 import Table from "../../../../Components/AdminPanel/Table/Table";
+import Modal from "../../../../Components/Modal/Modal";
+import TButton from "../../../../Components/AdminPanel/TButton/TButton";
 import Pagination from "../../../../Components/Pagination/Pagination";
 import useGetAll from "../../../../Hooks/AdminPanel/Product/useGetAll";
 import StatusModal from "../../../../Components/SuccessModal/SuccessModal";
-import DeleteModal from "../../../../Components/DeleteModal/DeleteModal";
 import useDelete from "../../../../Hooks/AdminPanel/Product/useDelete";
 import Loader from "../../../../Components/Loader/Loader";
 import { getSearchParam } from "../../../../Utils/Funcs/utils";
+
 import { Link } from "react-router-dom";
+import ConfirmModal from "../../../../Components/ConfirmModal/ConfirmModal";
 function ProductList() {
-  const [isShowDeleteModal, setIsShowDeleteModal] = useState(false);
-  const [isShowSuccessModal, setIsShowSuccessModal] = useState(false);
-  const [isShowDetailModal, setIsShowDetailModal] = useState(false);
-  const [msg, setMsg] = useState("");
-  const [productId, setProductId] = useState(null);
+  const [successInfo, setSuccessInfo] = useState({});
   const pageNum = getSearchParam("page");
   const [page, setPage] = useState(pageNum);
   useEffect(() => {
@@ -21,15 +20,11 @@ function ProductList() {
   }, []);
 
   const { data: products, isLoading } = useGetAll(page);
-  const { mutateAsync: deleteProduct, isLoading: deleteLoading } = useDelete();
+  const { mutateAsync: deleteProduct, isLoading: isDeleting } =
+    useDelete(setSuccessInfo);
 
-  const deleteProductHandler = async () => {
-    const result = await deleteProduct(productId);
-    if (result.status === 200) {
-      setMsg("محصول با موفقیت حذف شد");
-      setIsShowDeleteModal(false);
-      setIsShowSuccessModal(true);
-    }
+  const deleteProductHandler = async (id) => {
+    await deleteProduct(id);
   };
   return (
     <>
@@ -73,15 +68,22 @@ function ProductList() {
                     <td>{product.link}</td>
                     <td>{product.category.title}</td>
                     <td>
-                      <button
-                        className="bg-red-600 text-white w-16 py-1 text-base md:text-lg rounded-md font-Lalezar"
-                        onClick={() => {
-                          setIsShowDeleteModal(true);
-                          setProductId(product._id);
-                        }}
-                      >
-                        حذف
-                      </button>
+                      <Modal>
+                        <Modal.Open name={"delete"}>
+                          <TButton
+                            title={"حذف"}
+                            className={"bg-red-600"}
+                          ></TButton>
+                        </Modal.Open>
+                        <Modal.Page name={"delete"}>
+                          <ConfirmModal
+                            title={"آیا از حذف کردن اطمینان دارید ؟"}
+                            disable={isDeleting}
+                            isConfirming={isDeleting}
+                            onConfirm={() => deleteProductHandler(product._id)}
+                          />
+                        </Modal.Page>
+                      </Modal>
                     </td>
 
                     <td>
@@ -90,7 +92,10 @@ function ProductList() {
                       </button>
                     </td>
                     <td>
-                      <Link to={`edit/${product.link}`} className="bg-blue-600 block  text-white w-16 py-1 text-base md:text-lg rounded-md font-Lalezar">
+                      <Link
+                        to={`edit/${product.link}`}
+                        className="bg-blue-600 block  text-white w-16 py-1 text-base md:text-lg rounded-md font-Lalezar"
+                      >
                         ویرایش
                       </Link>
                     </td>
@@ -107,23 +112,15 @@ function ProductList() {
         </div>
       )}
 
-      {isShowDeleteModal && (
-        <DeleteModal
-          onClose={setIsShowDeleteModal}
-          onClick={deleteProductHandler}
-          isLoading={deleteLoading}
-        />
-      )}
-
-      {isShowSuccessModal && (
+      {successInfo.title && (
         <StatusModal
-          onClose={setIsShowSuccessModal}
-          title={msg}
+          onClose={setSuccessInfo}
+          title={successInfo.title}
           text={"خیلی هم عالی"}
           icon={"face-smile"}
           color="text-blue-600"
           bg="bg-blue-600"
-          onClick={() => setIsShowSuccessModal(false)}
+          onClick={() => setSuccessInfo(false)}
         />
       )}
     </>
