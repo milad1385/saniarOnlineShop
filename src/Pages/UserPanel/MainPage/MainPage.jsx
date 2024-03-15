@@ -1,7 +1,9 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import StatBox from "../../../Components/UserPanel/StatBox/StatBox";
+import { AppContext } from "../../../App";
 
 function MainPage() {
+  const context = useContext(AppContext);
   useEffect(() => {
     window.scroll(0, 0);
   }, []);
@@ -10,7 +12,7 @@ function MainPage() {
       <div className="bg-white shadow p-4 rounded-md flex flex-col md:flex-row">
         <div>
           <p className="font-DanaDemiBold text-base md:text-lg">
-            سلام ، <span className="text-blue-600">میلاد سلامیان</span>{" "}
+            سلام ، <span className="text-blue-600">{context?.userInfo?.name}</span>{" "}
             <span className="text-3xl">🙌</span>
           </p>
           <p className="font-DanaDemiBold mt-3">

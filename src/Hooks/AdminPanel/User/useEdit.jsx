@@ -9,8 +9,8 @@ function useEdit(onClose, onInfo ) {
       queryClient.invalidateQueries({ queryKey: ["users"] });
       queryClient.invalidateQueries({ queryKey: ["userInfo"] });
       queryClient.invalidateQueries({ queryKey: ["lastestUser"] });
-      onClose();
-      onInfo({
+      onClose?.();
+      onInfo?.({
         title: "کاربر با موفقیت ویرایش شد",
       });
     },

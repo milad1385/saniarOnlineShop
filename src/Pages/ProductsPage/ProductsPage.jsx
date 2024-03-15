@@ -12,6 +12,7 @@ import useGetAll from "../../Hooks/AdminPanel/Product/useGetAll";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import useGetAllPro from "../../Hooks/AdminPanel/Product/useGetAllPro";
 import { getAllSearchParam, getSearchParam } from "../../Utils/Funcs/utils";
+import useFilter from "../../Hooks/AdminPanel/Product/useFilter";
 function ProductsPage() {
   const orderType = getSearchParam("order");
   const [status, setStatus] = useState(orderType || "default");
@@ -62,6 +63,8 @@ function ProductsPage() {
     endPrice ? endPrice : 70000000,
   ]);
 
+  const { data, isLoading: loadingProducts } = useFilter();
+  console.log("filtred pro =>", data);
   const { data: products, isLoading } = useGetAll(+page);
   const { data: productsWithOutPagination } = useGetAllPro();
   const navigate = useNavigate();
@@ -71,62 +74,62 @@ function ProductsPage() {
     window.scroll(0, 0);
   }, [page]);
 
-  useEffect(() => {
-    setAllProducts(products?.products);
-  }, [products]);
+  // useEffect(() => {
+  //   setAllProducts(products?.products);
+  // }, [products]);
 
-  useEffect(() => {
-    switch (status) {
-      case "default": {
-        const allPro = products?.products.slice();
-        setAllProducts(allPro);
-        return;
-      }
-      case "popular": {
-        const allPro = products?.products.slice();
-        const popularProduct = allPro?.sort((a, b) => b.score - a.score);
-        setAllProducts(popularProduct);
-        return;
-      }
-      case "chepeast": {
-        const allPro = products?.products.slice();
-        const chepeastProduct = allPro?.sort((a, b) => a.price - b.price);
-        setAllProducts(chepeastProduct);
-        return;
-      }
-      case "expensivest": {
-        const allPro = products?.products.slice();
-        const expensivestProduct = allPro?.sort((a, b) => b.price - a.price);
-        setAllProducts(expensivestProduct);
-        return;
-      }
-      case "newest": {
-        const allPro = products?.products.slice();
-        setAllProducts(allPro);
-        return;
-      }
-      case "latest": {
-        const allPro = products?.products.slice();
-        setAllProducts(allPro?.reverse());
-        return;
-      }
-      default: {
-        const allPro = products?.products.slice();
-        setAllProducts(allPro);
-        return;
-      }
-    }
-  }, [status, products]);
+  // useEffect(() => {
+  //   switch (status) {
+  //     case "default": {
+  //       const allPro = products?.products.slice();
+  //       setAllProducts(allPro);
+  //       return;
+  //     }
+  //     case "popular": {
+  //       const allPro = products?.products.slice();
+  //       const popularProduct = allPro?.sort((a, b) => b.score - a.score);
+  //       setAllProducts(popularProduct);
+  //       return;
+  //     }
+  //     case "chepeast": {
+  //       const allPro = products?.products.slice();
+  //       const chepeastProduct = allPro?.sort((a, b) => a.price - b.price);
+  //       setAllProducts(chepeastProduct);
+  //       return;
+  //     }
+  //     case "expensivest": {
+  //       const allPro = products?.products.slice();
+  //       const expensivestProduct = allPro?.sort((a, b) => b.price - a.price);
+  //       setAllProducts(expensivestProduct);
+  //       return;
+  //     }
+  //     case "newest": {
+  //       const allPro = products?.products.slice();
+  //       setAllProducts(allPro);
+  //       return;
+  //     }
+  //     case "latest": {
+  //       const allPro = products?.products.slice();
+  //       setAllProducts(allPro?.reverse());
+  //       return;
+  //     }
+  //     default: {
+  //       const allPro = products?.products.slice();
+  //       setAllProducts(allPro);
+  //       return;
+  //     }
+  //   }
+  // }, [status, products]);
 
-  useEffect(() => {
-    const categories = getAllSearchParam("category");
-    const startPrice = getSearchParam("startPrice");
-    const endPrice = getSearchParam("endPrice");
+  // useEffect(() => {
+  //   const categories = getAllSearchParam("category");
+  //   const startPrice = getSearchParam("startPrice");
+  //   const endPrice = getSearchParam("endPrice");
 
-    if (categories.length) {
-      getFiltredProduct(categories, startPrice, endPrice);
-    }
-  }, [productsWithOutPagination]);
+  //   if (categories.length) {
+  //     getFiltredProduct(categories, startPrice, endPrice);
+  //   }
+  // }, [productsWithOutPagination]);
 
   useEffect(() => {
     if (value[0] !== 50000 && value[1] !== 25000000) {
@@ -141,27 +144,27 @@ function ProductsPage() {
     }
   }, [value]);
 
-  const colorBoxChangeHandler = (id) => {
-    const changeColorBox = colorBox.map((item) =>
-      item.id === id ? { ...item, checked: !item.checked } : item
-    );
+  // const colorBoxChangeHandler = (id) => {
+  //   const changeColorBox = colorBox.map((item) =>
+  //     item.id === id ? { ...item, checked: !item.checked } : item
+  //   );
 
-    setColorBox(changeColorBox);
-  };
+  //   setColorBox(changeColorBox);
+  // };
 
-  const handleFilterProducts = () => {
-    const categories = getAllSearchParam("category");
-    const startPrice = getSearchParam("startPrice");
-    const endPrice = getSearchParam("endPrice");
+  // const handleFilterProducts = () => {
+  //   const categories = getAllSearchParam("category");
+  //   const startPrice = getSearchParam("startPrice");
+  //   const endPrice = getSearchParam("endPrice");
 
-    if (startPrice && endPrice && categories.length) {
-      getFiltredProduct(categories, startPrice, endPrice);
-    }
-  };
+  //   if (startPrice && endPrice && categories.length) {
+  //     getFiltredProduct(categories, startPrice, endPrice);
+  //   }
+  // };
 
   const handleChangeBox = async (category, e) => {
     if (e.target.checked) {
-      searchParam.set("category", category);
+      searchParam.append("category", category);
       setSearchParam(searchParam);
     } else {
       searchParam.delete("category", category);
@@ -169,20 +172,25 @@ function ProductsPage() {
     }
   };
 
-  async function getFiltredProduct(categories, startPrice, endPrice) {
-    const filtredProducts = productsWithOutPagination?.filter((product) => {
-      return (
-        [...categories].includes(product.category.title) &&
-        product.price >= +startPrice &&
-        product.price <= +endPrice
-      );
-    });
+  // async function getFiltredProduct(categories, startPrice, endPrice) {
+  //   console.log(productsWithOutPagination);
+  //   const filtredProducts = [...productsWithOutPagination]?.filter(
+  //     (product) => {
+  //       return (
+  //         categories.includes(product.category.title) &&
+  //         product.price >= +startPrice &&
+  //         product.price <= +endPrice
+  //       );
+  //     }
+  //   );
 
-    setIsShowFilterButton(true);
-    setFiltredProduct(filtredProducts);
-    console.log(filtredProducts);
-    return filtredProducts;
-  }
+  //   console.log(filtredProduct);
+
+  //   setIsShowFilterButton(true);
+  //   setFiltredProduct(filtredProducts);
+  //   console.log(filtredProducts);
+  //   return filtredProducts;
+  // }
 
   const handlerSortFilter = (status) => {
     setStatus(status);
@@ -306,9 +314,9 @@ function ProductsPage() {
                     <input
                       type="checkbox"
                       class="text-lg"
-                      value="موبایل"
-                      onChange={(e) => handleChangeBox("موبایل", e)}
-                      checked={queryStrings.includes("موبایل") ? true : false}
+                      value="mobile"
+                      onChange={(e) => handleChangeBox("mobile", e)}
+                      checked={queryStrings.includes("mobile") ? true : false}
                     />{" "}
                     <span class="font-DanaMedium mt-1">موبایل</span>
                     <svg class="w-5 h-5">
@@ -322,9 +330,9 @@ function ProductsPage() {
                     <input
                       type="checkbox"
                       class="text-lg"
-                      value="ایرپاد"
-                      onChange={(e) => handleChangeBox("ایرپاد", e)}
-                      checked={queryStrings.includes("ایرپاد") ? true : false}
+                      value="airpod"
+                      onChange={(e) => handleChangeBox("airpod", e)}
+                      checked={queryStrings.includes("airpod") ? true : false}
                     />{" "}
                     <span class="font-DanaMedium mt-1">ایرپاد</span>
                     <svg class="w-5 h-5">
@@ -338,9 +346,9 @@ function ProductsPage() {
                     <input
                       type="checkbox"
                       class="text-lg"
-                      value="تبلت"
-                      onChange={(e) => handleChangeBox("تبلت", e)}
-                      checked={queryStrings.includes("تبلت") ? true : false}
+                      value="tablet"
+                      onChange={(e) => handleChangeBox("tablet", e)}
+                      checked={queryStrings.includes("tablet") ? true : false}
                     />{" "}
                     <span class="font-DanaMedium mt-1">تبلت</span>
                     <svg class="w-5 h-5">
@@ -354,9 +362,9 @@ function ProductsPage() {
                     <input
                       type="checkbox"
                       class="text-lg"
-                      value="لپ تاپ"
-                      onChange={(e) => handleChangeBox("لپ تاپ", e)}
-                      checked={queryStrings.includes("لپ تاپ") ? true : false}
+                      value="lap-top"
+                      onChange={(e) => handleChangeBox("lap-top", e)}
+                      checked={queryStrings.includes("lap-top") ? true : false}
                     />{" "}
                     <span class="font-DanaMedium mt-1">لپ تاپ</span>
                     <svg class="w-5 h-5">
@@ -457,62 +465,71 @@ function ProductsPage() {
                   پیش فرض
                 </div>
                 <div
-                  onClick={() => handlerSortFilter("popular")}
+                  onClick={() => handlerSortFilter("score-desc")}
                   className={`${
-                    status === "popular" ? "sort-active" : ""
+                    status === "score-desc" ? "sort-active" : ""
                   } rounded-md`}
                 >
                   محبوب ترین
                 </div>
                 <div
-                  onClick={() => handlerSortFilter("newest")}
+                  onClick={() => handlerSortFilter("createdAt-desc")}
                   className={`${
-                    status === "newest" ? "sort-active" : ""
+                    status === "createdAt-desc" ? "sort-active" : ""
                   } rounded-md`}
                 >
                   جدید ترین
                 </div>
                 <div
-                  onClick={() => handlerSortFilter("latest")}
+                  onClick={() => handlerSortFilter("createdAt-asc")}
                   className={`${
-                    status === "latest" ? "sort-active" : ""
+                    status === "createdAt-asc" ? "sort-active" : ""
                   } rounded-md`}
                 >
                   آخرین
                 </div>
                 <div
-                  onClick={() => handlerSortFilter("chepeast")}
+                  onClick={() => handlerSortFilter("price-asc")}
                   className={`${
-                    status === "chepeast" ? "sort-active" : ""
+                    status === "price-asc" ? "sort-active" : ""
                   } rounded-md`}
                 >
                   ارزان ترین
                 </div>
                 <div
-                  onClick={() => handlerSortFilter("expensivest")}
+                  onClick={() => handlerSortFilter("price-desc")}
                   className={`${
-                    status === "expensivest" ? "sort-active" : ""
+                    status === "price-desc" ? "sort-active" : ""
                   } rounded-md`}
                 >
                   گران ترین
                 </div>
               </div>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mt-5">
-              {filtredProduct?.length
+            {loadingProducts ? (
+              <div className="font-DanaMedium mt-5">در حال لود اطلاعات ...</div>
+            ) : (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mt-5">
+                {/* {filtredProduct?.length
                 ? filtredProduct?.map((product) => (
                     <ProductBox product={product} isScore={true} />
                   ))
                 : allProducts?.map((product) => (
                     <ProductBox product={product} isScore={true} />
-                  ))}
-            </div>
-            <Pagination
-              count={products?.paginatedNumber}
-              page={page}
-              setPage={setPage}
-              status={status}
-            />
+                  ))} */}
+                {data?.products.map((product) => (
+                  <ProductBox product={product} isScore={true} />
+                ))}
+              </div>
+            )}
+            {!loadingProducts && (
+              <Pagination
+                count={data?.paginatedNumber}
+                page={page}
+                setPage={setPage}
+                status={status}
+              />
+            )}
           </div>
         </div>
       </div>

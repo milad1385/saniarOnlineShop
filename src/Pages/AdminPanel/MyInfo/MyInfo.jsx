@@ -54,8 +54,6 @@ function MyInfo() {
     if (file) {
       setImage(file);
       setCurrImage(URL.createObjectURL(file));
-
-      console.log(URL.createObjectURL(file));
     }
   };
 

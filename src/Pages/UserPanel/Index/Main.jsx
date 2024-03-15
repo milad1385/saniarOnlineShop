@@ -11,14 +11,14 @@ import DeleteModal from "../../../Components/DeleteModal/DeleteModal";
 function Main() {
   const [isShowExitModal, setIsShowExitModal] = useState(false);
   const navigate = useNavigate();
-  const { logout } = useContext(AppContext);
+  const context = useContext(AppContext);
   useEffect(() => {
     window.scroll(0, 0);
   }, []);
 
   const showDeleteModal = () => setIsShowExitModal(true);
   const logoutHandler = () => {
-    logout();
+    context?.logout?.();
     navigate("/");
   };
   return (
@@ -39,14 +39,18 @@ function Main() {
               <div className="flex items-center gap-x-4 border-b-2 border-b-gray-200 pb-2">
                 <div className="bg-gray-100 w-[55px] h-[55px] flex-center rounded-full">
                   <img
-                    src="/images/user.png"
+                    src={`${
+                      context?.userInfo?.image
+                        ? `http://localhost:3001/uploads/covers/${context?.userInfo?.image}`
+                        : "/images/user.png"
+                    }`}
                     alt="user.png"
                     className="w-[50px] h-[50px] rounded-full"
                   />
                 </div>
                 <div className="flex  flex-col gap-y-1 font-DanaDemiBold">
                   <span className="text-blue-600">حساب کاربری من</span>
-                  <span className="">میلاد سلامیان</span>
+                  <span className="">{context?.userInfo?.name}</span>
                 </div>
               </div>
               <ul className="space-y-2 py-3 border-b-2 border-b-gray-200">

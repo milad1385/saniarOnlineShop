@@ -1,7 +1,12 @@
-import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
+import React from "react";
+import { Link, useSearchParams } from "react-router-dom";
 
 function Pagination({ count, page, setPage, status }) {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const handlePagination = (page) => {
+    searchParams.set("page", page);
+    setSearchParams(searchParams);
+  };
   return (
     <>
       <div className="flex items-center justify-center">
@@ -10,17 +15,19 @@ function Pagination({ count, page, setPage, status }) {
             .fill(0)
             .map((pagination, index) => (
               <li
-                className={`bg-white w-10 h-10 flex-center rounded-md shadow  ${
+                className={`bg-white w-10 h-10 flex-center rounded-md shadow cursor-pointer  ${
                   index + 1 === +page ? "pagination-active" : ""
                 }`}
+                key={index}
                 onClick={() => setPage(index + 1)}
               >
-                <Link
-                  to={`?page=${index + 1}${status ? `&order=${status}` : ""}`}
+                <div
+                  // to={`?page=${index + 1}${status ? `&order=${status}` : ""}`}
                   className="w-full h-full flex-center"
+                  onClick={() => handlePagination(index + 1)}
                 >
                   {index + 1}
-                </Link>
+                </div>
               </li>
             ))}
         </ul>

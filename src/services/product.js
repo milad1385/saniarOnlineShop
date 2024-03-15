@@ -110,6 +110,23 @@ const editProduct = async (info) => {
     return err;
   }
 };
+
+const filterProduct = async (categories, sort, page, startPrice, endPrice) => {
+  console.log(sort);
+  try {
+    const res = await fetch(
+      `${baseURL}/filtredProducts/${
+        categories.length ? categories : "test"
+      }?startPrice=${startPrice}&endPrice=${endPrice}&page=${page}&sort=${sort}`
+    );
+
+    console.log(res);
+    return await res.json();
+  } catch (err) {
+    return err;
+  }
+};
+
 export {
   createNewProduct,
   getAllProducts,
@@ -120,5 +137,6 @@ export {
   deleteProduct,
   getProductFromCategory,
   searchProduct,
-  editProduct
+  editProduct,
+  filterProduct,
 };

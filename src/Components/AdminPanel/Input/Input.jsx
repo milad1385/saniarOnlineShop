@@ -43,11 +43,11 @@ function Input({
       </svg>
     </>
   ) : (
-    <div className="relative w-full">
+    <div className={`relative w-full ${className ? className : ""}`}>
       <div
         className={`${
           InputStyle
-            ? `${InputStyle} h-[49px]`
+            ? `${InputStyle} h-[49px] flex items-center px-3`
             : "flex items-center justify-between  bg-gray-100 relative py-2 px-3 rounded-lg"
         }`}
       >
