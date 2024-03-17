@@ -10,6 +10,7 @@ import Input from "../../../Components/AdminPanel/Input/Input";
 import { getUserInfo } from "../../../services/userApi";
 import useEdit from "../../../Hooks/AdminPanel/User/useEdit";
 import StatusModal from "../../../Components/SuccessModal/SuccessModal";
+import { useNavigate } from "react-router-dom";
 
 function Profile() {
   const [userId, setUserId] = useState(null);
@@ -18,6 +19,8 @@ function Profile() {
   const [isShowSuccessModal, setIsShowSuccessModal] = useState(false);
   const { data: userInfo, isLoading: loadingInfo } = useGetMe(getUserToken());
   const { mutateAsync: editUser, isLoading: editLoading } = useEdit();
+
+  const navigate = useNavigate();
 
   const {
     register,
@@ -201,7 +204,10 @@ function Profile() {
           icon={"face-smile"}
           color="text-blue-600"
           bg="bg-blue-600"
-          onClick={() => setIsShowSuccessModal(false)}
+          onClick={() => {
+            navigate("/");
+            location.reload();
+          }}
         />
       )}
     </>

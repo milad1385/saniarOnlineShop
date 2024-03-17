@@ -70,7 +70,7 @@ function SideBar({ isMenuShow, onShow }) {
                 icon={"advertisment"}
                 items={[
                   { title: "اسلایدر و بنر", link: "ads-banner", icon: "image" },
-                  { title: "کمپین", link: "campaign", icon: "pencil" },
+                  { title: "کمپین", link: "capmaign", icon: "pencil" },
                 ]}
               />
               <Menu
@@ -78,7 +78,7 @@ function SideBar({ isMenuShow, onShow }) {
                 icon={"shop"}
                 items={[
                   { title: "سفارشات", link: "ads-banner", icon: "image" },
-                  { title: "منو ها", link: "campaign", icon: "pencil" },
+                  { title: "منو ها", link: "menus", icon: "pencil" },
                   { title: "محتوای استاتیک", link: "static", icon: "static" },
                   { title: "غیر فعال کردن", link: "off", icon: "power-off" },
                 ]}
@@ -159,7 +159,7 @@ function SideBar({ isMenuShow, onShow }) {
                 icon={"advertisment"}
                 items={[
                   { title: "اسلایدر و بنر", link: "ads-banner", icon: "image" },
-                  { title: "کمپین", link: "campaign", icon: "pencil" },
+                  { title: "کمپین", link: "capmaign", icon: "pencil" },
                 ]}
               />
               <Menu
@@ -167,7 +167,7 @@ function SideBar({ isMenuShow, onShow }) {
                 icon={"shop"}
                 items={[
                   { title: "سفارشات", link: "ads-banner", icon: "image" },
-                  { title: "منو ها", link: "campaign", icon: "pencil" },
+                  { title: "منو ها", link: "menus", icon: "pencil" },
                   { title: "محتوای استاتیک", link: "static", icon: "static" },
                   { title: "غیر فعال کردن", link: "off", icon: "power-off" },
                 ]}
