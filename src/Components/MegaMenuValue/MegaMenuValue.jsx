@@ -8,7 +8,7 @@ function MegaMenuValue({ items, name }) {
         {name}
       </span>
       {items.map((item) => (
-        <Link className="text-gray-500 text-sm" to={item.Link}>
+        <Link key={item.title} className="text-gray-500 text-sm" to={item.Link}>
           {item.title}
         </Link>
       ))}

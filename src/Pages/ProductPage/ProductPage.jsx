@@ -18,6 +18,9 @@ import SliderIcon from "../../Components/SliderIcon/SliderIcon";
 import { useParams } from "react-router-dom";
 import useGetOne from "../../Hooks/AdminPanel/Product/useGetOne";
 import DOMPurify from "dompurify";
+import useCreate from "../../Hooks/wishlist/useCreate";
+import useExist from "../../Hooks/wishlist/useExist";
+import useDelete from "../../Hooks/wishlist/useDelete";
 
 function ProductPage() {
   const [optionShowModel, setOptionShowModel] = useState("توضیحات کالا");
@@ -26,11 +29,22 @@ function ProductPage() {
   const [activeTumb, setActiveTumb] = useState(null);
   const { productName } = useParams();
   const { data: productInfo } = useGetOne(productName);
+  const { mutateAsync: addToWishList } = useCreate();
+  const { mutateAsync: deleteWish } = useDelete();
+  const { data: isExist } = useExist(productInfo?.productInfo._id);
 
   useEffect(() => {
     window.scroll(0, 0);
     setActiveTumb(null);
   }, [productName]);
+
+  const addToWishListHandler = async () => {
+    const result = await addToWishList(productInfo?.productInfo._id);
+  };
+
+  const removeWishList = async () => {
+    await deleteWish(productInfo?.productInfo._id);
+  };
 
   return (
     <div>
@@ -55,7 +69,15 @@ function ProductPage() {
               <div className="flex gap-x-3 border border-gray-200 px-3 py-4 rounded-md">
                 <div className="flex flex-col gap-y-2">
                   <SliderIcon icon={"share"} />
-                  <SliderIcon icon={"heart"} />
+                  {isExist ? (
+                    <div onClick={removeWishList}>
+                      <SliderIcon className="text-red-600" icon={"heart"} />
+                    </div>
+                  ) : (
+                    <div onClick={addToWishListHandler}>
+                      <SliderIcon icon={"heart"} />
+                    </div>
+                  )}
                   <SliderIcon icon={"right-left-arrow"} />
                   <SliderIcon icon={"chart-bar"} />
                 </div>

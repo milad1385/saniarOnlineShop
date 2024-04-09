@@ -6,12 +6,13 @@ import EmptyError from "../../../../Components/UserPanel/EmptyError/EmptyError";
 import DeleteModal from "../../../../Components/DeleteModal/DeleteModal";
 import useDelete from "../../../../Hooks/AdminPanel/color/useDelete";
 import StatusModal from "../../../../Components/SuccessModal/SuccessModal";
+import { getSearchParam } from "../../../../Utils/Funcs/utils";
 
 function ColorsList() {
   const [isShowDeleteModal, setIsShowDeleteModal] = useState(false);
   const [isShowSuccessModal, setIsShowSuccessModal] = useState(false);
   const [colorId, setColorId] = useState(null);
-  const pageNum = new URLSearchParams(window.location.search).get("page");
+  const pageNum = getSearchParam("page");
   const [page, setPage] = useState(pageNum);
 
   const { data: colors } = useGetAll(page);
@@ -73,7 +74,6 @@ function ColorsList() {
                         حذف
                       </button>
                     </td>
-                    
                   </tr>
                 ))
               ) : (

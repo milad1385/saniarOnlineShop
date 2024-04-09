@@ -5,7 +5,6 @@ import useGetMain from "../../../Hooks/AdminPanel/Ticket/useGetMain";
 function AnswerTicket() {
   const { ticketID } = useParams();
   const { data: ticketInfo, isLoading } = useGetMain(ticketID);
-  console.log(ticketInfo);
   useEffect(() => {
     window.scroll(0, 0);
   }, []);
@@ -26,7 +25,7 @@ function AnswerTicket() {
               style={{ direction: "ltr" }}
             >
               {new Date(ticketInfo?.createdAt).toLocaleDateString("fa-IR")}{" "}
-              10:43
+              {new Date(ticketInfo?.createdAt).toLocaleString("fa")}
             </span>
             <p className="font-Dana mt-4 text-gray-500">{ticketInfo?.body}</p>
           </div>

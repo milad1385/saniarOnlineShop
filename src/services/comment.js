@@ -80,10 +80,26 @@ const editCommentBody = async (body, id) => {
   }
 };
 
+const getMainComments = async () => {
+  try {
+    const res = await fetch(`${baseURL}/getMain`, {
+      headers: {
+        authorization: `${getUserToken()}`,
+      },
+    });
+
+    const comments = await res.json();
+    return comments;
+  } catch (err) {
+    return err;
+  }
+};
+
 export {
   createNewComment,
   getAllComments,
   setAcceptOrDeclineComment,
   deleteComment,
   editCommentBody,
+  getMainComments
 };
