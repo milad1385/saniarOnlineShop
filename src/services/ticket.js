@@ -53,4 +53,68 @@ const getMainInfo = async (id) => {
   }
 };
 
-export { getAllDepartments, sendNewTicket, getAllTickets, getMainInfo };
+const fetchAllTickets = async () => {
+  try {
+    const res = await fetch(`${baseURL}/all`);
+    return await res.json();
+  } catch (err) {
+    return err;
+  }
+};
+
+const sendAnswerToTicket = async (data) => {
+  try {
+    const res = await fetch(`${baseURL}/answer/ticket`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        authorization: `${getUserToken()}`,
+      },
+      body: JSON.stringify(data),
+    });
+
+    return res;
+  } catch (err) {
+    return err;
+  }
+};
+
+const getTicketAnswers = async (id) => {
+  try {
+    const res = await fetch(`${baseURL}/get/answers/${id}`, {
+      headers: {
+        authorization: `${getUserToken()}`,
+      },
+    });
+
+    return await res.json();
+  } catch (err) {
+    return err;
+  }
+};
+
+const activeToggle = async (info) => {
+  try {
+    const res = await fetch(
+      `${baseURL}/activeToggle/${info.id}/${info.status}`,
+      {
+        method: "PUT",
+      }
+    );
+
+    return res;
+  } catch (err) {
+    return err;
+  }
+};
+
+export {
+  getAllDepartments,
+  sendNewTicket,
+  getAllTickets,
+  getMainInfo,
+  fetchAllTickets,
+  sendAnswerToTicket,
+  getTicketAnswers,
+  activeToggle,
+};

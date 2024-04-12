@@ -87,7 +87,7 @@ function Tickets() {
             </thead>
             <tbody>
               {allTickets?.allTickets.map((ticket , index) => (
-                <tr className="text-center child:border child:border-slate-300 child:p-2 child:font-DanaMedium">
+                <tr key={ticket._id} className="text-center child:border child:border-slate-300 child:p-2 child:font-DanaMedium">
                   <td className="">{index + 1}</td>
                   <td className="">
                     <span className="">{ticket.title}</span>

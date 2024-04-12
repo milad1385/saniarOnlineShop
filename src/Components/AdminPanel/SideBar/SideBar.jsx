@@ -77,7 +77,7 @@ function SideBar({ isMenuShow, onShow }) {
                 title={"فروشگاه"}
                 icon={"shop"}
                 items={[
-                  { title: "سفارشات", link: "ads-banner", icon: "image" },
+                  { title: "سفارشات", link: "orders", icon: "image" },
                   { title: "منو ها", link: "menus", icon: "pencil" },
                   { title: "محتوای استاتیک", link: "static", icon: "static" },
                   { title: "غیر فعال کردن", link: "off", icon: "power-off" },
@@ -166,7 +166,7 @@ function SideBar({ isMenuShow, onShow }) {
                 title={"فروشگاه"}
                 icon={"shop"}
                 items={[
-                  { title: "سفارشات", link: "ads-banner", icon: "image" },
+                  { title: "سفارشات", link: "orders", icon: "image" },
                   { title: "منو ها", link: "menus", icon: "pencil" },
                   { title: "محتوای استاتیک", link: "static", icon: "static" },
                   { title: "غیر فعال کردن", link: "off", icon: "power-off" },

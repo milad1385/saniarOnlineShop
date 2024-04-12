@@ -10,7 +10,7 @@ import StatusModal from "../../../Components/SuccessModal/SuccessModal";
 
 function SendTicket() {
   const [isShowSuccessModal, setIsShowSuccessModal] = useState(false);
-  const { data: departments, isLoading } = useDepartment();
+  const { data: departments } = useDepartment();
   const { mutateAsync: sendTicket, isLoading: isSending } = useSend();
 
   const {
@@ -27,9 +27,7 @@ function SendTicket() {
   }, []);
 
   const sendNewTicketHandler = async (data) => {
-    console.log(data);
     const result = await sendTicket(data);
-    console.log(result);
     if (result.status === 202) {
       setIsShowSuccessModal(true);
       reset();

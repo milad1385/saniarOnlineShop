@@ -52,7 +52,7 @@ import IsLogin from "./Pages/Private/IsLogin";
 import { Suspense, lazy } from "react";
 import Loader from "./Components/Loader/Loader";
 import EditProduct from "./Pages/AdminPanel/EditProduct/EditProduct";
-
+import Answer from "./Pages/AdminPanel/AnswerTicket/AnswerTicket";
 const ProductPage = lazy(() => import("./Pages/ProductPage/ProductPage"));
 const Index = lazy(() => import("./Pages/Index/Index"));
 const ProductsPage = lazy(() => import("./Pages/ProductsPage/ProductsPage"));
@@ -144,6 +144,7 @@ const routes = [
       { path: "orders", element: <Orders /> },
       { path: "discount", element: <Discount /> },
       { path: "tickets", element: <TicketsAdminPage /> },
+      { path: "tickets/answer/:id", element: <Answer /> },
       { path: "articles", element: <ArticlesAdminPage /> },
       { path: "capmaign", element: <Campaign /> },
       { path: "ads-banner", element: <BannerAdminPage /> },
