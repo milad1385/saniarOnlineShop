@@ -115,6 +115,10 @@
       height: 380px;
     }
   }
+
+  .nav-link-sub {
+    @apply flex items-center gap-x-1.5 text-sm lg:text-sm xl:text-base;
+  }
   .chev {
     transform: rotate(-360deg);
   }

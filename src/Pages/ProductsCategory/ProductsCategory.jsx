@@ -33,10 +33,9 @@ function ProductsCategory() {
           links={[
             { id: 1, name: "خانه", to: "/" },
             { id: 2, name: "محصولات", to: "/Products" },
-            { id: 3, name: `${categoryName}`, to: "/" },
+            { id: 3, name: `${products?.categoryName ?? ""}`, to: "/" },
           ]}
         />
-        {/* <TitleCat desc={`${categoryName}`} main={"دسته بندی"} isMain={true} /> */}
         <div className="mt-5">
           {products?.products.length ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 ">

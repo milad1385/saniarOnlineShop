@@ -58,30 +58,41 @@ function AnswerTicket() {
         )}
         {/* reply answer */}
 
-        <form
-          onSubmit={handleSubmit(sendTicketAnswer)}
-          id="reply-ticket"
-          className="mt-10"
-        >
-          <textarea
-            rows="6"
-            className="block w-full p-3 md:p-5 text-sm md:text-base text-slate-500 dark:text-gray-500 focus:text-zinc-700 dark:focus:text-white bg-gray-100 dark:bg-gray-700 border border-transparent focus:border-gray-200 dark:focus:border-slate rounded-2xl placeholder:font-danaLight transition-colors"
-            name="text"
-            required=""
-            placeholder="پاسخ ..."
-            {...register("body", {
-              required: "متن پاسخ را وارد کنید !!!",
-            })}
-          ></textarea>
-          <div className="flex gap-x-2 justify-end mt-2.5">
-            <button
-              className="bg-blue-600 text-white py-2 px-5 rounded-md shadow-blue"
-              type="submit"
-            >
-              {isAnswering ? "در حال ارسال ..." : "ارسال"}
-            </button>
+        {ticketInfo?.isOpen ? (
+          <form
+            onSubmit={handleSubmit(sendTicketAnswer)}
+            id="reply-ticket"
+            className="mt-10"
+          >
+            <textarea
+              rows="6"
+              className="block w-full p-3 md:p-5 text-sm md:text-base text-slate-500 dark:text-gray-500 focus:text-zinc-700 dark:focus:text-white bg-gray-100 dark:bg-gray-700 border border-transparent focus:border-gray-200 dark:focus:border-slate rounded-2xl placeholder:font-danaLight transition-colors"
+              name="text"
+              required=""
+              placeholder="پاسخ ..."
+              {...register("body", {
+                required: "متن پاسخ را وارد کنید !!!",
+              })}
+            ></textarea>
+            <div className="flex gap-x-2 justify-end mt-2.5">
+              <button
+                className="bg-blue-600 text-white py-2 px-5 rounded-md shadow-blue"
+                type="submit"
+              >
+                {isAnswering ? "در حال ارسال ..." : "ارسال"}
+              </button>
+            </div>
+          </form>
+        ) : (
+          <div className="bg-pink-600 text-white font-DanaDemiBold flex items-center justify-center gap-x-1.5 rounded-lg text-sm md:text-lg py-8 mt-5">
+            این چت در تاریخ{" "}
+            <strong>
+              {" "}
+              {new Date(ticketInfo?.updatedAt).toLocaleString("fa")}
+            </strong>{" "}
+            به شکل اتوماتیک بسته شد
           </div>
-        </form>
+        )}
       </div>
     </>
   );

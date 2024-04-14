@@ -4,10 +4,12 @@ import MegaMenuItem from "../MegaMenuItem/MegaMenuItem";
 import MegaMenuValue from "../MegaMenuValue/MegaMenuValue";
 import { AppContext } from "../../App";
 import useGetAll from "../../Hooks/AdminPanel/static/address/useGetAll";
+import useMenu from "../../Hooks/AdminPanel/menu/useMenu";
 
 function Navbar() {
   const { userInfo, isLogin } = useContext(AppContext);
   const { data: info } = useGetAll();
+  const { data: menus } = useMenu();
   const overlayRef = useRef();
   const menuRef = useRef();
   const subMenuRef = useRef();
@@ -54,11 +56,11 @@ function Navbar() {
       <div className="hidden md:block shadow-lg p-5 bg-white sticky -top-1 z-30">
         <div className={`flex items-center justify-between container`}>
           <div>
-            <ul className="flex items-center gap-x-5 hover:child:text-blue-600">
+            <ul className="flex items-center gap-x-6">
               <li className="pb-2 group">
                 <Link
                   to={""}
-                  className="flex items-center w-full relative gap-x-1.5 bg-blue-600 py-2 px-3 rounded-md text-white shadow-blue text-sm lg:text-sm xl:text-lg"
+                  className="flex items-center w-full relative gap-x-1.5 bg-blue-600 py-2 px-3 rounded-md text-white shadow-blue text-sm lg:text-sm xl:text-base"
                 >
                   <svg className="w-6 h-6">
                     <use href="#bar"></use>
@@ -141,52 +143,39 @@ function Navbar() {
                   </div>
                 </Link>
               </li>
-              <li className="pb-2">
-                <Link
-                  to={""}
-                  className="flex items-center gap-x-1.5 text-sm lg:text-sm xl:text-lg"
-                >
-                  موبایل
-                  <svg className="w-6 h-6">
-                    <use href="#mobile"></use>
-                  </svg>
-                </Link>
-              </li>
-              <li className="pb-2">
-                <Link
-                  to={""}
-                  className="flex items-center gap-x-1.5 text-sm lg:text-sm xl:text-lg"
-                >
-                  منو ساده
-                  <svg className="w-6 h-6">
-                    <use href="#sample"></use>
-                  </svg>
-                </Link>
-              </li>
-              <li className="pb-2">
-                <Link
-                  to={""}
-                  className="flex items-center gap-x-1.5 text-sm lg:text-sm xl:text-lg"
-                >
-                  تخفیف ها و پیشنهادات
-                  <svg className="w-6 h-6">
-                    <use href="#tag"></use>
-                  </svg>
-                </Link>
-              </li>
-              <li className="pb-2">
-                <Link
-                  to={""}
-                  className="flex items-center gap-x-1.5 text-sm lg:text-sm xl:text-lg"
-                >
-                  سوالی دارید
-                </Link>
-              </li>
+              {menus?.map((menu) => (
+                <li key={menu._id} className="pb-2 group">
+                  <Link
+                    to={`/category-products/${menu.link}`}
+                    className="flex relative items-center line-clamp-1 hover:text-blue-600 gap-x-0.5 text-sm lg:text-sm xl:text-base"
+                  >
+                    {menu.name}
+                    {menu.sub.length > 0 && (
+                      <svg className="w-5 h-5">
+                        <use href="#chevron-down-mini"></use>
+                      </svg>
+                    )}
+                  </Link>
+                  {menu.sub.length > 0 && (
+                    <div className="absolute group-hover:visible group-hover:opacity-100 text-gray-700 bg-white px-4 py-3 w-60 top-[67px] rounded-md transition-all shadow opacity-0 invisible space-y-4 border-b-[3.5px] border-b-blue-600">
+                      {menu.sub.map((subMenu) => (
+                        <Link
+                          key={subMenu._id}
+                          to={`/product/${subMenu.link}`}
+                          className="nav-link-sub line-clamp-1"
+                        >
+                          {subMenu.name}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </li>
+              ))}
               {userInfo?.role === "ADMIN" && (
                 <li className="pb-2">
                   <Link
                     to={"/admin-panel"}
-                    className="flex items-center gap-x-1.5 text-sm lg:text-sm xl:text-lg"
+                    className="flex items-center gap-x-1.5 text-sm lg:text-sm xl:text-base"
                   >
                     پنل مدیریت
                   </Link>
