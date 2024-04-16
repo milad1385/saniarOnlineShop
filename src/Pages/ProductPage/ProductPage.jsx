@@ -1,3 +1,5 @@
+import "swiper/css";
+import "swiper/css/thumbs";
 import React, { useEffect, useState } from "react";
 import Topbar from "../../Components/Topbar/Topbar";
 import Navbar from "../../Components/Navbar/Navbar";
@@ -5,8 +7,6 @@ import BreadCrumb from "../../Components/BreadCrumb/BreadCrumb";
 import Footer from "../../Components/Footer/Footer";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Thumbs, Zoom } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/thumbs";
 import SameProduct from "../../Components/SameProduct/SameProduct";
 import FooterMenu from "../../Components/FooterMenu/FooterMenu";
 import Shoper from "../../Components/Shoper/Shoper";
@@ -21,29 +21,65 @@ import DOMPurify from "dompurify";
 import useCreate from "../../Hooks/wishlist/useCreate";
 import useExist from "../../Hooks/wishlist/useExist";
 import useDelete from "../../Hooks/wishlist/useDelete";
+import useAdd from "../../Hooks/basket/useCreate";
+import useMain from "../../Hooks/basket/useMain";
+import useInc from "../../Hooks/basket/useInc";
+import useDec from "../../Hooks/basket/useDec";
+import useDeleteBasket from "../../Hooks/basket/useDelete";
 
 function ProductPage() {
   const [optionShowModel, setOptionShowModel] = useState("توضیحات کالا");
   const [productCount, setProductCount] = useState(1);
   const [colorChoose, setColorChoose] = useState("");
   const [activeTumb, setActiveTumb] = useState(null);
+  const [colorCode, setColorCode] = useState("");
+
   const { productName } = useParams();
   const { data: productInfo } = useGetOne(productName);
   const { mutateAsync: addToWishList } = useCreate();
   const { mutateAsync: deleteWish } = useDelete();
+  const { mutateAsync: addToBasket, isLoading } = useAdd();
+  const { mutateAsync: increaseBasket } = useInc();
+  const { mutateAsync: decreaseBasket } = useDec();
+  const { mutateAsync: deleteBasket } = useDeleteBasket();
+  const { data: basketInfo } = useMain(productInfo?.productInfo._id);
   const { data: isExist } = useExist(productInfo?.productInfo._id);
 
+  console.log(basketInfo);
   useEffect(() => {
     window.scroll(0, 0);
     setActiveTumb(null);
-  }, [productName]);
+    setProductCount(basketInfo?.[0]?.qty ?? 1);
+  }, [productName, basketInfo]);
 
   const addToWishListHandler = async () => {
-    const result = await addToWishList(productInfo?.productInfo._id);
+    await addToWishList(productInfo?.productInfo._id);
   };
 
   const removeWishList = async () => {
     await deleteWish(productInfo?.productInfo._id);
+  };
+
+  // basket functions
+  const addToBasketHandler = async () => {
+    const { _id, price, off } = productInfo?.productInfo;
+    const productObj = {
+      product: _id,
+      qty: productCount || 1,
+      colorName: colorChoose || "black",
+      colorCode: colorCode || "#000",
+      price: off ? price - (price * off) / 100 : price,
+    };
+
+    await addToBasket(productObj);
+  };
+
+  const increaseHandler = async () => {
+    await increaseBasket(productInfo?.productInfo._id);
+  };
+
+  const decreaseHandler = async () => {
+    await decreaseBasket(productInfo?.productInfo._id);
   };
 
   return (
@@ -213,6 +249,7 @@ function ProductPage() {
                       colorName={color.colorName}
                       colorChoose={colorChoose}
                       setColorChoose={setColorChoose}
+                      setCode={setColorCode}
                     />
                   ))}
                 </div>
@@ -251,23 +288,51 @@ function ProductPage() {
                   </div>
                 </div>
                 <div className="flex items-center justify-between gap-x-5">
-                  <button className="flex items-center text-sm md:text-base gap-x-1 bg-blue-600 text-white px-6 py-2 rounded-md shadow-blue">
-                    <svg className="w-6 h-6">
-                      <use href="#shop-bag"></use>
-                    </svg>
-                    خرید <span className="hidden md:block">کالا</span>
-                  </button>
-                  <div className="flex items-center gap-x-2">
-                    <div className="w-10 h-[30px] bg-blue-600 text-white flex-center rounded-r-full font-DanaMedium shadow-blue cursor-default md:cursor-pointer">
-                      <span className="mt-1">+</span>
+                  {!basketInfo?.length && (
+                    <button
+                      onClick={addToBasketHandler}
+                      className="flex items-center text-sm md:text-base gap-x-1 bg-blue-600 text-white px-6 py-2 rounded-md shadow-blue"
+                    >
+                      <svg className="w-6 h-6">
+                        <use href="#shop-bag"></use>
+                      </svg>
+                      خرید <span className="hidden md:block">کالا</span>
+                    </button>
+                  )}
+                  {basketInfo?.length > 0 && (
+                    <div className="flex items-center gap-x-2">
+                      <div
+                        onClick={() => increaseHandler()}
+                        className="w-10 h-[30px] bg-blue-600 text-white flex-center rounded-r-full font-DanaMedium shadow-blue cursor-default md:cursor-pointer"
+                      >
+                        <span className="mt-1">+</span>
+                      </div>
+                      <div className="bg-white w-[50px] h-[30px] flex-center font-DanaDemiBold rounded-md shadow">
+                        {productCount}
+                      </div>
+                      {basketInfo?.length && basketInfo?.[0]?.qty > 1 ? (
+                        <div
+                          onClick={decreaseHandler}
+                          className="w-10 h-[30px] bg-blue-600 text-white flex-center rounded-l-full font-DanaMedium shadow-blue cursor-default md:cursor-pointer"
+                        >
+                          <span className="mt-1">-</span>
+                        </div>
+                      ) : (
+                        <div
+                          onClick={async () =>
+                            await deleteBasket(productInfo?.productInfo._id)
+                          }
+                          className="w-10 h-[30px] bg-blue-600 text-white flex-center rounded-l-full font-DanaMedium shadow-blue cursor-default md:cursor-pointer"
+                        >
+                          <span className="mt-1">
+                            <svg className="w-5 h-5 mb-1">
+                              <use href="#trash"></use>
+                            </svg>
+                          </span>
+                        </div>
+                      )}
                     </div>
-                    <div className="bg-white w-[50px] h-[30px] flex-center font-DanaDemiBold rounded-md shadow">
-                      1
-                    </div>
-                    <div className="w-10 h-[30px] bg-blue-600 text-white flex-center rounded-l-full font-DanaMedium shadow-blue cursor-default md:cursor-pointer">
-                      <span className="mt-1">-</span>
-                    </div>
-                  </div>
+                  )}
                 </div>
               </div>
             </div>

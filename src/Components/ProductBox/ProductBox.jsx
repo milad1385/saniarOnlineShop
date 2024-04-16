@@ -1,7 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import useCreate from "../../Hooks/wishlist/useCreate";
+import useDelete from "../../Hooks/wishlist/useDelete";
+import { isLogin } from "../../Utils/Funcs/utils";
 
 function ProductBox({ product, isScore }) {
+  const { mutateAsync: addToWishList } = useCreate();
+  const { mutateAsync: deleteWishList } = useDelete();
+  const isUserLogin = isLogin();
+  const addToWishListHandler = async () => {
+    await addToWishList(product._id);
+  };
   return (
     <div className="bg-white shadow-sm p-2.5 rounded-lg select-none">
       {/* start header */}
@@ -15,11 +24,28 @@ function ProductBox({ product, isScore }) {
               <use href="#compare"></use>
             </svg>
           </span>
-          <span className="bg-gray-200 block rounded-full p-1.5 text-zinc-700">
-            <svg className="w-5 h-5">
-              <use href="#heart"></use>
-            </svg>
-          </span>
+          {isUserLogin &&
+            (product.isWished ? (
+              <span
+                className="bg-gray-200 block rounded-full p-1.5 text-zinc-700"
+                onClick={async () => {
+                  await deleteWishList(product._id);
+                }}
+              >
+                <svg className={`w-5 h-5 text-red-600`}>
+                  <use href="#heart"></use>
+                </svg>
+              </span>
+            ) : (
+              <span
+                className="bg-gray-200 block rounded-full p-1.5 text-zinc-700"
+                onClick={addToWishListHandler}
+              >
+                <svg className={`w-5 h-5`}>
+                  <use href="#heart"></use>
+                </svg>
+              </span>
+            ))}
           <span className="bg-gray-200 block rounded-full p-1.5 text-zinc-700">
             <svg className="w-5 h-5">
               <use href="#eye"></use>
@@ -48,7 +74,7 @@ function ProductBox({ product, isScore }) {
           <div className="flex flex-row-reverse gap-x-2">
             {isScore ? (
               <>
-              {Array(product.score)
+                {Array(product.score)
                   .fill(0)
                   .map((score) => (
                     <div className="flex">

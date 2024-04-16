@@ -301,26 +301,14 @@ function Navbar() {
               className="hidden mt-2 space-y-2 text-sm text-blue-600 pr-2"
               ref={subMenuRef}
             >
-              <li className="flex items-center gap-x-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-blue-600 block"></span>
-                <Link to={"/"}>لپ تاپ ها</Link>
-              </li>
-              <li className="flex items-center gap-x-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-blue-600 block"></span>
-                <Link to={"/"}>گوشی ها</Link>
-              </li>
-              <li className="flex items-center gap-x-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-blue-600 block"></span>
-                <Link to={"/"}>پوشاک</Link>
-              </li>
-              <li className="flex items-center gap-x-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-blue-600 block"></span>
-                <Link to={"/"}>مواد غذایی</Link>
-              </li>
-              <li className="flex items-center gap-x-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-blue-600 block"></span>
-                <Link to={"/"}>اسباب بازی</Link>
-              </li>
+              {menus?.map((menu) => (
+                <li key={menu} className="flex items-center gap-x-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-blue-600 block"></span>
+                  <Link to={`/category-products/${menu.link}`}>
+                    {menu.name}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </li>
           <li>

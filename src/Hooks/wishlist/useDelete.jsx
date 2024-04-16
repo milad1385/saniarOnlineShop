@@ -7,6 +7,7 @@ function useCreate() {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["isExist"] });
       queryClient.invalidateQueries({ queryKey: ["wishlist"] });
+      queryClient.invalidateQueries({ queryKey: ["best-seller"] });
     },
   });
 }

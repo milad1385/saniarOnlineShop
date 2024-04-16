@@ -14,7 +14,7 @@ function FeatureList({ features }) {
         </h4>
         <ul className="features font-DanaMedium space-y-5 mt-5">
           {isMore
-            ? features?.map((feature) => <FeatureItem feature={feature} />)
+            ? features?.map((feature) => <FeatureItem key={feature._id} feature={feature} />)
             : features
                 ?.slice(0, 4)
                 .map((feature) => <FeatureItem feature={feature} />)}

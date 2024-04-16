@@ -45,7 +45,7 @@ function LastBlog({ isBlog }) {
             }}
           >
             {articles?.map((article) => (
-              <SwiperSlide>
+              <SwiperSlide key={article._id}>
                 <ArticleBox article={article} />
               </SwiperSlide>
             ))}

@@ -1,4 +1,4 @@
-import React, { useState , memo } from "react";
+import React, { useState, memo } from "react";
 import TitleCat from "../TitleCat/TitleCat";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
@@ -9,6 +9,7 @@ import useGetBestSeller from "../../Hooks/AdminPanel/Product/useGetBestSeller";
 function MoreSell() {
   const [swipe, setSwipe] = useState(null);
   const { data: bestSeller, isLoading } = useGetBestSeller();
+  console.log(bestSeller);
   return (
     <div className="">
       <div className="container">
@@ -47,13 +48,11 @@ function MoreSell() {
               },
             }}
           >
-            {bestSeller
-              ?.sort((a, b) => Math.random() - 0.5)
-              ?.map((product) => (
-                <SwiperSlide>
-                  <ProductBox product={product} />
-                </SwiperSlide>
-              ))}
+            {bestSeller?.map((product) => (
+              <SwiperSlide key={product._id}>
+                <ProductBox product={product} />
+              </SwiperSlide>
+            ))}
           </Swiper>
         </div>
         <div className="flex items-center justify-center relative mt-7 gap-x-2.5">

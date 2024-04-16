@@ -50,7 +50,7 @@ function TopSaleProducts() {
             }}
           >
             {bestSeller?.map((product) => (
-              <SwiperSlide>
+              <SwiperSlide key={product._id}>
                 <ProductBox product={product} />
               </SwiperSlide>
             ))}

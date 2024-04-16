@@ -10,7 +10,7 @@ function Categories() {
       <TitleCat main={"محصولات"} desc={"دسته بندی"} />
       <div className=" grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-5 mt-5">
         {categories?.categories.map((category) => (
-          <CategoryCard category={category} />
+          <CategoryCard key={category._id} category={category} />
         ))}
       </div>
     </div>

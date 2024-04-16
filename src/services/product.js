@@ -28,7 +28,11 @@ const getAllProducts = async (page) => {
 
 const getBestSellerProduct = async () => {
   try {
-    const res = await fetch(`${baseURL}/best-seller`);
+    const res = await fetch(`${baseURL}/best-seller`, {
+      headers: {
+        "authorization": `${getUserToken()}`,
+      },
+    });
     return await res.json();
   } catch (err) {
     return err;

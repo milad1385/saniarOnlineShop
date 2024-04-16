@@ -6,6 +6,7 @@ function useCreate() {
     mutationFn: addToWishList,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["isExist"] });
+      queryClient.invalidateQueries({ queryKey: ["best-seller"] });
     },
   });
 }
