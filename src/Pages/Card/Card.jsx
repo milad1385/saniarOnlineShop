@@ -39,13 +39,13 @@ function Card() {
           <OrderStatus />
         </div>
         {baskets?.length > 0 ? (
-          <div className="flex gap-x-6 mt-10">
+          <div className="flex flex-col md:flex-row gap-6 mt-10">
             <div className="w-full space-y-4">
               {baskets?.map((basket) => (
                 <OrderCard key={basket._id} {...basket} />
               ))}
             </div>
-            <div className="w-[450px] h-[350px] bg-white rounded-md shadow p-3 sticky top-0 ">
+            <div className="w-auto md:w-[450px] h-[350px] bg-white rounded-md shadow p-3 sticky top-0 ">
               <PageTitle title={"سفارش شما"} icon={"shopping-cart"} />
               <div className="font-DanaDemiBold flex items-center justify-between mt-3 text-sm text-gray-500">
                 <p>محصول</p>
