@@ -7,6 +7,7 @@ function useDec() {
     mutationFn: decreaseItem,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["main-basket"] });
+      queryClient.invalidateQueries({ queryKey: ["user-basket"] });
     },
   });
 }

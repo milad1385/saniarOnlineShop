@@ -7,6 +7,7 @@ function useCreate() {
     mutationFn: addToBasket,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["main-basket"] });
+      queryClient.invalidateQueries({ queryKey: ["user-basket"] });
     },
   });
 }

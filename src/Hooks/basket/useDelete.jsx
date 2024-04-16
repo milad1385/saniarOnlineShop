@@ -7,6 +7,7 @@ function useDelete() {
     mutationFn: deleteBasketItem,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["main-basket"] });
+      queryClient.invalidateQueries({ queryKey: ["user-basket"] });
     },
   });
 }

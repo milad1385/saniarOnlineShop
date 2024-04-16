@@ -1,6 +1,12 @@
 import React from "react";
+import useDeleteBasket from "../../Hooks/basket/useDelete";
+import useInc from "../../Hooks/basket/useInc";
+import useDec from "../../Hooks/basket/useDec";
 
 function OrderCard({ product, colorName, colorCode, qty, price }) {
+  const { mutateAsync: deleteBasket } = useDeleteBasket();
+  const { mutateAsync: increaseBasket } = useInc();
+  const { mutateAsync: decreaseBasket } = useDec();
   return (
     <div className="bg-white rounded-md shadow p-3 flex items-start justify-between">
       <div className="flex gap-x-8">
@@ -52,7 +58,10 @@ function OrderCard({ product, colorName, colorCode, qty, price }) {
         </div>
       </div>
       <div className="flex items-end justify-between flex-col">
-        <button className="bg-red-200 rounded-md p-2">
+        <button
+          className="bg-red-200 rounded-md p-2"
+          onClick={async () => await deleteBasket(product._id)}
+        >
           <svg className="w-5 h-5 text-red-600">
             <use href="#trash"></use>
           </svg>
@@ -73,14 +82,21 @@ function OrderCard({ product, colorName, colorCode, qty, price }) {
               </span>
             </div>
             <div className="flex items-center gap-x-2">
-              <div className="w-10 h-[30px] bg-blue-600 text-white flex-center rounded-r-full font-DanaMedium shadow-blue cursor-default md:cursor-pointer">
+              <div
+                onClick={async () => await increaseBasket(product._id)}
+                className="w-10 h-[30px] bg-blue-600 text-white flex-center rounded-r-full font-DanaMedium shadow-blue cursor-default md:cursor-pointer"
+              >
                 <span className="mt-1">+</span>
               </div>
               <div className="bg-white w-[50px] h-[30px] flex-center font-DanaDemiBold rounded-md shadow">
                 {qty}
               </div>
-              <div className="w-10 h-[30px] bg-blue-600 text-white flex-center rounded-l-full font-DanaMedium shadow-blue cursor-default md:cursor-pointer">
-                <span className="mt-1">-</span>
+              <div onClick={async () => await decreaseBasket(product._id)} className="w-10 h-[30px] bg-blue-600 text-white flex-center rounded-l-full font-DanaMedium shadow-blue cursor-default md:cursor-pointer">
+                <span
+                  className="mt-1"
+                >
+                  -
+                </span>
               </div>
             </div>
           </div>

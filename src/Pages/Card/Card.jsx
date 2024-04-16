@@ -8,12 +8,22 @@ import BreadCrumb from "../../Components/BreadCrumb/BreadCrumb";
 import OrderCard from "../../Components/OrderCard/OrderCard";
 import PageTitle from "../../Components/UserPanel/PageTitle/PageTitle";
 import { Link } from "react-router-dom";
-import useMain from "../../Hooks/basket/useMain";
 import useBasket from "../../Hooks/basket/useBasket";
 
 function Card() {
   const { data: baskets, isLoading } = useBasket();
   console.log(baskets);
+  const calculateTotalPrice = baskets?.reduce(
+    (prev, curr) => prev + curr.price * curr.qty,
+    0
+  );
+
+  const calcTotalDiscount = baskets?.reduce(
+    (prev, curr) => prev + curr.qty * (curr.product.price * curr.product.off) / 100,
+    0
+  );
+
+  const calcTotal = calculateTotalPrice - calcTotalDiscount;
   return (
     <>
       <Topbar />
@@ -46,19 +56,20 @@ function Card() {
                 <div className="flex items-center justify-between bg-gray-100 py-3 px-2 rounded-md">
                   <span>جمع مبلغ: </span>
                   <p>
-                    1,750,000 <span>تومان</span>
+                    {calculateTotalPrice.toLocaleString("fa")}{" "}
+                    <span>تومان</span>
                   </p>
                 </div>
                 <div className="flex items-center justify-between bg-gray-100 py-3 px-2 rounded-md">
                   <span>تخفیف : </span>
                   <p>
-                    1,750,000 <span>تومان</span>
+                    {calcTotalDiscount.toLocaleString("fa")} <span>تومان</span>
                   </p>
                 </div>
                 <div className="flex items-center justify-between bg-gray-100 py-3 px-2 rounded-md">
                   <span>مبلغ کل : </span>
                   <p>
-                    1,750,000 <span>تومان</span>
+                    {calcTotal.toLocaleString("fa")} <span>تومان</span>
                   </p>
                 </div>
               </div>
@@ -74,7 +85,7 @@ function Card() {
           <div className="flex items-center justify-center flex-col">
             <img src="/images/emptybag.png" className="w-[300px]" />
             <p className="text-base md:text-lg lg:text-xl xl:text-2xl font-DanaDemiBold">
-              کاربر گرامی سبد خرید شما خالی است 🤐{" "}
+              کاربر گرامی سبد خرید شما خالی است 🤐
             </p>
             <Link
               to={"/products"}

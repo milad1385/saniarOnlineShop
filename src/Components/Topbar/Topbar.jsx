@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { AppContext } from "../../App";
 import useGetAllPro from "../../Hooks/AdminPanel/Product/useGetAllPro";
 import { isLogin } from "../../Utils/Funcs/utils";
+import useBasket from "../../Hooks/basket/useBasket";
 
 function Topbar() {
   const context = useContext(AppContext);
@@ -14,6 +15,7 @@ function Topbar() {
   const overlayRef = useRef(null);
 
   const { data: products } = useGetAllPro();
+  const { data: baskets, isLoading } = useBasket();
 
   useEffect(() => {
     setAllProducts(products);
@@ -152,7 +154,7 @@ function Topbar() {
               <use href="#shop"></use>
             </svg>
             <div className="hidden xl:flex bg-blue-600 shadow-blue text-white  items-center justify-center rounded-full xl:w-[30px] xl:h-[30px] text-sm">
-              5
+              {baskets?.length}
             </div>
           </Link>
           <div className="bg-gray-100 rounded-full p-0.5">
