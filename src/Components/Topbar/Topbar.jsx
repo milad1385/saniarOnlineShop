@@ -147,14 +147,14 @@ function Topbar() {
             )}
           </div>
           <Link
-            to={"/order/card"}
+            to={`${isLogin() ? "/order/card" : "/"}`}
             className="flex items-center gap-x-4 shadow-gray border border-gray-200 py-3 xl:py-2 px-3 rounded-full xl:rounded-3xl"
           >
             <svg className="w-6 h-6">
               <use href="#shop"></use>
             </svg>
             <div className="hidden xl:flex bg-blue-600 shadow-blue text-white  items-center justify-center rounded-full xl:w-[30px] xl:h-[30px] text-sm">
-              {baskets?.length}
+              {baskets?.length || 0}
             </div>
           </Link>
           <div className="bg-gray-100 rounded-full p-0.5">

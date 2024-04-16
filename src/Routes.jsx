@@ -53,6 +53,7 @@ import { Suspense, lazy } from "react";
 import Loader from "./Components/Loader/Loader";
 import EditProduct from "./Pages/AdminPanel/EditProduct/EditProduct";
 import Answer from "./Pages/AdminPanel/AnswerTicket/AnswerTicket";
+import IsAdmin from "./Pages/Private/isAdmin";
 const ProductPage = lazy(() => import("./Pages/ProductPage/ProductPage"));
 const Index = lazy(() => import("./Pages/Index/Index"));
 const ProductsPage = lazy(() => import("./Pages/ProductsPage/ProductsPage"));
@@ -105,10 +106,38 @@ const routes = [
       </Suspense>
     ),
   },
-  { path: "/order/card", element: <Card /> },
-  { path: "/order/detail", element: <DetailPay /> },
-  { path: "/order/successfull", element: <SuccessFullPay /> },
-  { path: "/order/fail", element: <FaildPay /> },
+  {
+    path: "/order/card",
+    element: (
+      <IsLogin>
+        <Card />
+      </IsLogin>
+    ),
+  },
+  {
+    path: "/order/detail",
+    element: (
+      <IsLogin>
+        <DetailPay />
+      </IsLogin>
+    ),
+  },
+  {
+    path: "/order/successfull",
+    element: (
+      <IsLogin>
+        <SuccessFullPay />
+      </IsLogin>
+    ),
+  },
+  {
+    path: "/order/fail",
+    element: (
+      <IsLogin>
+        <FaildPay />{" "}
+      </IsLogin>
+    ),
+  },
   { path: "/search/:value", element: <SearchPage /> },
   { path: "/compare", element: <Compare /> },
   { path: "/about-us", element: <AboutUs /> },
@@ -116,7 +145,11 @@ const routes = [
   { path: "*", element: <NotFound /> },
   {
     path: "/my-account/*",
-    element: <Main />,
+    element: (
+      <IsLogin>
+        <Main />
+      </IsLogin>
+    ),
     children: [
       { path: "", element: <MainPage /> },
       { path: "main", element: <MainPage /> },
@@ -134,7 +167,11 @@ const routes = [
   },
   {
     path: "/admin-panel/*",
-    element: <MainAdminPage />,
+    element: (
+      <IsAdmin>
+        <MainAdminPage />
+      </IsAdmin>
+    ),
     children: [
       { path: "", element: <MainAdmin /> },
       { path: "main", element: <MainAdmin /> },

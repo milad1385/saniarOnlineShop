@@ -124,12 +124,14 @@ function ProductBox({ product, isScore }) {
               </span>
             )}
           </div>
-          <button className="bg-blue-600 flex items-center justify-center gap-x-1 text-white shadow-blue p-2 rounded-md">
-            <svg className="w-6 h-6">
-              <use href="#shop-bag"></use>
-            </svg>
-            خرید محصول
-          </button>
+          <Link to={`/product/${product.link}`}>
+            <button className="bg-blue-600 flex items-center justify-center gap-x-1 text-white shadow-blue p-2 rounded-md">
+              <svg className="w-6 h-6">
+                <use href="#shop-bag"></use>
+              </svg>
+              خرید محصول
+            </button>
+          </Link>
         </div>
       </div>
     </div>

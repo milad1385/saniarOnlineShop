@@ -12,7 +12,6 @@ import useBasket from "../../Hooks/basket/useBasket";
 
 function Card() {
   const { data: baskets, isLoading } = useBasket();
-  console.log(baskets);
   const calculateTotalPrice = baskets?.reduce(
     (prev, curr) => prev + curr.price * curr.qty,
     0
