@@ -4,6 +4,7 @@ import { AppContext } from "../../App";
 import useGetAllPro from "../../Hooks/AdminPanel/Product/useGetAllPro";
 import { isLogin } from "../../Utils/Funcs/utils";
 import useBasket from "../../Hooks/basket/useBasket";
+import ProfileBox from "./ProfileBox";
 
 function Topbar() {
   const context = useContext(AppContext);
@@ -11,11 +12,12 @@ function Topbar() {
   const [allProducts, setAllProducts] = useState([]);
   const [isShowSearch, setIsShowSearch] = useState(false);
   const [searchedProduct, setSearchedProduct] = useState([]);
+  const [isShowUserBox, setIsShowUserBox] = useState(false);
   const navigate = useNavigate();
   const overlayRef = useRef(null);
 
   const { data: products } = useGetAllPro();
-  const { data: baskets, isLoading } = useBasket();
+  const { data: baskets } = useBasket();
 
   useEffect(() => {
     setAllProducts(products);
@@ -157,15 +159,21 @@ function Topbar() {
               {baskets?.length || 0}
             </div>
           </Link>
-          <div className="bg-gray-100 rounded-full p-0.5">
+          <div className="bg-gray-100 rounded-full p-0.5 relative">
             <img
+              onClick={() => setIsShowUserBox(true)}
               src={
                 isLogin()
                   ? `http://localhost:3001/uploads/covers/${context?.userInfo?.image}`
                   : "/images/user.png"
               }
-              alt=""
-              className="w-[56px] h-[56px] rounded-full"
+              className="w-[56px] h-[56px] rounded-full relative z-50"
+            />
+
+            <ProfileBox
+              isShowUserBox={isShowUserBox}
+              image={context?.userInfo?.image}
+              onShow={setIsShowUserBox}
             />
           </div>
         </div>
@@ -174,8 +182,8 @@ function Topbar() {
       <div
         id="overlay"
         className={`${
-          isShowSearch ? "active-menu" : "hide-menu"
-        } overlay fixed inset-0 bg-black/50 z-40 transition-all`}
+          isShowSearch  ? "active-menu" : "hide-menu"
+        } overlay fixed inset-0 bg-black/50 z-30 transition-all`}
         ref={overlayRef}
       ></div>
     </div>

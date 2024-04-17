@@ -1,19 +1,37 @@
-import React, { useContext, useRef } from "react";
+import React, { useContext, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import MegaMenuItem from "../MegaMenuItem/MegaMenuItem";
 import MegaMenuValue from "../MegaMenuValue/MegaMenuValue";
 import { AppContext } from "../../App";
 import useGetAll from "../../Hooks/AdminPanel/static/address/useGetAll";
 import useMenu from "../../Hooks/AdminPanel/menu/useMenu";
+import BasketItem from "./BasketItem";
+import useBasket from "../../Hooks/basket/useBasket";
+import ProfileBox from "../Topbar/ProfileBox";
 
 function Navbar() {
-  const { userInfo, isLogin } = useContext(AppContext);
+  const context = useContext(AppContext);
+  const [isShowUserBox, setIsShowUserBox] = useState(false);
   const { data: info } = useGetAll();
+  const { data: baskets } = useBasket();
   const { data: menus } = useMenu();
   const overlayRef = useRef();
   const menuRef = useRef();
   const subMenuRef = useRef();
   const basketRef = useRef();
+
+  const calculateTotalPrice = baskets?.reduce(
+    (prev, curr) => prev + curr.price * curr.qty,
+    0
+  );
+
+  const calcTotalDiscount = baskets?.reduce(
+    (prev, curr) =>
+      prev + (curr.qty * (curr.product.price * curr.product.off)) / 100,
+    0
+  );
+
+  const calcTotal = calculateTotalPrice - calcTotalDiscount;
 
   const showMenu = () => {
     overlayRef.current.classList.remove("hide-menu");
@@ -29,6 +47,7 @@ function Navbar() {
     menuRef.current.classList.remove("right-0");
     basketRef.current.classList.remove("left-0");
     basketRef.current.classList.add("-left-64");
+    setIsShowUserBox(false);
   };
 
   const showSubMenu = (e) => {
@@ -171,7 +190,7 @@ function Navbar() {
                   )}
                 </li>
               ))}
-              {userInfo?.role === "ADMIN" && (
+              {context?.userInfo?.role === "ADMIN" && (
                 <li className="pb-2">
                   <Link
                     to={"/admin-panel"}
@@ -230,9 +249,10 @@ function Navbar() {
             </div>
             <div className="bg-gray-100 rounded-full p-0.5">
               <img
+                onClick={() => setIsShowUserBox(true)}
                 src={
-                  isLogin ?? isLogin
-                    ? `http://localhost:3001/uploads/covers/${userInfo?.image}`
+                  context?.isLogin ?? context?.isLogin
+                    ? `http://localhost:3001/uploads/covers/${context?.userInfo?.image}`
                     : "/images/user.png"
                 }
                 alt=""
@@ -387,194 +407,40 @@ function Navbar() {
           </div>
 
           <div className="flex flex-col divide-y overflow-auto h-[490px]  px-4 divide-gray-100 dark:divide-white/20 border-b border-b-gray-300 dark:border-b-gray-100/30">
-            <div className="pb-4">
-              <div className="flex py-4 gap-x-2">
-                <img
-                  className="w-20 h-20"
-                  src="./images/product/laptop-5.jpg"
-                  alt="image"
-                />
-                <div className="flex flex-col justify-between">
-                  <h3 className="text-zinc-700 dark:text-white font-DanaMedium text-sm line-clamp-2">
-                    لپ تاپ لنوو 8 گیگابایت رم و 1 ترابایت حافظه
-                  </h3>
-                  <div className="">
-                    <span className="text-teal-600 dark:text-emerald-500 text-xs font-DanaMedium">
-                      14.500 تومان تخفیف
-                    </span>
-                    <div className="text-zinc-700 dark:text-white font-DanaDemiBold">
-                      175,000{" "}
-                      <span className="text-xs font-Dana tracking-tight">
-                        تومان
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-x-2">
-                  <div className="bg-blue-600 w-7 h-7 flex-center text-white rounded-full ">
-                    <span className="mt-[3px]">+</span>
-                  </div>
-                  <div className="font-DanaDemiBold">1</div>
-                  <div className="bg-blue-600 w-7 h-7 flex-center text-white rounded-full ">
-                    <span className="mt-[3px]">-</span>
-                  </div>
-                </div>
-                <div className="bg-blue-600 text-white p-1 rounded-md shadow-blue">
-                  <svg className="w-5 h-5">
-                    <use href="#trash"></use>
-                  </svg>
-                </div>
-              </div>
-            </div>
-            <div className="pb-4">
-              <div className="flex py-4 gap-x-2">
-                <img
-                  className="w-20 h-20"
-                  src="./images/product/laptop-4.jpg"
-                  alt="image"
-                />
-                <div className="flex flex-col justify-between">
-                  <h3 className="text-zinc-700 dark:text-white font-DanaMedium text-sm line-clamp-2">
-                    لپ تاپ لنوو 8 گیگابایت رم و 1 ترابایت حافظه
-                  </h3>
-                  <div className="">
-                    <span className="text-teal-600 dark:text-emerald-500 text-xs font-DanaMedium">
-                      14.500 تومان تخفیف
-                    </span>
-                    <div className="text-zinc-700 dark:text-white font-DanaDemiBold">
-                      175,000{" "}
-                      <span className="text-xs font-Dana tracking-tight">
-                        تومان
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-x-2">
-                  <div className="bg-blue-600 w-7 h-7 flex-center text-white rounded-full ">
-                    <span className="mt-[3px]">+</span>
-                  </div>
-                  <div className="font-DanaDemiBold">1</div>
-                  <div className="bg-blue-600 w-7 h-7 flex-center text-white rounded-full ">
-                    <span className="mt-[3px]">-</span>
-                  </div>
-                </div>
-                <div className="bg-blue-600 text-white p-1 rounded-md shadow-blue">
-                  <svg className="w-5 h-5">
-                    <use href="#trash"></use>
-                  </svg>
-                </div>
-              </div>
-            </div>
-            <div className="pb-4">
-              <div className="flex py-4 gap-x-2">
-                <img
-                  className="w-20 h-20"
-                  src="./images/product/laptop-1.jpg"
-                  alt="image"
-                />
-                <div className="flex flex-col justify-between">
-                  <h3 className="text-zinc-700 dark:text-white font-DanaMedium text-sm line-clamp-2">
-                    لپ تاپ لنوو 8 گیگابایت رم و 1 ترابایت حافظه
-                  </h3>
-                  <div className="">
-                    <span className="text-teal-600 dark:text-emerald-500 text-xs font-DanaMedium">
-                      14.500 تومان تخفیف
-                    </span>
-                    <div className="text-zinc-700 dark:text-white font-DanaDemiBold">
-                      175,000{" "}
-                      <span className="text-xs font-Dana tracking-tight">
-                        تومان
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-x-2">
-                  <div className="bg-blue-600 w-7 h-7 flex-center text-white rounded-full ">
-                    <span className="mt-[3px]">+</span>
-                  </div>
-                  <div className="font-DanaDemiBold">1</div>
-                  <div className="bg-blue-600 w-7 h-7 flex-center text-white rounded-full ">
-                    <span className="mt-[3px]">-</span>
-                  </div>
-                </div>
-                <div className="bg-blue-600 text-white p-1 rounded-md shadow-blue">
-                  <svg className="w-5 h-5">
-                    <use href="#trash"></use>
-                  </svg>
-                </div>
-              </div>
-            </div>
-            <div className="pb-4">
-              <div className="flex py-4 gap-x-2">
-                <img
-                  className="w-20 h-20"
-                  src="./images/product/laptop-2.jpg"
-                  alt="image"
-                />
-                <div className="flex flex-col justify-between">
-                  <h3 className="text-zinc-700 dark:text-white font-DanaMedium text-sm line-clamp-2">
-                    لپ تاپ لنوو 8 گیگابایت رم و 1 ترابایت حافظه
-                  </h3>
-                  <div className="">
-                    <span className="text-teal-600 dark:text-emerald-500 text-xs font-DanaMedium">
-                      14.500 تومان تخفیف
-                    </span>
-                    <div className="text-zinc-700 dark:text-white font-DanaDemiBold">
-                      175,000{" "}
-                      <span className="text-xs font-Dana tracking-tight">
-                        تومان
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-x-2">
-                  <div className="bg-blue-600 w-7 h-7 flex-center text-white rounded-full ">
-                    <span className="mt-[3px]">+</span>
-                  </div>
-                  <div className="font-DanaDemiBold">1</div>
-                  <div className="bg-blue-600 w-7 h-7 flex-center text-white rounded-full ">
-                    <span className="mt-[3px]">-</span>
-                  </div>
-                </div>
-                <div className="bg-blue-600 text-white p-1 rounded-md shadow-blue">
-                  <svg className="w-5 h-5">
-                    <use href="#trash"></use>
-                  </svg>
-                </div>
-              </div>
-            </div>
+            {baskets?.map((basket) => (
+              <BasketItem key={basket._id} {...basket} />
+            ))}
           </div>
         </div>
 
         <div className="flex items-center justify-between py-5 px-4">
-          <a
-            href="#"
+          <Link
+            to={"/order/card"}
             className="w-28 h-11 flex items-center justify-center bg-blue-600  text-white rounded-md"
           >
             ثبت سفارش
-          </a>
+          </Link>
           <div>
             <span className="text-xs text-gray-300 tracking-tight font-DanaMedium">
               مبلغ قابل پرداخت
             </span>
             <div className="text-zinc-700 dark:text-white font-DanaDemiBold">
-              175,000{" "}
+              {calcTotal.toLocaleString("fa")}
               <span className="text-xs font-Dana tracking-tight">تومان</span>
             </div>
           </div>
         </div>
       </div>
+      <div className="relative left-[1rem]">
+        <ProfileBox
+          isShowUserBox={isShowUserBox}
+          image={context?.userInfo?.image}
+          onShow={setIsShowUserBox}
+        />
+      </div>
       <div
         onClick={closeMenu}
-        className="hide-menu overlay fixed inset-0 bg-black/50 z-40 transition-all"
+        className={`hide-menu  overlay fixed inset-0 bg-black/50 z-40 transition-all`}
         ref={overlayRef}
       ></div>
     </>

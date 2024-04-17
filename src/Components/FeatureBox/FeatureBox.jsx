@@ -2,7 +2,7 @@ import React from "react";
 
 function FeatureBox({ feature }) {
   return (
-    <div className="flex gap-x-4 bg-white shadow p-[16px] rounded-lg">
+    <div key={feature._id} className="flex gap-x-4 bg-white shadow p-[16px] rounded-lg">
       <img
         src={`http://localhost:3001/uploads/covers/${feature.logo}`}
         alt={feature.title}

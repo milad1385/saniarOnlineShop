@@ -8,8 +8,7 @@ import ProductBox from "../ProductBox/ProductBox";
 import useGetBestSeller from "../../Hooks/AdminPanel/Product/useGetBestSeller";
 function MoreSell() {
   const [swipe, setSwipe] = useState(null);
-  const { data: bestSeller, isLoading } = useGetBestSeller();
-  console.log(bestSeller);
+  const { data: bestSeller } = useGetBestSeller();
   return (
     <div className="">
       <div className="container">

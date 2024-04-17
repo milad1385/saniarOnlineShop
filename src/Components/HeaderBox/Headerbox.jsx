@@ -1,11 +1,12 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-function Headerbox({img}) {
+function Headerbox({ title, price, off, images, score, link }) {
   return (
     <div>
       <div className="flex items-center justify-between border-b-2 border-b-gray-300  p-3.5 pb-2">
         <div className="bg-red-200 text-red-600 text-xs md:text-sm p-2 rounded-lg">
-          40 % تخفیف
+          {off} % تخفیف
         </div>
         <div className="flex items-center gap-x-2.5">
           <div className="flex items-center flex-col">
@@ -36,53 +37,62 @@ function Headerbox({img}) {
       </div>
       <div className="p-3.5">
         <img
-          src={img}
-          alt=""
+          src={`http://localhost:3001/uploads/covers/${images[0]}`}
+          alt={title}
           className="w-[200px]  mx-auto"
         />
         <div className="flex items-center justify-between">
           <div className="">
-            <h3 className="font-DanaDemiBold text-sm md:text-base ">ساعت هوشمند شیایومی</h3>
+            <h3 className="font-DanaDemiBold text-sm md:text-base ">{title}</h3>
             <h5 className="text-xs md:text-sm text-gray-400 font-DanaMedium mt-1">
               mibro 3200Xfam smartwatch
             </h5>
           </div>
           <div className="flex flex-row-reverse gap-x-2">
-            <div className="flex items-center gap-x-1">
-              <svg className="w-4 h-4 md:w-6 md:h-6 text-yellow-400">
-                <use href="#star"></use>
-              </svg>
-              <svg className="w-4 h-4 md:w-6 md:h-6 text-yellow-400">
-                <use href="#star"></use>
-              </svg>
-              <svg className="w-4 h-4 md:w-6 md:h-6 text-yellow-400">
-                <use href="#star"></use>
-              </svg>
-              <svg className="w-4 h-4 md:w-6 md:h-6 text-yellow-400">
-                <use href="#star"></use>
-              </svg>
-              <svg className="w-4 h-4 md:w-6 md:h-6 text-gray-400">
-                <use href="#star"></use>
-              </svg>
+            <div className="flex items-center">
+              {new Array(Math.ceil(score)).fill(0).map((score, index) => (
+                <svg
+                  key={index}
+                  className="w-4 h-4 md:w-6 md:h-6 text-yellow-400"
+                >
+                  <use href="#star"></use>
+                </svg>
+              ))}
+
+              {new Array(Math.ceil(5 - score)).fill(0).map((score, index) => (
+                <svg
+                  key={index}
+                  className="w-4 h-4 md:w-6 md:h-6 text-gray-400"
+                >
+                  <use href="#star"></use>
+                </svg>
+              ))}
             </div>
-            <span className="hidden md:block text-sm text-gray-400 mt-1">(15+) 4.8</span>
+            <span className="hidden md:block text-sm text-gray-400 mt-1">
+              (15+) {score}
+            </span>
           </div>
         </div>
         <div className="mt-2 flex items-center justify-between bg-gray-100 p-2 rounded-lg">
           <div className="flex flex-col font-DanaDemiBold text-sm">
             <span>
-              3,750,000 <span className="tracking-tighter">تومان</span>
+              {(price - (price * off) / 100).toLocaleString("fa")}{" "}
+              <span className="tracking-tighter">تومان</span>
             </span>
             <span className="mt-2.5 line-through text-gray-400">
-              6,750,000 <span className="tracking-tighter">تومان</span>
+              {price.toLocaleString("fa")}{" "}
+              <span className="tracking-tighter">تومان</span>
             </span>
           </div>
-          <button className="bg-blue-600 flex items-center justify-center gap-x-1 text-white shadow-blue p-2 rounded-md text-sm md:text-base">
+          <Link
+            to={`/product/${link}`}
+            className="bg-blue-600 flex items-center justify-center gap-x-1 text-white shadow-blue p-2 rounded-md text-sm md:text-base"
+          >
             <svg className="w-6 h-6">
               <use href="#shop-bag"></use>
             </svg>
             خرید محصول
-          </button>
+          </Link>
         </div>
       </div>
     </div>

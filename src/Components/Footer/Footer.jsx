@@ -5,7 +5,7 @@ import useGetAll from "../../Hooks/AdminPanel/static/address/useGetAll";
 
 function Footer() {
   const { data: footerText } = useGetText();
-  const {data : info} = useGetAll();
+  const { data: info } = useGetAll();
   return (
     <footer className="relative  bg-white text-zinc-700  py-10 md:py-8 md:pb-8 md:pt-[62px] shadow-xl mt-8 ">
       <svg className="absolute rotate-180 -top-[1px]  inline-block left-0 right-0 mx-auto w-[100px] h-[22px] text-gray-100 dark:text-zinc-800">
@@ -13,7 +13,13 @@ function Footer() {
       </svg>
       <div
         className="absolute left-0 right-0 top-0 mx-auto -translate-y-2/4  flex items-center justify-center w-[30px] h-[30px] border-2 border-blue-600 rounded-full "
-        onClick={() => window.scroll(0, 0)}
+        onClick={() =>
+          window.scrollTo({
+            top: 0,
+            left: 0,
+            behavior: "smooth",
+          })
+        }
       >
         <svg className="w-5 h-5 text-zinc-800 dark:text-gray-100 rotate-180">
           <use href="#chevron-down-mini"></use>
@@ -118,7 +124,9 @@ function Footer() {
                 <svg className="w-6 h-6">
                   <use href="#envelop"></use>
                 </svg>
-                <a href="mailto:golden@gmail.com">{info?.length ? info[0]?.email : ""}</a>
+                <a href="mailto:golden@gmail.com">
+                  {info?.length ? info[0]?.email : ""}
+                </a>
               </div>
               <div className="flex items-center gap-x-1.5">
                 <svg className="w-5 h-5">

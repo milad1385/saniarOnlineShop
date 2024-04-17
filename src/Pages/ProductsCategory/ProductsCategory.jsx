@@ -24,6 +24,7 @@ function ProductsCategory() {
   }, [pageNum]);
 
   const { data: products, isLoading } = useCategoryPro(page, categoryName);
+  console.log(products);
   return (
     <>
       <Topbar />

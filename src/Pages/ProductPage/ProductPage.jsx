@@ -38,14 +38,14 @@ function ProductPage() {
   const { data: productInfo } = useGetOne(productName);
   const { mutateAsync: addToWishList } = useCreate();
   const { mutateAsync: deleteWish } = useDelete();
-  const { mutateAsync: addToBasket, isLoading } = useAdd();
+  const { mutateAsync: addToBasket } = useAdd();
   const { mutateAsync: increaseBasket } = useInc();
   const { mutateAsync: decreaseBasket } = useDec();
   const { mutateAsync: deleteBasket } = useDeleteBasket();
   const { data: basketInfo } = useMain(productInfo?.productInfo._id);
   const { data: isExist } = useExist(productInfo?.productInfo._id);
 
-  console.log(basketInfo);
+
   useEffect(() => {
     window.scroll(0, 0);
     setActiveTumb(null);
@@ -94,9 +94,9 @@ function ProductPage() {
             {
               id: 3,
               name: `${productInfo?.productInfo.category.title}`,
-              to: `/category-products/${productInfo?.productInfo.category.title}`,
+              to: `/category-products/${productInfo?.productInfo.category.link}`,
             },
-            { id: 4, name: `${productInfo?.productInfo.title}`, to: "/" },
+            { id: 4, name: `${productInfo?.productInfo.title}`, to: "" },
           ]}
         />
         <div className="pb-5">

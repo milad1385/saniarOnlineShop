@@ -84,7 +84,6 @@ const deleteProduct = async (id) => {
 };
 
 const getProductFromCategory = async (catName, page) => {
-  console.log(catName);
   try {
     const res = await fetch(`${baseURL}/category/${catName}?page=${page}`);
     return await res.json();

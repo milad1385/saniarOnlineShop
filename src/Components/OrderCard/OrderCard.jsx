@@ -13,18 +13,18 @@ function OrderCard({ product, colorName, colorCode, qty, price }) {
         <img
           src={`http://localhost:3001/uploads/covers/${product.images[0]}`}
           alt={product.title}
-          className="w-[125px] h-[125px] mx-auto md:mx-0"
+          className="w-[150px] md:w-[125px] h-[150px] md:h-[125px] mx-auto md:mx-0"
         />
         <div>
           <div className="flex items-start gap-x-3 py-4">
             <p className="font-DanaDemiBold mx-auto md:mx-0">{product.title}</p>
             {product?.off > 0 && (
-              <div className="bg-red-200 text-sm px-2 py-0.5 text-red-600 block rounded-md absolute">
+              <div className="bg-blue-200 text-sm px-2 py-0.5 text-blue-600 block rounded-md absolute md:relative">
                 <span className="mt-px block">{product.off}%</span>
               </div>
             )}
           </div>
-          <div className="flex items-center justify-center md:justify-start gap-x-5 mt-2">
+          <div className="flex items-center justify-center md:justify-start gap-x-3 md:gap-x-5 mt-2">
             <div className="text-xs md:text-sm font-DanaMedium text-gray-600 flex items-center gap-x-2">
               <svg className="w-6 h-6">
                 <use href="#color"></use>
@@ -44,7 +44,7 @@ function OrderCard({ product, colorName, colorCode, qty, price }) {
                 <use href="#square"></use>
               </svg>
               <span> تعداد : </span>
-              <span>
+              <span className="w-[25px] md:w-auto block">
                 {qty} <span className="hidden md:inline-block">عدد</span>
               </span>
             </div>
@@ -61,7 +61,7 @@ function OrderCard({ product, colorName, colorCode, qty, price }) {
           </svg>
         </button>
         <div className="mt-[2rem] md:mt-[5.5rem]">
-          <div className="flex flex-col md:flex-row justify-center md:items-center gap-3  gap-x-5">
+          <div className="flex flex-col md:flex-row justify-center md:items-center gap-5">
             <div className="text-sm md:text-base flex items-center justify-center gap-x-4">
               {product?.off > 0 && (
                 <>

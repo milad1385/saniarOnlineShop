@@ -5,7 +5,6 @@ import FooterMenu from "../../Components/FooterMenu/FooterMenu";
 import Footer from "../../Components/Footer/Footer";
 import BreadCrumb from "../../Components/BreadCrumb/BreadCrumb";
 import ProductBox from "../../Components/ProductBox/ProductBox";
-import Pagination from "../../Components/Pagination/Pagination";
 import { useParams } from "react-router-dom";
 import useSearch from "../../Hooks/AdminPanel/Product/useSearch";
 

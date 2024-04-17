@@ -1,16 +1,18 @@
+import "swiper/css";
+import "swiper/css/pagination";
 import React from "react";
 import Topbar from "../Topbar/Topbar";
 import Navbar from "../Navbar/Navbar";
 import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import "swiper/css/pagination";
 import { Pagination, Autoplay } from "swiper/modules";
 import Headerbox from "../HeaderBox/Headerbox";
 import Feature from "../Features/Feature";
 import Componies from "../Componies/Componies";
 import useGetActiveSlider from "../../Hooks/AdminPanel/sliders/useGetActiveSlider";
+import useGetAllPro from "../../Hooks/AdminPanel/Product/useGetAllPro";
 function Header() {
   const { data: sliders } = useGetActiveSlider();
+  const { data: products } = useGetAllPro();
   return (
     <>
       <Topbar />
@@ -25,15 +27,13 @@ function Header() {
               disableOnInteraction: false,
             }}
           >
-            <SwiperSlide>
-              <Headerbox img="/images/product/wach1.jpg" />
-            </SwiperSlide>
-            <SwiperSlide>
-              <Headerbox img="/images/product/wach2.jpg" />
-            </SwiperSlide>
-            <SwiperSlide>
-              <Headerbox img="/images/product/wach3.jpg" />
-            </SwiperSlide>
+            {products
+              ?.filter((product) => product.off > 0)
+              .map((product) => (
+                <SwiperSlide key={product._id}>
+                  <Headerbox {...product} />
+                </SwiperSlide>
+              ))}
           </Swiper>
         </div>
         <div className="col-span-2  rounded-md overflow-hidden">
@@ -49,8 +49,11 @@ function Header() {
             className="mySwiper"
           >
             {sliders?.map((slider) => (
-              <SwiperSlide>
-                <img src={`http://localhost:3001/uploads/covers/${slider.image}`} className="shadow" />
+              <SwiperSlide key={slider._id}>
+                <img
+                  src={`http://localhost:3001/uploads/covers/${slider.image}`}
+                  className="shadow"
+                />
               </SwiperSlide>
             ))}
           </Swiper>
