@@ -7,7 +7,7 @@ import { isLogin } from "../../Utils/Funcs/utils";
 import ProfileBox from "../Topbar/ProfileBox";
 import BasketItem from "./BasketItem";
 
-function MobileMenu({ isShow }) {
+function MobileMenu() {
   const [isShowUserBox, setIsShowUserBox] = useState(false);
   const context = useContext(AppContext);
   const { data: baskets } = useBasket();
