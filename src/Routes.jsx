@@ -54,6 +54,7 @@ import Loader from "./Components/Loader/Loader";
 import EditProduct from "./Pages/AdminPanel/EditProduct/EditProduct";
 import Answer from "./Pages/AdminPanel/AnswerTicket/AnswerTicket";
 import IsAdmin from "./Pages/Private/isAdmin";
+import OrderDetail from "./Components/UserPanel/OrderDetail/OrderDetail";
 const ProductPage = lazy(() => import("./Pages/ProductPage/ProductPage"));
 const Index = lazy(() => import("./Pages/Index/Index"));
 const ProductsPage = lazy(() => import("./Pages/ProductsPage/ProductsPage"));
@@ -155,6 +156,7 @@ const routes = [
       { path: "main", element: <MainPage /> },
       { path: "profile", element: <Profile /> },
       { path: "orders", element: <OrderPage /> },
+      { path: "order-detail/:id", element: <OrderDetail /> },
       { path: "address", element: <Adress /> },
       { path: "notifications", element: <Notifications /> },
       { path: "comments", element: <Comments /> },

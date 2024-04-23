@@ -49,6 +49,10 @@
 }
 
 @layer components {
+
+  *{
+    user-select: none;
+  }
   .parent::before {
     content: "";
     position: absolute;

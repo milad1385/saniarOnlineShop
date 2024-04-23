@@ -256,30 +256,47 @@ function MobileMenu() {
             </div>
           </div>
 
-          <div className="flex flex-col divide-y overflow-auto h-[490px]  px-4 divide-gray-100 dark:divide-white/20 border-b border-b-gray-300 dark:border-b-gray-100/30">
-            {baskets?.map((basket) => (
-              <BasketItem key={basket._id} {...basket} />
-            ))}
-          </div>
+          {baskets?.length > 0 && (
+            <div className="flex flex-col divide-y overflow-auto h-[490px]  px-4 divide-gray-100 dark:divide-white/20 border-b border-b-gray-300 dark:border-b-gray-100/30">
+              {baskets?.map((basket) => (
+                <BasketItem key={basket._id} {...basket} />
+              ))}
+            </div>
+          )}
         </div>
 
-        <div className="flex items-center justify-between py-5 px-4">
-          <Link
-            to={"/order/card"}
-            className="w-28 h-11 flex items-center justify-center bg-blue-600  text-white rounded-md"
-          >
-            ثبت سفارش
-          </Link>
-          <div className="w-[100px]">
-            <span className="text-xs text-gray-300 tracking-tight font-DanaMedium">
-              مبلغ قابل پرداخت
-            </span>
-            <div className="text-zinc-700 dark:text-white font-DanaDemiBold text-sm md:text-md">
-              {calcTotal.toLocaleString("fa")}
-              <span className="text-xs font-Dana tracking-tight">تومان</span>
+        {baskets?.length > 0 ? (
+          <div className="flex items-center justify-between py-5 px-4">
+            <Link
+              to={"/order/card"}
+              className="w-28 h-11 flex items-center justify-center bg-blue-600  text-white rounded-md"
+            >
+              ثبت سفارش
+            </Link>
+            <div className="w-[100px]">
+              <span className="text-xs text-gray-300 tracking-tight font-DanaMedium">
+                مبلغ قابل پرداخت
+              </span>
+              <div className="text-zinc-700 dark:text-white font-DanaDemiBold text-sm md:text-md">
+                {calcTotal.toLocaleString("fa")}
+                <span className="text-xs font-Dana tracking-tight">تومان</span>
+              </div>
             </div>
           </div>
-        </div>
+        ) : (
+          <div className="flex items-center justify-center flex-col my-auto">
+            <img src="/images/emptybag.png" className="w-[300px]" />
+            <p className="text-base md:text-lg lg:text-xl xl:text-2xl font-DanaDemiBold">
+               سبد خرید شما خالی است 🤐
+            </p>
+            <Link
+              to={"/products"}
+              className="bg-blue-600 text-white p-2 px-4 font-DanaDemiBold rounded-md shadow-blue my-10"
+            >
+              بازگشت به فروشگاه
+            </Link>
+          </div>
+        )}
       </div>
       <div className="relative left-[1rem]">
         <ProfileBox

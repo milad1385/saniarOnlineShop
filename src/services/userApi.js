@@ -183,6 +183,20 @@ const getLastUser = async () => {
   }
 };
 
+const getPanelInfo = async () => {
+  try {
+    const res = await fetch(`${baseURL}/panel/info`, {
+      headers: {
+        authorization: `${getUserToken()}`,
+      },
+    });
+
+    return await res.json();
+  } catch (err) {
+    return err;
+  }
+};
+
 export {
   registerNewUser,
   handleLoginUser,
@@ -195,4 +209,5 @@ export {
   changeUserRole,
   editUser,
   getLastUser,
+  getPanelInfo
 };

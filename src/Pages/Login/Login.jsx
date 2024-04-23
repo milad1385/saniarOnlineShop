@@ -37,9 +37,6 @@ function Login() {
     } else if (status === 404) {
       setIsShowFailedModal(true);
       setErrMsg("نام کاربری یا رمز عبور اشتباه است");
-    } else {
-      setIsShowFailedModal(true);
-      setErrMsg("این کاربر بن شده است");
     }
   };
 

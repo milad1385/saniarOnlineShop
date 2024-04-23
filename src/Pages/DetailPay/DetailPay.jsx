@@ -1,21 +1,89 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Topbar from "../../Components/Topbar/Topbar";
 import Navbar from "../../Components/Navbar/Navbar";
 import BreadCrumb from "../../Components/BreadCrumb/BreadCrumb";
 import OrderStatus from "../../Components/OrderStatus/OrderStatus";
 import PageTitle from "../../Components/UserPanel/PageTitle/PageTitle";
+import citiesState from "../../Utils/city";
 
 import DatePickerComponent from "../../Components/DatePickerComponent/DatePickerComponent";
+import useBasket from "../../Hooks/basket/useBasket";
+import useOrder from "../../Hooks/order/useOrder";
+import { useNavigate } from "react-router-dom";
 
 function DetailPay() {
+  const navigate = useNavigate();
   const [submittedDate, setSubmittedDate] = useState();
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
   const [PostType, setPostType] = useState("");
   const [paidMoneyType, setPaidMoneyType] = useState("");
+  const [cities, setCities] = useState([]);
+  const [province, setProvince] = useState("");
+  const [city, setCity] = useState("");
+  const [address, setAddress] = useState("");
+  const [postCode, setPostCode] = useState("");
+  const [note, setNote] = useState("");
 
+  const { data: baskets } = useBasket();
+  const { mutateAsync: createOrder, isLoading } = useOrder();
+
+  const calculateTotalPrice = baskets?.reduce(
+    (prev, curr) => prev + curr.price * curr.qty,
+    0
+  );
+
+  const calcTotalDiscount = baskets?.reduce(
+    (prev, curr) =>
+      prev + (curr.qty * (curr.product.price * curr.product.off)) / 100,
+    0
+  );
+
+  const calcTotal = calculateTotalPrice - calcTotalDiscount;
+
+  const provinces = citiesState().map((city) => city.label);
+  console.log(provinces);
   const onSubmit = ({ date }) => {
     setSubmittedDate(date);
+  };
+
+  useEffect(() => {
+    const cities = citiesState().filter((item) => item.label === province);
+    setCities(cities);
+  }, [province]);
+
+  const payBasketHandler = async (e) => {
+    e.preventDefault();
+    if (
+      !postCode ||
+      !address ||
+      !province ||
+      !city ||
+      !time ||
+      !submittedDate
+    ) {
+      return false;
+    }
+    const orderObj = {
+      products: baskets,
+      province,
+      city,
+      note,
+      postCode,
+      address,
+      deliveryDate: submittedDate?.format?.("D MMMM YYYY"),
+      deliveryTime: time,
+      PostType: PostType === "ordinary" ? "پست عادی" : "پست پیشتاز",
+      isPay: paidMoneyType === "card" ? true : false,
+      totalPrice: +calcTotal,
+      discount: +calcTotalDiscount,
+    };
+    const result = await createOrder(orderObj);
+    if (result.status === 201) {
+      navigate(
+        `/order/successfull?discount=${calcTotalDiscount}&total=${calculateTotalPrice}`
+      );
+    }
   };
 
   return (
@@ -34,39 +102,9 @@ function DetailPay() {
           <OrderStatus isActive2={true} />
         </div>
         <div className="flex gap-x-4 py-8">
-          <div className="w-full h-[700px] sticky top-0 bg-white rounded-md shadow py-4 px-5">
+          <div className="w-full h-[490px] sticky top-0 bg-white rounded-md shadow py-4 px-5">
             <PageTitle title={"جزییات پرداخت"} icon={"money"} />
             <div className="grid grid-cols-1 md:grid-cols-2 pt-3  gap-x-10 gap-y-6 child:flex child:flex-col">
-              <div>
-                <label
-                  for="email"
-                  className="font-DanaDemiBold text-base text-zinc-700 dark:text-white"
-                >
-                  نام
-                </label>
-                <input
-                  type="text"
-                  className="mt-1 md:mt-2 py-3 px-3 rounded-md outline-none bg-gray-100"
-                  id="name"
-                  placeholder="نام  خود را وارد کنید ..."
-                  name="name"
-                />
-              </div>
-              <div>
-                <label
-                  for="email"
-                  className="font-DanaDemiBold text-base text-zinc-700 dark:text-white"
-                >
-                  نام خانوادگی
-                </label>
-                <input
-                  type="text"
-                  className="mt-1 md:mt-2 py-3 px-3 rounded-md outline-none bg-gray-100"
-                  id="family"
-                  placeholder="نام خانوادگی خود را وارد کنید ..."
-                  name="family"
-                />
-              </div>
               <div>
                 <label
                   for="email"
@@ -75,12 +113,16 @@ function DetailPay() {
                   استان
                 </label>
                 <select
+                  onChange={(e) => setProvince(e.target.value)}
                   type="text"
                   className="mt-1 md:mt-2 py-3 px-3 rounded-md outline-none bg-gray-100"
                 >
                   <option value="-1">استان خود را انتخاب کنید ...</option>
-                  <option value="karaj">کرج</option>
-                  <option value="Tehran">تهران</option>
+                  {provinces?.map((province) => (
+                    <option key={province} value={province}>
+                      {province}
+                    </option>
+                  ))}
                 </select>
               </div>
               <div>
@@ -92,42 +134,17 @@ function DetailPay() {
                 </label>
                 <select
                   type="text"
+                  onChange={(e) => setCity(e.target.value)}
                   className="mt-1 md:mt-2 py-3 px-3 rounded-md outline-none bg-gray-100"
                 >
                   <option value="-1">شهر خود را انتخاب کنید ...</option>
-                  <option value="fardis">فردیس</option>
-                  <option value="mehrshahr">مهرشهر</option>
+                  {province.length > 0 &&
+                    cities?.[0]?.value.map((city) => (
+                      <option key={city} value={city}>
+                        {city}
+                      </option>
+                    ))}
                 </select>
-              </div>
-              <div>
-                <label
-                  for="email"
-                  className="font-DanaDemiBold text-base text-zinc-700 dark:text-white"
-                >
-                  تلفن
-                </label>
-                <input
-                  type="text"
-                  className="mt-1 md:mt-2 py-3 px-3 rounded-md outline-none bg-gray-100"
-                  id="phone"
-                  placeholder="تلفن خود را وارد کنید ..."
-                  name="phone"
-                />
-              </div>
-              <div>
-                <label
-                  for="email"
-                  className="font-DanaDemiBold text-base text-zinc-700 dark:text-white"
-                >
-                  آدرس ایمیل
-                </label>
-                <input
-                  type="text"
-                  className="mt-1 md:mt-2 py-3 px-3 rounded-md outline-none bg-gray-100"
-                  id="name"
-                  placeholder="آدرس ایمیل خود را وارد کنید ..."
-                  name="name"
-                />
               </div>
               <div>
                 <label
@@ -142,6 +159,7 @@ function DetailPay() {
                   id="name"
                   placeholder="کد پستی خود را وارد کنید ..."
                   name="name"
+                  onChange={(e) => setPostCode(e.target.value)}
                 />
               </div>
               <div>
@@ -157,12 +175,13 @@ function DetailPay() {
                   id="name"
                   placeholder=" آدرس خود را وارد کنید ..."
                   name="name"
+                  onChange={(e) => setAddress(e.target.value)}
                 />
               </div>
             </div>
             <div className="w-full flex flex-col mt-7">
               <label
-                for="email"
+                htmlFor="note"
                 className="font-DanaDemiBold text-base text-zinc-700 dark:text-white"
               >
                 یادداشت سفارش (اختیاری)
@@ -172,7 +191,8 @@ function DetailPay() {
                 className="mt-1 md:mt-2 py-3 px-3 h-36 rounded-md outline-none bg-gray-100"
                 id="name"
                 placeholder=" یادداشت خود را وارد کنید ..."
-                name="name"
+                name="note"
+                onChange={(e) => setNote(e.target.value)}
               ></textarea>
             </div>
           </div>
@@ -296,28 +316,29 @@ function DetailPay() {
                 <div className="flex items-center justify-between bg-gray-100 py-3 px-2 rounded-md">
                   <span>جمع مبلغ: </span>
                   <p>
-                    1,750,000 <span>تومان</span>
+                    {calculateTotalPrice?.toLocaleString("fa")}{" "}
+                    <span>تومان</span>
                   </p>
                 </div>
                 <div className="flex items-center justify-between bg-gray-100 py-3 px-2 rounded-md">
                   <span>تخفیف : </span>
                   <p>
-                    1,750,000 <span>تومان</span>
+                    {calcTotalDiscount?.toLocaleString("fa")} <span>تومان</span>
                   </p>
                 </div>
                 <div className="flex items-center justify-between bg-gray-100 py-3 px-2 rounded-md">
                   <span>مبلغ کل : </span>
                   <p>
-                    1,750,000 <span>تومان</span>
+                    {calcTotal.toLocaleString("fa")} <span>تومان</span>
                   </p>
                 </div>
               </div>
-              <a
+              <button
+                onClick={payBasketHandler}
                 className="bg-amber-500 font-DanaDemiBold  flex items-center justify-center text-white p-2 px-6 rounded-md shadow-blue w-full mt-5"
-                href="/order/detail"
               >
-                پرداخت 
-              </a>
+                پرداخت
+              </button>
             </div>
           </div>
         </div>

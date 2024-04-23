@@ -26,7 +26,7 @@ function ColorBox({
           </svg>
         )}
       </div>
-      <span>{colorName}</span>
+      <span className="text-sm md:text-base">{colorName}</span>
     </div>
   );
 }

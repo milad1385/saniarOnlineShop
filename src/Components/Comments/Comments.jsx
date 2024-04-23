@@ -247,8 +247,8 @@ function Comments({ productID, comments }) {
         ) : (
           <div className="mt-16">
             <EmptyError
-              msg={"تاکنون هیچ کامنتی برای این محصول ایجاد نشده است 🤐"}
-              className={"py-16 bg-blue-600"}
+              msg={"کامنتی برای این محصول ایجاد نشده است 🤐"}
+              className={"py-16 !bg-blue-600 !text-sm"}
             />
           </div>
         )}

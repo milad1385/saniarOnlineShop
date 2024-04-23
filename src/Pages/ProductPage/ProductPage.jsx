@@ -15,7 +15,7 @@ import FeatureList from "../../Components/FeatureList/FeatureList";
 import ProductBoxInfo from "../../Components/ProductBoxInfo/ProductBoxInfo";
 import ColorBox from "../../Components/ColorBox/ColorBox";
 import SliderIcon from "../../Components/SliderIcon/SliderIcon";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import useGetOne from "../../Hooks/AdminPanel/Product/useGetOne";
 import DOMPurify from "dompurify";
 import useCreate from "../../Hooks/wishlist/useCreate";
@@ -26,6 +26,7 @@ import useMain from "../../Hooks/basket/useMain";
 import useInc from "../../Hooks/basket/useInc";
 import useDec from "../../Hooks/basket/useDec";
 import useDeleteBasket from "../../Hooks/basket/useDelete";
+import { isLogin } from "../../Utils/Funcs/utils";
 
 function ProductPage() {
   const [optionShowModel, setOptionShowModel] = useState("توضیحات کالا");
@@ -44,7 +45,6 @@ function ProductPage() {
   const { mutateAsync: deleteBasket } = useDeleteBasket();
   const { data: basketInfo } = useMain(productInfo?.productInfo._id);
   const { data: isExist } = useExist(productInfo?.productInfo._id);
-
 
   useEffect(() => {
     window.scroll(0, 0);
@@ -82,6 +82,8 @@ function ProductPage() {
     await decreaseBasket(productInfo?.productInfo._id);
   };
 
+  console.log(isLogin());
+
   return (
     <div>
       <Topbar />
@@ -105,13 +107,17 @@ function ProductPage() {
               <div className="flex gap-x-3 border border-gray-200 px-3 py-4 rounded-md">
                 <div className="flex flex-col gap-y-2">
                   <SliderIcon icon={"share"} />
-                  {isExist ? (
-                    <div onClick={removeWishList}>
-                      <SliderIcon className="text-red-600" icon={"heart"} />
-                    </div>
-                  ) : (
-                    <div onClick={addToWishListHandler}>
-                      <SliderIcon icon={"heart"} />
+                  {isLogin() === true && (
+                    <div>
+                      {isExist ? (
+                        <div onClick={removeWishList}>
+                          <SliderIcon className="text-red-600" icon={"heart"} />
+                        </div>
+                      ) : (
+                        <div onClick={addToWishListHandler}>
+                          <SliderIcon icon={"heart"} />
+                        </div>
+                      )}
                     </div>
                   )}
                   <SliderIcon icon={"right-left-arrow"} />
@@ -288,16 +294,31 @@ function ProductPage() {
                   </div>
                 </div>
                 <div className="flex items-center justify-between gap-x-5">
-                  {!basketInfo?.length && (
-                    <button
+                  {isLogin() === true ? (
+                    <div>
+                      {!basketInfo?.length && (
+                        <button
+                          onClick={addToBasketHandler}
+                          className="flex items-center text-sm md:text-base gap-x-1 bg-blue-600 text-white px-6 py-2 rounded-md shadow-blue"
+                        >
+                          <svg className="w-6 h-6">
+                            <use href="#shop-bag"></use>
+                          </svg>
+                          خرید <span className="">کالا</span>
+                        </button>
+                      )}
+                    </div>
+                  ) : (
+                    <Link
+                      to={"/login"}
                       onClick={addToBasketHandler}
                       className="flex items-center text-sm md:text-base gap-x-1 bg-blue-600 text-white px-6 py-2 rounded-md shadow-blue"
                     >
                       <svg className="w-6 h-6">
-                        <use href="#shop-bag"></use>
+                        <use href="#arrow-left-on-rectangle"></use>
                       </svg>
-                      خرید <span className="hidden md:block">کالا</span>
-                    </button>
+                      وارد شوید
+                    </Link>
                   )}
                   {basketInfo?.length > 0 && (
                     <div className="flex items-center gap-x-2">
@@ -358,9 +379,9 @@ function ProductPage() {
         {/* about product */}
         <div className="flex  mt-5">
           <div className="bg-white rounded-md shadow md:ml-5   w-full py-5 px-4">
-            <div className="flex items-center gap-x-6 border-b-[1.5px] border-b-gray-200 child:pb-4 child:cursor-pointer font-DanaMedium">
+            <div className="flex items-center gap-x-6 border-b-[1.5px] child:pb-4 border-b-gray-200  child:cursor-pointer font-DanaMedium">
               <div
-                className={`text-xs h-12 flex items-center gap-x-1 font-DanaDemiBold md:text-base${
+                className={`text-xs  flex items-center gap-x-1 font-DanaDemiBold md:text-base${
                   optionShowModel === "توضیحات کالا"
                     ? "text-blue-600 border-b-2 border-b-blue-600 text-xs font-DanaDemiBold md:text-base"
                     : ""
@@ -371,7 +392,7 @@ function ProductPage() {
               </div>
               <div
                 onClick={(e) => setOptionShowModel("مشخصات کالا")}
-                className={`text-xs h-12 flex items-center gap-x-1 font-DanaDemiBold md:text-base${
+                className={`text-xs  flex items-center gap-x-1 font-DanaDemiBold md:text-base${
                   optionShowModel === "مشخصات کالا"
                     ? "text-blue-600 border-b-2 border-b-blue-600 text-xs font-DanaDemiBold md:text-base"
                     : ""
@@ -381,7 +402,7 @@ function ProductPage() {
               </div>
               <div
                 onClick={(e) => setOptionShowModel("توضیحات تکمیلی")}
-                className={`text-xs h-12 font-DanaDemiBold md:text-base${
+                className={`text-xs  font-DanaDemiBold md:text-base${
                   optionShowModel === "توضیحات تکمیلی"
                     ? "text-blue-600 border-b-2 border-b-blue-600 text-xs font-DanaDemiBold md:text-base"
                     : ""
@@ -391,7 +412,7 @@ function ProductPage() {
               </div>
               <div
                 onClick={(e) => setOptionShowModel(e.target.innerHTML)}
-                className={`text-xs h-12 font-DanaDemiBold md:text-base${
+                className={`text-xs  font-DanaDemiBold md:text-base${
                   optionShowModel === "نظرات"
                     ? "text-blue-600 border-b-2 border-b-blue-600 text-xs font-DanaDemiBold md:text-base"
                     : ""
