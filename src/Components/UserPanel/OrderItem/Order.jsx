@@ -19,17 +19,18 @@ function Order({ products, orderCode, totalPrice, createdAt, _id }) {
           </svg>
         </Link>
       </div>
-      <div className="flex items-center gap-x-8 text-xs md:text-sm text-gray-600 font-DanaMedium mt-5">
+      <div className="flex items-center justify-between md:justify-start gap-x-8 text-xs md:text-sm text-gray-600 font-DanaMedium mt-5">
         <span>{new Date(createdAt).toLocaleDateString("fa-IR")}</span>
         <span>
-          کد سفارش <span className="font-DanaDemiBold">{orderCode}</span>
+          <span className="hidden md:inline-block">کد سفارش </span>{" "}
+          <span className="font-DanaDemiBold">{orderCode}</span>
         </span>
         <span>
           مبلغ{" "}
           <span className="font-DanaDemiBold">
             {totalPrice.toLocaleString("fa")}
           </span>{" "}
-          تومان
+          <span className="hidden md:inline-block">تومان</span>
         </span>
       </div>
       <div className="flex items-center justify-center md:justify-start flex-wrap gap-3 child:border child:border-gray-200 child:rounded-md child:p-2 my-7">
@@ -50,7 +51,7 @@ function Order({ products, orderCode, totalPrice, createdAt, _id }) {
           <svg className="w-5 h-5">
             <use href="#printer"></use>
           </svg>
-          <span>مشاهده فاکتور</span>
+          <span className="text-sm md:text-base">مشاهده فاکتور</span>
         </Link>
       </div>
     </div>

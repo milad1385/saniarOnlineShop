@@ -47,14 +47,12 @@ function AnswerTicket() {
           <AnswerBox {...ticketInfo} key={crypto.randomUUID()} />
         </div>
         {/* start answer box  */}
-        {answers?.length > 0 ? (
+        {answers?.length > 0 && (
           <div className="mt-5 space-y-5">
             {answers?.map((answer) => (
               <AnswerBox key={answer._id} {...answer} />
             ))}
           </div>
-        ) : (
-          <div>هنوز پاسخی ارسال نشده است</div>
         )}
         {/* reply answer */}
 

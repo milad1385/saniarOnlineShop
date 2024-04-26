@@ -10,7 +10,7 @@ function AnswerBox({ body, creator, createdAt, isFromUserPanel }) {
       }   p-4 rounded-2xl rounded-tr-sm`}
     >
       <h4
-        className={`font-DanaMedium text-xl mb-1 ${
+        className={`font-DanaMedium text-sm md:text-xl mb-1 ${
           isFromUserPanel ? "text-right" : "text-left"
         }`}
       >
@@ -23,9 +23,7 @@ function AnswerBox({ body, creator, createdAt, isFromUserPanel }) {
       >
         {new Date(createdAt).toLocaleString("fa")}
       </span>
-      <p className="font-Dana mt-4"></p>
-      {body}
-      <p></p>
+      <p className="font-Dana mt-4 !text-sm md:!text-base">{body}</p>
     </div>
   );
 }

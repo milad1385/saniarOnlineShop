@@ -1,0 +1,23 @@
+td,
+tr {
+  border-bottom: 1px solid #dbdbdb;
+}
+
+tr:nth-child(even) {
+  background-color: white !important;
+}
+
+@media print {
+  button {
+    display: none;
+  }
+}
+
+
+.table-container::-webkit-scrollbar-track{
+  height: 2px !important;
+}
+
+.scorll-bar::-webkit-scrollbar{
+  height: 8px !important;
+}

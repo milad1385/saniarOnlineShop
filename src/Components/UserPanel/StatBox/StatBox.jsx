@@ -7,7 +7,7 @@ function StatBox({title , icon , count}) {
         <svg className='w-8 h-8 text-blue-600 icon'>
             <use href={`#${icon}`}></use>
         </svg>
-        <span className='font-DanaDemiBold text-lg'>{title}</span>
+        <span className='font-DanaDemiBold text-base md:text-lg'>{title}</span>
         <div className='bg-[#ed9209] flex-center text-white px-2 rounded-full font-DanaDemiBold text-xs'><span className='mt-[2.5px]'>{count}</span></div>
       </div>
     </div>

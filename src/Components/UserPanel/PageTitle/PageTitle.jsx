@@ -4,7 +4,7 @@ function PageTitle({ title, icon, isBig }) {
   return (
     <div>
       <h3
-        className={`font-DanaDemiBold text-base  ${
+        className={`font-DanaDemiBold text-sm  ${
           isBig ? "md:text-2xl" : "text-lg"
         } flex items-center gap-x-2`}
       >

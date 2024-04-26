@@ -301,6 +301,10 @@
 .table-container {
   overflow-x: auto;
 }
+
+.table-container::-webkit-scrollbar{
+  height: 10px !important;
+}
 table {
   width: 100%;
   white-space: nowrap;

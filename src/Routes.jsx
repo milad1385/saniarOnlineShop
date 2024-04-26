@@ -55,6 +55,7 @@ import EditProduct from "./Pages/AdminPanel/EditProduct/EditProduct";
 import Answer from "./Pages/AdminPanel/AnswerTicket/AnswerTicket";
 import IsAdmin from "./Pages/Private/isAdmin";
 import OrderDetail from "./Components/UserPanel/OrderDetail/OrderDetail";
+import Factor from "./Pages/factor/Factor";
 const ProductPage = lazy(() => import("./Pages/ProductPage/ProductPage"));
 const Index = lazy(() => import("./Pages/Index/Index"));
 const ProductsPage = lazy(() => import("./Pages/ProductsPage/ProductsPage"));
@@ -69,6 +70,14 @@ const routes = [
       <Suspense fallback={<Loader />}>
         <Index />
       </Suspense>
+    ),
+  },
+  {
+    path: "/factor/:id",
+    element: (
+      <IsLogin>
+        <Factor />
+      </IsLogin>
     ),
   },
   { path: "/blog", element: <Blog /> },
