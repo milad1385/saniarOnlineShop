@@ -185,7 +185,7 @@ function Main() {
                 </thead>
                 <tbody className="text-sm md:text-base">
                   {users?.map((user, index) => (
-                    <tr className="child:p-3 text-center font-DanaMedium">
+                    <tr className="child:p-2 md:child:p-3 text-center font-DanaMedium">
                       <td>{index + 1}</td>
                       <td>
                         <div className="w-14 h-14  mx-auto bg-gray-200 rounded-full flex-center">

@@ -25,7 +25,7 @@ function Main() {
     <>
       <div>
         <Topbar />
-        <Navbar />
+        <Navbar isUserPanel={true} />
         <div className="container">
           <BreadCrumb
             links={[
@@ -35,7 +35,7 @@ function Main() {
             ]}
           />
           <div className="flex  gap-x-5">
-            <div className="hidden lg:block w-[480px] h-[590px] bg-white shadow  rounded-md p-4 sticky top-0">
+            <div className="hidden lg:block w-[480px] h-[540px] bg-white shadow  rounded-md p-4 sticky top-0">
               <div className="flex items-center gap-x-4 border-b-2 border-b-gray-200 pb-2">
                 <div className="bg-gray-100 w-[55px] h-[55px] flex-center rounded-full">
                   <img
@@ -131,7 +131,7 @@ function Main() {
                     محصولات مورد علاقه
                   </NavLink>
                 </li>
-                <li>
+                {/* <li>
                   <NavLink
                     to={"/my-account/offs-code"}
                     className="flex  gap-x-2 font-DanaMedium p-2 rounded-md"
@@ -141,7 +141,7 @@ function Main() {
                     </svg>
                     کد های تخفیف من
                   </NavLink>
-                </li>
+                </li> */}
                 <li>
                   <NavLink
                     to={"/my-account/tickets"}

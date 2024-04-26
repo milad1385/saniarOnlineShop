@@ -8,7 +8,7 @@ import MobileMenu from "./MobileMenu";
 import MegaMenus from "./MegaMenus";
 import MenuItem from "./MenuItem";
 
-function Navbar() {
+function Navbar({ isUserPanel }) {
   const context = useContext(AppContext);
   const [isShowUserBox, setIsShowUserBox] = useState(false);
   const { data: info } = useGetAll();
@@ -75,7 +75,7 @@ function Navbar() {
         </div>
       </div>
       {/* start mobile menu */}
-      <MobileMenu />
+      <MobileMenu isUserPanel={isUserPanel} role={context?.userInfo?.role} />
       <div className="relative left-[1rem]">
         <ProfileBox
           isShowUserBox={isShowUserBox}

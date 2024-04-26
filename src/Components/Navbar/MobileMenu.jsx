@@ -6,8 +6,9 @@ import { Link } from "react-router-dom";
 import { isLogin } from "../../Utils/Funcs/utils";
 import ProfileBox from "../Topbar/ProfileBox";
 import BasketItem from "./BasketItem";
+import MobileMenuLink from "./MobileMenuLink";
 
-function MobileMenu() {
+function MobileMenu({ isUserPanel, role }) {
   const [isShowUserBox, setIsShowUserBox] = useState(false);
   const context = useContext(AppContext);
   const { data: baskets } = useBasket();
@@ -132,7 +133,7 @@ function MobileMenu() {
           </div>
         </div>
         <div className="my-3 bg-blue-600 text-white p-2 rounded-md">
-          <Link className="flex gap-x-2">
+          <Link to={isUserPanel ? "/my-account" : "/"} className="flex gap-x-2">
             <svg className="w-5 h-5">
               <use href="#home"></use>
             </svg>
@@ -140,79 +141,106 @@ function MobileMenu() {
           </Link>
         </div>
         {/* start menu body */}
-        <ul className="p-2 pb-5 space-y-4 border-b border-b-gray-300">
-          <li>
-            <Link className="flex justify-between">
-              <div className="flex gap-x-2">
-                <svg className="w-5 h-5">
-                  <use href="#shop-bag"></use>
-                </svg>
-                فروشگاه
+        {isUserPanel ? (
+          <ul className="p-2 pb-5 space-y-4 border-b border-b-gray-300">
+            <MobileMenuLink
+              title={"پروفایل"}
+              icon={"user"}
+              link={"/my-account/profile"}
+            />
+            <MobileMenuLink
+              title={"سفارش های من"}
+              icon={"shop-card"}
+              link={"/my-account/orders"}
+            />
+            <MobileMenuLink
+              title={"آدرس های من"}
+              icon={"map"}
+              link={"/my-account/address"}
+            />
+
+            <MobileMenuLink
+              title={"پیام ها و اطلاعیه ها"}
+              icon={"bell"}
+              link={"/my-account/notifications"}
+            />
+
+            <MobileMenuLink
+              title={"نظرات"}
+              icon={"msg"}
+              link={"/my-account/comments"}
+            />
+
+            <MobileMenuLink
+              title={"علاقه مندی ها"}
+              icon={"heart"}
+              link={"/my-account/Favorite"}
+            />
+
+            <MobileMenuLink
+              title={"تیکت های من"}
+              icon={"ticket"}
+              link={"/my-account/tickets"}
+            />
+          </ul>
+        ) : (
+          <ul className="p-2 pb-5 space-y-4 border-b border-b-gray-300">
+            <li>
+              <div className="flex justify-between">
+                <Link to={"/products"} className="flex gap-x-2">
+                  <svg className="w-5 h-5">
+                    <use href="#shop-bag"></use>
+                  </svg>
+                  فروشگاه
+                </Link>
+                <div>
+                  <svg
+                    className="w-5 h-5 -rotate-90 transition-all"
+                    onClick={(e) => showSubMenu(e)}
+                  >
+                    <use href="#chevron-left"></use>
+                  </svg>
+                </div>
               </div>
-              <div>
-                <svg
-                  className="w-5 h-5 -rotate-90 transition-all"
-                  onClick={(e) => showSubMenu(e)}
-                >
-                  <use href="#chevron-left"></use>
-                </svg>
-              </div>
-            </Link>
-            <ul
-              className="hidden mt-2 space-y-2 text-sm text-blue-600 pr-2"
-              ref={subMenuRef}
-            >
-              {menus?.map((menu) => (
-                <li key={menu} className="flex items-center gap-x-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-blue-600 block"></span>
-                  <Link to={`/category-products/${menu.link}`}>
-                    {menu.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </li>
-          <li>
-            <Link className="flex justify-between">
-              <div className="flex gap-x-2">
-                <svg className="w-5 h-5">
-                  <use href="#bag"></use>
-                </svg>
-                درباره ما
-              </div>
-            </Link>
-          </li>
-          <li>
-            <Link className="flex justify-between">
-              <div className="flex gap-x-2">
-                <svg className="w-5 h-5">
-                  <use href="#document-text"></use>
-                </svg>
-                بلاگ
-              </div>
-            </Link>
-          </li>
-          <li>
-            <Link className="flex justify-between">
-              <div className="flex gap-x-2">
-                <svg className="w-5 h-5">
-                  <use href="#chat"></use>
-                </svg>
-                ارتباط با ما
-              </div>
-            </Link>
-          </li>
-          <li>
-            <Link className="flex justify-between">
-              <div className="flex gap-x-2">
-                <svg className="w-5 h-5">
-                  <use href="#phone-arrow-up-right"></use>
-                </svg>
-                تماس با ما
-              </div>
-            </Link>
-          </li>
-        </ul>
+              <ul
+                className="hidden mt-2 space-y-2 text-sm text-blue-600 pr-2"
+                ref={subMenuRef}
+              >
+                {menus?.map((menu) => (
+                  <li key={menu} className="flex items-center gap-x-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-blue-600 block"></span>
+                    <Link to={`/category-products/${menu.link}`}>
+                      {menu.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </li>
+            <MobileMenuLink
+              title={"درباره ما"}
+              icon={"bag"}
+              link={"/about-us"}
+            />
+            <MobileMenuLink
+              title={"بلاگ"}
+              icon={"document-text"}
+              link={"/Blog"}
+            />
+
+            <MobileMenuLink
+              title={"تماس با ما"}
+              icon={"chat"}
+              link={"/contact-us"}
+            />
+            {role === "ADMIN" && (
+              <MobileMenuLink
+                title={"پنل مدیریت"}
+                icon={"setting"}
+                link={"/admin-panel"}
+              />
+            )}
+          </ul>
+        )}
         <div className="p-2 pt-5 space-y-4">
           {isLogin() ? (
             <Link to={"/my-account"} className="flex items-center gap-x-1.5">
@@ -229,7 +257,10 @@ function MobileMenu() {
               ورود و ثبت نام
             </Link>
           )}
-          <Link className="flex items-center gap-x-2 text-blue-600">
+          <Link
+            to={"/order/card"}
+            className="flex items-center gap-x-2 text-blue-600"
+          >
             <svg className="w-5 h-5">
               <use href="#shopping-cart"></use>
             </svg>
@@ -287,7 +318,7 @@ function MobileMenu() {
           <div className="flex items-center justify-center flex-col my-auto">
             <img src="/images/emptybag.png" className="w-[300px]" />
             <p className="text-base md:text-lg lg:text-xl xl:text-2xl font-DanaDemiBold">
-               سبد خرید شما خالی است 🤐
+              سبد خرید شما خالی است 🤐
             </p>
             <Link
               to={"/products"}

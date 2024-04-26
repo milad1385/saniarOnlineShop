@@ -10,7 +10,11 @@ function CommentBox({ creator, product, body, score, isAccept, createdAt }) {
           className="w-[80px] h-[80px]"
         />
         <div className="flex items-center gap-x-2">
-          <span className="bg-green-500 text-white px-2 py-1">
+          <span
+            className={`${
+              isAccept ? "bg-green-500" : "bg-red-500"
+            } text-white px-2 py-1`}
+          >
             {isAccept ? "تایید شده" : "تایید نشده"}
           </span>
           <button className="bg-red-500 text-white p-1">

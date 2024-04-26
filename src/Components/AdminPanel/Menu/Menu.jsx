@@ -29,7 +29,7 @@ function Menu({ title, icon, items }) {
         </svg>
       </div>
       <ul
-        className={`submenu mr-[2px]  space-y-1 bg-blue-600/90 rounded-md`}
+        className={`submenu mr-[2px]  space-y-1 !bg-white text-blue-600 rounded-md`}
         ref={subMenuRef}
       >
         {items.map((item) => (

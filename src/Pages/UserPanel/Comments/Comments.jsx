@@ -23,7 +23,7 @@ function Comments() {
           دیدگاه ها
         </p>
         <div className="p-[18px] space-y-8 divide-y-2">
-          {comments?.mainComments.map((comment) => (
+          {comments?.mainComments?.map((comment) => (
             <CommentBox key={comment._id} {...comment} />
           ))}
         </div>

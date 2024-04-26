@@ -73,27 +73,30 @@ function Comments() {
                     <td>{comment.creator.name}</td>
                     <td>{comment.product.title}</td>
                     <td>{comment.date}</td>
-                    <td className="flex items-center justify-center gap-x-0.5">
-                      {Array(5 - comment.score)
-                        .fill(0)
-                        .map((score) => (
-                          <svg
-                            className="w-5 md:w-6 h-5 md:h-6 text-gray-400"
-                            key={crypto.randomUUID()}
-                          >
-                            <use href="#star"></use>
-                          </svg>
-                        ))}
-                      {Array(comment.score)
-                        .fill(0)
-                        .map((score) => (
-                          <svg
-                            className="w-5 md:w-6 h-5 md:h-6 text-yellow-400"
-                            key={crypto.randomUUID()}
-                          >
-                            <use href="#star"></use>
-                          </svg>
-                        ))}
+                    <td>
+                      <div className="flex">
+                        {Array(5 - comment.score)
+                          .fill(0)
+                          .map((score, index) => (
+                            <svg
+                              className="w-5 md:w-6 h-5 md:h-6 text-gray-400"
+                              key={index}
+                            >
+                              <use href="#star"></use>
+                            </svg>
+                          ))}
+
+                        {Array(comment.score)
+                          .fill(0)
+                          .map((score, index) => (
+                            <svg
+                              className="w-5 md:w-6 h-5 md:h-6 text-yellow-400"
+                              key={index}
+                            >
+                              <use href="#star"></use>
+                            </svg>
+                          ))}
+                      </div>
                     </td>
                     <td>{comment.isReply ? "رپلای" : "اصلی"}</td>
                     <td>
@@ -109,7 +112,7 @@ function Comments() {
                         </Modal.Page>
                       </Modal>
                     </td>
-                    <td className="flex items-center justify-center">
+                    <td>
                       {comment.isReply ? (
                         <button
                           className="bg-orange-800 flex-center h-[36px] text-white w-16 py-1 text-base md:text-lg rounded-md font-Lalezar"
