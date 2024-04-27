@@ -78,7 +78,7 @@ function Profile() {
     <>
       <PageTitle icon={"home"} title={"پروفایل من"} />
       <form onSubmit={handleSubmit(editUserInfo)} className="p-3.5 pt-8">
-        <div className="relative mb-11 md:flex-center">
+        <div className="relative mb-11 flex-center">
           <img
             src={
               currImage
@@ -108,7 +108,7 @@ function Profile() {
           <div>
             <label
               for="email"
-              className="font-DanaDemiBold text-base text-zinc-700 dark:text-white"
+              className="font-DanaDemiBold text-sm md:text-base text-zinc-700 dark:text-white"
             >
               شماره همراه
             </label>
@@ -118,13 +118,15 @@ function Profile() {
               InputStyle={style}
               name={"phone"}
               type={"text"}
-              className={"rounded-md overflow-hidden mt-3.5"}
+              className={
+                "rounded-md overflow-hidden mt-3.5 text-sm md:text-base"
+              }
             />
           </div>
           <div>
             <label
               for="first_name"
-              className="font-DanaDemiBold text-base text-zinc-700 dark:text-white"
+              className="font-DanaDemiBold text-sm md:text-base text-zinc-700 dark:text-white"
             >
               نام
             </label>
@@ -134,13 +136,15 @@ function Profile() {
               InputStyle={style}
               name={"name"}
               type={"text"}
-              className={"rounded-md overflow-hidden mt-3.5"}
+              className={
+                "rounded-md overflow-hidden mt-3.5 text-sm md:text-base"
+              }
             />
           </div>
           <div>
             <label
               for="email"
-              className="font-DanaDemiBold text-base text-zinc-700 dark:text-white"
+              className="font-DanaDemiBold text-sm md:text-base text-zinc-700 dark:text-white"
             >
               نام کاربری
             </label>
@@ -150,13 +154,15 @@ function Profile() {
               InputStyle={style}
               name={"username"}
               type={"text"}
-              className={"rounded-md overflow-hidden mt-3.5"}
+              className={
+                "rounded-md overflow-hidden mt-3.5 text-sm md:text-base"
+              }
             />
           </div>
           <div>
             <label
               for="email"
-              className="font-DanaDemiBold text-base text-zinc-700 dark:text-white"
+              className="font-DanaDemiBold text-sm md:text-base text-zinc-700 dark:text-white"
             >
               ایمیل
             </label>
@@ -166,13 +172,15 @@ function Profile() {
               InputStyle={style}
               name={"email"}
               type={"email"}
-              className={"rounded-md overflow-hidden mt-3.5"}
+              className={
+                "rounded-md overflow-hidden mt-3.5 text-sm md:text-base"
+              }
             />
           </div>
           <div>
             <label
               for="email"
-              className="font-DanaDemiBold text-base text-zinc-700 dark:text-white"
+              className="font-DanaDemiBold text-sm md:text-base text-zinc-700 dark:text-white"
             >
               رمز عبور
             </label>
@@ -182,7 +190,9 @@ function Profile() {
               InputStyle={style}
               name={"password"}
               type={"password"}
-              className={"rounded-md overflow-hidden mt-3.5"}
+              className={
+                "rounded-md overflow-hidden mt-3.5 text-sm md:text-base"
+              }
             />
           </div>
         </div>

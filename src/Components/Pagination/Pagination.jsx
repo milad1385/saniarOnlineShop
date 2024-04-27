@@ -23,7 +23,7 @@ function Pagination({ count, page, setPage, status }) {
               >
                 <div
                   // to={`?page=${index + 1}${status ? `&order=${status}` : ""}`}
-                  className="w-full h-full flex-center"
+                  className="w-full h-full flex-center text-sm md:text-base"
                   onClick={() => handlePagination(index + 1)}
                 >
                   {index + 1}

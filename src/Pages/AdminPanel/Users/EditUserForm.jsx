@@ -38,7 +38,7 @@ function EditUserForm({ user, onInfo, onClose }) {
     await editUser(info);
   };
   return (
-    <div className="bg-white pb-6 pt-4 px-5  w-[93%] md:w-[425px] mx-auto">
+    <div className="bg-white pb-6 pt-4 px-5  w-[350px] md:w-[425px] mx-auto">
       <h3 className="font-MorabbaBold text-lg md:text-3xl text-center mt-3">
         اطلاعات جدید کاربر را بنویسید
       </h3>
@@ -97,7 +97,7 @@ function EditUserForm({ user, onInfo, onClose }) {
 
         <button
           type="submit"
-          className="w-full mt-2 bg-blue-600 text-white text-xl font-MorabbaBold py-3"
+          className="w-full mt-2 bg-blue-600 text-white text-base md:text-xl font-MorabbaBold py-3"
         >
           {isEditting ? "در حال ویرایش ..." : "ویرایش اطلاعات"}
         </button>

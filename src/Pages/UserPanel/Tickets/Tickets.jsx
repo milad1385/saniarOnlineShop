@@ -3,7 +3,7 @@ import PageTitle from "../../../Components/UserPanel/PageTitle/PageTitle";
 import EmptyError from "../../../Components/UserPanel/EmptyError/EmptyError";
 import { Link } from "react-router-dom";
 import useGetAll from "../../../Hooks/AdminPanel/Ticket/useGetAll";
-import TicketStat from "./TicketStat";
+import TicketStat from "./Stat";
 import Loader from "../../../Components/Loader/Loader";
 
 function Tickets() {

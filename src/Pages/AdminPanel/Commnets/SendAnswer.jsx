@@ -28,7 +28,7 @@ function SendAnswer({ onClose, onInfo, comment }) {
   return (
     <form
       onSubmit={handleSubmit(sendAnswerToComment)}
-      className="bg-white w-[380px] px-5 pt-4 pb-6 space-y-5 font-MorabbaBold"
+      className="bg-white w-[350px] md:w-[380px] px-5 pt-4 pb-6 space-y-5 font-MorabbaBold"
     >
       <h3 className="text-center  text-lg md:text-2xl lg:text-3xl">
         متن پاسخ را بنویسید

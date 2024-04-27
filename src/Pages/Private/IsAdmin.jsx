@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 import { AppContext } from "../../App";
 function IsAdmin({ children }) {
   const context = useContext(AppContext);
-  console.log(context);
   const navigate = useNavigate();
   return (
     <>

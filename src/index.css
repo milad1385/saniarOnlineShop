@@ -310,6 +310,14 @@ table {
   white-space: nowrap;
 }
 
+.breadcrumb{
+  overflow-x: scroll;
+}
+
+.breadcrumb::-webkit-scrollbar{
+  height: 0px;
+}
+
 tr:nth-child(even) {
   background-color: #e7e7e7;
 }

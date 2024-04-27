@@ -173,9 +173,9 @@ const editUser = async (info) => {
   }
 };
 
-const getLastUser = async () => {
+const getLastUser = async (q) => {
   try {
-    const res = await fetch(`${baseURL}/registerNow`);
+    const res = await fetch(`${baseURL}/registerNow?q=${q}`);
 
     return await res.json();
   } catch (err) {

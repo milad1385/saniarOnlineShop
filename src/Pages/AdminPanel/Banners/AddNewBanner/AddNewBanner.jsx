@@ -74,7 +74,7 @@ function AddNewBanner() {
           />
         </div>
         <div className="flex items-center gap-x-5">
-          <button className="bg-blue-600  w-[125px]  font-Lalezar p-2 rounded-md text-white text-sm md:text-xl shadow-blue mt-6">
+          <button className="bg-blue-600 w-auto md:w-[125px]  font-Lalezar p-2 rounded-md text-white text-sm md:text-xl shadow-blue mt-6">
             {isLoading ? (
               <div className="ml-9">
                 <Sppiner />

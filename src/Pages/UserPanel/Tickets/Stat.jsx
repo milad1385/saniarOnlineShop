@@ -1,6 +1,6 @@
 import React from "react";
 
-function TicketStat({ color, icon, title, number }) {
+function TicketStat({ color, icon, title, number, per }) {
   return (
     <div
       className={`flex items-center gap-x-2.5 md:gap-x-4 flex-grow md:flex-grow-0 md:w-60 ${
@@ -15,7 +15,7 @@ function TicketStat({ color, icon, title, number }) {
       <div className="flex flex-col gap-y-1.5 md:gap-y-2 text-white">
         <span className="text-xs">{title}</span>
         <span className="font-DanaDemiBold text-sm md:text-lg">
-          {number?.toLocaleString("fa")} عدد
+          {number?.toLocaleString("fa")} {per || "عدد"}
         </span>
       </div>
     </div>

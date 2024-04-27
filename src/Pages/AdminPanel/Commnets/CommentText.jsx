@@ -2,7 +2,7 @@ import React from "react";
 
 function CommentText({ onClose, text, title }) {
   return (
-    <div className="bg-white pb-6 pt-4 px-5  w-[93%] md:w-[425px] mx-auto">
+    <div className="bg-white pb-6 pt-4 px-5  w-[350px] md:w-[425px] mx-auto">
       <h3 className="font-MorabbaBold text-lg md:text-3xl text-center mt-3">
         {title ? title : " متن کامنت"}
       </h3>

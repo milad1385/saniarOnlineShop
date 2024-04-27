@@ -81,13 +81,9 @@ function CommentBox({ comment, onReplyInfo, onShow }) {
         {comment.replies &&
           comment.replies.map((reply) => (
             <div
-              className={`border border-gray-200 ${
-                reply.creator.role === "ADMIN"
-                  ? "bg-blue-600"
-                  : "bg-[#ffa41b31]"
-              } rounded-md p-4 mt-10 shadow`}
+              className={`border border-gray-200  rounded-md p-4 mt-10 shadow`}
             >
-              <div className="bg-white p-2.5 rounded-lg shadow flex items-center justify-between flex-wrap">
+              <div className="bg-[#eee] p-2.5 rounded-lg shadow flex items-center justify-between flex-wrap">
                 <div className="flex items-center gap-x-3">
                   <div className="flex-center bg-gray-200 rounded-full w-[60px] h-[60px] shadow">
                     <img
@@ -126,11 +122,7 @@ function CommentBox({ comment, onReplyInfo, onShow }) {
                     ))}
                 </div>
               </div>
-              <p
-                className={`mt-4 ${
-                  reply.creator.role === 'ADMIN' ? "text-white" : "text-gray-700"
-                } text-sm/[28px] md:text-base/[32px]`}
-              >
+              <p className={`mt-4 text-sm/[28px] md:text-base/[32px]`}>
                 {reply.body}
               </p>
               <div className="text-sm mt-4">

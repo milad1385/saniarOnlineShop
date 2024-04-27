@@ -7,7 +7,7 @@ import useLastestUser from "../../../Hooks/AdminPanel/User/useLastestUser";
 import EmptyError from "../../../Components/UserPanel/EmptyError/EmptyError";
 import useDelete from "../../../Hooks/AdminPanel/User/useDelete";
 import DeleteModal from "../../../Components/DeleteModal/DeleteModal";
-import { getUserToken } from "../../../Utils/Funcs/utils";
+import { getSearchParam, getUserToken } from "../../../Utils/Funcs/utils";
 import StatusModal from "../../../Components/SuccessModal/SuccessModal";
 import DetailModal from "../../../Components/DetailModal/DetailModal";
 import useRole from "../../../Hooks/AdminPanel/User/useRole";
@@ -16,6 +16,7 @@ import { registerSchema } from "../../Register/RegisterSchema";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import useEdit from "../../../Hooks/AdminPanel/User/useEdit";
+import StatBox from "../../UserPanel/Tickets/Stat";
 function Main() {
   const { setIsShowAdminMenu } = useContext(AppContext);
   const [isShowDeleteModal, setIsShowDeleteModal] = useState(false);
@@ -26,10 +27,10 @@ function Main() {
   const [role, setRole] = useState("");
   const [lastImage, setLastImage] = useState("");
   const [msg, setMsg] = useState("");
-  const [image , setImage] = useState("");
+  const [image, setImage] = useState("");
   const { mutateAsync: deleteUser } = useDelete();
   const { mutateAsync: changeRole, isLoading: roleLoading } = useRole();
-  const { data: users, isLoading } = useLastestUser();
+  const { data: users, isLoading } = useLastestUser(getSearchParam("q") || "");
   const { mutateAsync: editUser, isLoading: editLoading } = useEdit();
 
   const {
@@ -108,60 +109,37 @@ function Main() {
 
   return (
     <>
-      <div className="container">
+      <div className="container w-auto xl:w-[1225px]">
         <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-3 gap-y-4 md:gap-x-8 mt-10 mx-auto place-items-center ">
-          <div class="flex items-center gap-x-2.5 md:gap-x-4 w-[169px]  md:w-64 bg-amber-400  p-2 rounded-2xl">
-            <div class="flex-center w-14 h-14 md:w-[68px] md:h-[68px] bg-white/20 rounded-2xl">
-              <svg class="w-8 h-8 md:w-9 md:h-9 text-white">
-                <use href="#user"></use>
-              </svg>
-            </div>
-            <div class="flex flex-col gap-y-1.5 md:gap-y-2 text-white">
-              <span class="text-xs md:text-sm font-DanaMedium">
-                ثبت نام شده ها
-              </span>
-              <span class="font-DanaDemiBold text-sm md:text-lg">5 نفر</span>
-            </div>
-          </div>
-          <div class="flex items-center gap-x-2.5 md:gap-x-4 w-[169px]  md:w-64 bg-green-500  p-2 rounded-2xl">
-            <div class="flex-center w-14 h-14 md:w-[68px] md:h-[68px] bg-white/20 rounded-2xl">
-              <svg class="w-8 h-8 md:w-9 md:h-9 text-white">
-                <use href="#money"></use>
-              </svg>
-            </div>
-            <div class="flex flex-col gap-y-1.5 md:gap-y-2 text-white">
-              <span class="text-xs md:text-sm font-DanaMedium">
-                مقدار در آمد
-              </span>
-              <span class="font-DanaDemiBold text-sm md:text-lg">
-                25,402,000
-              </span>
-            </div>
-          </div>
-          <div class="flex items-center gap-x-2.5 md:gap-x-4 w-[169px]  md:w-64 bg-red-500  p-2 rounded-2xl">
-            <div class="flex-center w-14 h-14 md:w-[68px] md:h-[68px] bg-white/20 rounded-2xl">
-              <svg class="w-8 h-8 md:w-9 md:h-9 text-white">
-                <use href="#chat-bubble-left-right"></use>
-              </svg>
-            </div>
-            <div class="flex flex-col gap-y-1.5 md:gap-y-2 text-white">
-              <span class="text-xs md:text-sm font-DanaMedium">
-                تعداد کامنت ها
-              </span>
-              <span class="font-DanaDemiBold text-sm md:text-lg">4 تا</span>
-            </div>
-          </div>
-          <div class="flex items-center gap-x-2.5 md:gap-x-4 w-[169px]  md:w-64 bg-blue-600  p-2 rounded-2xl">
-            <div class="flex-center w-14 h-14 md:w-[68px] md:h-[68px] bg-white/20 rounded-2xl">
-              <svg class="w-8 h-8 md:w-9 md:h-9 text-white">
-                <use href="#shopping-cart"></use>
-              </svg>
-            </div>
-            <div class="flex flex-col gap-y-1.5 md:gap-y-2 text-white">
-              <span class="text-xs md:text-sm font-DanaMedium">تعداد فروش</span>
-              <span class="font-DanaDemiBold text-sm md:text-lg">4 تا</span>
-            </div>
-          </div>
+          <StatBox
+            title={"ثبت نام شده ها"}
+            color={"bg-amber-400"}
+            icon={"user"}
+            per={"نفر"}
+            number={9}
+          />
+          <StatBox
+            title={"مقدار کل در آمد"}
+            color={"bg-green-500"}
+            icon={"money"}
+            per={" "}
+            number={9}
+          />
+
+          <StatBox
+            title={"تعداد کامنت ها"}
+            color={"bg-red-500"}
+            icon={"chat-bubble-left-right"}
+            number={9}
+          />
+
+          <StatBox
+            title={"تعداد فروش ها"}
+            color={"bg-blue-600"}
+            icon={"shopping-cart"}
+            per={"تا"}
+            number={9}
+          />
         </div>
         <Chart title={"میزان فروش"} grid data={Data} dataKey={"فروش"} />
         <div className="pb-8">
@@ -238,7 +216,10 @@ function Main() {
               </table>
             </Table>
           ) : (
-            <EmptyError msg={"تاکنون کاربری در سایت ثبت نام نکرده است"} />
+            <EmptyError
+              msg={"کاربر سرچ شده یافت نشد است"}
+              className={"mt-8 !py-16"}
+            />
           )}
         </div>
       </div>

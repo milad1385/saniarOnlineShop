@@ -69,7 +69,6 @@ function BannersList() {
   };
 
   const editHandler = async (data) => {
-    console.log(data);
     const formData = new FormData();
     formData.append("title", data?.title);
     formData.append("link", data?.link);
@@ -224,7 +223,7 @@ function BannersList() {
               مقدار جدید اسلایدر را بنویسید
             </h3>
             <div className="relative">
-              <div className="flex items-center justify-between bg-gray-100 py-2 px-3">
+              <div className="flex items-center text-sm md:text-base justify-between bg-gray-100 py-2 px-3">
                 <input
                   type="text"
                   {...register("title")}
@@ -263,7 +262,7 @@ function BannersList() {
               <div className="flex items-center justify-between bg-gray-100 py-2 px-3">
                 <input
                   type="file"
-                  className="outline-none w-full bg-gray-100 font-DanaMedium"
+                  className="outline-none w-full bg-gray-100 font-DanaMedium text-sm md:text-base"
                   onChange={(e) => setImage(e.target.files[0])}
                 />
                 <svg className="w-6 h-6 md:w-9 md:h-9 text-zinc-600">

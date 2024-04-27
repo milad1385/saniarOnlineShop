@@ -26,7 +26,7 @@ function MainPage() {
           <p className="font-DanaDemiBold mt-3">
             به فروشگاه سانیار خوش آمدید ❤️
           </p>
-          <p className="text-zinc-700 mt-5 leading-8">
+          <p className="text-zinc-700 mt-5 leading-8 text-sm md:text-base">
             از پیش خوان حساب کاربری خود میتوانید{" "}
             <span className="font-DanaDemiBold text-black">آخرین سفارش ها</span>{" "}
             را ببینید به راحتی{" "}
@@ -42,19 +42,11 @@ function MainPage() {
         </div>
         <img src="/images/panel.svg" alt="panel.svg" className="w-[335px]" />
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 mt-5">
-        <StatBox
-          title={"سفارش های من"}
-          count={stats?.orders}
-          icon={"shop-card"}
-        />
-        <StatBox title={"آدرس های من"} count={2} icon={"map"} />
-        <StatBox title={"کامنت های من"} count={stats?.comments} icon={"msg"} />
-        <StatBox
-          title={"مورد علاقه من"}
-          count={stats?.wishList}
-          icon={"heart"}
-        />
+      <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 mt-5">
+        <StatBox title={"سفارش ها"} count={stats?.orders} icon={"shop-card"} />
+        <StatBox title={"آدرس ها"} count={2} icon={"map"} />
+        <StatBox title={"کامنت ها"} count={stats?.comments} icon={"msg"} />
+        <StatBox title={"علاقه ها"} count={stats?.wishList} icon={"heart"} />
       </div>
       <div className="mt-5 bg-white p-4 rounded-md shadow">
         <PageTitle icon={`shop-card`} title={`لیست سفارشات`} />

@@ -1,13 +1,15 @@
 import React, { useEffect, useState, useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useSearchParams } from "react-router-dom";
 import { AppContext } from "../../../App";
 import useGetMe from "../../../Hooks/useGetMe/useGetMe";
-import { getUserToken } from "../../../Utils/Funcs/utils";
+import { getSearchParam, getUserToken } from "../../../Utils/Funcs/utils";
 
 function TopBar({ onShow }) {
   const [isDark, setIsDark] = useState("light");
-  const [search, setSearch] = useState("");
-  const { setIsShowAdminMenu, setAdminSearch } = useContext(AppContext);
+  const [seachParams, setSeachParams] = useSearchParams();
+  const path = useLocation();
+  const [searchValue, setSearchValue] = useState(getSearchParam("q") || "");
+  const { setIsShowAdminMenu } = useContext(AppContext);
   const { data } = useGetMe(getUserToken());
   const addDarkModeClass = () => {
     if (isDark === "dark") {
@@ -19,12 +21,9 @@ function TopBar({ onShow }) {
     }
   };
 
-  const setAdminSearchHandler = () => {
-    setAdminSearch(search);
-  };
   return (
     <>
-      <div className="bg-blue-600 px-4 sticky top-0 z-40 text-white h-14 mb-5 flex md:hidden items-center justify-between">
+      <div className="bg-blue-600 px-6 sticky top-0 z-40 text-white h-14 mb-5 flex md:hidden items-center justify-between">
         <div onClick={() => setIsShowAdminMenu(true)}>
           <svg className="w-7 h-7">
             <use href="#bars-3"></use>
@@ -37,7 +36,7 @@ function TopBar({ onShow }) {
           </svg>
         </Link>
       </div>
-      <div className="flex items-center justify-between  flex-col md:flex-row gap-y-6">
+      <div className="flex items-center justify-between  flex-col md:flex-row gap-y-6 px-[20px]">
         <div className="flex items-center gap-x-3">
           <div className="w-16 h-16 flex-center bg-gray-300 shadow rounded-full">
             <img
@@ -62,14 +61,22 @@ function TopBar({ onShow }) {
             <input
               type="text"
               placeholder="جستجو کنید..."
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
+              value={searchValue}
+              onChange={(e) => {
+                setSearchValue(e.target.value);
+                setTimeout(() => {
+                  if (e.target.value.length) {
+                    seachParams.set("q", e.target.value);
+                    setSeachParams(seachParams);
+                  } else {
+                    seachParams.delete("q");
+                    setSeachParams(seachParams);
+                  }
+                }, 1000);
+              }}
               className="outline-none border-none bg-transparent font-DanaDemiBold text-sm md:text-base"
             />
-            <button
-              className="bg-blue-600 text-white rounded-md p-1"
-              onClick={setAdminSearchHandler}
-            >
+            <button className="bg-blue-600 text-white rounded-md p-1">
               <svg className="w-6 h-6">
                 <use href="#magni-glass"></use>
               </svg>
