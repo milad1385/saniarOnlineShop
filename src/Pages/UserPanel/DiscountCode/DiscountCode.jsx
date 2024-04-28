@@ -29,7 +29,7 @@ function DiscountCode() {
               </td>
               <td>1402/05/08</td>
               <td>
-                <td className="flex-center">1402/12/08</td>
+                1402/12/08
               </td>
               <td>
                 <Link to={"/"}>لپ تاپ گیمینگ Tuf</Link>

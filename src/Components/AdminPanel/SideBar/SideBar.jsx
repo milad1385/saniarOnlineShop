@@ -1,12 +1,14 @@
 import React, { useContext, useRef, useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import DeleteModal from "../../DeleteModal/DeleteModal";
 import { AppContext } from "../../../App";
 import Menu from "../Menu/Menu";
 
 function SideBar({ isMenuShow, onShow }) {
   const [isShowExitModal, setIsShowExitModal] = useState(false);
-  const { isShowAdminMenu, setIsShowAdminMenu } = useContext(AppContext);
+  const navigate = useNavigate();
+  const { isShowAdminMenu, setIsShowAdminMenu, logout } =
+    useContext(AppContext);
 
   return (
     <>
@@ -194,6 +196,10 @@ function SideBar({ isMenuShow, onShow }) {
         <DeleteModal
           onClose={setIsShowExitModal}
           title="آیا از خروج اطمینان دارید ؟"
+          onClick={() => {
+            logout();
+            navigate("/");
+          }}
         />
       )}
       <div

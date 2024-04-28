@@ -29,11 +29,9 @@ function OrderPage() {
               </td>
               <td>1402/05/08</td>
               <td>
-                <td className="flex-center">
-                  <span className="mr-2 bg-green-600 text-white py-1 px-2 text-sm">
-                    ارسال شده
-                  </span>
-                </td>
+                <span className="mr-2 bg-green-600 text-white py-1 px-2 text-sm">
+                  ارسال شده
+                </span>
               </td>
               <td>
                 <Link to={"/my-account/tickets/answer-ticket/1"}>
@@ -53,11 +51,9 @@ function OrderPage() {
               </td>
               <td>1402/05/08</td>
               <td>
-                <td className="flex-center">
-                  <span className="mr-2 bg-red-600 text-white py-1 px-2 text-sm">
-                    لغو شده
-                  </span>
-                </td>
+                <span className="mr-2 bg-red-600 text-white py-1 px-2 text-sm">
+                  لغو شده
+                </span>
               </td>
               <td>
                 <Link to={"/my-account/tickets/answer-ticket/1"}>
@@ -77,11 +73,9 @@ function OrderPage() {
               </td>
               <td>1402/05/08</td>
               <td>
-                <td className="flex-center">
-                  <span className="mr-2 bg-gray-500 text-white py-1 px-2 text-sm">
-                    در حال ارسال
-                  </span>
-                </td>
+                <span className="mr-2 bg-gray-500 text-white py-1 px-2 text-sm">
+                  در حال ارسال
+                </span>
               </td>
               <td>
                 <Link to={"/my-account/tickets/answer-ticket/1"}>
@@ -97,7 +91,7 @@ function OrderPage() {
           </tbody>
         </table>
       </div>
-      <Pagination/>
+      <Pagination />
     </div>
   );
 }

@@ -6,6 +6,7 @@ import { Link, useParams } from "react-router-dom";
 function OrderDetail() {
   const { id } = useParams();
   const { data: orderInfo } = useMainOrder(id);
+  console.log(orderInfo);
   useEffect(() => {
     window.scroll({ top: 0, left: 0 });
   }, []);
@@ -96,13 +97,45 @@ function OrderDetail() {
             </div>
             <div className="py-3">
               <div className="flex items-center gap-x-3 text-green-600 font-DanaMedium mt-6">
-                <span className="text-black">تحویل به مشتری</span>
+                <span
+                  className={`${
+                    orderInfo?.status === 0
+                      ? "text-red-600"
+                      : orderInfo?.status === 1
+                      ? "text-sky-500"
+                      : orderInfo?.status === 2
+                      ? "text-green-600"
+                      : ""
+                  }`}
+                >
+                  {orderInfo?.status === 0 && "در حال بررسی"}
+                  {orderInfo?.status === 1 && "در حال ارسال"}
+                  {orderInfo?.status === 2 && "تحویل داده شده"}
+                </span>
                 <svg className="w-6 h-6">
-                  <use href="#check-mark"></use>
+                  {orderInfo?.status === 2 && <use href="#check-mark"></use>}
                 </svg>
               </div>
               <div className="w-full mt-4 flex flex-row-reverse bg-gray-100 rounded-full">
-                <div className="bg-green-600 py-1.5 rounded-full w-[50%]"></div>
+                <div
+                  className={`${
+                    orderInfo?.status === 0
+                      ? "bg-red-600"
+                      : orderInfo?.status === 1
+                      ? "bg-sky-500"
+                      : orderInfo?.status === 2
+                      ? "bg-green-600"
+                      : ""
+                  } py-1.5 rounded-full ${
+                    orderInfo?.status === 0
+                      ? "w-[20%]"
+                      : orderInfo?.status === 1
+                      ? "w-[50%]"
+                      : orderInfo?.status === 2
+                      ? "w-[100%]"
+                      : ""
+                  }`}
+                ></div>
               </div>
             </div>
           </div>
@@ -121,6 +154,9 @@ function OrderDetail() {
                     </p>
                     <span className="text-green-600 font-DanaDemiBold block mt-3">
                       {item.price.toLocaleString("fa")} تومان
+                    </span>
+                    <span className="font-DanaMedium text-gray-600 block mt-3">
+                      تعداد : {item.qty}
                     </span>
                   </div>
                 </div>

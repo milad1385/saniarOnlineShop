@@ -41,4 +41,49 @@ const getMainOrderDetail = async (id) => {
   }
 };
 
-export { createOrder, getOrders, getMainOrderDetail };
+const getAllOrders = async () => {
+  try {
+    const res = await fetch(`${baseURL}/all`);
+    return await res.json();
+  } catch (err) {
+    return err;
+  }
+};
+
+const acceptOrder = async (info) => {
+  try {
+    const res = await fetch(`${baseURL}/accept/${info.id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email: info.email }),
+    });
+    return await res.json();
+  } catch (err) {
+    return err;
+  }
+};
+
+const handOverOrder = async (info) => {
+  try {
+    const res = await fetch(`${baseURL}/handover/${info.id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email: info.email }),
+    });
+    return await res.json();
+  } catch (err) {
+    return err;
+  }
+};
+export {
+  createOrder,
+  getOrders,
+  getMainOrderDetail,
+  getAllOrders,
+  acceptOrder,
+  handOverOrder,
+};
