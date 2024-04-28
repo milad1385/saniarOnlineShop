@@ -1,16 +1,27 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-function Order({ products, orderCode, totalPrice, createdAt, _id }) {
+function Order({ products, orderCode, totalPrice, createdAt, _id, status }) {
   return (
     <div className="p-3">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-x-2">
-          <svg className="w-6 md:w-8 h-6 md:h-8 text-green-600">
-            <use href="#check"></use>
-          </svg>
+          {status === 2 && (
+            <svg className="w-6 md:w-8 h-6 md:h-8 text-green-600">
+              <use href="#check"></use>
+            </svg>
+          )}
+
+          {status !== 2 && (
+            <span className="text-sm md:text-2xl">
+              {status === 0 && "🧐"}
+              {status === 1 && "🚚"}
+            </span>
+          )}
           <span className="font-DanaDemiBold text-sm md:text-base">
-            تحویل داده شده
+            {status === 0 && "در حال بررسی"}
+            {status === 1 && "در حال ارسال"}
+            {status === 2 && "تحویل داده شده"}
           </span>
         </div>
         <Link to={`/my-account/order-detail/${_id}`}>
