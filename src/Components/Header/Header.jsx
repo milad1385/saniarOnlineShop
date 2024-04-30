@@ -51,7 +51,7 @@ function Header() {
             {sliders?.map((slider) => (
               <SwiperSlide key={slider._id}>
                 <img
-                  src={`http://localhost:3001/uploads/covers/${slider.image}`}
+                  src={`https://shoppingmilad.liara.run/uploads/covers/${slider.image}`}
                   className="shadow"
                 />
               </SwiperSlide>

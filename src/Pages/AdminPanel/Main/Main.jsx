@@ -168,7 +168,7 @@ function Main() {
                       <td>
                         <div className="w-14 h-14  mx-auto bg-gray-200 rounded-full flex-center">
                           <img
-                            src={`http://localhost:3001/uploads/covers/${user.image}`}
+                            src={`https://shoppingmilad.liara.run/uploads/covers/${user.image}`}
                             className="w-12 h-12 rounded-full"
                           />
                         </div>

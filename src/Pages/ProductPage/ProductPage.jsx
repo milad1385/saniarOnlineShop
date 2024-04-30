@@ -27,6 +27,7 @@ import useInc from "../../Hooks/basket/useInc";
 import useDec from "../../Hooks/basket/useDec";
 import useDeleteBasket from "../../Hooks/basket/useDelete";
 import { isLogin } from "../../Utils/Funcs/utils";
+import Loader from "../../Components/Loader/Loader";
 
 function ProductPage() {
   const [optionShowModel, setOptionShowModel] = useState("توضیحات کالا");
@@ -36,7 +37,7 @@ function ProductPage() {
   const [colorCode, setColorCode] = useState("");
 
   const { productName } = useParams();
-  const { data: productInfo } = useGetOne(productName);
+  const { data: productInfo, isLoading } = useGetOne(productName);
   const { mutateAsync: addToWishList } = useCreate();
   const { mutateAsync: deleteWish } = useDelete();
   const { mutateAsync: addToBasket } = useAdd();
@@ -82,7 +83,7 @@ function ProductPage() {
     await decreaseBasket(productInfo?.productInfo._id);
   };
 
-  console.log(isLogin());
+  if (isLoading) return <Loader />;
 
   return (
     <div>
@@ -143,7 +144,7 @@ function ProductPage() {
                   {productInfo?.productInfo.images.map((slider) => (
                     <SwiperSlide>
                       <img
-                        src={`http://localhost:3001/uploads/covers/${slider}`}
+                        src={`https://shoppingmilad.liara.run/uploads/covers/${slider}`}
                         className="w-[230px] h-[230px] lg:w-[333px] lg:h-[333px] md:mx-auto"
                         alt={slider}
                       />
@@ -179,7 +180,7 @@ function ProductPage() {
                       {" "}
                       <div className="border border-gray-200 w-[95px] mx-auto md:mx-0 md:w-[107px] py-[6px] rounded-md">
                         <img
-                          src={`http://localhost:3001/uploads/covers/${slider}`}
+                          src={`https://shoppingmilad.liara.run/uploads/covers/${slider}`}
                           className="w-[68px] mx-auto slide-image transition-all"
                           alt={slider}
                         />
@@ -441,7 +442,7 @@ function ProductPage() {
                     </div>
                     <div>
                       <img
-                        src={`http://localhost:3001/uploads/covers/${productInfo?.productInfo.images[0]}`}
+                        src={`https://shoppingmilad.liara.run/uploads/covers/${productInfo?.productInfo.images[0]}`}
                         alt={productInfo?.productInfo.images[0]}
                         className="w-[290px] mx-auto"
                       />
@@ -464,7 +465,7 @@ function ProductPage() {
                       }}
                     ></p>
                     <img
-                      src={`http://localhost:3001/uploads/covers/${productInfo?.productInfo.images[1]}`}
+                      src={`https://shoppingmilad.liara.run/uploads/covers/${productInfo?.productInfo.images[1]}`}
                       alt={productInfo?.productInfo.images[1]}
                       className="mx-auto mt-8 h-96 rounded-md  overflow-hidden"
                     />

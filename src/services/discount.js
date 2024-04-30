@@ -1,6 +1,6 @@
 import { getUserToken } from "../Utils/Funcs/utils";
 
-const baseURL = "http://localhost:3001/api/v1/discount";
+const baseURL = "https://shoppingmilad.liara.run/discount";
 
 const createNewDiscountCode = async (data) => {
   try {

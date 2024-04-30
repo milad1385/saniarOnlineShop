@@ -7,7 +7,7 @@ function OrderItem({ products, orderCode, totalPrice, deliveryDate, _id }) {
       <div className="grid grid-cols-4 gap-4">
         {products.slice(0, 4).map((item) => (
           <img
-            src={`http://localhost:3001/uploads/covers/${item.product.images[0]}`}
+            src={`https://shoppingmilad.liara.run/uploads/covers/${item.product.images[0]}`}
             className="w-[90px]"
             alt=""
             key={item._id}

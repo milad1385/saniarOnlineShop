@@ -41,7 +41,7 @@ function Main() {
                   <img
                     src={`${
                       context?.userInfo?.image
-                        ? `http://localhost:3001/uploads/covers/${context?.userInfo?.image}`
+                        ? `https://shoppingmilad.liara.run/uploads/covers/${context?.userInfo?.image}`
                         : "/images/user.png"
                     }`}
                     alt="user.png"

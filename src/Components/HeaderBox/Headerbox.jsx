@@ -37,7 +37,7 @@ function Headerbox({ title, price, off, images, score, link }) {
       </div>
       <div className="p-3.5">
         <img
-          src={`http://localhost:3001/uploads/covers/${images[0]}`}
+          src={`https://shoppingmilad.liara.run/uploads/covers/${images[0]}`}
           alt={title}
           className="w-[200px]  mx-auto"
         />

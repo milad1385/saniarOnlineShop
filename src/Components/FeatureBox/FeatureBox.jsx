@@ -4,7 +4,7 @@ function FeatureBox({ feature }) {
   return (
     <div key={feature._id} className="flex gap-x-4 bg-white shadow p-[16px] rounded-lg">
       <img
-        src={`http://localhost:3001/uploads/covers/${feature.logo}`}
+        src={`https://shoppingmilad.liara.run/uploads/covers/${feature.logo}`}
         alt={feature.title}
         className="w-[50px]"
       />

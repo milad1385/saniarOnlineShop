@@ -42,7 +42,7 @@ function TopBar({ onShow }) {
             <img
               src={
                 data?.userInfo.image
-                  ? `http://localhost:3001/uploads/covers/${data?.userInfo.image}`
+                  ? `https://shoppingmilad.liara.run/uploads/covers/${data?.userInfo.image}`
                   : "/images/user.png"
               }
               className="w-14 h-14 rounded-full"

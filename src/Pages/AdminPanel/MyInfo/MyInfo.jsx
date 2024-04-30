@@ -91,7 +91,7 @@ function MyInfo() {
               currImage
                 ? currImage
                 : userInfo?.userInfo.image
-                ? `http://localhost:3001/uploads/covers/${userInfo?.userInfo.image}`
+                ? `https://shoppingmilad.liara.run/uploads/covers/${userInfo?.userInfo.image}`
                 : "/images/user.png"
             }
             className="w-32 md:w-44 h-32 md:h-44 rounded-full"

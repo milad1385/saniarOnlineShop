@@ -6,7 +6,7 @@ function LastBlogBox({ lastArticle }) {
     <Link to={`/article/${lastArticle.link}`} className="flex items-center gap-x-4">
       <div>
         <img
-          src={`http://localhost:3001/uploads/covers/${lastArticle.image}`}
+          src={`https://shoppingmilad.liara.run/uploads/covers/${lastArticle.image}`}
           alt={lastArticle.image}
           className="w-[100px] rounded-md"
         />

@@ -8,7 +8,7 @@ function CommentBox({ comment, onReplyInfo, onShow }) {
           <div className="flex items-center gap-x-3">
             <div className="flex-center bg-white rounded-full w-[60px] h-[60px] shadow">
               <img
-                src={`http://localhost:3001/uploads/covers/${comment.userImage}`}
+                src={`https://shoppingmilad.liara.run/uploads/covers/${comment.userImage}`}
                 alt={comment.userImage}
                 className="w-[50px] h-[50px] rounded-full"
               />
@@ -87,7 +87,7 @@ function CommentBox({ comment, onReplyInfo, onShow }) {
                 <div className="flex items-center gap-x-3">
                   <div className="flex-center bg-gray-200 rounded-full w-[60px] h-[60px] shadow">
                     <img
-                      src={`http://localhost:3001/uploads/covers/${reply.userImage}`}
+                      src={`https://shoppingmilad.liara.run/uploads/covers/${reply.userImage}`}
                       alt="user-image"
                       className="w-[50px] h-[50px] rounded-full"
                     />

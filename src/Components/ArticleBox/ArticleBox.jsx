@@ -6,7 +6,7 @@ function ArticleBox({ article }) {
     <div className="bg-white rounded-2xl shadow-lg">
       <Link to={`/article/${article.link}`}>
         <img
-          src={`http://localhost:3001/uploads/covers/${article.image}`}
+          src={`https://shoppingmilad.liara.run/uploads/covers/${article.image}`}
           alt={article.image}
           className="w-full rounded-2xl"
         />

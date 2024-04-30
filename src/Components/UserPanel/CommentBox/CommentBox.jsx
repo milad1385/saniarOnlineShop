@@ -5,7 +5,7 @@ function CommentBox({ creator, product, body, score, isAccept, createdAt }) {
     <div className="py-2 text-sm md:text-base">
       <div className="flex items-center justify-between">
         <img
-          src={`http://localhost:3001/uploads/covers/${product.images[0]}`}
+          src={`https://shoppingmilad.liara.run/uploads/covers/${product.images[0]}`}
           alt="laptop-1.jpg"
           className="w-[80px] h-[80px]"
         />

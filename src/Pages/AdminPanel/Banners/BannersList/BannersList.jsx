@@ -123,7 +123,7 @@ function BannersList() {
                     <td>
                       <div className="w-[120px] md:w-[150px]">
                         <img
-                          src={`http://localhost:3001/uploads/covers/${slide.image}`}
+                          src={`https://shoppingmilad.liara.run/uploads/covers/${slide.image}`}
                           alt={slide.title}
                           className="rounded-md mx-auto"
                         />

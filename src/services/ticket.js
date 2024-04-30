@@ -1,10 +1,10 @@
 import { getUserToken } from "../Utils/Funcs/utils";
 
-const baseURL = "http://localhost:3001/api/v1/ticket";
+const baseURL = "https://shoppingmilad.liara.run/ticket";
 
 const getAllDepartments = async () => {
   try {
-    const res = await fetch(`http://localhost:3001/api/v1/department`);
+    const res = await fetch(`https://shoppingmilad.liara.run/department`);
 
     return await res.json();
   } catch (err) {

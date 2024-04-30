@@ -1,6 +1,6 @@
 import { getUserToken } from "../Utils/Funcs/utils";
 
-const baseURL = `http://localhost:3001/api/v1/static`;
+const baseURL = `https://shoppingmilad.liara.run/static`;
 
 const createFooterText = async (text) => {
   try {

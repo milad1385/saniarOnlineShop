@@ -5,6 +5,7 @@ import Slide from "./Slide";
 
 function WonderFullSlides() {
   const { data: products } = useGetAllPro();
+  console.log(products);
 
   return (
     <div className="container pb-4 md:pb-10">
@@ -13,7 +14,7 @@ function WonderFullSlides() {
         <div className="col-span-2 bg-white  rounded-md shadow-sm p-3.5 flex flex-col lg:flex-row gap-x-5">
           <div className="flex">
             <img
-              src={`http://localhost:3001/uploads/covers/${products?.[0].images[0]}`}
+              src={`https://shoppingmilad.liara.run/uploads/covers/${products?.[0].images[0]}`}
               alt={products?.[0].title}
               className="w-[292px] h-auto md:h-[304px] shrink-0 mx-auto"
             />
@@ -53,13 +54,9 @@ function WonderFullSlides() {
                 40 % تخفیف
               </div>
             </div>
-            <div className="border-b border-b-gray-300 pb-2">
+            <div className="border-b border-b-gray-300 pb-2 md:min-h-[125px]">
               <p className="text-gray-500 text-sm/[28px] md:text-base/[30px] w-auto lg:w-[608px]">
-                برخی از شرکت‌های فعال در زمینه گوشی‌های هوشمند، تا به امروز
-                توانسته‌اند گوشی‌های هوشمند انعطاف‌پذیر یا همان تاشو را روانه
-                بازار کنند. یکی از این شرکت‌های موفق، هوآوی است که P50 Pocket
-                Premium Edition به عنوان یکی از جدید‌ترین گوشی‌ خاص این شرکت با
-                صفحه‌نمایشی تاشو معرفی شده است. ..
+                {products?.[0].longDesc}
               </p>
             </div>
             <div className="flex md:items-center justify-between flex-col md:flex-row py-2.5 font-DanaDemiBold border-b border-b-gray-300 text-sm gap-y-2">

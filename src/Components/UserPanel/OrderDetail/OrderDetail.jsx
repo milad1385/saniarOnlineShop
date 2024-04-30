@@ -146,7 +146,7 @@ function OrderDetail() {
                 <div className="flex  gap-x-3">
                   <img
                     className="w-[100px]"
-                    src={`http://localhost:3001/uploads/covers/${item.product.images[0]}`}
+                    src={`https://shoppingmilad.liara.run/uploads/covers/${item.product.images[0]}`}
                   />
                   <div>
                     <p className="font-DanaMedium text-gray-600">

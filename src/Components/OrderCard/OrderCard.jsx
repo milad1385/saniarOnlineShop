@@ -11,7 +11,7 @@ function OrderCard({ product, colorName, colorCode, qty, price }) {
     <div className="bg-white relative rounded-md shadow p-5 md:p-3 flex flex-col md:flex-row md:items-start justify-center md:justify-between">
       <div className="flex flex-col md:flex-row gap-x-8">
         <img
-          src={`http://localhost:3001/uploads/covers/${product.images[0]}`}
+          src={`https://shoppingmilad.liara.run/uploads/covers/${product.images[0]}`}
           alt={product.title}
           className="w-[150px] md:w-[125px] h-[150px] md:h-[125px] mx-auto md:mx-0"
         />

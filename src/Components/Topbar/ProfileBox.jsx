@@ -24,7 +24,7 @@ function ProfileBox({ isShowUserBox, image, onShow }) {
                 <img
                   src={
                     isLogin()
-                      ? `http://localhost:3001/uploads/covers/${image}`
+                      ? `https://shoppingmilad.liara.run/uploads/covers/${image}`
                       : "https://secure.gravatar.com/avatar/0baa9781d23d690075258d90a6e02453?s=96&amp;d=mm&amp;r=g"
                   }
                   class="object-cover w-14 h-14 rounded-full inline-block"

@@ -1,6 +1,6 @@
 import { getUserToken } from "../Utils/Funcs/utils";
 
-const baseURL = `http://localhost:3001/api/v1/slider`;
+const baseURL = `https://shoppingmilad.liara.run/slider`;
 const createNewSlider = async (info) => {
   try {
     const res = await fetch(`${baseURL}`, {

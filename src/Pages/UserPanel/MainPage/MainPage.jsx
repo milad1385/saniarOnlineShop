@@ -52,7 +52,6 @@ function MainPage() {
         <PageTitle icon={`shop-card`} title={`لیست سفارشات`} />
         <div className="divide-y-2 divide-gray-200">
           {orders?.map((order) => (
-            // <OrderItem key={order._id} {...order} />
             <Order key={order._id} {...order} />
           ))}
         </div>

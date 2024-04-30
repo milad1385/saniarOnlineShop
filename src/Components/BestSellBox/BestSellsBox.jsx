@@ -5,7 +5,7 @@ function BestSellsBox({ title, images, number, price }) {
   return (
     <div className="bg-white rounded-lg shadow-md flex items-center gap-x-3.5 p-2 hover:-translate-y-1.5 transition-all duration-200">
       <img
-        src={`http://localhost:3001/uploads/covers/${images[0]}`}
+        src={`https://shoppingmilad.liara.run/uploads/covers/${images[0]}`}
         className="w-[95px]"
       />
       <div className="flex items-center gap-x-4">

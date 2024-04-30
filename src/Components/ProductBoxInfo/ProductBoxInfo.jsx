@@ -14,7 +14,7 @@ function ProductBoxInfo({
       <div className="flex items-center justify-between">
         <div>
           <img
-            src={`http://localhost:3001/uploads/covers/${product?.productInfo.images[0]}`}
+            src={`https://shoppingmilad.liara.run/uploads/covers/${product?.productInfo.images[0]}`}
             alt={product?.productInfo.images[0]}
             className="w-[90px] shrink-0"
           />

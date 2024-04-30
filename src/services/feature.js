@@ -1,6 +1,6 @@
 import { getUserToken } from "../Utils/Funcs/utils";
 
-const baseURL = `http://localhost:3001/api/v1/features`;
+const baseURL = `https://shoppingmilad.liara.run/features`;
 
 const createNewFeature = async (data) => {
   try {

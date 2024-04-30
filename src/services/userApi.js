@@ -1,6 +1,6 @@
 import { getUserToken } from "../Utils/Funcs/utils";
 
-const baseURL = "http://localhost:3001/api/v1/user";
+const baseURL = "https://shoppingmilad.liara.run/user";
 const registerNewUser = async (formData) => {
   try {
     const res = await fetch(`${baseURL}/register`, {

@@ -56,7 +56,7 @@ function ProductList() {
                     <td>
                       <div className="w-[70px] md:w-[85px]">
                         <img
-                          src={`http://localhost:3001/uploads/covers/${product.images[0]}`}
+                          src={`https://shoppingmilad.liara.run/uploads/covers/${product.images[0]}`}
                           className=""
                         />
                       </div>

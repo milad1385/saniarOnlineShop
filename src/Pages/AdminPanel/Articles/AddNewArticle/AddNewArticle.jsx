@@ -29,7 +29,7 @@ function AddNewArticle() {
 
   const uploadConfig = {
     ckfinder: {
-      uploadUrl: "http://localhost:3001/upload",
+      uploadUrl: "https://shoppingmilad.liara.run/upload",
       withCredentials: true,
       headers: {
         "X-CSRF-TOKEN": "CSFR-TOKEN",

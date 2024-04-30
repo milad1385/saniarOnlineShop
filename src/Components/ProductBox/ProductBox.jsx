@@ -57,7 +57,7 @@ function ProductBox({ product, isScore }) {
       <div className="mt-1.5">
         <Link to={`/product/${product.link}`}>
           <img
-            src={`http://localhost:3001/uploads/covers/${product.images[0]}`}
+            src={`https://shoppingmilad.liara.run/uploads/covers/${product.images[0]}`}
             alt="product-image6.jpg"
             className="w-[180px] mx-auto"
           />
@@ -76,8 +76,8 @@ function ProductBox({ product, isScore }) {
               <>
                 {Array(product.score)
                   .fill(0)
-                  .map((score) => (
-                    <div className="flex">
+                  .map((score, index) => (
+                    <div className="flex" key={index}>
                       <svg className="w-4 md:w-6 h-4 md:h-6 text-yellow-400 -mr-1.5">
                         <use href="#fill-star"></use>
                       </svg>
@@ -85,8 +85,8 @@ function ProductBox({ product, isScore }) {
                   ))}
                 {Array(5 - product.score)
                   .fill(0)
-                  .map((score) => (
-                    <div className="flex">
+                  .map((score, index) => (
+                    <div className="flex" key={index}>
                       <svg className="w-4 md:w-6 h-4 md:h-6 text-gray-400 -mr-1.5">
                         <use href="#fill-star"></use>
                       </svg>

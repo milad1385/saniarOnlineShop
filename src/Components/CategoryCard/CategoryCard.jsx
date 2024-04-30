@@ -6,7 +6,7 @@ function CategoryCard({category}) {
     <>
       <div className="bg-white flex items-center justify-between md:hover:-translate-y-[6px] p-3 md:p-4 rounded-md shadow-md transition-all">
         <div>
-          <img src={`http://localhost:3001/uploads/covers/${category.image}`} className="w-[100px] md:w-[130px]" />
+          <img src={`https://shoppingmilad.liara.run/uploads/covers/${category.image}`} className="w-[100px] md:w-[130px]" />
         </div>
         <div className="flex items-center flex-col gap-y-4">
           <Link to={`/category-products/${category.link}`} className="font-DanaMedium text-sm md:text-base">{category.title}</Link>

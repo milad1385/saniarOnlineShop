@@ -94,7 +94,7 @@ function MobileMenu({ isUserPanel, role }) {
                 onClick={() => setIsShowUserBox(true)}
                 src={
                   context?.isLogin ?? context?.isLogin
-                    ? `http://localhost:3001/uploads/covers/${context?.userInfo?.image}`
+                    ? `https://shoppingmilad.liara.run/uploads/covers/${context?.userInfo?.image}`
                     : "/images/user.png"
                 }
                 alt=""

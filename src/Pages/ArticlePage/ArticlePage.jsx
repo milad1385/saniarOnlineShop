@@ -41,7 +41,7 @@ function ArticlePage() {
                 <div className="flex items-center gap-x-2">
                   <div className="w-11 h-11 bg-gray-100 rounded-full shadow flex-center shrink-0">
                     <img
-                      src={`http://localhost:3001/uploads/covers/${articleInfo?.articleInfo.creator.image}`}
+                      src={`https://shoppingmilad.liara.run/uploads/covers/${articleInfo?.articleInfo.creator.image}`}
                       className="w-10 h-10 rounded-full"
                     />
                   </div>

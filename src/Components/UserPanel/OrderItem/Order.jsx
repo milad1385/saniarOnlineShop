@@ -48,7 +48,7 @@ function Order({ products, orderCode, totalPrice, createdAt, _id, status }) {
         {products.map((item) => (
           <div key={item._id}>
             <img
-              src={`http://localhost:3001/uploads/covers/${item.product.images[0]}`}
+              src={`https://shoppingmilad.liara.run/uploads/covers/${item.product.images[0]}`}
               className="w-[80px]"
             />
           </div>

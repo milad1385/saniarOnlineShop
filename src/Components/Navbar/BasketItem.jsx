@@ -12,7 +12,7 @@ function BasketItem({ product, colorName, colorCode, qty, price }) {
       <div className="flex py-4 gap-x-2">
         <img
           className="w-20 h-20"
-          src={`http://localhost:3001/uploads/covers/${product.images[0]}`}
+          src={`https://shoppingmilad.liara.run/uploads/covers/${product.images[0]}`}
           alt={product.title}
         />
         <div className="flex flex-col justify-between">

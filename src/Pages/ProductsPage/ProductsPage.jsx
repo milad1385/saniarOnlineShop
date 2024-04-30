@@ -7,18 +7,19 @@ import RangeSlider from "react-range-slider-input";
 import "react-range-slider-input/dist/style.css";
 import ProductBox from "../../Components/ProductBox/ProductBox";
 import Pagination from "../../Components/Pagination/Pagination";
-import Loader from "../../Components/Loader/Loader";
-import useGetAll from "../../Hooks/AdminPanel/Product/useGetAll";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import useGetAllPro from "../../Hooks/AdminPanel/Product/useGetAllPro";
 import { getAllSearchParam, getSearchParam } from "../../Utils/Funcs/utils";
 import useFilter from "../../Hooks/AdminPanel/Product/useFilter";
+import Brand from "../../Components/Brand/Brand";
+import MobileOrder from "../../Components/MobileOrder/MobileOrder";
+import Overlay from "../../Components/Ovrlay/Overlay";
+import FooterMenu from "../../Components/FooterMenu/FooterMenu";
 function ProductsPage() {
   const orderType = getSearchParam("order");
   const [status, setStatus] = useState(orderType || "default");
   const [filtredProduct, setFiltredProduct] = useState([]);
-  const [allProducts, setAllProducts] = useState([]);
   const [searchParam, setSearchParam] = useSearchParams();
+  const [isShowMobileOrder, setIsShowMobileOrder] = useState(false);
   const [colorBox, setColorBox] = useState([
     {
       id: 1,
@@ -64,9 +65,6 @@ function ProductsPage() {
   ]);
 
   const { data, isLoading: loadingProducts } = useFilter();
-  console.log("filtred pro =>", data);
-  const { data: products, isLoading } = useGetAll(+page);
-  const { data: productsWithOutPagination } = useGetAllPro();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -74,93 +72,20 @@ function ProductsPage() {
     window.scroll(0, 0);
   }, [page]);
 
-  // useEffect(() => {
-  //   setAllProducts(products?.products);
-  // }, [products]);
-
-  // useEffect(() => {
-  //   switch (status) {
-  //     case "default": {
-  //       const allPro = products?.products.slice();
-  //       setAllProducts(allPro);
-  //       return;
-  //     }
-  //     case "popular": {
-  //       const allPro = products?.products.slice();
-  //       const popularProduct = allPro?.sort((a, b) => b.score - a.score);
-  //       setAllProducts(popularProduct);
-  //       return;
-  //     }
-  //     case "chepeast": {
-  //       const allPro = products?.products.slice();
-  //       const chepeastProduct = allPro?.sort((a, b) => a.price - b.price);
-  //       setAllProducts(chepeastProduct);
-  //       return;
-  //     }
-  //     case "expensivest": {
-  //       const allPro = products?.products.slice();
-  //       const expensivestProduct = allPro?.sort((a, b) => b.price - a.price);
-  //       setAllProducts(expensivestProduct);
-  //       return;
-  //     }
-  //     case "newest": {
-  //       const allPro = products?.products.slice();
-  //       setAllProducts(allPro);
-  //       return;
-  //     }
-  //     case "latest": {
-  //       const allPro = products?.products.slice();
-  //       setAllProducts(allPro?.reverse());
-  //       return;
-  //     }
-  //     default: {
-  //       const allPro = products?.products.slice();
-  //       setAllProducts(allPro);
-  //       return;
-  //     }
-  //   }
-  // }, [status, products]);
-
-  // useEffect(() => {
-  //   const categories = getAllSearchParam("category");
-  //   const startPrice = getSearchParam("startPrice");
-  //   const endPrice = getSearchParam("endPrice");
-
-  //   if (categories.length) {
-  //     getFiltredProduct(categories, startPrice, endPrice);
-  //   }
-  // }, [productsWithOutPagination]);
-
   useEffect(() => {
-    if (value[0] !== 50000 && value[1] !== 25000000) {
-      setSearchParam(
-        (prev) => {
-          prev.set("startPrice", value[0]);
-          prev.set("endPrice", value[1]);
-          return prev;
-        },
-        { replace: true }
-      );
-    }
+    setTimeout(() => {
+      if (value[0] !== 50000 && value[1] !== 25000000) {
+        setSearchParam(
+          (prev) => {
+            prev.set("startPrice", value[0]);
+            prev.set("endPrice", value[1]);
+            return prev;
+          },
+          { replace: true }
+        );
+      }
+    }, 1000);
   }, [value]);
-
-  // const colorBoxChangeHandler = (id) => {
-  //   const changeColorBox = colorBox.map((item) =>
-  //     item.id === id ? { ...item, checked: !item.checked } : item
-  //   );
-
-  //   setColorBox(changeColorBox);
-  // };
-
-  // const handleFilterProducts = () => {
-  //   const categories = getAllSearchParam("category");
-  //   const startPrice = getSearchParam("startPrice");
-  //   const endPrice = getSearchParam("endPrice");
-
-  //   if (startPrice && endPrice && categories.length) {
-  //     getFiltredProduct(categories, startPrice, endPrice);
-  //   }
-  // };
 
   const handleChangeBox = async (category, e) => {
     if (e.target.checked) {
@@ -171,26 +96,6 @@ function ProductsPage() {
       setSearchParam(searchParam);
     }
   };
-
-  // async function getFiltredProduct(categories, startPrice, endPrice) {
-  //   console.log(productsWithOutPagination);
-  //   const filtredProducts = [...productsWithOutPagination]?.filter(
-  //     (product) => {
-  //       return (
-  //         categories.includes(product.category.title) &&
-  //         product.price >= +startPrice &&
-  //         product.price <= +endPrice
-  //       );
-  //     }
-  //   );
-
-  //   console.log(filtredProduct);
-
-  //   setIsShowFilterButton(true);
-  //   setFiltredProduct(filtredProducts);
-  //   console.log(filtredProducts);
-  //   return filtredProducts;
-  // }
 
   const handlerSortFilter = (status) => {
     setStatus(status);
@@ -203,25 +108,11 @@ function ProductsPage() {
     );
   };
 
-  const searchHandler = (event) => {
-    if (event.target.value) {
-      setIsShowFilterButton(false);
-      setValue([50000, 70000000]);
-      navigate("/products");
-      const searchedProducts = productsWithOutPagination?.filter((product) =>
-        product.title.includes(event.target.value.trim())
-      );
-      setFiltredProduct(searchedProducts);
-    } else {
-      setFiltredProduct([]);
-    }
-  };
-
   return (
     <>
       <Topbar />
       <Navbar />
-      <div className="container">
+      <div className="container relative">
         <BreadCrumb
           links={[
             { id: 1, name: "خانه", to: "/" },
@@ -229,60 +120,66 @@ function ProductsPage() {
             { id: 3, name: "محصولات", to: "/" },
           ]}
         />
-        <div className="bg-blue-600 mt-5  py-[30px] px-4 rounded-md shadow">
+        <div className="bg-blue-600 mt-5 py-[16px] px-0  md:py-[30px] md:px-4 rounded-md shadow">
           <div className="container">
-            <div className="grid grid-cols-3 md:grid-cols-6 gap-4 mt-4 md:mt-0">
-              <div className="bg-white rounded-md flex-center">
-                <img
-                  src="/images/category/brand1-1.png"
-                  alt="b1"
-                  className="w-[173px]"
-                />
-              </div>
-              <div className="bg-white rounded-md flex-center">
-                <img
-                  src="/images/category/brand1-2.png"
-                  alt="b1"
-                  className="w-[173px]"
-                />
-              </div>
-              <div className="bg-white rounded-md flex-center">
-                <img
-                  src="/images/category/brand1-3.png"
-                  alt="b1"
-                  className="w-[173px]"
-                />
-              </div>
-              <div className="bg-white rounded-md flex-center">
-                <img
-                  src="/images/category/brand1-4.png"
-                  alt="b1"
-                  className="w-[173px]"
-                />
-              </div>
-              <div className="bg-white rounded-md flex-center">
-                <img
-                  src="/images/category/brand1-5.png"
-                  alt="b1"
-                  className="w-[173px]"
-                />
-              </div>
-              <div className="bg-white rounded-md flex-center">
-                <img
-                  src="/images/category/brand1-6.png"
-                  alt="b1"
-                  className="w-[173px]"
-                />
-              </div>
+            <div className="grid grid-cols-3 md:grid-cols-6 gap-4  md:mt-0">
+              <Brand image={"brand1-1.png"} />
+              <Brand image={"brand1-2.png"} />
+              <Brand image={"brand1-3.png"} />
+              <Brand image={"brand1-4.png"} />
+              <Brand image={"brand1-5.png"} />
+              <Brand image={"brand1-6.png"} />
             </div>
           </div>
         </div>
+
+        {/* search mobile */}
+        <div class="h-17 bg-white dark:bg-darker rounded-xl p-4 md:hidden my-8">
+          <div class="flex justify-between gap-x-6 h-full text-slate-500 dark:text-white">
+            <input
+              type="text"
+              class="md:font-danaMedium placeholder-slate-500 bg-transparent flex-grow outline-none"
+              placeholder="جستجو بین دوره ها"
+            />
+            <button type="submit">
+              <svg class="w-7 h-7">
+                <use href="#magni-glass"></use>
+              </svg>
+            </button>
+          </div>
+        </div>
+        {/* start mobile filter elem */}
+        <div class="flex md:hidden items-center gap-6 mb-8">
+          <div class="bg-white w-1/2 flex-center py-4 rounded-md gap-x-1">
+            <svg class="w-6 h-6 shrink-0">
+              <use href="#funnel"></use>
+            </svg>
+            <span>فیلتر</span>
+          </div>
+          <div
+            class="bg-white w-1/2 flex-center py-4 rounded-md gap-x-1"
+            onClick={() => setIsShowMobileOrder(true)}
+          >
+            <svg class="w-6 h-6 shrink-0">
+              <use href="#arrows-up-down"></use>
+            </svg>
+            <span class="active_sort_title">همه دوره ها</span>
+          </div>
+        </div>
+
+        {/* mobile order filtering */}
+        <MobileOrder
+          isShow={isShowMobileOrder}
+          onShow={setIsShowMobileOrder}
+          onOrder={handlerSortFilter}
+          status={status}
+        />
 
         {/* start main section */}
 
         <div className="flex gap-x-5 mt-8">
           <div
-            className={`bg-white shadow rounded-md w-[450px] ${
+            className={`bg-white shadow hidden md:block rounded-md w-[450px] ${
               filtredProduct?.length && isShowFilterButton
                 ? "h-[800.7px]"
                 : "h-[720.7px]"
@@ -446,7 +343,7 @@ function ProductsPage() {
           </div>
           <div className="w-full">
             {/* sort section */}
-            <div className="flex items-center gap-x-12 bg-white p-4 rounded-md shadow h-[72px]">
+            <div className="hidden md:flex items-center text-sm md:text-base gap-x-12 bg-white p-4 rounded-md shadow h-[72px]">
               <div className="flex items-center gap-x-2">
                 <svg className="w-6 h-6">
                   <use href="#sort"></use>
@@ -510,13 +407,6 @@ function ProductsPage() {
               <div className="font-DanaMedium mt-5">در حال لود اطلاعات ...</div>
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mt-5">
-                {/* {filtredProduct?.length
-                ? filtredProduct?.map((product) => (
-                    <ProductBox product={product} isScore={true} />
-                  ))
-                : allProducts?.map((product) => (
-                    <ProductBox product={product} isScore={true} />
-                  ))} */}
                 {data?.products.map((product) => (
                   <ProductBox product={product} isScore={true} />
                 ))}
@@ -534,7 +424,9 @@ function ProductsPage() {
         </div>
       </div>
 
+      <Overlay onShow={setIsShowMobileOrder} isShow={isShowMobileOrder} />
       <Footer />
+      <FooterMenu />
     </>
   );
 }

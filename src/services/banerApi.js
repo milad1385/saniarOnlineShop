@@ -1,4 +1,4 @@
-const baseURL = "http://localhost:3001/api/v1/baner";
+const baseURL = "https://shoppingmilad.liara.run/baner";
 
 const createNewBaner = async (info) => {
   try {

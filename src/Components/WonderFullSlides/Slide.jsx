@@ -5,7 +5,7 @@ function Slide({ title, price, off, images }) {
     <div className="flex  justify-between gap-x-5 py-4 px-2.5 bg-white rounded-md shadow-sm">
       <div>
         <img
-          src={`http://localhost:3001/uploads/covers/${images[0]}`}
+          src={`https://shoppingmilad.liara.run/uploads/covers/${images[0]}`}
           alt="image"
           className="w-[120px] shrink-0"
         />

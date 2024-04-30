@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, {useState } from "react";
 import useGetActiveBaner from "../../Hooks/AdminPanel/Baner/useGetActiveBaner";
+import Loader from "../Loader/Loader";
 function Banner() {
   const { data: baner, isLoading } = useGetActiveBaner();
   const [isShow, setIsShow] = useState(false);
-  console.log(baner);
+  if (isLoading) return <Loader />;
   return (
     <>
       <div

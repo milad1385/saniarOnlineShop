@@ -42,7 +42,7 @@ function AdsList() {
                     <td>{index + 1}</td>
                     <td>
                       <img
-                        src={`http://localhost:3001/uploads/covers/${advertis.logo}`}
+                        src={`https://shoppingmilad.liara.run/uploads/covers/${advertis.logo}`}
                         alt="history"
                         class="w-[50px] mx-auto"
                       />
