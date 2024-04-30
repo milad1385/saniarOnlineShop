@@ -139,7 +139,7 @@ function ProductsPage() {
             <input
               type="text"
               class="md:font-danaMedium placeholder-slate-500 bg-transparent flex-grow outline-none"
-              placeholder="جستجو بین دوره ها"
+              placeholder="جستجو بین محصولات ها"
             />
             <button type="submit">
               <svg class="w-7 h-7">
@@ -163,7 +163,14 @@ function ProductsPage() {
             <svg class="w-6 h-6 shrink-0">
               <use href="#arrows-up-down"></use>
             </svg>
-            <span class="active_sort_title">همه دوره ها</span>
+            <span class="active_sort_title w-[80px]">
+              {status === "default" && "پیش فرض"}
+              {status === "score-desc" && "محبوب ترین"}
+              {status === "createdAt-desc" && "جدید ترین"}
+              {status === "createdAt-asc" && "آخرین"}
+              {status === "price-asc" && "ارزان ترین"}
+              {status === "price-desc" && "گران ترین"}
+            </span>
           </div>
         </div>
 

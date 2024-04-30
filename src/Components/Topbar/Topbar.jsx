@@ -161,7 +161,9 @@ function Topbar() {
           </Link>
           <div className="bg-gray-100 rounded-full p-0.5 relative">
             <img
-              onClick={() => setIsShowUserBox(true)}
+              onClick={() => {
+                isLogin() ? setIsShowUserBox(true) : navigate("/login");
+              }}
               src={
                 isLogin()
                   ? `https://shoppingmilad.liara.run/uploads/covers/${context?.userInfo?.image}`
@@ -182,7 +184,7 @@ function Topbar() {
       <div
         id="overlay"
         className={`${
-          isShowSearch  ? "active-menu" : "hide-menu"
+          isShowSearch ? "active-menu" : "hide-menu"
         } overlay fixed inset-0 bg-black/50 z-30 transition-all`}
         ref={overlayRef}
       ></div>

@@ -53,7 +53,7 @@ import { Suspense, lazy } from "react";
 import Loader from "./Components/Loader/Loader";
 import EditProduct from "./Pages/AdminPanel/EditProduct/EditProduct";
 import Answer from "./Pages/AdminPanel/AnswerTicket/AnswerTicket";
-import IsAdmin from "./Pages/Private/isAdmin";
+import IsAdmin from "../src/Pages/Private/IsAdmin";
 import OrderDetail from "./Components/UserPanel/OrderDetail/OrderDetail";
 import Factor from "./Pages/factor/Factor";
 const ProductPage = lazy(() => import("./Pages/ProductPage/ProductPage"));

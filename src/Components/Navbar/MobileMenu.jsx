@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useRef, useState } from "react";
 import useBasket from "../../Hooks/basket/useBasket";
 import useMenu from "../../Hooks/AdminPanel/menu/useMenu";
 import { AppContext } from "../../App";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { isLogin } from "../../Utils/Funcs/utils";
 import ProfileBox from "../Topbar/ProfileBox";
 import BasketItem from "./BasketItem";
@@ -13,6 +13,7 @@ function MobileMenu({ isUserPanel, role }) {
   const context = useContext(AppContext);
   const { data: baskets } = useBasket();
   const { data: menus } = useMenu();
+  const navigate = useNavigate();
 
   const overlayRef = useRef();
   const menuRef = useRef();
@@ -91,7 +92,9 @@ function MobileMenu({ isUserPanel, role }) {
             </div>
             <div className="bg-gray-100 rounded-full p-0.5">
               <img
-                onClick={() => setIsShowUserBox(true)}
+                onClick={() =>
+                  isLogin() ? setIsShowUserBox(true) : navigate("/login")
+                }
                 src={
                   context?.isLogin ?? context?.isLogin
                     ? `https://shoppingmilad.liara.run/uploads/covers/${context?.userInfo?.image}`

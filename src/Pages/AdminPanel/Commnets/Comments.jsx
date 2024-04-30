@@ -9,8 +9,8 @@ import useDelete from "../../../Hooks/AdminPanel/Comment/useDelete";
 import Modal from "../../../Components/Modal/Modal";
 import AnswerModal from "./AnswerModal";
 import ConfirmModal from "../../../Components/ConfirmModal/ConfirmModal";
-import CommentText from "./CommentText";
-import SendAnswer from "./sendAnswer";
+import CommentText from "../Commnets/CommentText";
+import SendAnswer from "../Commnets/SendAnswer";
 import TButton from "../../../Components/AdminPanel/TButton/TButton";
 
 function Comments() {

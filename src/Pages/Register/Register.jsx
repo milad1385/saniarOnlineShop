@@ -11,7 +11,6 @@ import { AppContext } from "../../App";
 import useRegister from "../../Hooks/useRegister/useRegister";
 
 function Register() {
-  const [image, setImage] = useState("");
   const [isShowSuccessModal, setIsShowSuccessModal] = useState(false);
   const [isShowFaildModal, setIsShowFaildModal] = useState(false);
   const [errMsg, setErrMsg] = useState("");
@@ -35,7 +34,6 @@ function Register() {
     formData.append("password", password);
     formData.append("email", email);
     formData.append("phone", phone);
-    formData.append("image", image);
 
     const result = await registerUser(formData);
     if (result.status === 200) {
@@ -68,7 +66,7 @@ function Register() {
       <Navbar />
       <div className="body">
         <div className="flex-center container">
-          <div className="form-wrapper md:relative md:z-40  shadow bg-white rounded-md  flex-center flex-col mt-10 p-8">
+          <div className="form-wrapper md:relative md:z-40  shadow bg-white rounded-md  flex-center flex-col mt-10 p-6 md:p-8">
             <h1 className="font-DanaDemiBold text-xl md:text-2xl">
               ایجاد حساب کاربری
             </h1>
@@ -208,18 +206,7 @@ function Register() {
                   </span>
                 )}
               </div>
-              <div className="relative">
-                <div className="flex items-center justify-between rounded-[5px] shadow border border-gray-300 p-2">
-                  <input
-                    type="file"
-                    className="text-sm md:text-base"
-                    onChange={(e) => setImage(e.target.files[0])}
-                  />
-                  <svg className="w-6 md:w-7 h-6 md:h-7">
-                    <use href="#image"></use>
-                  </svg>
-                </div>
-              </div>
+
               <button
                 type="submit"
                 className="bg-blue-600 w-full relative text-base text-white font-DanaDemiBold p-3 flex-center md:text-lg rounded-md shadow-blue cursor-pointer"

@@ -49,7 +49,7 @@ function Login() {
       <Topbar />
       <Navbar />
       <div className="body">
-        <div className="flex-center p-2.5 md:p-0">
+        <div className="flex-center  px-4 md:p-0">
           <div className="form-wrapper  md:relative md:z-20  shadow bg-white rounded-md  flex-center flex-col mt-10 px-5 py-8 md:p-8">
             <h1 className="font-DanaDemiBold text-xl md:text-2xl">
               ورود به حساب کاربری

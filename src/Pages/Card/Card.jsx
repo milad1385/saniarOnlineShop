@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import OrderStatus from "../../Components/OrderStatus/OrderStatus";
 import Topbar from "../../Components/Topbar/Topbar";
 import Navbar from "../../Components/Navbar/Navbar";
@@ -9,6 +9,7 @@ import OrderCard from "../../Components/OrderCard/OrderCard";
 import PageTitle from "../../Components/UserPanel/PageTitle/PageTitle";
 import { Link } from "react-router-dom";
 import useBasket from "../../Hooks/basket/useBasket";
+import Loader from "../../Components/Loader/Loader";
 
 function Card() {
   const { data: baskets, isLoading } = useBasket();
@@ -18,11 +19,18 @@ function Card() {
   );
 
   const calcTotalDiscount = baskets?.reduce(
-    (prev, curr) => prev + curr.qty * (curr.product.price * curr.product.off) / 100,
+    (prev, curr) =>
+      prev + (curr.qty * (curr.product.price * curr.product.off)) / 100,
     0
   );
 
   const calcTotal = calculateTotalPrice - calcTotalDiscount;
+
+  useEffect(() => {
+    window.scroll({ top: 0, left: 0 });
+  }, []);
+
+  if (isLoading) return <Loader />;
   return (
     <>
       <Topbar />

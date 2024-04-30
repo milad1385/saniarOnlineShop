@@ -15,10 +15,10 @@ function Menu({ title, icon, items }) {
   return (
     <div>
       <div
-        className="flex items-center justify-between cursor-pointer w-full"
+        className="flex items-center justify-between  w-full"
         onClick={() => setIsOpen((prev) => !prev)}
       >
-        <div className="flex items-center gap-x-2 cursor-pointer w-full py-[0.375rem] px-[0.5rem]">
+        <div className="flex items-center gap-x-2  w-full py-[0.375rem] px-[0.5rem]">
           <svg className="w-6 h-6">
             <use href={`#${icon}`}></use>
           </svg>

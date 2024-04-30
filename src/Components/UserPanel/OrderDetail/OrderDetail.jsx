@@ -15,7 +15,7 @@ function OrderDetail() {
       <div className="mt-5 bg-white p-4 rounded-md shadow">
         <PageTitle icon={`shop-card`} title={"جزییات سفارش"} />
         <div className="divide-y-2 divide-gray-200">
-          <div className="flex items-center gap-x-10 text-sm md:text-base py-5">
+          <div className="flex items-center gap-x-10 text-sm md:text-base py-5 flex-wrap justify-center md:justify-start gap-y-4 md:gap-y-0">
             <span className="flex items-center gap-x-3">
               کد پیگیری سفارش{" "}
               <span className="font-DanaDemiBold md:mt-1.5">
@@ -31,7 +31,7 @@ function OrderDetail() {
             </span>
           </div>
 
-          <div className="flex items-center gap-x-10 text-sm md:text-base py-5">
+          <div className="flex items-center gap-x-10 text-sm md:text-base py-5 flex-wrap justify-center md:justify-start gap-y-4 md:gap-y-0">
             <span className="flex items-center gap-x-3">
               تحویل گیرنده{" "}
               <span className="font-DanaDemiBold md:mt-1.5">
@@ -55,7 +55,7 @@ function OrderDetail() {
             </div>
           </div>
 
-          <div className="flex items-center gap-x-10 text-sm md:text-base py-5">
+          <div className="flex items-center gap-x-10 text-sm md:text-base py-5 flex-wrap justify-center md:justify-start gap-y-4 md:gap-y-0">
             <span className="flex items-center gap-x-3">
               مبلغ{" "}
               <span className="font-DanaDemiBold md:mt-1">
@@ -80,7 +80,7 @@ function OrderDetail() {
           </div>
 
           <div className="text-sm md:text-base py-5">
-            <div className="flex items-center gap-x-10">
+            <div className="flex items-center gap-x-10 flex-wrap justify-center md:justify-start gap-y-4 md:gap-y-0">
               <span className="flex items-center gap-x-3">
                 زمان تحویل{" "}
                 <span className="font-DanaDemiBold md:mt-1">

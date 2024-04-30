@@ -1,9 +1,12 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { isLogin } from "../../Utils/Funcs/utils";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { AppContext } from "../../App";
 
 function ProfileBox({ isShowUserBox, image, onShow }) {
+  const context = useContext(AppContext);
   const path = useLocation();
+  const navigate = useNavigate();
   useEffect(() => {
     onShow(false);
   }, [path]);
@@ -33,7 +36,7 @@ function ProfileBox({ isShowUserBox, image, onShow }) {
               </a>
               <div class="mr-3.5 flex flex-col gap-y-3 overflow-hidden">
                 <span class="font-DanaDemiBold inline-block truncate">
-                  میلاد سلامیان
+                  {context?.userInfo.name}
                 </span>
               </div>
             </div>
@@ -84,7 +87,13 @@ function ProfileBox({ isShowUserBox, image, onShow }) {
             </Link>
 
             <div class="mt-2 pt-2 border-t border-t-neutral-200 dark:border-t-white/5">
-              <span class="flex items-center justify-between px-2.5 h-12 rounded-lg hover:text-white hover:bg-red-500 transition-colors">
+              <span
+                onClick={() => {
+                  context?.logout()
+                  navigate("/");
+                }}
+                class="flex items-center justify-between px-2.5 h-12 rounded-lg hover:text-white hover:bg-red-500 transition-colors"
+              >
                 <span class="flex items-center gap-x-2">
                   <svg class="w-6 h-6">
                     <use href="#power"></use>

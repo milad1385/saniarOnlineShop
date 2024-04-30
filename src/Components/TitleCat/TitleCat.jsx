@@ -12,7 +12,7 @@ function TitleCat({ main, desc, link, isMain }) {
       <div>
         {isMain ? null : (
           <Link
-            to={link}
+            to={"/products"}
             className="flex md:gap-x-1 font-DanaDemiBold text-sm md:text-base"
           >
             مشاهده همه

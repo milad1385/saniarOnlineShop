@@ -1,11 +1,12 @@
 import React from "react";
 import useDelete from "../../../Hooks/wishlist/useDelete";
+import { Link } from "react-router-dom";
 
 function LikelyProductCard({ product }) {
+  console.log(product);
   const { mutateAsync: deleteWish } = useDelete();
 
   const deleteWishListHandler = async (id) => {
-    console.log(id);
     await deleteWish(id);
   };
   return (
@@ -16,11 +17,11 @@ function LikelyProductCard({ product }) {
           alt="laptop-1.jpg"
           className="w-24  h-24 rounded-md"
         />
-        <div>
-          <p className="font-DanaDemiBold text-gray-600 text-center md:text-right">
+        <div className="mt-2">
+          <p className="font-DanaDemiBold text-sm md:text-base text-gray-600 text-center md:text-right">
             {product.title}
           </p>
-          <span className="text-green-500 font-DanaDemiBold mt-2 block text-center md:text-right">
+          <span className="text-green-500 text-sm md:text-base font-DanaDemiBold mt-2 block text-center md:text-right">
             {product.price.toLocaleString("fa")} <span>تومان</span>
           </span>
         </div>
@@ -34,11 +35,14 @@ function LikelyProductCard({ product }) {
             <use href="#trash"></use>
           </svg>
         </div>
-        <div className="bg-blue-600 text-white p-2 rounded-md shadow-blue">
+        <Link
+          to={`/product/${product.link}`}
+          className="bg-blue-600 text-white p-2 rounded-md shadow-blue"
+        >
           <svg className="w-6 h-6">
             <use href="#shopping-cart"></use>
           </svg>
-        </div>
+        </Link>
       </div>
     </div>
   );

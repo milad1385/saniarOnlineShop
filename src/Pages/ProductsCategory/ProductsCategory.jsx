@@ -11,6 +11,7 @@ import useCategoryPro from "../../Hooks/AdminPanel/Product/useCategoryPro";
 import { useParams } from "react-router-dom";
 import { getSearchParam } from "../../Utils/Funcs/utils";
 import EmptyError from "../../Components/UserPanel/EmptyError/EmptyError";
+import Loader from "../../Components/Loader/Loader";
 
 function ProductsCategory() {
   const { categoryName } = useParams();
@@ -24,7 +25,7 @@ function ProductsCategory() {
   }, [pageNum]);
 
   const { data: products, isLoading } = useCategoryPro(page, categoryName);
-  console.log(products);
+  if (isLoading) return <Loader />;
   return (
     <>
       <Topbar />

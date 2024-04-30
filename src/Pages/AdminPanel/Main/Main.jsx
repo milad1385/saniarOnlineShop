@@ -244,7 +244,7 @@ function Main() {
       )}
       {isShowRoleModal && (
         <DetailModal onClose={setIsShowRoleModal}>
-          <div className="bg-white w-[350px] px-5 pt-4 pb-6 space-y-5 font-MorabbaBold">
+          <div className="bg-white  px-5 pt-4 pb-6 space-y-5 font-MorabbaBold">
             <h3 className="text-center  text-lg md:text-2xl lg:text-3xl">
               نقش جدید را وارد کنید
             </h3>
@@ -381,7 +381,7 @@ function Main() {
             </div>
             <button
               type="submit"
-              className="w-full mt-2 bg-blue-600 text-white text-xl font-MorabbaBold py-3"
+              className="w-full mt-2 text-sm md:text-xl bg-blue-600 text-white font-MorabbaBold py-3"
             >
               {editLoading ? "در حال ویرایش ..." : "ویرایش اطلاعات"}
             </button>

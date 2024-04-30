@@ -101,14 +101,14 @@ function DetailPay() {
         <div className="mt-12">
           <OrderStatus isActive2={true} />
         </div>
-        <div className="flex gap-x-4 py-8">
-          <div className="w-full h-[490px] sticky top-0 bg-white rounded-md shadow py-4 px-5">
+        <div className="flex gap-4 py-8 flex-col md:flex-row text-sm md:text-base">
+          <div className="w-full md:h-[490px] md:sticky md:top-0 bg-white rounded-md shadow py-4 px-5">
             <PageTitle title={"جزییات پرداخت"} icon={"money"} />
-            <div className="grid grid-cols-1 md:grid-cols-2 pt-3  gap-x-10 gap-y-6 child:flex child:flex-col">
+            <div className="grid grid-cols-1 md:grid-cols-2 pt-3  gap-x-10 gap-y-3 md:gap-y-6 child:flex child:flex-col">
               <div>
                 <label
                   for="email"
-                  className="font-DanaDemiBold text-base text-zinc-700 dark:text-white"
+                  className="font-DanaDemiBold text-sm md:text-base text-zinc-700 dark:text-white"
                 >
                   استان
                 </label>
@@ -128,7 +128,7 @@ function DetailPay() {
               <div>
                 <label
                   for="email"
-                  className="font-DanaDemiBold text-base text-zinc-700 dark:text-white"
+                  className="font-DanaDemiBold text-sm md:text-base text-zinc-700 dark:text-white"
                 >
                   شهر
                 </label>
@@ -149,7 +149,7 @@ function DetailPay() {
               <div>
                 <label
                   for="email"
-                  className="font-DanaDemiBold text-base text-zinc-700 dark:text-white"
+                  className="font-DanaDemiBold text-sm md:text-base text-zinc-700 dark:text-white"
                 >
                   کد پستی
                 </label>
@@ -165,7 +165,7 @@ function DetailPay() {
               <div>
                 <label
                   for="email"
-                  className="font-DanaDemiBold text-base text-zinc-700 dark:text-white"
+                  className="font-DanaDemiBold text-sm md:text-base text-zinc-700 dark:text-white"
                 >
                   آدرس
                 </label>
@@ -182,7 +182,7 @@ function DetailPay() {
             <div className="w-full flex flex-col mt-7">
               <label
                 htmlFor="note"
-                className="font-DanaDemiBold text-base text-zinc-700 dark:text-white"
+                className="font-DanaDemiBold text-sm md:text-base text-zinc-700 dark:text-white"
               >
                 یادداشت سفارش (اختیاری)
               </label>
@@ -196,7 +196,7 @@ function DetailPay() {
               ></textarea>
             </div>
           </div>
-          <div className="w-[450px] rounded-md space-y-4">
+          <div className="md:w-[450px] rounded-md space-y-4">
             <div className="bg-white rounded-md shadow  p-3">
               <PageTitle title={"زمان ارسال"} icon={"calender"} />
               <DatePickerComponent

@@ -9,6 +9,7 @@ import { useForm } from "react-hook-form";
 import { otpSchema } from "./OtpSchema";
 import useOtp from "../../Hooks/useOtp/useOtp";
 import Spinner from "../../Components/Sppiner/Spinner";
+import StatusModal from "../../Components/SuccessModal/SuccessModal";
 import useVerfiy from "../../Hooks/useVerify/useVerfiy";
 import { useNavigate } from "react-router-dom";
 function OtpLogin() {
@@ -235,113 +236,62 @@ function OtpLogin() {
       <FooterMenu />
 
       {isShowSuccessModal && (
-        <DetailModal
+        <StatusModal
           onClose={setIsShowSuccessModal}
-          onClick={() => {
-            navigate("/");
-            location.reload();
-          }}
-        >
-          <div className="bg-white w-[325px] md:w-[400px] py-8 px-3">
-            <h3 className="font-MorabbaBold text-base md:text-2xl lg:text-3xl text-center">
-              با موفقیت وارد شدید
-            </h3>
-            <div className="flex items-center justify-center gap-x-5 mt-8">
-              <button
-                className="bg-blue-600 text-white w-[90%] font-MorabbaBold px-16 py-4 text-xl"
-                onClick={() => {
-                  navigate("/");
-                  location.reload();
-                }}
-              >
-                ورود به پنل
-              </button>
-            </div>
-          </div>
-        </DetailModal>
+          title={"کاربر با موفقیت لاگین شد"}
+          text={"ورود به فروشگاه"}
+          icon={"face-smile"}
+          color="text-blue-600"
+          bg="bg-blue-600"
+          onClick={() => navigate("/")}
+        />
       )}
       {isShowErrorModal && (
-        <DetailModal onClose={setIsShowErrorModal}>
-          <div className="bg-white w-[325px] md:w-[400px] py-8 px-3">
-            <h3 className="font-MorabbaBold text-base md:text-2xl lg:text-3xl text-center">
-              کد ورودی اشتباه است
-            </h3>
-            <div className="flex items-center justify-center gap-x-5 mt-8">
-              <button className="bg-red-600 text-white w-[90%] font-MorabbaBold px-16 py-4 text-xl">
-                تلاش مجدد
-              </button>
-            </div>
-          </div>
-        </DetailModal>
+        <StatusModal
+          onClose={setIsShowErrSendModal}
+          title="کد ورودی اشتباه است"
+          text="تلاش مجدد"
+          icon={"face-frown"}
+          color="text-red-600"
+          bg="bg-red-600"
+          onClick={() => isShowErrSendModal(false)}
+        />
       )}
       {isShowExpireModal && (
-        <DetailModal onClose={setIsShowExpireModal}>
-          <div
-            className="bg-white w-[325px] md:w-[400px] py-8 px-3"
-            onClick={() => {
-              setCodeSent(false);
-              setIsShowExpireModal(false);
-            }}
-          >
-            <h3 className="font-MorabbaBold text-base md:text-2xl lg:text-3xl text-center">
-              کد ورودی منقضی شده است
-            </h3>
-            <div
-              className="flex items-center justify-center gap-x-5 mt-8"
-              onClick={() => {
-                setCodeSent(false);
-                setIsShowExpireModal(false);
-              }}
-            >
-              <button className="bg-gray-600 text-white w-[90%] font-MorabbaBold px-16 py-4 text-base md:text-xl">
-                ارسال مجدد
-              </button>
-            </div>
-          </div>
-        </DetailModal>
+        <StatusModal
+          onClose={setIsShowExpireModal}
+          title="کد ورودی منقضی شده است"
+          text="تلاش مجدد"
+          icon={"face-frown"}
+          color="text-red-600"
+          bg="bg-red-600"
+          onClick={() => setIsShowExpireModal(false)}
+        />
       )}
       {isShowSendModal && (
-        <DetailModal
+        <StatusModal
           onClose={setIsShowSendModal}
           onClick={() => {
             setIsShowSendModal(false);
             setCodeSent(true);
           }}
-        >
-          <div className="bg-white w-[325px] md:w-[400px] py-8 px-3">
-            <h3 className="font-MorabbaBold text-base md:text-2xl lg:text-3xl text-center">
-              کد با موفقیت ارسال شد
-            </h3>
-            <div
-              className="flex items-center justify-center gap-x-5 mt-8"
-              onClick={() => {
-                setIsShowSendModal(false);
-                setCodeSent(true);
-              }}
-            >
-              <button className="bg-blue-600 text-white w-[90%] font-MorabbaBold px-16 py-4 text-xl">
-                خیلی هم عالی
-              </button>
-            </div>
-          </div>
-        </DetailModal>
+          title="کد با موفقیت ارسال شد"
+          text={"خیلی هم عالی"}
+          icon={"face-smile"}
+          color="text-blue-600"
+          bg="bg-blue-600"
+        />
       )}
       {isShowErrSendModal && (
-        <DetailModal onClose={setIsShowErrSendModal}>
-          <div className="bg-white w-[325px] md:w-[400px] py-8 px-3">
-            <h3 className="font-MorabbaBold text-base md:text-2xl lg:text-3xl text-center">
-              شماره یا ایمیل یافت نشد
-            </h3>
-            <div
-              className="flex items-center justify-center gap-x-5 mt-8"
-              onClick={() => setIsShowErrSendModal(false)}
-            >
-              <button className="bg-red-600 text-white w-[90%] font-MorabbaBold px-16 py-4 text-xl">
-                تلاش مجدد
-              </button>
-            </div>
-          </div>
-        </DetailModal>
+        <StatusModal
+          onClose={setIsShowErrorModal}
+          title=" شماره یا ایمیل یافت نشد"
+          text="تلاش مجدد"
+          icon={"face-frown"}
+          color="text-red-600"
+          bg="bg-red-600"
+          onClick={() => setIsShowErrorModal(false)}
+        />
       )}
     </>
   );

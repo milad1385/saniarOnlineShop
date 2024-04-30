@@ -27,7 +27,7 @@ function SideBar({ isMenuShow, onShow }) {
               <li className="list-none">
                 <NavLink
                   to={"/admin-panel/main"}
-                  className="flex items-center gap-x-2 cursor-pointer w-full"
+                  className="flex items-center gap-x-2 w-full"
                 >
                   <svg className="w-6 h-6">
                     <use href="#home"></use>
@@ -92,7 +92,7 @@ function SideBar({ isMenuShow, onShow }) {
                 className="list-none"
                 onClick={() => setIsShowExitModal(true)}
               >
-                <a className="flex items-center justify-between cursor-pointer">
+                <a className="flex items-center justify-between">
                   <span className="">خروج</span>
                   <svg className="w-6 h-6">
                     <use href="#exit"></use>

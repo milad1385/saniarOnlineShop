@@ -5,6 +5,7 @@ import useGetAnswers from "../../../Hooks/AdminPanel/Ticket/useGetAnswers";
 import AnswerBox from "../../../Components/AdminPanel/AnswerBox/AnswerBox";
 import { useForm } from "react-hook-form";
 import useAnswer from "../../../Hooks/AdminPanel/Ticket/useAnswer";
+import Loader from "../../../Components/Loader/Loader";
 
 function AnswerTicket() {
   const { ticketID } = useParams();
@@ -36,6 +37,7 @@ function AnswerTicket() {
     }
   };
 
+  if (isLoading) return <Loader />;
   return (
     <>
       <div className="bg-white rounded-md  p-[18px] shadow h-full">

@@ -9,7 +9,6 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Thumbs, Zoom } from "swiper/modules";
 import SameProduct from "../../Components/SameProduct/SameProduct";
 import FooterMenu from "../../Components/FooterMenu/FooterMenu";
-import Shoper from "../../Components/Shoper/Shoper";
 import Comments from "../../Components/Comments/Comments";
 import FeatureList from "../../Components/FeatureList/FeatureList";
 import ProductBoxInfo from "../../Components/ProductBoxInfo/ProductBoxInfo";
@@ -223,12 +222,13 @@ function ProductPage() {
                 <div className="flex flex-col gap-y-2 md:items-end">
                   <div className="flex items-center gap-x-2">
                     <span className="text-zinc-700 text-sm md:text-base">
-                      16 دیدگاه
+                      {productInfo?.comments.length} دیدگاه
                     </span>
                     <span className="block w-[1.5px] h-5 bg-gray-200"></span>
                     <div className="flex gap-x-1">
                       <span className="text-sm md:text-base text-zinc-700">
-                        (17) {productInfo?.productInfo.score}
+                        ({productInfo?.comments.length}){" "}
+                        {productInfo?.productInfo.score}
                       </span>
                       <svg className="w-5 h-5 text-yellow-400">
                         <use href="#star"></use>
@@ -360,23 +360,7 @@ function ProductPage() {
             </div>
           </div>
         </div>
-        {/* other shop */}
-        <div className="py-5 px-3 bg-white text-lg  shadow rounded-md">
-          <div className="overflow-x-auto table-container">
-            <h3 className="font-DanaDemiBold text-base md:text-lg">
-              سایر فروشندگان موجود
-            </h3>
-            <div className="h-0.5 bg-gray-200 my-2 relative">
-              <div className="absolute inset-0 bg-blue-600 w-1/12"></div>
-            </div>
-            <table className="w-full text-[16px] mt-5 divide-y-[1.5px] divide-gray-300">
-              <Shoper />
-              <Shoper />
-              <Shoper />
-              <Shoper />
-            </table>
-          </div>
-        </div>
+
         {/* about product */}
         <div className="flex  mt-5">
           <div className="bg-white rounded-md shadow md:ml-5   w-full py-5 px-4">

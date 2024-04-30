@@ -3,12 +3,14 @@ import PageTitle from "../../../Components/UserPanel/PageTitle/PageTitle";
 import LikelyProductCard from "../../../Components/UserPanel/LikelyProductCard/LikelyProductCard";
 import useGetMain from "../../../Hooks/wishlist/useGetMain";
 import { Link } from "react-router-dom";
+import Loader from "../../../Components/Loader/Loader";
 function LikelyProducts() {
   const { data: wishList, isLoading } = useGetMain();
   useEffect(() => {
     window.scroll(0, 0);
   }, []);
 
+  if (isLoading) return <Loader />;
   if (wishList?.length === 0)
     return (
       <div className="bg-blue-600 rounded-md shadow flex items-center justify-between flex-col py-16">
