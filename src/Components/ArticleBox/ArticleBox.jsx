@@ -27,7 +27,7 @@ function ArticleBox({ article }) {
       </div>
       <Link
         to={`/article/${article.link}`}
-        className="font-DanaDemiBold line-clamp-1 mt-1.5 p-2.5"
+        className="font-DanaDemiBold line-clamp-1 mt-1.5 p-2.5 text-sm md:text-base"
       >
         {article.title}
       </Link>

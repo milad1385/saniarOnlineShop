@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Topbar from "../../Components/Topbar/Topbar";
 import Navbar from "../../Components/Navbar/Navbar";
 import Footer from "../../Components/Footer/Footer";
@@ -44,6 +44,10 @@ function Login() {
     setValue("username", "");
     setValue("password", "");
   };
+
+  useEffect(() => {
+    window.scroll({ top: 0, left: 0 });
+  }, []);
   return (
     <>
       <Topbar />

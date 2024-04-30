@@ -480,6 +480,14 @@ function ProductPage() {
             setColorChoose={setColorChoose}
             colorChoose={colorChoose}
             product={productInfo}
+            basketInfo={basketInfo}
+            onAdd={addToBasketHandler}
+            onDec={decreaseHandler}
+            onInc={increaseHandler}
+            onDel={deleteBasket}
+            id={productInfo?.productInfo._id}
+            commentsLength={productInfo?.comments.length}
+            score={productInfo?.productInfo.score}
           />
         </div>
       </div>

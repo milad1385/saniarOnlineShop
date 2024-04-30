@@ -10,6 +10,7 @@ import MobileMenuLink from "./MobileMenuLink";
 
 function MobileMenu({ isUserPanel, role }) {
   const [isShowUserBox, setIsShowUserBox] = useState(false);
+  const [searchValue, setSearchValue] = useState("");
   const context = useContext(AppContext);
   const { data: baskets } = useBasket();
   const { data: menus } = useMenu();
@@ -60,6 +61,13 @@ function MobileMenu({ isUserPanel, role }) {
     overlayRef.current.classList.remove("hide-menu");
     overlayRef.current.classList.add("active-menu");
   };
+
+  const searchHandler = (e) => {
+    e.preventDefault();
+    if (searchValue.length > 2) {
+      navigate(`/search/${searchValue}`);
+    }
+  };
   useEffect(() => {
     closeMenu();
   }, [location.href]);
@@ -87,7 +95,7 @@ function MobileMenu({ isUserPanel, role }) {
                 <use href="#shop-bag"></use>
               </svg>
               <span className="absolute -top-2 -right-2 bg-blue-600 text-white shadow-blue py-0.5 px-2.5 rounded-full text-xs">
-                {baskets?.length}
+                {baskets?.length ?? 0}
               </span>
             </div>
             <div className="bg-gray-100 rounded-full p-0.5">
@@ -125,10 +133,15 @@ function MobileMenu({ isUserPanel, role }) {
           <div className="flex items-center justify-between bg-gray-100  p-1.5 rounded-md mt-3">
             <input
               type="text"
+              value={searchValue}
+              onChange={(e) => setSearchValue(e.target.value)}
               placeholder="جستجو محصولات..."
               className="bg-gray-100 outline-none text-sm"
             />
-            <button className="bg-blue-600 text-white p-1 rounded-md shadow-blue">
+            <button
+              className="bg-blue-600 text-white p-1 rounded-md shadow-blue"
+              onClick={(e) => searchHandler(e)}
+            >
               <svg className="w-5 h-5">
                 <use href="#magni-glass"></use>
               </svg>
@@ -253,22 +266,27 @@ function MobileMenu({ isUserPanel, role }) {
               <span>{context?.userInfo?.name}</span>
             </Link>
           ) : (
-            <Link className="flex items-center gap-x-2 text-blue-600">
+            <Link
+              to={"/login"}
+              className="flex items-center gap-x-2 text-blue-600"
+            >
               <svg className="w-5 h-5">
                 <use href="#arrow-left-on-rectangle"></use>
               </svg>
               ورود و ثبت نام
             </Link>
           )}
-          <Link
-            to={"/order/card"}
-            className="flex items-center gap-x-2 text-blue-600"
-          >
-            <svg className="w-5 h-5">
-              <use href="#shopping-cart"></use>
-            </svg>
-            سبد خرید
-          </Link>
+          {isLogin() && (
+            <Link
+              to={"/order/card"}
+              className="flex items-center gap-x-2 text-blue-600"
+            >
+              <svg className="w-5 h-5">
+                <use href="#shopping-cart"></use>
+              </svg>
+              سبد خرید
+            </Link>
+          )}
         </div>
       </div>
       <div

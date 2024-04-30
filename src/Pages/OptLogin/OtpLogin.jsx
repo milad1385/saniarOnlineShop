@@ -243,7 +243,10 @@ function OtpLogin() {
           icon={"face-smile"}
           color="text-blue-600"
           bg="bg-blue-600"
-          onClick={() => navigate("/")}
+          onClick={() => {
+            location.reload();
+            navigate("/");
+          }}
         />
       )}
       {isShowErrorModal && (
@@ -284,13 +287,13 @@ function OtpLogin() {
       )}
       {isShowErrSendModal && (
         <StatusModal
-          onClose={setIsShowErrorModal}
+          onClose={setIsShowErrSendModal}
           title=" شماره یا ایمیل یافت نشد"
           text="تلاش مجدد"
           icon={"face-frown"}
           color="text-red-600"
           bg="bg-red-600"
-          onClick={() => setIsShowErrorModal(false)}
+          onClick={() => setIsShowErrSendModal(false)}
         />
       )}
     </>

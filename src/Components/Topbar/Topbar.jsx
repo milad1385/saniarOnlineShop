@@ -64,12 +64,7 @@ function Topbar() {
               value={search}
               onChange={(e) => searchHandler(e)}
             />
-            <button
-              className="bg-blue-600 text-white p-2 flex items-center justify-center rounded-full shadow-blue"
-              onClick={() => {
-                navigate(`/search/${search}`);
-              }}
-            >
+            <button className="bg-blue-600 text-white p-2 flex items-center justify-center rounded-full shadow-blue">
               <svg className="w-6 h-6">
                 <use href="#magni-glass"></use>
               </svg>
@@ -101,8 +96,7 @@ function Topbar() {
                     <li
                       className="flex items-center justify-between hover:bg-blue-600 hover:text-white p-2 transition-all rounded-sm"
                       onClick={() => {
-                        setSearch(item.title);
-                        setIsShowSearch(false);
+                        navigate(`/product/${item.link}`);
                       }}
                     >
                       <span>{item.title}</span>

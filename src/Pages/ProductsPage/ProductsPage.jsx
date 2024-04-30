@@ -7,19 +7,20 @@ import RangeSlider from "react-range-slider-input";
 import "react-range-slider-input/dist/style.css";
 import ProductBox from "../../Components/ProductBox/ProductBox";
 import Pagination from "../../Components/Pagination/Pagination";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import { getAllSearchParam, getSearchParam } from "../../Utils/Funcs/utils";
 import useFilter from "../../Hooks/AdminPanel/Product/useFilter";
 import Brand from "../../Components/Brand/Brand";
 import MobileOrder from "../../Components/MobileOrder/MobileOrder";
 import Overlay from "../../Components/Ovrlay/Overlay";
 import FooterMenu from "../../Components/FooterMenu/FooterMenu";
+import MobileFilter from "../../Components/MobileFilter/MobileFilter";
 function ProductsPage() {
   const orderType = getSearchParam("order");
   const [status, setStatus] = useState(orderType || "default");
-  const [filtredProduct, setFiltredProduct] = useState([]);
   const [searchParam, setSearchParam] = useSearchParams();
   const [isShowMobileOrder, setIsShowMobileOrder] = useState(false);
+  const [isShowFilterMobile, setIsShowFilterMobile] = useState(false);
   const [colorBox, setColorBox] = useState([
     {
       id: 1,
@@ -52,7 +53,6 @@ function ProductsPage() {
       checked: false,
     },
   ]);
-  const [isShowFilterButton, setIsShowFilterButton] = useState(false);
 
   const pageNum = getSearchParam("page");
   const [page, setPage] = useState(pageNum);
@@ -65,7 +65,6 @@ function ProductsPage() {
   ]);
 
   const { data, isLoading: loadingProducts } = useFilter();
-  const navigate = useNavigate();
 
   useEffect(() => {
     setPage(pageNum || 1);
@@ -150,7 +149,10 @@ function ProductsPage() {
         </div>
         {/* start mobile filter elem */}
         <div class="flex md:hidden items-center gap-6 mb-8">
-          <div class="bg-white w-1/2 flex-center py-4 rounded-md gap-x-1">
+          <div
+            class="bg-white w-1/2 flex-center py-4 rounded-md gap-x-1"
+            onClick={() => setIsShowFilterMobile(true)}
+          >
             <svg class="w-6 h-6 shrink-0">
               <use href="#funnel"></use>
             </svg>
@@ -182,15 +184,17 @@ function ProductsPage() {
           status={status}
         />
 
+        {/* start mobile filter */}
+        <MobileFilter
+          isShow={isShowFilterMobile}
+          onShow={setIsShowFilterMobile}
+        />
+
         {/* start main section */}
 
         <div className="flex gap-x-5 mt-8">
           <div
-            className={`bg-white shadow hidden md:block rounded-md w-[450px] ${
-              filtredProduct?.length && isShowFilterButton
-                ? "h-[800.7px]"
-                : "h-[720.7px]"
-            } px-4 py-3 sticky top-0`}
+            className={`bg-white shadow hidden md:block rounded-md w-[450px] h-[720.7px] px-4 py-3 sticky top-0`}
           >
             <h3 className="font-DanaDemiBold text-lg border-b-2 border-b-gray-200 pb-2">
               جستجو
@@ -335,18 +339,6 @@ function ProductsPage() {
             >
               اعمال فیلتر
             </button>
-            {filtredProduct?.length !== 0 && isShowFilterButton && (
-              <button
-                className="text-red-600 border-2  border-red-600 w-full mt-5 rounded-sm py-4 font-DanaMedium hover:bg-red-600 hover:text-white transition-all"
-                onClick={() => {
-                  setFiltredProduct([]);
-                  setValue([50000, 70000000]);
-                  navigate("/products");
-                }}
-              >
-                حذف فیلتر
-              </button>
-            )}
           </div>
           <div className="w-full">
             {/* sort section */}

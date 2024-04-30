@@ -1,15 +1,24 @@
 import React from "react";
 import ColorBox from "../ColorBox/ColorBox";
+import { Link } from "react-router-dom";
+import { isLogin } from "../../Utils/Funcs/utils";
 
 function ProductBoxInfo({
   productCount,
-  setProductCount,
   setColorChoose,
   colorChoose,
   product,
+  basketInfo,
+  onAdd,
+  onInc,
+  onDec,
+  onDel,
+  id,
+  commentsLength,
+  score,
 }) {
   return (
-    <div className="bg-white rounded-md shadow h-[525px]  w-[450px] hidden lg:block sticky top-0 px-4 py-3">
+    <div className="bg-white rounded-md shadow h-[485px]  w-[450px] hidden lg:block sticky top-0 px-4 py-3">
       {/* start header of box */}
       <div className="flex items-center justify-between">
         <div>
@@ -23,7 +32,7 @@ function ProductBoxInfo({
           {product?.productInfo.longDesc}
         </p>
       </div>
-      <div className="flex items-center flex-wrap gap-3 mt-4">
+      <div className="flex items-center flex-wrap gap-3 mt-8">
         {product?.colors.map((color) => (
           <ColorBox
             colorCode={color.colorCode}
@@ -33,19 +42,13 @@ function ProductBoxInfo({
           />
         ))}
       </div>
-      <div className="flex items-center gap-x-2 my-4">
-        <img
-          src="/images/category/brand1-1.png"
-          className="w-[100px]"
-          alt="category"
-        />
-        <p>شیائومی</p>
-      </div>
-      <div className="flex items-center gap-x-2 text-sm my-4">
-        <span className="text-zinc-700 text-sm ">16 دیدگاه</span>
+      <div className="flex items-center gap-x-2 text-sm my-6">
+        <span className="text-zinc-700 text-sm ">{commentsLength} دیدگاه</span>
         <span className="block w-[1.5px] h-5 bg-gray-200"></span>
         <div className="flex gap-x-1">
-          <span className="text-sm  text-zinc-700">(17) 4.5</span>
+          <span className="text-sm  text-zinc-700">
+            ({commentsLength}) {Math.ceil(score)}
+          </span>
           <svg className="w-5 h-5 text-yellow-400">
             <use href="#star"></use>
           </svg>
@@ -82,35 +85,75 @@ function ProductBoxInfo({
           </span>
         )}
       </div>
-      <div className="flex items-center justify-center my-5">
-        <div className="flex items-center gap-x-2">
+      {basketInfo?.length > 0 && (
+        <div className="flex-center gap-x-2 my-5">
           <div
-            className="w-10 h-[30px] select-none bg-blue-600 text-white flex-center rounded-r-full font-DanaMedium shadow-blue cursor-default md:cursor-pointer"
-            onClick={() => setProductCount((prevCount) => prevCount + 1)}
+            onClick={onInc}
+            className="w-10 h-[30px] bg-blue-600 text-white flex-center rounded-r-full font-DanaMedium shadow-blue cursor-default md:cursor-pointer"
           >
-            <span className="mt-1 select-none">+</span>
+            <span className="mt-1">+</span>
           </div>
           <div className="bg-white w-[50px] h-[30px] flex-center font-DanaDemiBold rounded-md shadow">
             {productCount}
           </div>
-          <div
-            className="w-10 h-[30px] select-none bg-blue-600 text-white flex-center rounded-l-full font-DanaMedium shadow-blue cursor-default md:cursor-pointer"
-            onClick={() => {
-              if (productCount !== 1) {
-                setProductCount((prevCount) => prevCount - 1);
-              }
-            }}
-          >
-            <span className="mt-1 select-none">-</span>
-          </div>
+          {basketInfo?.length && basketInfo?.[0]?.qty > 1 ? (
+            <div
+              onClick={onDec}
+              className="w-10 h-[30px] bg-blue-600 text-white flex-center rounded-l-full font-DanaMedium shadow-blue cursor-default md:cursor-pointer"
+            >
+              <span className="mt-1">-</span>
+            </div>
+          ) : (
+            <div
+              onClick={async () => await onDel(id)}
+              className="w-10 h-[30px] bg-blue-600 text-white flex-center rounded-l-full font-DanaMedium shadow-blue cursor-default md:cursor-pointer"
+            >
+              <span className="mt-1">
+                <svg className="w-5 h-5 mb-1">
+                  <use href="#trash"></use>
+                </svg>
+              </span>
+            </div>
+          )}
         </div>
-      </div>
-      <button className="flex items-center justify-center w-full gap-x-1 bg-blue-600 text-white px-6 py-2 rounded-md shadow-blue">
-        <svg className="w-6 h-6">
-          <use href="#shop-bag"></use>
-        </svg>
-        خرید کالا
-      </button>
+      )}
+      {isLogin() === true ? (
+        <div>
+          {!basketInfo?.length ? (
+            <button
+              onClick={onAdd}
+              className={`flex-center ${
+                !basketInfo?.length ? "mt-16" : ""
+              } w-full text-sm md:text-base gap-x-1 bg-blue-600 text-white px-6 py-2 rounded-md shadow-blue`}
+            >
+              <svg className="w-6 h-6">
+                <use href="#shop-bag"></use>
+              </svg>
+              خرید <span className="">کالا</span>
+            </button>
+          ) : (
+            <button
+              onClick={onAdd}
+              className="flex-center w-full text-sm md:text-base gap-x-1 bg-amber-500 text-white px-6 py-2 rounded-md shadow"
+            >
+              <svg className="w-6 h-6">
+                <use href="#shop-bag"></use>
+              </svg>
+              اضافه شده
+            </button>
+          )}
+        </div>
+      ) : (
+        <Link
+          to={"/login"}
+          className={`flex-center text-sm md:text-base gap-x-1 bg-blue-600 text-white px-6 py-2 rounded-md shadow-blue`}
+        >
+          <svg className="w-6 h-6">
+            <use href="#arrow-left-on-rectangle"></use>
+          </svg>
+          وارد شوید
+        </Link>
+      )}
     </div>
   );
 }

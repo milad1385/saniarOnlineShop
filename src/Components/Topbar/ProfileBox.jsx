@@ -36,7 +36,7 @@ function ProfileBox({ isShowUserBox, image, onShow }) {
               </a>
               <div class="mr-3.5 flex flex-col gap-y-3 overflow-hidden">
                 <span class="font-DanaDemiBold inline-block truncate">
-                  {context?.userInfo.name}
+                  {context?.userInfo?.name}
                 </span>
               </div>
             </div>

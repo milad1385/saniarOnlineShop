@@ -7,11 +7,13 @@ import BreadCrumb from "../../Components/BreadCrumb/BreadCrumb";
 import ProductBox from "../../Components/ProductBox/ProductBox";
 import { useParams } from "react-router-dom";
 import useSearch from "../../Hooks/AdminPanel/Product/useSearch";
+import Loader from "../../Components/Loader/Loader";
 
 function SearchPage() {
   const { value } = useParams();
   const { data: seachedProduct, isLoading } = useSearch(value);
-  console.log(seachedProduct);
+
+  if (isLoading) return <Loader />;
   return (
     <>
       <Topbar />

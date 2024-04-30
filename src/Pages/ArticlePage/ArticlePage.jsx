@@ -9,10 +9,10 @@ import PageTitle from "../../Components/UserPanel/PageTitle/PageTitle";
 import ArticleCommentBox from "../../Components/ArticleCommentBox/ArticleCommentBox";
 import ArticleComment from "../../Components/ArticleComments/ArticleComment";
 import TitleCat from "../../Components/TitleCat/TitleCat";
-import RelatedArticle from "../../Components/RelatedArticle/RelatedArticle";
 import { useParams } from "react-router-dom";
 import useGetMain from "../../Hooks/AdminPanel/article/useGetMain";
 import DOMPurify from "dompurify";
+import Loader from "../../Components/Loader/Loader";
 
 function ArticlePage() {
   const { articleName } = useParams();
@@ -21,6 +21,7 @@ function ArticlePage() {
   useEffect(() => {
     window.scroll(0, 0);
   }, []);
+  if (isLoading) return <Loader />;
   return (
     <>
       <Topbar />
@@ -77,27 +78,24 @@ function ArticlePage() {
                 }}
               ></section>
             </div>
-            <div className="bg-white rounded-md shadow p-4">
+            {/* <div className="bg-white rounded-md shadow p-4">
               <PageTitle title={"ارسال کامنت به مقاله فلان"} icon={"plane"} />
               <ArticleComment />
-            </div>
-            <div className="bg-white rounded-md shadow p-4">
+            </div> */}
+            {/* <div className="bg-white rounded-md shadow p-4">
               <PageTitle
                 title={"2 دیدگاه برای این محصول"}
                 icon={"chat-bubble-left-right"}
               />
               <ArticleCommentBox />
-            </div>
+            </div> */}
           </div>
-          <div className="w-[450px] sticky top-0 bg-white pb-5 rounded-md shadow space-y-7 p-3">
+          <div className="w-full md:w-[450px] sticky top-0 bg-white pb-5 rounded-md shadow space-y-7 p-3">
             <PageTitle icon={"article"} title={"آخرین مطالب"} />
             {articleInfo?.lastArticles.map((lastArticle) => (
               <LastBlogBox lastArticle={lastArticle} />
             ))}
           </div>
-        </div>
-        <div className="py-5">
-          <TitleCat link={""} main={"مطالب مرتبط"} desc={" وبلاگ"} />
         </div>
       </div>
       {/* <RelatedArticle /> */}

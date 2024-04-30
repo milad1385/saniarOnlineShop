@@ -37,7 +37,11 @@ function Headerbox({ title, price, off, images, score, link }) {
       </div>
       <div className="p-3.5">
         <img
-          src={`https://shoppingmilad.liara.run/uploads/covers/${images[0]}`}
+          src={
+            images?.length
+              ? `https://shoppingmilad.liara.run/uploads/covers/${images[0]}`
+              : "/laptop-1.jpg"
+          }
           alt={title}
           className="w-[200px]  mx-auto"
         />

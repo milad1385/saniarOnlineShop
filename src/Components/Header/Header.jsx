@@ -10,9 +10,12 @@ import Feature from "../Features/Feature";
 import Componies from "../Componies/Componies";
 import useGetActiveSlider from "../../Hooks/AdminPanel/sliders/useGetActiveSlider";
 import useGetAllPro from "../../Hooks/AdminPanel/Product/useGetAllPro";
+import Loader from "../Loader/Loader";
 function Header() {
-  const { data: sliders } = useGetActiveSlider();
+  const { data: sliders, isLoading } = useGetActiveSlider();
   const { data: products } = useGetAllPro();
+
+  if (isLoading) return <Loader />;
   return (
     <>
       <Topbar />
