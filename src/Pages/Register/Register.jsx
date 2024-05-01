@@ -26,16 +26,7 @@ function Register() {
   } = useForm({ resolver: yupResolver(registerSchema) });
 
   const submitingForm = async (data) => {
-    const { name, username, password, email, phone } = data;
-
-    const formData = new FormData();
-    formData.append("name", name);
-    formData.append("username", username);
-    formData.append("password", password);
-    formData.append("email", email);
-    formData.append("phone", phone);
-
-    const result = await registerUser(formData);
+    const result = await registerUser(data);
     if (result.status === 200) {
       clearInputs();
       setIsShowSuccessModal(true);
@@ -66,7 +57,7 @@ function Register() {
       <Navbar />
       <div className="body">
         <div className="flex-center container">
-          <div className="form-wrapper md:relative md:z-40  shadow bg-white rounded-md  flex-center flex-col mt-10 p-6 md:p-8">
+          <div className="form-wrapper md:relative md:z-20  shadow bg-white rounded-md  flex-center flex-col mt-10 p-6 md:p-8">
             <h1 className="font-DanaDemiBold text-xl md:text-2xl">
               ایجاد حساب کاربری
             </h1>
@@ -190,7 +181,7 @@ function Register() {
                   }`}
                 >
                   <input
-                    type="text"
+                    type="password"
                     {...register("password")}
                     className="w-full  outline-none font-DanaMedium h-full pr-2 text-sm md:text-base"
                     id="email"

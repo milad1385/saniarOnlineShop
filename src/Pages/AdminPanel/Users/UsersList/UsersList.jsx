@@ -17,7 +17,6 @@ import UserDetailForm from "../UserDetailForm";
 import TButton from "../../../../Components/AdminPanel/TButton/TButton";
 
 function UsersList() {
-  const { adminSearch, setAdminSearch } = useContext(AppContext);
   const [successInfo, setSuccessInfo] = useState({});
 
   const pageNum = getSearchParam("page");
@@ -47,166 +46,126 @@ function UsersList() {
     await deleteUser(id);
   };
 
-  const usersList = users?.users.filter((user) =>
-    user.name.includes(adminSearch)
-  );
-
   if (isLoading) return <Loader />;
   return (
     <>
       <div className="pb-6">
         <Table title={"لیست"} main={"کاربران"}>
-          {users.users?.length ? (
-            usersList?.length ? (
-              <table className="user-table mt-7">
-                <thead className="">
-                  <tr className="child:font-Lalezar text-base md:text-xl bg-blue-600  text-white child:p-3 text-center">
-                    <td>شماره</td>
-                    <td>پروفایل</td>
-                    <td>نام</td>
-                    <td>نام کاربری</td>
-                    <td>نقش</td>
-                    <td>شماره</td>
-                    <td>تاریخ</td>
-                    <td>حذف</td>
-                    <td>نقش</td>
-                    <td>جزییات</td>
-                    <td>ویرایش</td>
-                    <td>بن</td>
+          <table className="user-table mt-7">
+            <thead className="">
+              <tr className="child:font-Lalezar text-base md:text-xl bg-blue-600  text-white child:p-3 text-center">
+                <td>شماره</td>
+                <td>پروفایل</td>
+                <td>نام</td>
+                <td>نام کاربری</td>
+                <td>نقش</td>
+                <td>شماره</td>
+                <td>تاریخ</td>
+                <td>حذف</td>
+                <td>نقش</td>
+                <td>جزییات</td>
+                <td>ویرایش</td>
+                <td>بن</td>
+              </tr>
+            </thead>
+            <tbody className="text-sm md:text-base">
+              <>
+                {users?.users.map((user, index) => (
+                  <tr
+                    className="child:p-2 md:child:p-3 text-center font-DanaMedium"
+                    key={user._id}
+                  >
+                    <td>{index + 1}</td>
+                    <td>
+                      <div className="w-14 h-14  mx-auto bg-gray-200 rounded-full flex-center">
+                        <img
+                          src={`https://shoppingmilad.liara.run/uploads/covers/${user.image}`}
+                          className="w-12 h-12 rounded-full"
+                        />
+                      </div>
+                    </td>
+                    <td>{user.name}</td>
+                    <td>{user.username}</td>
+                    <td>{user.role === "ADMIN" ? "ادمین" : "کاربر عادی"}</td>
+                    <td>{user.phone}</td>
+                    <td>{user.date}</td>
+                    <td>
+                      <Modal>
+                        <Modal.Open name={"delete"}>
+                          <TButton title={"حذف"} className="bg-red-600" />
+                        </Modal.Open>
+                        <Modal.Page name={"delete"}>
+                          <ConfirmModal
+                            title={"آیا از حذف کردن اطمینان دارید ؟"}
+                            disable={isDeleting}
+                            isConfirming={isDeleting}
+                            onConfirm={() => deleteUserHandler(user._id)}
+                          />
+                        </Modal.Page>
+                      </Modal>
+                    </td>
+                    <td>
+                      <Modal>
+                        <Modal.Open name={"role"}>
+                          <TButton title={"نقش"} className="bg-amber-500" />
+                        </Modal.Open>
+                        <Modal.Page name={"role"}>
+                          <ChangeUserRoleForm
+                            user={user}
+                            onInfo={setSuccessInfo}
+                          />
+                        </Modal.Page>
+                      </Modal>
+                    </td>
+                    <td>
+                      <Modal>
+                        <Modal.Open name={"detail"}>
+                          <TButton title={"جزییات"} className="bg-gray-600" />
+                        </Modal.Open>
+                        <Modal.Page name={"detail"}>
+                          <UserDetailForm detail={user} />
+                        </Modal.Page>
+                      </Modal>
+                    </td>
+                    <td>
+                      <Modal>
+                        <Modal.Open name={"edit"}>
+                          <TButton title={"ویرایش"} className="bg-blue-600" />
+                        </Modal.Open>
+                        <Modal.Page name={"edit"}>
+                          <EditUserForm user={user} onInfo={setSuccessInfo} />
+                        </Modal.Page>
+                      </Modal>
+                    </td>
+                    <td>
+                      <Modal>
+                        <Modal.Open name={"ban"}>
+                          <TButton title={"بن"} className="bg-pink-600" />
+                        </Modal.Open>
+                        <Modal.Page name={"ban"}>
+                          <ConfirmModal
+                            title={"آیا از بن کردن اطمینان دارید ؟"}
+                            disable={isBanning}
+                            isConfirming={isBanning}
+                            onInfo={setSuccessInfo}
+                            onConfirm={() =>
+                              banUserHandler(user._id, user.phone)
+                            }
+                          />
+                        </Modal.Page>
+                      </Modal>
+                    </td>
                   </tr>
-                </thead>
-                <tbody className="text-sm md:text-base">
-                  <>
-                    {usersList?.map((user, index) => (
-                      <tr
-                        className="child:p-2 md:child:p-3 text-center font-DanaMedium"
-                        key={user._id}
-                      >
-                        <td>{index + 1}</td>
-                        <td>
-                          <div className="w-14 h-14  mx-auto bg-gray-200 rounded-full flex-center">
-                            <img
-                              src={`https://shoppingmilad.liara.run/uploads/covers/${user.image}`}
-                              className="w-12 h-12 rounded-full"
-                            />
-                          </div>
-                        </td>
-                        <td>{user.name}</td>
-                        <td>{user.username}</td>
-                        <td>
-                          {user.role === "ADMIN" ? "ادمین" : "کاربر عادی"}
-                        </td>
-                        <td>{user.phone}</td>
-                        <td>{user.date}</td>
-                        <td>
-                          <Modal>
-                            <Modal.Open name={"delete"}>
-                              <TButton title={"حذف"} className="bg-red-600" />
-                            </Modal.Open>
-                            <Modal.Page name={"delete"}>
-                              <ConfirmModal
-                                title={"آیا از حذف کردن اطمینان دارید ؟"}
-                                disable={isDeleting}
-                                isConfirming={isDeleting}
-                                onConfirm={() => deleteUserHandler(user._id)}
-                              />
-                            </Modal.Page>
-                          </Modal>
-                        </td>
-                        <td>
-                          <Modal>
-                            <Modal.Open name={"role"}>
-                              <TButton title={"نقش"} className="bg-amber-500" />
-                            </Modal.Open>
-                            <Modal.Page name={"role"}>
-                              <ChangeUserRoleForm
-                                user={user}
-                                onInfo={setSuccessInfo}
-                              />
-                            </Modal.Page>
-                          </Modal>
-                        </td>
-                        <td>
-                          <Modal>
-                            <Modal.Open name={"detail"}>
-                              <TButton
-                                title={"جزییات"}
-                                className="bg-gray-600"
-                              />
-                            </Modal.Open>
-                            <Modal.Page name={"detail"}>
-                              <UserDetailForm detail={user} />
-                            </Modal.Page>
-                          </Modal>
-                        </td>
-                        <td>
-                          <Modal>
-                            <Modal.Open name={"edit"}>
-                              <TButton
-                                title={"ویرایش"}
-                                className="bg-blue-600"
-                              />
-                            </Modal.Open>
-                            <Modal.Page name={"edit"}>
-                              <EditUserForm
-                                user={user}
-                                onInfo={setSuccessInfo}
-                              />
-                            </Modal.Page>
-                          </Modal>
-                        </td>
-                        <td>
-                          <Modal>
-                            <Modal.Open name={"ban"}>
-                              <TButton
-                                title={"بن"}
-                                className="bg-pink-600"
-                              />
-                            </Modal.Open>
-                            <Modal.Page name={"ban"}>
-                              <ConfirmModal
-                                title={"آیا از بن کردن اطمینان دارید ؟"}
-                                disable={isBanning}
-                                isConfirming={isBanning}
-                                onInfo={setSuccessInfo}
-                                onConfirm={() =>
-                                  banUserHandler(user._id, user.phone)
-                                }
-                              />
-                            </Modal.Page>
-                          </Modal>
-                        </td>
-                      </tr>
-                    ))}
-                  </>
-                </tbody>
-              </table>
-            ) : (
-              <div className="flex items-center justify-center flex-col w-full">
-                <EmptyError
-                  msg={`هیچ کاربری با نام ${adminSearch} وجود ندارد 🤐`}
-                />
-                <button
-                  className="bg-blue-600 mx-auto  font-Lalezar p-2 w-[145px] rounded-md text-white text-base md:text-xl shadow-blue mt-6"
-                  onClick={() => setAdminSearch("")}
-                >
-                  بروزرسانی
-                </button>
-              </div>
-            )
-          ) : (
-            !isLoading && (
-              <EmptyError msg={"هیچ کاربری در سایت ثبت نام نکرده است"} />
-            )
-          )}
+                ))}
+              </>
+            </tbody>
+          </table>
         </Table>
-        {!adminSearch && (
-          <Pagination
-            count={users?.paginatedNumber}
-            page={page}
-            setPage={setPage}
-          />
-        )}
+        <Pagination
+          count={users?.paginatedNumber}
+          page={page}
+          setPage={setPage}
+        />
       </div>
 
       {successInfo.title && (

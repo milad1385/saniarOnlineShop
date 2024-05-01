@@ -160,7 +160,9 @@ function Topbar() {
               }}
               src={
                 isLogin()
-                  ? `https://shoppingmilad.liara.run/uploads/covers/${context?.userInfo?.image}`
+                  ? `https://shoppingmilad.liara.run/uploads/covers/${
+                      context?.userInfo?.image ?? "user.png"
+                    }`
                   : "/images/user.png"
               }
               className="w-[56px] h-[56px] rounded-full relative z-50"

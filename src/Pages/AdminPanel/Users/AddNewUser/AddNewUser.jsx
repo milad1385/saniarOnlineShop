@@ -9,7 +9,6 @@ import PageTitle from "../../../../Components/AdminPanel/PageTitle/PageTitle";
 import Input from "../../../../Components/AdminPanel/Input/Input";
 
 function AddNewUser() {
-  const [image, setImage] = useState("");
   const [isShowSuccessModal, setIsShowSuccessModal] = useState(false);
   const [isShowFaildModal, setIsShowFaildModal] = useState(false);
   const [errMsg, setErrMsg] = useState("");
@@ -23,15 +22,7 @@ function AddNewUser() {
   const { mutateAsync: registerNewUser, isLoading } = useRegister();
 
   const createNewUserHandler = async (data) => {
-    const formData = new FormData();
-    formData.append("name", data.name);
-    formData.append("username", data.username);
-    formData.append("password", data.password);
-    formData.append("email", data.email);
-    formData.append("phone", data.phone);
-    formData.append("image", image);
-
-    const result = await registerNewUser(formData);
+    const result = await registerNewUser(data);
     if (result.status === 200) {
       clearInputs();
       setIsShowSuccessModal(true);
@@ -103,17 +94,6 @@ function AddNewUser() {
             type={"password"}
             name={"password"}
           />
-          <div className="relative">
-            <div className="flex items-center justify-between bg-gray-100 py-2 px-3 rounded-lg">
-              <input
-                type="file"
-                onChange={(e) => setImage(e.target.files[0])}
-              />
-              <svg className="w-6 h-6 md:w-9 md:h-9 text-zinc-600">
-                <use href="#image"></use>
-              </svg>
-            </div>
-          </div>
         </div>
         <button
           type="submit"

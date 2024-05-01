@@ -41,8 +41,10 @@ function MobileFilter({ isShow, onShow }) {
   }, [value]);
   return (
     <div
-      className={`bg-white min-h-screen fixed md:hidden transition-all
-      z-50 ${isShow ? "top-0" : "top-[730px]"} left-0 right-0 rounded-t-lg`}
+      className={`bg-white  fixed md:hidden transition-all min-h-screen overflow-y-auto
+      z-50 ${
+        isShow ? "top-0" : "top-[800px]"
+      } inset-0 rounded-t-lg`}
     >
       <div className="flex items-center justify-between bg-gray-100 py-4 px-4">
         <div
@@ -69,7 +71,7 @@ function MobileFilter({ isShow, onShow }) {
           </svg>
         </div>
       </div>
-      <div>
+      <div className="relative">
         <div className="px-4">
           <h3 className="font-DanaDemiBold text-lg border-b-2 border-b-gray-200 py-2">
             دسته بندی
@@ -169,7 +171,7 @@ function MobileFilter({ isShow, onShow }) {
           </div>
         </div>
         <button
-          className="absolute bottom-4 left-3 right-3 mx-auto rounded-md font-DanaMedium  bg-blue-600 text-white py-3"
+          className="absolute -bottom-[295px] left-3 right-3 mx-auto rounded-md font-DanaMedium  bg-blue-600 text-white py-3"
           onClick={() => onShow(false)}
         >
           اعمال دسته بندی

@@ -1,11 +1,14 @@
 import { getUserToken } from "../Utils/Funcs/utils";
 
 const baseURL = "https://shoppingmilad.liara.run/user";
-const registerNewUser = async (formData) => {
+const registerNewUser = async (data) => {
   try {
     const res = await fetch(`${baseURL}/register`, {
       method: "POST",
-      body: formData,
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
     });
     if (res.status === 404) {
       return { status: 404 };
@@ -209,5 +212,5 @@ export {
   changeUserRole,
   editUser,
   getLastUser,
-  getPanelInfo
+  getPanelInfo,
 };

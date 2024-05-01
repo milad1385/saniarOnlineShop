@@ -4,7 +4,11 @@ function TitleCat({ main, desc, link, isMain }) {
   return (
     <div className="flex items-center justify-between p-4  bg-white shadow-sm rounded-md mt-5">
       <div className="flex items-center gap-x-2 font-DanaDemiBold text-lg">
-        <img src="/images/category/square.png" className="select-none" alt="cat" />
+        <img
+          src="/images/category/square.png"
+          className="select-none"
+          alt="cat"
+        />
         <span className="text-sm md:text-base select-none">
           {main} <span className="text-blue-600">{desc}</span>
         </span>
@@ -13,10 +17,10 @@ function TitleCat({ main, desc, link, isMain }) {
         {isMain ? null : (
           <Link
             to={"/products"}
-            className="flex md:gap-x-1 font-DanaDemiBold text-sm md:text-base"
+            className="flex items-center md:gap-x-1  gap-x-1.5 font-DanaDemiBold text-sm md:text-base"
           >
             مشاهده همه
-            <svg className="w-5 h-5 text-blue-600">
+            <svg className="w-4 md:w-5 h-4 md:h-5 text-blue-600 mb-0.5">
               <use href="#arrow-d"></use>
             </svg>
           </Link>

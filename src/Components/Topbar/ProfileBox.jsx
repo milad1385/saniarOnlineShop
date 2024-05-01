@@ -23,17 +23,19 @@ function ProfileBox({ isShowUserBox, image, onShow }) {
         >
           <div class="w-[278px] bg-white dark:bg-darker border border-neutral-100 dark:border-0 p-5 pb-3.5 rounded-xl">
             <div class="flex items-center border-b border-b-neutral-200 dark:border-b-white/5 pb-5 mb-2">
-              <a href="https://sabzlearn.ir/my-account" class="shrink-0">
+              <Link to={"/my-account"} class="shrink-0">
                 <img
                   src={
                     isLogin()
-                      ? `https://shoppingmilad.liara.run/uploads/covers/${image}`
+                      ? `https://shoppingmilad.liara.run/uploads/covers/${
+                          image ? image : "user.png"
+                        }`
                       : "https://secure.gravatar.com/avatar/0baa9781d23d690075258d90a6e02453?s=96&amp;d=mm&amp;r=g"
                   }
                   class="object-cover w-14 h-14 rounded-full inline-block"
                   loading="lazy"
                 />
-              </a>
+              </Link>
               <div class="mr-3.5 flex flex-col gap-y-3 overflow-hidden">
                 <span class="font-DanaDemiBold inline-block truncate">
                   {context?.userInfo?.name}
@@ -89,7 +91,7 @@ function ProfileBox({ isShowUserBox, image, onShow }) {
             <div class="mt-2 pt-2 border-t border-t-neutral-200 dark:border-t-white/5">
               <span
                 onClick={() => {
-                  context?.logout()
+                  context?.logout();
                   navigate("/");
                 }}
                 class="flex items-center justify-between px-2.5 h-12 rounded-lg hover:text-white hover:bg-red-500 transition-colors"
