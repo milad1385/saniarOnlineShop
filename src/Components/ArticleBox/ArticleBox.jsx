@@ -8,7 +8,7 @@ function ArticleBox({ article }) {
         <img
           src={`https://shoppingmilad.liara.run/uploads/covers/${article.image}`}
           alt={article.image}
-          className="w-full rounded-2xl"
+          className="w-full md:w-[342px] h-[216.6px] md:h-auto rounded-2xl"
         />
       </Link>
       <div className="flex items-center justify-between mt-1.5 p-2.5">

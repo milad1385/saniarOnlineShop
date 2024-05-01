@@ -17,6 +17,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import useEdit from "../../../Hooks/AdminPanel/User/useEdit";
 import StatBox from "../../UserPanel/Tickets/Stat";
+import Loader from "../../../Components/Loader/Loader";
 function Main() {
   const { setIsShowAdminMenu } = useContext(AppContext);
   const [isShowDeleteModal, setIsShowDeleteModal] = useState(false);
@@ -107,6 +108,7 @@ function Main() {
     }
   };
 
+  if (isLoading) return <Loader />;
   return (
     <>
       <div className="container w-auto xl:w-[1225px]">

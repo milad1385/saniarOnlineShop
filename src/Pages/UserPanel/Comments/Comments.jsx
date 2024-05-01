@@ -4,6 +4,8 @@ import CommentBox from "../../../Components/UserPanel/CommentBox/CommentBox";
 import useGetMain from "../../../Hooks/AdminPanel/Comment/useGetMain";
 import Pagination from "../../../Components/Pagination/Pagination";
 import { getSearchParam } from "../../../Utils/Funcs/utils";
+import EmptyError from "../../../Components/UserPanel/EmptyError/EmptyError";
+import Loader from "../../../Components/Loader/Loader";
 function Comments() {
   const { data: comments, isLoading } = useGetMain();
   const pageNum = getSearchParam("page");
@@ -15,6 +17,8 @@ function Comments() {
   useEffect(() => {
     setPage(pageNum || 1);
   }, [pageNum]);
+
+  if (isLoading) return <Loader />;
   return (
     <div>
       <PageTitle title={"کامنت های من"} icon={"chat-bubble-left-right"} />
@@ -23,16 +27,22 @@ function Comments() {
           دیدگاه ها
         </p>
         <div className="p-[18px] space-y-8 divide-y-2">
-          {comments?.mainComments?.map((comment) => (
-            <CommentBox key={comment._id} {...comment} />
-          ))}
+          {comments?.mainComments.length ? (
+            comments?.mainComments?.map((comment) => (
+              <CommentBox key={comment._id} {...comment} />
+            ))
+          ) : (
+            <EmptyError msg={"هیچ کامنتی ثبت نشده است ✌️"} className={"my-2"} />
+          )}
         </div>
       </div>
-      <Pagination
-        count={comments?.paginatedNumber}
-        page={page}
-        setPage={setPage}
-      />
+      {comments?.mainComments.length > 0 && (
+        <Pagination
+          count={comments?.paginatedNumber}
+          page={page}
+          setPage={setPage}
+        />
+      )}
     </div>
   );
 }

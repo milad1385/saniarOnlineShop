@@ -1,6 +1,6 @@
 import "swiper/css";
 import "swiper/css/pagination";
-import React from "react";
+import React, { useState } from "react";
 import Topbar from "../Topbar/Topbar";
 import Navbar from "../Navbar/Navbar";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -12,8 +12,11 @@ import useGetActiveSlider from "../../Hooks/AdminPanel/sliders/useGetActiveSlide
 import useGetAllPro from "../../Hooks/AdminPanel/Product/useGetAllPro";
 import Loader from "../Loader/Loader";
 function Header() {
+  const [isLoad, setIsLoad] = useState(true);
   const { data: sliders, isLoading } = useGetActiveSlider();
   const { data: products } = useGetAllPro();
+
+  const loadingImage = () => setIsLoad(false);
 
   if (isLoading) return <Loader />;
   return (
@@ -54,8 +57,13 @@ function Header() {
             {sliders?.map((slider) => (
               <SwiperSlide key={slider._id}>
                 <img
-                  src={`https://shoppingmilad.liara.run/uploads/covers/${slider.image}`}
+                  src={
+                    isLoad
+                      ? `/images/slide4.jpg`
+                      : `https://shoppingmilad.liara.run/uploads/covers/${slider.image}`
+                  }
                   className="shadow"
+                  onLoad={loadingImage}
                 />
               </SwiperSlide>
             ))}

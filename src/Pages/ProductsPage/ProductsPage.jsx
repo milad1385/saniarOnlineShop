@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import Topbar from "../../Components/Topbar/Topbar";
 import Navbar from "../../Components/Navbar/Navbar";
 import Footer from "../../Components/Footer/Footer";
@@ -15,10 +15,12 @@ import MobileOrder from "../../Components/MobileOrder/MobileOrder";
 import Overlay from "../../Components/Ovrlay/Overlay";
 import FooterMenu from "../../Components/FooterMenu/FooterMenu";
 import MobileFilter from "../../Components/MobileFilter/MobileFilter";
+import EmptyError from "../../Components/UserPanel/EmptyError/EmptyError";
 function ProductsPage() {
   const orderType = getSearchParam("order");
   const [status, setStatus] = useState(orderType || "default");
   const [searchParam, setSearchParam] = useSearchParams();
+  const [search, setSearch] = useState(getSearchParam("q"));
   const [isShowMobileOrder, setIsShowMobileOrder] = useState(false);
   const [isShowFilterMobile, setIsShowFilterMobile] = useState(false);
   const [colorBox, setColorBox] = useState([
@@ -107,6 +109,16 @@ function ProductsPage() {
     );
   };
 
+  const searchHandler = () => {
+    if (search.length) {
+      searchParam.set("q", search);
+      setSearchParam(searchParam);
+    } else {
+      searchParam.delete("q");
+      setSearchParam(searchParam);
+    }
+  };
+
   return (
     <>
       <Topbar />
@@ -139,8 +151,16 @@ function ProductsPage() {
               type="text"
               class="md:font-danaMedium placeholder-slate-500 bg-transparent flex-grow outline-none"
               placeholder="جستجو بین محصولات ها"
+              onChange={(e) => {
+                setSearch(e.target.value);
+                if (e.target.value === "") {
+                  searchParam.delete("q");
+                  setSearchParam(searchParam);
+                }
+              }}
+              value={search}
             />
-            <button type="submit">
+            <button onClick={() => searchHandler()}>
               <svg class="w-7 h-7">
                 <use href="#magni-glass"></use>
               </svg>
@@ -204,9 +224,19 @@ function ProductsPage() {
                 type="text"
                 className="border-none outline-none w-full px-[px] bg-gray-100"
                 placeholder="جستجو محصولات"
-                onChange={(event) => searchHandler(event)}
+                onChange={(e) => {
+                  setSearch(e.target.value);
+                  if (e.target.value === "") {
+                    searchParam.delete("q");
+                    setSearchParam(searchParam);
+                  }
+                }}
+                value={search}
               />
-              <button className="bg-blue-600 text-white p-2 flex items-center justify-center rounded-full shadow-blue">
+              <button
+                className="bg-blue-600 text-white p-2 flex items-center justify-center rounded-full shadow-blue"
+                onClick={() => searchHandler()}
+              >
                 <svg className="w-6 h-6">
                   <use href="#magni-glass"></use>
                 </svg>
@@ -404,12 +434,17 @@ function ProductsPage() {
             </div>
             {loadingProducts ? (
               <div className="font-DanaMedium mt-5">در حال لود اطلاعات ...</div>
-            ) : (
+            ) : data?.products.length ? (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mt-5">
                 {data?.products.map((product) => (
                   <ProductBox product={product} isScore={true} />
                 ))}
               </div>
+            ) : (
+              <EmptyError
+                msg={`محصول ${getSearchParam("q")} یافت نشد 🔎`}
+                className={"mt-4 md:mt-8"}
+              />
             )}
             {!loadingProducts && (
               <Pagination

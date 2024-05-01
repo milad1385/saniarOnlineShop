@@ -1,8 +1,13 @@
 import React from "react";
 
-function Slide({ title, price, off, images }) {
+function Slide({ title, price, off, images, main, onChange, info, longDesc }) {
   return (
-    <div className="flex  justify-between gap-x-5 py-4 px-2.5 bg-white rounded-md shadow-sm">
+    <div
+      className={`flex  justify-between ${
+        main?.title === title ? "border-l-4 border-l-blue-600" : ""
+      } gap-x-5 py-4 px-2.5 bg-white rounded-md shadow-sm`}
+      onClick={() => onChange(info)}
+    >
       <div>
         <img
           src={`https://shoppingmilad.liara.run/uploads/covers/${images[0]}`}
@@ -12,8 +17,8 @@ function Slide({ title, price, off, images }) {
       </div>
       <div>
         <h2 className="font-DanaDemiBold text-sm">{title}</h2>
-        <p className="text-xs font-DanaDemiBold text-gray-400 mt-2.5">
-          Apple MacBook MKGR3 M1 Pro 2021 14.2 inch laptop
+        <p className="text-xs leading-6 line-clamp-1 w-[260px] font-DanaDemiBold text-gray-400 mt-2.5">
+          {longDesc}
         </p>
         <div className="flex flex-row md:flex-col items-end mt-6 gap-x-4 md:gap-y-4">
           <div className="flex gap-x-1">

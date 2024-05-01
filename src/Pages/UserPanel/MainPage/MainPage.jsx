@@ -6,14 +6,19 @@ import OrderItem from "../../../Components/UserPanel/OrderItem/OrderItem";
 import useStat from "../../../Hooks/stats/p-user/useStat";
 import Order from "../../../Components/UserPanel/OrderItem/Order";
 import PageTitle from "../../../Components/UserPanel/PageTitle/PageTitle";
+import EmptyError from "../../../Components/UserPanel/EmptyError/EmptyError";
+import Loader from "../../../Components/Loader/Loader";
 
 function MainPage() {
   const context = useContext(AppContext);
-  const { data: orders } = useGetMain();
+  const { data: orders, isLoading } = useGetMain();
   const { data: stats } = useStat();
   useEffect(() => {
     window.scroll(0, 0);
   }, []);
+
+  if (isLoading) return <Loader />;
+
   return (
     <div>
       <div className="bg-white shadow p-4 rounded-md flex flex-col md:flex-row">
@@ -51,9 +56,15 @@ function MainPage() {
       <div className="mt-5 bg-white p-4 rounded-md shadow">
         <PageTitle icon={`shop-card`} title={`لیست سفارشات`} />
         <div className="divide-y-2 divide-gray-200">
-          {orders?.map((order) => (
-            <Order key={order._id} {...order} />
-          ))}
+          {orders?.length ? (
+            <>
+              {orders?.map((order) => (
+                <Order key={order._id} {...order} />
+              ))}
+            </>
+          ) : (
+            <EmptyError msg={"هنوز هیچ سفارشی ندارید 🔎"} className={"my-6"} />
+          )}
         </div>
       </div>
     </div>

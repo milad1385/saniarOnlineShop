@@ -31,7 +31,7 @@ function MoreSell() {
                 slidesPerView: 1,
               },
               568: {
-                slidesPerView: 1,
+                slidesPerView: 2,
               },
               768: {
                 slidesPerView: 3,

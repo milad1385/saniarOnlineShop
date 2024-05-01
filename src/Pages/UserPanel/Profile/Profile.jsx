@@ -11,6 +11,7 @@ import { getUserInfo } from "../../../services/userApi";
 import useEdit from "../../../Hooks/AdminPanel/User/useEdit";
 import StatusModal from "../../../Components/SuccessModal/SuccessModal";
 import { useNavigate } from "react-router-dom";
+import Loader from "../../../Components/Loader/Loader";
 
 function Profile() {
   const [userId, setUserId] = useState(null);
@@ -74,6 +75,8 @@ function Profile() {
   };
 
   let style = `bg-white`;
+
+  if (loadingInfo) return <Loader />;
   return (
     <>
       <PageTitle icon={"home"} title={"پروفایل من"} />

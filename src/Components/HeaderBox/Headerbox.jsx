@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 function Headerbox({ title, price, off, images, score, link }) {
@@ -37,13 +37,9 @@ function Headerbox({ title, price, off, images, score, link }) {
       </div>
       <div className="p-3.5">
         <img
-          src={
-            images?.length
-              ? `https://shoppingmilad.liara.run/uploads/covers/${images[0]}`
-              : "/laptop-1.jpg"
-          }
+          src={`https://shoppingmilad.liara.run/uploads/covers/${images[0]}`}
           alt={title}
-          className="w-[200px]  mx-auto"
+          className="w-[200px] h-[200px]  mx-auto"
         />
         <div className="flex items-center justify-between">
           <div className="">

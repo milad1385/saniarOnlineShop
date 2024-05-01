@@ -30,7 +30,7 @@ const getBestSellerProduct = async () => {
   try {
     const res = await fetch(`${baseURL}/best-seller`, {
       headers: {
-        "authorization": `${getUserToken()}`,
+        authorization: `${getUserToken()}`,
       },
     });
     return await res.json();
@@ -114,16 +114,33 @@ const editProduct = async (info) => {
   }
 };
 
-const filterProduct = async (categories, sort, page, startPrice, endPrice) => {
-  console.log(sort);
+const filterProduct = async (
+  categories,
+  sort,
+  page,
+  startPrice,
+  endPrice,
+  search
+) => {
+  console.log(search);
   try {
     const res = await fetch(
       `${baseURL}/filtredProducts/${
         categories.length ? categories : "test"
-      }?startPrice=${startPrice}&endPrice=${endPrice}&page=${page}&sort=${sort}`
+      }?startPrice=${startPrice}&endPrice=${endPrice}&page=${page}&sort=${sort}&q=${search}`
     );
 
     console.log(res);
+    return await res.json();
+  } catch (err) {
+    return err;
+  }
+};
+
+const getFeatures = async (id) => {
+  console.log("id =>>>", id.queryKey[1]);
+  try {
+    const res = await fetch(`${baseURL}/get-main/features/${id.queryKey[1]}`);
     return await res.json();
   } catch (err) {
     return err;
@@ -142,4 +159,5 @@ export {
   searchProduct,
   editProduct,
   filterProduct,
+  getFeatures,
 };
