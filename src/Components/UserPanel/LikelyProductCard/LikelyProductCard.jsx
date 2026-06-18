@@ -13,7 +13,7 @@ function LikelyProductCard({ product }) {
     <div className="flex items-center justify-between flex-col md:flex-row py-2.5">
       <div className="flex items-center gap-x-5 flex-col md:flex-row">
         <img
-          src={`https://shoppingmilad.liara.run/uploads/covers/${product.images[0]}`}
+          src={`https://saniar-backend.vercel.app/uploads/covers/${product.images[0]}`}
           alt="laptop-1.jpg"
           className="w-24  h-24 rounded-md"
         />

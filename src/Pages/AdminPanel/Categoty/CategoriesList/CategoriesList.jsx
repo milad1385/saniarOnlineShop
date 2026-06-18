@@ -58,7 +58,7 @@ function CategoriesList() {
                   <td>{index + 1}</td>
                   <td>
                     <img
-                      src={`https://shoppingmilad.liara.run/uploads/covers/${category.image}`}
+                      src={`https://saniar-backend.vercel.app/uploads/covers/${category.image}`}
                       className="w-[65px] md:w-[80px] mx-auto"
                     />
                   </td>

@@ -41,7 +41,7 @@ function Main() {
                   <img
                     src={`${
                       context?.userInfo?.image
-                        ? `https://shoppingmilad.liara.run/uploads/covers/${context?.userInfo?.image}`
+                        ? `https://saniar-backend.vercel.app/uploads/covers/${context?.userInfo?.image}`
                         : "/images/user.png"
                     }`}
                     alt="user.png"

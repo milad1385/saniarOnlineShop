@@ -60,7 +60,7 @@ function Header() {
                   src={
                     isLoad
                       ? `/images/slide4.jpg`
-                      : `https://shoppingmilad.liara.run/uploads/covers/${slider.image}`
+                      : `https://saniar-backend.vercel.app/uploads/covers/${slider.image}`
                   }
                   className="shadow"
                   onLoad={loadingImage}

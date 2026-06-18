@@ -57,7 +57,7 @@ function ProductBox({ product, isScore }) {
       <div className="mt-1.5">
         <Link to={`/product/${product.link}`}>
           <img
-            src={`https://shoppingmilad.liara.run/uploads/covers/${product.images[0]}`}
+            src={`https://saniar-backend.vercel.app/uploads/covers/${product.images[0]}`}
             alt="product-image6.jpg"
             className="w-[180px] mx-auto"
           />

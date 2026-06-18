@@ -1,6 +1,6 @@
 import { getUserToken } from "../Utils/Funcs/utils";
 
-const baseURL = `https://shoppingmilad.liara.run/features`;
+const baseURL = `https://saniar-backend.vercel.app/features`;
 
 const createNewFeature = async (data) => {
   try {

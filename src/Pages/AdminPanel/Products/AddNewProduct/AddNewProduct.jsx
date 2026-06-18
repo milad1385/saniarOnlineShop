@@ -96,7 +96,7 @@ function AddNewProduct() {
 
   const uploadConfig = {
     ckfinder: {
-      uploadUrl: "https://shoppingmilad.liara.run/upload",
+      uploadUrl: "https://saniar-backend.vercel.app/upload",
       withCredentials: true,
       headers: {
         "X-CSRF-TOKEN": "CSFR-TOKEN",

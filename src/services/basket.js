@@ -1,5 +1,5 @@
 import { getUserToken } from "../Utils/Funcs/utils";
-const baseURL = "https://shoppingmilad.liara.run/basket";
+const baseURL = "https://saniar-backend.vercel.app/basket";
 
 const addToBasket = async (data) => {
   try {

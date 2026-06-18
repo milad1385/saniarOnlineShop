@@ -1,6 +1,6 @@
 import { getUserToken } from "../Utils/Funcs/utils";
 
-const baseURL = `https://shoppingmilad.liara.run/menu`;
+const baseURL = `https://saniar-backend.vercel.app/menu`;
 
 const createMenu = async (data) => {
   try {

@@ -10,7 +10,7 @@ function Slide({ title, price, off, images, main, onChange, info, longDesc }) {
     >
       <div>
         <img
-          src={`https://shoppingmilad.liara.run/uploads/covers/${images[0]}`}
+          src={`https://saniar-backend.vercel.app/uploads/covers/${images[0]}`}
           alt="image"
           className="w-[120px] shrink-0"
         />

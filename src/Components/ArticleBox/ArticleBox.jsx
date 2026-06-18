@@ -6,7 +6,7 @@ function ArticleBox({ article }) {
     <div className="bg-white rounded-2xl shadow-lg">
       <Link to={`/article/${article.link}`}>
         <img
-          src={`https://shoppingmilad.liara.run/uploads/covers/${article.image}`}
+          src={`https://saniar-backend.vercel.app/uploads/covers/${article.image}`}
           alt={article.image}
           className="w-full md:w-[342px] h-[216.6px] md:h-auto rounded-2xl"
         />

@@ -1,6 +1,6 @@
 import { getUserToken } from "../Utils/Funcs/utils";
 
-const baseURL = "https://shoppingmilad.liara.run/user";
+const baseURL = "https://saniar-backend.vercel.app/user";
 const registerNewUser = async (data) => {
   try {
     const res = await fetch(`${baseURL}/register`, {

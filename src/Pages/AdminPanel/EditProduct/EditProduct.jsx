@@ -56,7 +56,7 @@ function EditProduct() {
     productInfo?.productInfo.images.map((image) =>
       setAllImages((prev) => [
         ...prev,
-        `https://shoppingmilad.liara.run/uploads/covers/${image}`,
+        `https://saniar-backend.vercel.app/uploads/covers/${image}`,
       ])
     );
     setLastImages(productInfo?.productInfo.images);
@@ -109,7 +109,7 @@ function EditProduct() {
 
   const uploadConfig = {
     ckfinder: {
-      uploadUrl: "https://shoppingmilad.liara.run/upload",
+      uploadUrl: "https://saniar-backend.vercel.app/upload",
       withCredentials: true,
       headers: {
         "X-CSRF-TOKEN": "CSFR-TOKEN",

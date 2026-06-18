@@ -1,10 +1,10 @@
 import { getUserToken } from "../Utils/Funcs/utils";
 
-const baseURL = "https://shoppingmilad.liara.run/ticket";
+const baseURL = "https://saniar-backend.vercel.app/ticket";
 
 const getAllDepartments = async () => {
   try {
-    const res = await fetch(`https://shoppingmilad.liara.run/department`);
+    const res = await fetch(`https://saniar-backend.vercel.app/department`);
 
     return await res.json();
   } catch (err) {

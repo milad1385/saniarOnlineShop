@@ -1,6 +1,6 @@
 import { getUserToken } from "../Utils/Funcs/utils";
 
-const baseURL = `https://shoppingmilad.liara.run/static`;
+const baseURL = `https://saniar-backend.vercel.app/static`;
 
 const createFooterText = async (text) => {
   try {

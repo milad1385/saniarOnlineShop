@@ -1,6 +1,6 @@
 import { getUserToken } from "../Utils/Funcs/utils";
 
-const baseURL = "https://shoppingmilad.liara.run/contact";
+const baseURL = "https://saniar-backend.vercel.app/contact";
 
 const sendNewContact = async (body) => {
   try {

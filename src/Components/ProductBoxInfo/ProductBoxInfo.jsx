@@ -23,7 +23,7 @@ function ProductBoxInfo({
       <div className="flex items-center justify-between">
         <div>
           <img
-            src={`https://shoppingmilad.liara.run/uploads/covers/${product?.productInfo.images[0]}`}
+            src={`https://saniar-backend.vercel.app/uploads/covers/${product?.productInfo.images[0]}`}
             alt={product?.productInfo.images[0]}
             className="w-[90px] shrink-0"
           />

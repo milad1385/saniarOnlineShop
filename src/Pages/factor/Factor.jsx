@@ -5,7 +5,7 @@ import useMainOrder from "../../Hooks/order/useMainOrder";
 function Factor() {
   const { id } = useParams();
   const { data: orderInfo } = useMainOrder(id);
-  console.log(orderInfo);
+
   useEffect(() => {
     window.scroll({ top: 0, left: 0 });
   }, []);

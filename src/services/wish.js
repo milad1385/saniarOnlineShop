@@ -1,4 +1,4 @@
-const baseURL = "https://shoppingmilad.liara.run/wishlist";
+const baseURL = "https://saniar-backend.vercel.app/wishlist";
 import { getUserToken } from "./../Utils/Funcs/utils";
 const addToWishList = async (productId) => {
   try {

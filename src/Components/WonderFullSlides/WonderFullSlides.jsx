@@ -23,7 +23,7 @@ function WonderFullSlides() {
         <div className="col-span-2 bg-white  rounded-md shadow-sm p-3.5 flex flex-col lg:flex-row gap-x-5">
           <div className="flex">
             <img
-              src={`https://shoppingmilad.liara.run/uploads/covers/${mainProduct?.images?.[0]}`}
+              src={`https://saniar-backend.vercel.app/uploads/covers/${mainProduct?.images?.[0]}`}
               alt={mainProduct?.title}
               className="w-[292px] h-auto md:h-[304px] shrink-0 mx-auto"
             />

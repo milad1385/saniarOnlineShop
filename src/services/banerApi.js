@@ -1,4 +1,4 @@
-const baseURL = "https://shoppingmilad.liara.run/baner";
+const baseURL = "https://saniar-backend.vercel.app/baner";
 
 const createNewBaner = async (info) => {
   try {

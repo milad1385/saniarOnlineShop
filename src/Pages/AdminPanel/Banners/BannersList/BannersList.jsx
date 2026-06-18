@@ -123,7 +123,7 @@ function BannersList() {
                     <td>
                       <div className="w-[120px] md:w-[150px]">
                         <img
-                          src={`https://shoppingmilad.liara.run/uploads/covers/${slide.image}`}
+                          src={`https://saniar-backend.vercel.app/uploads/covers/${slide.image}`}
                           alt={slide.title}
                           className="rounded-md mx-auto"
                         />

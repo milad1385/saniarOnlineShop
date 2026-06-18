@@ -1,6 +1,6 @@
 import { getUserToken } from "../Utils/Funcs/utils";
 
-const baseURL = `https://shoppingmilad.liara.run/slider`;
+const baseURL = `https://saniar-backend.vercel.app/slider`;
 const createNewSlider = async (info) => {
   try {
     const res = await fetch(`${baseURL}`, {

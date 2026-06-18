@@ -4,7 +4,7 @@ import DeleteModal from "../../DeleteModal/DeleteModal";
 import { AppContext } from "../../../App";
 import Menu from "../Menu/Menu";
 
-function SideBar({ isMenuShow, onShow }) {
+function SideBar() {
   const [isShowExitModal, setIsShowExitModal] = useState(false);
   const navigate = useNavigate();
   const { isShowAdminMenu, setIsShowAdminMenu, logout } =

@@ -16,7 +16,7 @@ const getAllSearchParam = (key) => {
 };
 
 const isLogin = () => {
-  const isLoginUser = JSON.parse(localStorage.getItem("token"));
+  const isLoginUser = JSON.parse(localStorage?.getItem("token"));
   return isLoginUser ? true : false;
 };
 

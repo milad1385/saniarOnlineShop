@@ -1,6 +1,6 @@
 import { getUserToken } from "../Utils/Funcs/utils";
 
-const baseURL = `https://shoppingmilad.liara.run/comments`;
+const baseURL = `https://saniar-backend.vercel.app/comments`;
 
 const createNewComment = async (data) => {
   try {

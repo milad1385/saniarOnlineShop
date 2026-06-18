@@ -1,6 +1,6 @@
 import { getUserToken } from "../Utils/Funcs/utils";
 
-const baseURL = `https://shoppingmilad.liara.run/colors`;
+const baseURL = `https://saniar-backend.vercel.app/colors`;
 
 const createNewColor = async (data) => {
   try {

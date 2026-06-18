@@ -27,7 +27,7 @@ function ProfileBox({ isShowUserBox, image, onShow }) {
                 <img
                   src={
                     isLogin()
-                      ? `https://shoppingmilad.liara.run/uploads/covers/${
+                      ? `https://saniar-backend.vercel.app/uploads/covers/${
                           image ? image : "user.png"
                         }`
                       : "https://secure.gravatar.com/avatar/0baa9781d23d690075258d90a6e02453?s=96&amp;d=mm&amp;r=g"

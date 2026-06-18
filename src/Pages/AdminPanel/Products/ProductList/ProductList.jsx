@@ -56,7 +56,7 @@ function ProductList() {
                     <td>
                       <div className="w-[70px] md:w-[85px]">
                         <img
-                          src={`https://shoppingmilad.liara.run/uploads/covers/${product.images[0]}`}
+                          src={`https://saniar-backend.vercel.app/uploads/covers/${product.images[0]}`}
                           className=""
                         />
                       </div>

@@ -1,6 +1,6 @@
 import { getUserToken } from "../Utils/Funcs/utils";
 
-const baseURL = `https://shoppingmilad.liara.run/category`;
+const baseURL = `https://saniar-backend.vercel.app/category`;
 
 const createNewCategory = async (data) => {
   try {
