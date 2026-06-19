@@ -7,6 +7,8 @@ import EmptyError from "../../../Components/UserPanel/EmptyError/EmptyError";
 
 function OrderPage() {
   const { data: orders, isLoading } = useGetMain();
+
+  
   useEffect(() => {
     window.scroll(0, 0);
   }, []);
@@ -16,7 +18,7 @@ function OrderPage() {
     <div>
       <PageTitle icon={"shop-card"} title={"سفارش های من"} />
       <div className="table-container mt-6">
-        {!orders?.length ? (
+        {orders?.length ? (
           <table className="bg-white text-sm md:text-base">
             <thead>
               <tr className="child:border child:bg-gray-500 child:text-white child:border-slate-300 child:p-2 child:font-DanaDemiBold">
