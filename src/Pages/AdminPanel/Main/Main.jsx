@@ -36,7 +36,6 @@ function Main() {
   const { mutateAsync: editUser, isLoading: editLoading } = useEdit();
   const { data: stats } = useStatsNumbers();
 
-  console.log(stats);
 
   const {
     register,
@@ -122,21 +121,21 @@ function Main() {
             color={"bg-amber-400"}
             icon={"user"}
             per={"نفر"}
-            number={9}
+            number={stats?.usersCount}
           />
           <StatBox
             title={"مقدار کل در آمد"}
             color={"bg-green-500"}
             icon={"money"}
-            per={" "}
-            number={9}
+            per={"ت"}
+            number={`${stats?.totalPrice.toLocaleString("fa-IR")}`}
           />
 
           <StatBox
             title={"تعداد کامنت ها"}
             color={"bg-red-500"}
             icon={"chat-bubble-left-right"}
-            number={9}
+            number={stats?.commentsCount}
           />
 
           <StatBox
@@ -144,7 +143,7 @@ function Main() {
             color={"bg-blue-600"}
             icon={"shopping-cart"}
             per={"تا"}
-            number={9}
+            number={stats?.ordersCount}
           />
         </div>
         <Chart title={"میزان فروش"} grid data={Data} dataKey={"فروش"} />
