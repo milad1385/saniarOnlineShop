@@ -21,7 +21,6 @@ const createNewColor = async (data) => {
 const getAllColors = async (page) => {
   try {
     const res = await fetch(`${baseURL}?page=${page}`);
-    console.log(res);
     return await res.json();
   } catch (err) {
     return err;
