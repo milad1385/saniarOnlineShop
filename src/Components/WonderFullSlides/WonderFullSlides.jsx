@@ -9,12 +9,9 @@ function WonderFullSlides() {
   const { data: products } = useGetAllPro();
   const [mainProduct, setMainProduct] = useState({});
   const { data: features } = useFeatures(mainProduct?._id);
-  console.log(features);
   useEffect(() => {
     setMainProduct(products?.[0]);
   }, [products]);
-
-  console.log(mainProduct);
 
   return (
     <div className="container pb-4 md:pb-10">
@@ -70,11 +67,13 @@ function WonderFullSlides() {
                 {mainProduct?.longDesc}
               </p>
             </div>
-            <div className="flex md:items-center justify-between flex-col md:flex-row py-2.5 font-DanaDemiBold border-b border-b-gray-300 text-sm gap-y-2">
-              {features?.slice(0, 5).map((feature) => (
-                <span key={feature._id}>{feature.featureValue}</span>
-              ))}
-            </div>
+            {features?.length > 0 && (
+              <div className="flex md:items-center justify-between flex-col md:flex-row py-2.5 font-DanaDemiBold border-b border-b-gray-300 text-sm gap-y-2">
+                {features?.slice(0, 5).map((feature) => (
+                  <span key={feature._id}>{feature.featureValue}</span>
+                ))}
+              </div>
+            )}
             <div className="flex items-center justify-between pt-2.5 flex-wrap">
               <div>
                 <div className="flex items-center gap-x-1">
