@@ -64,7 +64,6 @@ const getActiveSlider = async () => {
 };
 
 const editSlider = async (info) => {
-  console.log(info);
   try {
     const res = await fetch(`${baseURL}/edit/${info.id}`, {
       method: "PUT",

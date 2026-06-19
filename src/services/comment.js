@@ -13,7 +13,6 @@ const createNewComment = async (data) => {
       body: JSON.stringify(data),
     });
 
-    console.log(res);
     return res;
   } catch (err) {
     return err;
@@ -71,11 +70,9 @@ const editCommentBody = async (body, id) => {
       body: JSON.stringify({ body: body }),
     });
 
-    console.log(res);
 
     return res;
   } catch (err) {
-    console.log(err);
     return err;
   }
 };

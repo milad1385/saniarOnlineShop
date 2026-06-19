@@ -42,7 +42,6 @@ function DetailPay() {
   const calcTotal = calculateTotalPrice - calcTotalDiscount;
 
   const provinces = citiesState().map((city) => city.label);
-  console.log(provinces);
   const onSubmit = ({ date }) => {
     setSubmittedDate(date);
   };

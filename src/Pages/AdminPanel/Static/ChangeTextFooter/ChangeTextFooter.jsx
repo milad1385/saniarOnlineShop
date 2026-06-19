@@ -19,7 +19,7 @@ function ChangeTextFooter() {
 
   const { mutateAsync: createFooter, isLoading } = useCreate();
   const { data: footerText} = useGetText();
-  console.log(footerText);
+
 
   const createFooterText = async (data) => {
     const result = await createFooter(data.text);

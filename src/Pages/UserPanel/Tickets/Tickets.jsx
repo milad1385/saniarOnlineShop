@@ -8,7 +8,6 @@ import Loader from "../../../Components/Loader/Loader";
 
 function Tickets() {
   const { data: allTickets, isLoading } = useGetAll();
-  console.log(allTickets);
   useEffect(() => {
     window.scroll(0, 0);
   }, []);

@@ -68,7 +68,7 @@ function Comments({ productID, comments }) {
       isReply: replyInfo ? 1 : 0,
     };
     const result = await sendComment(commentInfo);
-    console.log(result);
+   
     if (result.status === 202) {
       clearInput();
       setIsShowSuccessModal(true);

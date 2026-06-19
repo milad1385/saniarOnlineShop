@@ -41,7 +41,6 @@ function AddNewArticle() {
   };
 
   const addNewArticleHandler = async (data) => {
-    console.log(data);
     const formData = new FormData();
     formData.append("title", data.title);
     formData.append("link", data.link);

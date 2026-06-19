@@ -32,7 +32,6 @@ const handleLoginUser = async (userInfo) => {
       body: JSON.stringify(userInfo),
     });
 
-    console.log(res);
 
     const { info } = await res.json();
     if (res.status === 404) {

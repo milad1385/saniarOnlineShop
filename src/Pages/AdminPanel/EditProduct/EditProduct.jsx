@@ -74,7 +74,6 @@ function EditProduct() {
   };
 
   const updateProductHandler = async (data) => {
-    console.log(lastImages);
     const formData = new FormData();
     formData.append("title", data.title);
     formData.append("price", +data.price);

@@ -43,7 +43,7 @@ function AddNewProduct() {
   };
 
   const addNewProductHandler = async (data) => {
-    console.log(data);
+
     if (
       images !== "" &&
       data.category !== "-1" &&

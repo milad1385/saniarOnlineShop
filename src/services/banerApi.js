@@ -39,7 +39,6 @@ const deleteBaner = async (id) => {
 };
 
 const editBaner = async (info) => {
-  console.log(info);
   try {
     const res = await fetch(`${baseURL}/edit/baner/${info.id}`, {
       method: "PUT",

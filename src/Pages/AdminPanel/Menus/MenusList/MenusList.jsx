@@ -6,7 +6,6 @@ import Loader from "../../../../Components/Loader/Loader";
 function MenusList() {
   const [isShowDeleteModal, setIsShowDeleteModal] = useState(false);
   const { data: menus, isLoading } = useGet();
-  console.log(menus);
   if (isLoading) return <Loader />;
   return (
     <>

@@ -3,7 +3,6 @@ import useDelete from "../../../Hooks/wishlist/useDelete";
 import { Link } from "react-router-dom";
 
 function LikelyProductCard({ product }) {
-  console.log(product);
   const { mutateAsync: deleteWish } = useDelete();
 
   const deleteWishListHandler = async (id) => {

@@ -38,7 +38,6 @@ function BannersList() {
 
   const deleteSliderHandler = async () => {
     const result = await deleteSlider(banerId);
-    console.log(result);
     if (result.status === 200) {
       setMsg("اسلایدر با موفقیت حذف شد");
       setIsShowDeleteModal(false);

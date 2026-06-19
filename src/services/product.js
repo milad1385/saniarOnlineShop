@@ -16,7 +16,6 @@ const createNewProduct = async (data) => {
 };
 
 const getAllProducts = async (page) => {
-  console.log(page);
   try {
     const res = await fetch(`${baseURL}?page=${page}`);
 
@@ -122,7 +121,6 @@ const filterProduct = async (
   endPrice,
   search
 ) => {
-  console.log(search);
   try {
     const res = await fetch(
       `${baseURL}/filtredProducts/${
@@ -130,7 +128,6 @@ const filterProduct = async (
       }?startPrice=${startPrice}&endPrice=${endPrice}&page=${page}&sort=${sort}&q=${search}`
     );
 
-    console.log(res);
     return await res.json();
   } catch (err) {
     return err;
@@ -138,7 +135,6 @@ const filterProduct = async (
 };
 
 const getFeatures = async (id) => {
-  console.log("id =>>>", id.queryKey[1]);
   try {
     const res = await fetch(`${baseURL}/get-main/features/${id.queryKey[1]}`);
     return await res.json();

@@ -13,7 +13,6 @@ const getAllDepartments = async () => {
 };
 
 const sendNewTicket = async (data) => {
-  console.log(data);
   try {
     const res = await fetch(`${baseURL}`, {
       method: "POST",
