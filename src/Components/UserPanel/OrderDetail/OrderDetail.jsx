@@ -2,14 +2,17 @@ import React, { useEffect } from "react";
 import PageTitle from "../PageTitle/PageTitle";
 import useMainOrder from "../../../Hooks/order/useMainOrder";
 import { Link, useParams } from "react-router-dom";
+import Loader from "../../Loader/Loader";
 
 function OrderDetail() {
   const { id } = useParams();
-  const { data: orderInfo } = useMainOrder(id);
-  console.log(orderInfo);
+  const { data: orderInfo, isLoading } = useMainOrder(id);
+
   useEffect(() => {
     window.scroll({ top: 0, left: 0 });
   }, []);
+
+  if (isLoading) return <Loader />;
   return (
     <>
       <div className="mt-5 bg-white p-4 rounded-md shadow">
@@ -102,10 +105,10 @@ function OrderDetail() {
                     orderInfo?.status === 0
                       ? "text-red-600"
                       : orderInfo?.status === 1
-                      ? "text-sky-500"
-                      : orderInfo?.status === 2
-                      ? "text-green-600"
-                      : ""
+                        ? "text-sky-500"
+                        : orderInfo?.status === 2
+                          ? "text-green-600"
+                          : ""
                   }`}
                 >
                   {orderInfo?.status === 0 && "در حال بررسی"}
@@ -122,18 +125,18 @@ function OrderDetail() {
                     orderInfo?.status === 0
                       ? "bg-red-600"
                       : orderInfo?.status === 1
-                      ? "bg-sky-500"
-                      : orderInfo?.status === 2
-                      ? "bg-green-600"
-                      : ""
+                        ? "bg-sky-500"
+                        : orderInfo?.status === 2
+                          ? "bg-green-600"
+                          : ""
                   } py-1.5 rounded-full ${
                     orderInfo?.status === 0
                       ? "w-[20%]"
                       : orderInfo?.status === 1
-                      ? "w-[50%]"
-                      : orderInfo?.status === 2
-                      ? "w-[100%]"
-                      : ""
+                        ? "w-[50%]"
+                        : orderInfo?.status === 2
+                          ? "w-[100%]"
+                          : ""
                   }`}
                 ></div>
               </div>
