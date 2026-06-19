@@ -25,6 +25,15 @@ const getFooterText = async () => {
   } catch (err) {}
 };
 
+export const getStats = async () => {
+  try {
+    const res = await fetch(`${baseURL}/stats`);
+    return await res.json();
+  } catch (err) {
+    return err;
+  }
+};
+
 const createSiteAdress = async (data) => {
   try {
     const res = await fetch(`${baseURL}/address`, {

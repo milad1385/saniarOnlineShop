@@ -18,6 +18,7 @@ import { useForm } from "react-hook-form";
 import useEdit from "../../../Hooks/AdminPanel/User/useEdit";
 import StatBox from "../../UserPanel/Tickets/Stat";
 import Loader from "../../../Components/Loader/Loader";
+import useStatsNumbers from "../../../Hooks/AdminPanel/stats/useStats";
 function Main() {
   const { setIsShowAdminMenu } = useContext(AppContext);
   const [isShowDeleteModal, setIsShowDeleteModal] = useState(false);
@@ -33,6 +34,9 @@ function Main() {
   const { mutateAsync: changeRole, isLoading: roleLoading } = useRole();
   const { data: users, isLoading } = useLastestUser(getSearchParam("q") || "");
   const { mutateAsync: editUser, isLoading: editLoading } = useEdit();
+  const { data: stats } = useStatsNumbers();
+
+  console.log(stats);
 
   const {
     register,
