@@ -4,6 +4,7 @@ import useGetAllPro from "../../Hooks/AdminPanel/Product/useGetAllPro";
 import Slide from "./Slide";
 import useFeatures from "../../Hooks/AdminPanel/Product/useFeatures";
 import { Link } from "react-router-dom";
+import CountDownTimer from "../HeaderBox/CountDownTimer";
 
 function WonderFullSlides() {
   const { data: products } = useGetAllPro();
@@ -25,33 +26,8 @@ function WonderFullSlides() {
               className="w-[292px] h-auto md:h-[304px] shrink-0 mx-auto"
             />
           </div>
-          <div className="">
-            <div className="flex items-center justify-center md:justify-start gap-x-2.5 mx-auto lg:mx-0">
-              <div className="flex items-center flex-col">
-                <div className="bg-red-500 text-white rounded-md w-10 h-10 flex items-center justify-center text-sm font-DanaDemiBold">
-                  53
-                </div>
-                <span className="text-sm font-DanaDemiBold mt-2">ثانیه</span>
-              </div>
-              <div className="flex items-center flex-col">
-                <div className="bg-gray-200 text-black rounded-md w-10 h-10 flex items-center justify-center text-sm font-DanaDemiBold">
-                  45
-                </div>
-                <span className="text-sm font-DanaDemiBold mt-2">دقیقه</span>
-              </div>
-              <div className="flex items-center flex-col">
-                <div className="bg-gray-200 text-black rounded-md w-10 h-10 flex items-center justify-center text-sm font-DanaDemiBold">
-                  12
-                </div>
-                <span className="text-sm font-DanaDemiBold mt-2">ساعت</span>
-              </div>
-              <div className="flex items-center flex-col">
-                <div className="bg-gray-200 text-black rounded-md w-10 h-10 flex items-center justify-center text-sm font-DanaDemiBold">
-                  1
-                </div>
-                <span className="text-sm font-DanaDemiBold mt-2">روز</span>
-              </div>
-            </div>
+          <div>
+            <CountDownTimer/>
             <div className="flex items-start md:items-center md:justify-between flex-col xl:flex-row gap-x-5 my-5">
               <h3 className="font-DanaDemiBold text-lg line-clamp-1 lg:line-clamp-2">
                 {mainProduct?.title}
