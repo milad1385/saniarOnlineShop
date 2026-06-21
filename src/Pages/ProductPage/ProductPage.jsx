@@ -366,7 +366,7 @@ function ProductPage() {
           <div className="bg-white rounded-md shadow md:ml-5   w-full py-5 px-4">
             <div className="flex items-center gap-x-6 border-b-[1.5px] child:pb-4 border-b-gray-200  child:cursor-pointer font-DanaMedium">
               <div
-                className={`text-xs  flex items-center gap-x-1 font-DanaDemiBold md:text-base${
+                className={`text-xs select-none  flex items-center gap-x-1 font-DanaDemiBold md:text-base${
                   optionShowModel === "توضیحات کالا"
                     ? "text-blue-600 border-b-2 border-b-blue-600 text-xs font-DanaDemiBold md:text-base"
                     : ""
@@ -377,7 +377,7 @@ function ProductPage() {
               </div>
               <div
                 onClick={(e) => setOptionShowModel("مشخصات کالا")}
-                className={`text-xs  flex items-center gap-x-1 font-DanaDemiBold md:text-base${
+                className={`text-xs select-none   flex items-center gap-x-1 font-DanaDemiBold md:text-base${
                   optionShowModel === "مشخصات کالا"
                     ? "text-blue-600 border-b-2 border-b-blue-600 text-xs font-DanaDemiBold md:text-base"
                     : ""
@@ -387,7 +387,7 @@ function ProductPage() {
               </div>
               <div
                 onClick={(e) => setOptionShowModel("توضیحات تکمیلی")}
-                className={`text-xs  font-DanaDemiBold md:text-base${
+                className={`text-xs select-none   font-DanaDemiBold md:text-base${
                   optionShowModel === "توضیحات تکمیلی"
                     ? "text-blue-600 border-b-2 border-b-blue-600 text-xs font-DanaDemiBold md:text-base"
                     : ""
@@ -397,7 +397,7 @@ function ProductPage() {
               </div>
               <div
                 onClick={(e) => setOptionShowModel(e.target.innerHTML)}
-                className={`text-xs  font-DanaDemiBold md:text-base${
+                className={`text-xs select-none   font-DanaDemiBold md:text-base${
                   optionShowModel === "نظرات"
                     ? "text-blue-600 border-b-2 border-b-blue-600 text-xs font-DanaDemiBold md:text-base"
                     : ""
@@ -419,7 +419,7 @@ function ProductPage() {
                         className="text-gray-500 text-sm/[28px] md:text-base/[32px]"
                         dangerouslySetInnerHTML={{
                           __html: DOMPurify.sanitize(
-                            productInfo?.productInfo.moreDesc
+                            productInfo?.productInfo.moreDesc,
                           ),
                         }}
                       ></p>
@@ -444,7 +444,7 @@ function ProductPage() {
                       className="text-gray-500 feature text-sm/[28px] md:text-base/[32px] space-y-8 mt-4"
                       dangerouslySetInnerHTML={{
                         __html: DOMPurify.sanitize(
-                          productInfo?.productInfo.productFeature
+                          productInfo?.productInfo.productFeature,
                         ),
                       }}
                     ></p>
