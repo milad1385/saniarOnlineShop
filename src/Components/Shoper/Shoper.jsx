@@ -8,7 +8,7 @@ function Shoper() {
           <svg className="w-6 h-6">
             <use href="#shop"></use>
           </svg>
-          <span className="font-DanaDemiBold text-sm">سانیار کالا</span>
+          <span className="font-DanaDemiBold text-sm">اسمارت کالا کالا</span>
           <span className="font-medium bg-green-200 text-green-700 text-xs md:text-sm px-2 py-1 rounded-2xl">
             منتخب
           </span>
@@ -24,7 +24,7 @@ function Shoper() {
           <svg className="w-5 md:w-6 h-5 md:h-6">
             <use href="#box"></use>
           </svg>
-          <p className="text-zinc-700"> ارسالی سانیار کالا </p>
+          <p className="text-zinc-700"> ارسالی اسمارت کالا کالا </p>
         </div>
       </td>
       <td>

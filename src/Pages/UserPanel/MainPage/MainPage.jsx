@@ -29,7 +29,7 @@ function MainPage() {
             <span className="text-3xl">🙌</span>
           </p>
           <p className="font-DanaDemiBold mt-3">
-            به فروشگاه سانیار خوش آمدید ❤️
+            به فروشگاه اسمارت کالا خوش آمدید ❤️
           </p>
           <p className="text-zinc-700 mt-5 leading-8 text-sm md:text-base">
             از پیش خوان حساب کاربری خود میتوانید{" "}

@@ -62,7 +62,7 @@ function Register() {
               ایجاد حساب کاربری
             </h1>
             <h4 className="font-DanaDemiBold text-xs md:text-sm text-gray-600 mt-2 md:mt-1">
-              به خانواده سانیار خوش آمدی :)
+              به خانواده اسمارت کالا خوش آمدی :)
             </h4>
             <div className="bg-gray-300 w-full p-4 md:p-5 flex-center mt-2 rounded-[5px]">
               <span className="font-DanaDemiBold text-sm md:text-base">

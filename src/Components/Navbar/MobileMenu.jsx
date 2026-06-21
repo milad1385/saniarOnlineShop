@@ -124,7 +124,7 @@ function MobileMenu({ isUserPanel, role }) {
       >
         <div className="border-b border-b-gray-300 pb-3">
           <div className="flex items-center justify-between">
-            {/* <h3 className="font-DanaDemiBold">سانیار</h3> */}
+            {/* <h3 className="font-DanaDemiBold">اسمارت کالا</h3> */}
             <img src="/images/logo.png" alt="logo" className="w-28" />
             <div onClick={closeMenu}>
               <svg className="w-6 h-6">
