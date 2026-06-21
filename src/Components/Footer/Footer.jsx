@@ -37,7 +37,7 @@ function Footer() {
                 <use href="#logo-type"></use>
               </svg>
             </div>
-            <p className="md:text-lg/[48px] text-sm xl:max-w-[600px] select-none">
+            <p className="md:text-lg/[48px] text-sm/[28px] text-justify xl:max-w-[600px] select-none">
               {footerText?.length ? footerText[0]?.text : ""}
             </p>
           </div>
