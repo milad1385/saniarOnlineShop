@@ -36,18 +36,24 @@ function Headerbox({ title, price, off, images, score, link }) {
         </div>
       </div>
       <div className="p-3.5">
-        <img
-          src={`https://saniar-backend.vercel.app/uploads/covers/${images[0]}`}
-          alt={title}
-          className="w-[200px] h-[200px]  mx-auto"
-        />
+        <Link to={`/product/${link}`}>
+          <img
+            src={`https://saniar-backend.vercel.app/uploads/covers/${images[0]}`}
+            alt={title}
+            className="w-[200px] h-[200px]  mx-auto"
+          />
+        </Link>
         <div className="flex items-center justify-between">
-          <div className="">
-            <h3 className="font-DanaDemiBold text-sm md:text-base ">{title}</h3>
-            <h5 className="text-xs md:text-sm text-gray-400 font-DanaMedium mt-1">
-              mibro 3200Xfam smartwatch
-            </h5>
-          </div>
+          <Link to={`/product/${link}`}>
+            <div className="">
+              <h3 className="font-DanaDemiBold text-sm md:text-base ">
+                {title}
+              </h3>
+              <h5 className="text-xs md:text-sm text-gray-400 font-DanaMedium mt-1">
+                mibro 3200Xfam smartwatch
+              </h5>
+            </div>
+          </Link>
           <div className="flex flex-row-reverse gap-x-2">
             <div className="flex items-center">
               {new Array(Math.ceil(score)).fill(0).map((score, index) => (
