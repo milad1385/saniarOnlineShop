@@ -1,59 +1,28 @@
-import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import CountDownTimer from "./CountDownTimer";
 
 function Headerbox({ title, price, off, images, score, link }) {
   return (
     <div>
-      <div className="flex items-center justify-between border-b-2 border-b-gray-300  p-3.5 pb-2">
+      <div className="flex items-center justify-between border-b-2 border-b-gray-300 p-3.5 pb-2">
         <div className="bg-red-200 text-red-600 text-xs md:text-sm p-2 rounded-lg">
           {off} % تخفیف
         </div>
-        <div className="flex items-center gap-x-2.5">
-          <div className="flex items-center flex-col">
-            <div className="bg-red-500 text-white rounded-md w-8 h-8 flex items-center justify-center text-sm font-DanaDemiBold">
-              53
-            </div>
-            <span className="text-xs font-DanaDemiBold mt-2">ثانیه</span>
-          </div>
-          <div className="flex items-center flex-col">
-            <div className="bg-gray-200 text-black rounded-md w-8 h-8 flex items-center justify-center text-sm font-DanaDemiBold">
-              45
-            </div>
-            <span className="text-xs font-DanaDemiBold mt-2">دقیقه</span>
-          </div>
-          <div className="flex items-center flex-col">
-            <div className="bg-gray-200 text-black rounded-md w-8 h-8 flex items-center justify-center text-sm font-DanaDemiBold">
-              12
-            </div>
-            <span className="text-xs font-DanaDemiBold mt-2">ساعت</span>
-          </div>
-          <div className="flex items-center flex-col">
-            <div className="bg-gray-200 text-black rounded-md w-8 h-8 flex items-center justify-center text-sm font-DanaDemiBold">
-              1
-            </div>
-            <span className="text-xs font-DanaDemiBold mt-2">روز</span>
-          </div>
-        </div>
+        <CountDownTimer />
       </div>
       <div className="p-3.5">
-        <Link to={`/product/${link}`}>
-          <img
-            src={`https://saniar-backend.vercel.app/uploads/covers/${images[0]}`}
-            alt={title}
-            className="w-[200px] h-[200px]  mx-auto"
-          />
-        </Link>
+        <img
+          src={`https://saniar-backend.vercel.app/uploads/covers/${images[0]}`}
+          alt={title}
+          className="w-[200px] h-[200px] mx-auto"
+        />
         <div className="flex items-center justify-between">
-          <Link to={`/product/${link}`}>
-            <div className="">
-              <h3 className="font-DanaDemiBold text-sm md:text-base ">
-                {title}
-              </h3>
-              <h5 className="text-xs md:text-sm text-gray-400 font-DanaMedium mt-1">
-                mibro 3200Xfam smartwatch
-              </h5>
-            </div>
-          </Link>
+          <div className="">
+            <h3 className="font-DanaDemiBold text-sm md:text-base">{title}</h3>
+            <h5 className="text-xs md:text-sm text-gray-400 font-DanaMedium mt-1">
+              mibro 3200Xfam smartwatch
+            </h5>
+          </div>
           <div className="flex flex-row-reverse gap-x-2">
             <div className="flex items-center">
               {new Array(Math.ceil(score)).fill(0).map((score, index) => (
